@@ -1,0 +1,23 @@
+{
+  "devFiles": [],
+  "ampDevFiles": [],
+  "polyfillFiles": [],
+  "lowPriorityFiles": [],
+  "rootMainFiles": [],
+  "pages": {
+    "/_error": [
+      "static/chunks/19f28_next_dist_compiled_364e99bb._.js",
+      "static/chunks/19f28_next_dist_shared_lib_0f0784c4._.js",
+      "static/chunks/19f28_next_dist_client_804f93e9._.js",
+      "static/chunks/19f28_next_dist_d7cb9c3c._.js",
+      "static/chunks/19f28_next_error_57cb08e1.js",
+      "static/chunks/[next]_entry_page-loader_ts_0b919bec._.js",
+      "static/chunks/19f28_react-dom_bca95820._.js",
+      "static/chunks/19f28_fbf038b3._.js",
+      "static/chunks/[root-of-the-server]__d4e45548._.js",
+      "static/chunks/80b94_ProjetosdeProgramacao_projeto-financeiro_frontend_pages__error_2da965e7._.js",
+      "static/chunks/358b3_ProjetosdeProgramacao_projeto-financeiro_frontend_pages__error_2985b2a5._.js"
+    ]
+  },
+  "ampFirstPages": []
+}
