@@ -1,42 +1,49 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from sqlmodel import Session, select
+from .database import create_db_and_tables, engine
+from .models import BudgetGroup
+from .routers import router_expenses, router_categories, router_income, router_goals, router_budget
 
-from .database import create_db_and_tables
-# 👇 Adicione router_goals aqui
-from .routers import router_expenses, router_categories, router_income, router_goals, router_dashboard
-# ... (código do app = FastAPI() e CORS) ...
 app = FastAPI(
     title="API de Controle Financeiro Pessoal",
     description="Backend para o sistema de finanças pessoais com FastAPI e SQLModel.",
     version="1.0.0"
 )
 
-origins = [
-    "http://localhost:3000",
-    "http://localhost",
-]
-
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=origins,
+    allow_origins=["*"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
 
-# --- Evento de Startup ---
 @app.on_event("startup")
 def on_startup():
     create_db_and_tables()
+    # 👇 INICIALIZA OS GRUPOS PADRÃO SE NÃO EXISTIREM 👇
+    with Session(engine) as session:
+        existing_groups = session.exec(select(BudgetGroup)).all()
+        if not existing_groups:
+            default_groups = [
+                "Investimentos (Liberd. Financ)",
+                "Custo fixo",
+                "Confortos",
+                "Metas",
+                "Prazeres",
+                "Conhecimento"
+            ]
+            for name in default_groups:
+                session.add(BudgetGroup(name=name, target_percentage=0))
+            session.commit()
 
-# --- Rotas Principais ---
 @app.get("/", tags=["Root"])
 def read_root():
     return {"message": "Bem-vindo à API de Finanças Pessoais!"}
 
-# --- Inclui os Routers ---
-app.include_router(router_dashboard) 
 app.include_router(router_expenses)
 app.include_router(router_categories)
 app.include_router(router_income)
-app.include_router(router_goals) 
+app.include_router(router_goals)
+app.include_router(router_budget) 

@@ -17,21 +17,22 @@ var _s = __turbopack_context__.k.signature(), _s1 = __turbopack_context__.k.sign
 ;
 ;
 const API_URL = 'http://localhost:8000';
-// --- Componente do Formulário de Despesas (ATUALIZADO) ---
 function ExpenseForm(t0) {
     _s();
-    const $ = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$compiler$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["c"])(46);
-    if ($[0] !== "b9593ec6a0f74a0c125e5c28833286ea558cdce4861a5022f86613a3aa1fcd1e") {
-        for(let $i = 0; $i < 46; $i += 1){
+    const $ = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$compiler$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["c"])(67);
+    if ($[0] !== "8a99842b2b1fdff5c135bc9d872b0bbd4cd3d926b31702ac315d114432229151") {
+        for(let $i = 0; $i < 67; $i += 1){
             $[$i] = Symbol.for("react.memo_cache_sentinel");
         }
-        $[0] = "b9593ec6a0f74a0c125e5c28833286ea558cdce4861a5022f86613a3aa1fcd1e";
+        $[0] = "8a99842b2b1fdff5c135bc9d872b0bbd4cd3d926b31702ac315d114432229151";
     }
     const { onExpenseAdded } = t0;
     const [description, setDescription] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])("");
     const [amount, setAmount] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])("");
     const [date, setDate] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])("");
-    const [categoryId, setCategoryId] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])("");
+    const [groupId, setGroupId] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])("");
+    const [subcategoryId, setSubcategoryId] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])("");
+    const [newSubcategoryName, setNewSubcategoryName] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])("");
     let t1;
     if ($[1] === Symbol.for("react.memo_cache_sentinel")) {
         t1 = [];
@@ -39,7 +40,7 @@ function ExpenseForm(t0) {
     } else {
         t1 = $[1];
     }
-    const [categories, setCategories] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(t1);
+    const [budgetGroups, setBudgetGroups] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(t1);
     let t2;
     if ($[2] === Symbol.for("react.memo_cache_sentinel")) {
         t2 = [];
@@ -47,61 +48,87 @@ function ExpenseForm(t0) {
     } else {
         t2 = $[2];
     }
-    const [goals, setGoals] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(t2);
-    const [selectedGoalId, setSelectedGoalId] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])("");
-    const [metaCategoryId, setMetaCategoryId] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(null);
+    const [subcategories, setSubcategories] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(t2);
     let t3;
-    let t4;
     if ($[3] === Symbol.for("react.memo_cache_sentinel")) {
-        t3 = ({
+        t3 = [];
+        $[3] = t3;
+    } else {
+        t3 = $[3];
+    }
+    const [goals, setGoals] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(t3);
+    const [selectedGoalId, setSelectedGoalId] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])("");
+    const [metaGroupId, setMetaGroupId] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(null);
+    let t4;
+    let t5;
+    if ($[4] === Symbol.for("react.memo_cache_sentinel")) {
+        t4 = ({
             "ExpenseForm[useEffect()]": ()=>{
                 Promise.all([
+                    __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$axios$2f$lib$2f$axios$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].get(`${API_URL}/budget/`),
                     __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$axios$2f$lib$2f$axios$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].get(`${API_URL}/categories/`),
                     __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$axios$2f$lib$2f$axios$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].get(`${API_URL}/goals/`)
                 ]).then({
-                    "ExpenseForm[useEffect() > (anonymous)()]": (t5)=>{
-                        const [categoriesRes, goalsRes] = t5;
-                        const allCategories = categoriesRes.data;
-                        setCategories(allCategories);
+                    "ExpenseForm[useEffect() > (anonymous)()]": (t6)=>{
+                        const [groupsRes, catsRes, goalsRes] = t6;
+                        setBudgetGroups(groupsRes.data);
+                        setSubcategories(catsRes.data);
                         setGoals(goalsRes.data);
-                        if (allCategories.length > 0) {
-                            setCategoryId(allCategories[0].id);
-                        }
-                        const metaCat = allCategories.find(_ExpenseFormUseEffectAnonymousAllCategoriesFind);
-                        if (metaCat) {
-                            setMetaCategoryId(metaCat.id);
+                        const metaGroup = groupsRes.data.find(_ExpenseFormUseEffectAnonymousGroupsResDataFind);
+                        if (metaGroup) {
+                            setMetaGroupId(metaGroup.id);
                         }
                     }
-                }["ExpenseForm[useEffect() > (anonymous)()]"]).catch(_ExpenseFormUseEffectAnonymous);
+                }["ExpenseForm[useEffect() > (anonymous)()]"]);
             }
         })["ExpenseForm[useEffect()]"];
-        t4 = [];
-        $[3] = t3;
+        t5 = [];
         $[4] = t4;
+        $[5] = t5;
     } else {
-        t3 = $[3];
         t4 = $[4];
+        t5 = $[5];
     }
-    (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])(t3, t4);
-    let t5;
-    if ($[5] !== amount || $[6] !== categoryId || $[7] !== date || $[8] !== description || $[9] !== metaCategoryId || $[10] !== onExpenseAdded || $[11] !== selectedGoalId) {
-        t5 = ({
-            "ExpenseForm[handleSubmit]": (e)=>{
+    (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])(t4, t5);
+    let t6;
+    if ($[6] !== amount || $[7] !== date || $[8] !== description || $[9] !== groupId || $[10] !== metaGroupId || $[11] !== newSubcategoryName || $[12] !== onExpenseAdded || $[13] !== selectedGoalId || $[14] !== subcategoryId) {
+        t6 = ({
+            "ExpenseForm[handleSubmit]": async (e)=>{
                 e.preventDefault();
-                if (!description || !amount || !categoryId) {
-                    alert("Por favor, preencha todos os campos.");
+                if (!description || !amount || !groupId) {
+                    alert("Preencha Descri\xE7\xE3o, Valor e GRUPO (Obrigat\xF3rio).");
                     return;
+                }
+                let finalSubcategoryId = subcategoryId;
+                if (newSubcategoryName) {
+                    ;
+                    try {
+                        const catRes = await __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$axios$2f$lib$2f$axios$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].post(`${API_URL}/categories/`, {
+                            name: newSubcategoryName
+                        });
+                        finalSubcategoryId = catRes.data.id;
+                        setSubcategories({
+                            "ExpenseForm[handleSubmit > setSubcategories()]": (prev)=>[
+                                    ...prev,
+                                    catRes.data
+                                ]
+                        }["ExpenseForm[handleSubmit > setSubcategories()]"]);
+                    } catch (t7) {
+                        const error = t7;
+                        console.error("Erro ao criar subcategoria:", error);
+                        alert("Erro ao criar nova subcategoria.");
+                        return;
+                    }
                 }
                 const newExpense = {
                     description,
                     amount: parseFloat(amount),
-                    category_id: parseInt(categoryId),
-                    goal_id: null
+                    budget_group_id: parseInt(groupId),
+                    category_id: finalSubcategoryId ? parseInt(finalSubcategoryId) : null,
+                    goal_id: null,
+                    date: date ? new Date(date).toISOString() : new Date().toISOString()
                 };
-                if (date) {
-                    newExpense.date = new Date(date).toISOString();
-                }
-                if (parseInt(categoryId) === metaCategoryId && selectedGoalId) {
+                if (parseInt(groupId) === metaGroupId && selectedGoalId) {
                     newExpense.goal_id = parseInt(selectedGoalId);
                 }
                 __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$axios$2f$lib$2f$axios$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].post(`${API_URL}/expenses/`, newExpense).then({
@@ -109,336 +136,460 @@ function ExpenseForm(t0) {
                         setDescription("");
                         setAmount("");
                         setDate("");
+                        setGroupId("");
+                        setSubcategoryId("");
+                        setNewSubcategoryName("");
                         setSelectedGoalId("");
-                        onExpenseAdded(response.data);
+                        onExpenseAdded();
                     }
                 }["ExpenseForm[handleSubmit > (anonymous)()]"]).catch(_ExpenseFormHandleSubmitAnonymous);
             }
         })["ExpenseForm[handleSubmit]"];
-        $[5] = amount;
-        $[6] = categoryId;
+        $[6] = amount;
         $[7] = date;
         $[8] = description;
-        $[9] = metaCategoryId;
-        $[10] = onExpenseAdded;
-        $[11] = selectedGoalId;
-        $[12] = t5;
+        $[9] = groupId;
+        $[10] = metaGroupId;
+        $[11] = newSubcategoryName;
+        $[12] = onExpenseAdded;
+        $[13] = selectedGoalId;
+        $[14] = subcategoryId;
+        $[15] = t6;
     } else {
-        t5 = $[12];
+        t6 = $[15];
     }
-    const handleSubmit = t5;
-    const isMetaCategorySelected = parseInt(categoryId) === metaCategoryId;
-    let t6;
-    if ($[13] === Symbol.for("react.memo_cache_sentinel")) {
-        t6 = /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
+    const handleSubmit = t6;
+    const isMetaGroupSelected = parseInt(groupId) === metaGroupId;
+    let t7;
+    if ($[16] === Symbol.for("react.memo_cache_sentinel")) {
+        t7 = /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
             className: "text-2xl font-bold mb-4 text-red-400",
             children: "Nova Despesa"
         }, void 0, false, {
             fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/expenses/page.js",
-            lineNumber: 119,
+            lineNumber: 146,
             columnNumber: 10
         }, this);
-        $[13] = t6;
+        $[16] = t7;
     } else {
-        t6 = $[13];
-    }
-    let t7;
-    if ($[14] === Symbol.for("react.memo_cache_sentinel")) {
-        t7 = ({
-            "ExpenseForm[<input>.onChange]": (e_0)=>setDescription(e_0.target.value)
-        })["ExpenseForm[<input>.onChange]"];
-        $[14] = t7;
-    } else {
-        t7 = $[14];
+        t7 = $[16];
     }
     let t8;
-    if ($[15] !== description) {
-        t8 = /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
-            type: "text",
-            value: description,
-            onChange: t7,
-            placeholder: "Descri\xE7\xE3o (ex: Poupan\xE7a Casamento)",
-            className: "p-3 bg-gray-700 rounded border border-gray-600 focus:outline-none focus:border-red-500"
-        }, void 0, false, {
-            fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/expenses/page.js",
-            lineNumber: 135,
-            columnNumber: 10
-        }, this);
-        $[15] = description;
-        $[16] = t8;
+    if ($[17] === Symbol.for("react.memo_cache_sentinel")) {
+        t8 = ({
+            "ExpenseForm[<input>.onChange]": (e_0)=>setDescription(e_0.target.value)
+        })["ExpenseForm[<input>.onChange]"];
+        $[17] = t8;
     } else {
-        t8 = $[16];
+        t8 = $[17];
     }
     let t9;
-    if ($[17] === Symbol.for("react.memo_cache_sentinel")) {
-        t9 = ({
-            "ExpenseForm[<input>.onChange]": (e_1)=>setAmount(e_1.target.value)
-        })["ExpenseForm[<input>.onChange]"];
-        $[17] = t9;
-    } else {
-        t9 = $[17];
-    }
-    let t10;
-    if ($[18] !== amount) {
-        t10 = /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
-            type: "number",
-            value: amount,
-            onChange: t9,
-            placeholder: "Valor (ex: 500.00)",
+    if ($[18] !== description) {
+        t9 = /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
+            type: "text",
+            value: description,
+            onChange: t8,
+            placeholder: "Descri\xE7\xE3o (ex: Almo\xE7o)",
             className: "p-3 bg-gray-700 rounded border border-gray-600 focus:outline-none focus:border-red-500"
         }, void 0, false, {
             fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/expenses/page.js",
-            lineNumber: 152,
-            columnNumber: 11
+            lineNumber: 162,
+            columnNumber: 10
         }, this);
-        $[18] = amount;
-        $[19] = t10;
+        $[18] = description;
+        $[19] = t9;
     } else {
-        t10 = $[19];
+        t9 = $[19];
+    }
+    let t10;
+    if ($[20] === Symbol.for("react.memo_cache_sentinel")) {
+        t10 = ({
+            "ExpenseForm[<input>.onChange]": (e_1)=>setAmount(e_1.target.value)
+        })["ExpenseForm[<input>.onChange]"];
+        $[20] = t10;
+    } else {
+        t10 = $[20];
     }
     let t11;
-    if ($[20] !== t10 || $[21] !== t8) {
-        t11 = /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-            className: "grid grid-cols-1 md:grid-cols-2 gap-4 mb-4",
-            children: [
-                t8,
-                t10
-            ]
-        }, void 0, true, {
+    if ($[21] !== amount) {
+        t11 = /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
+            type: "number",
+            value: amount,
+            onChange: t10,
+            placeholder: "Valor (ex: 50.00)",
+            className: "p-3 bg-gray-700 rounded border border-gray-600 focus:outline-none focus:border-red-500"
+        }, void 0, false, {
             fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/expenses/page.js",
-            lineNumber: 160,
+            lineNumber: 179,
             columnNumber: 11
         }, this);
-        $[20] = t10;
-        $[21] = t8;
+        $[21] = amount;
         $[22] = t11;
     } else {
         t11 = $[22];
     }
     let t12;
-    if ($[23] === Symbol.for("react.memo_cache_sentinel")) {
-        t12 = ({
-            "ExpenseForm[<input>.onChange]": (e_2)=>setDate(e_2.target.value)
-        })["ExpenseForm[<input>.onChange]"];
-        $[23] = t12;
-    } else {
-        t12 = $[23];
-    }
-    let t13;
-    if ($[24] !== date) {
-        t13 = /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
-            type: "date",
-            value: date,
-            onChange: t12,
-            className: "p-3 bg-gray-700 rounded border border-gray-600 focus:outline-none focus:border-red-500"
-        }, void 0, false, {
-            fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/expenses/page.js",
-            lineNumber: 178,
-            columnNumber: 11
-        }, this);
-        $[24] = date;
-        $[25] = t13;
-    } else {
-        t13 = $[25];
-    }
-    let t14;
-    if ($[26] === Symbol.for("react.memo_cache_sentinel")) {
-        t14 = ({
-            "ExpenseForm[<select>.onChange]": (e_3)=>setCategoryId(e_3.target.value)
-        })["ExpenseForm[<select>.onChange]"];
-        $[26] = t14;
-    } else {
-        t14 = $[26];
-    }
-    let t15;
-    if ($[27] === Symbol.for("react.memo_cache_sentinel")) {
-        t15 = /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("option", {
-            value: "",
-            disabled: true,
-            children: "Selecione a Categoria"
-        }, void 0, false, {
-            fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/expenses/page.js",
-            lineNumber: 195,
-            columnNumber: 11
-        }, this);
-        $[27] = t15;
-    } else {
-        t15 = $[27];
-    }
-    let t16;
-    if ($[28] !== categories) {
-        t16 = categories.map(_ExpenseFormCategoriesMap);
-        $[28] = categories;
-        $[29] = t16;
-    } else {
-        t16 = $[29];
-    }
-    let t17;
-    if ($[30] !== categoryId || $[31] !== t16) {
-        t17 = /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("select", {
-            value: categoryId,
-            onChange: t14,
-            className: "p-3 bg-gray-700 rounded border border-gray-600 focus:outline-none focus:border-red-500",
+    if ($[23] !== t11 || $[24] !== t9) {
+        t12 = /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+            className: "grid grid-cols-1 md:grid-cols-2 gap-4 mb-4",
             children: [
-                t15,
-                t16
+                t9,
+                t11
             ]
         }, void 0, true, {
             fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/expenses/page.js",
-            lineNumber: 210,
+            lineNumber: 187,
             columnNumber: 11
         }, this);
-        $[30] = categoryId;
-        $[31] = t16;
+        $[23] = t11;
+        $[24] = t9;
+        $[25] = t12;
+    } else {
+        t12 = $[25];
+    }
+    let t13;
+    if ($[26] === Symbol.for("react.memo_cache_sentinel")) {
+        t13 = ({
+            "ExpenseForm[<input>.onChange]": (e_2)=>setDate(e_2.target.value)
+        })["ExpenseForm[<input>.onChange]"];
+        $[26] = t13;
+    } else {
+        t13 = $[26];
+    }
+    let t14;
+    if ($[27] !== date) {
+        t14 = /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
+            type: "date",
+            value: date,
+            onChange: t13,
+            className: "p-3 bg-gray-700 rounded border border-gray-600 focus:outline-none focus:border-red-500"
+        }, void 0, false, {
+            fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/expenses/page.js",
+            lineNumber: 205,
+            columnNumber: 11
+        }, this);
+        $[27] = date;
+        $[28] = t14;
+    } else {
+        t14 = $[28];
+    }
+    let t15;
+    if ($[29] === Symbol.for("react.memo_cache_sentinel")) {
+        t15 = ({
+            "ExpenseForm[<select>.onChange]": (e_3)=>setGroupId(e_3.target.value)
+        })["ExpenseForm[<select>.onChange]"];
+        $[29] = t15;
+    } else {
+        t15 = $[29];
+    }
+    let t16;
+    if ($[30] === Symbol.for("react.memo_cache_sentinel")) {
+        t16 = /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("option", {
+            value: "",
+            children: "SELECIONE O GRUPO (Obrigatório)"
+        }, void 0, false, {
+            fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/expenses/page.js",
+            lineNumber: 222,
+            columnNumber: 11
+        }, this);
+        $[30] = t16;
+    } else {
+        t16 = $[30];
+    }
+    let t17;
+    if ($[31] !== budgetGroups) {
+        t17 = budgetGroups.map(_ExpenseFormBudgetGroupsMap);
+        $[31] = budgetGroups;
         $[32] = t17;
     } else {
         t17 = $[32];
     }
     let t18;
-    if ($[33] !== goals || $[34] !== isMetaCategorySelected || $[35] !== selectedGoalId) {
-        t18 = isMetaCategorySelected && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("select", {
-            value: selectedGoalId,
-            onChange: {
-                "ExpenseForm[<select>.onChange]": (e_4)=>setSelectedGoalId(e_4.target.value)
-            }["ExpenseForm[<select>.onChange]"],
-            className: "p-3 bg-gray-700 rounded border border-yellow-500 focus:outline-none",
+    if ($[33] !== groupId || $[34] !== t17) {
+        t18 = /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("select", {
+            value: groupId,
+            onChange: t15,
+            className: "p-3 bg-gray-700 rounded border-2 border-red-500 focus:outline-none font-bold text-white",
             children: [
-                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("option", {
-                    value: "",
-                    children: "Vincular a qual meta?"
-                }, void 0, false, {
-                    fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/expenses/page.js",
-                    lineNumber: 221,
-                    columnNumber: 122
-                }, this),
-                goals.map(_ExpenseFormGoalsMap)
+                t16,
+                t17
             ]
         }, void 0, true, {
             fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/expenses/page.js",
-            lineNumber: 219,
-            columnNumber: 37
+            lineNumber: 237,
+            columnNumber: 11
         }, this);
-        $[33] = goals;
-        $[34] = isMetaCategorySelected;
-        $[35] = selectedGoalId;
-        $[36] = t18;
+        $[33] = groupId;
+        $[34] = t17;
+        $[35] = t18;
     } else {
-        t18 = $[36];
+        t18 = $[35];
     }
     let t19;
-    if ($[37] !== t13 || $[38] !== t17 || $[39] !== t18) {
+    if ($[36] !== t14 || $[37] !== t18) {
         t19 = /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-            className: "grid grid-cols-1 md:grid-cols-3 gap-4",
+            className: "grid grid-cols-1 md:grid-cols-2 gap-4 mb-4",
             children: [
-                t13,
-                t17,
+                t14,
                 t18
             ]
         }, void 0, true, {
             fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/expenses/page.js",
-            lineNumber: 231,
+            lineNumber: 246,
             columnNumber: 11
         }, this);
-        $[37] = t13;
-        $[38] = t17;
-        $[39] = t18;
-        $[40] = t19;
+        $[36] = t14;
+        $[37] = t18;
+        $[38] = t19;
     } else {
-        t19 = $[40];
+        t19 = $[38];
     }
     let t20;
-    if ($[41] === Symbol.for("react.memo_cache_sentinel")) {
-        t20 = /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+    if ($[39] === Symbol.for("react.memo_cache_sentinel")) {
+        t20 = ({
+            "ExpenseForm[<select>.onChange]": (e_4)=>setSubcategoryId(e_4.target.value)
+        })["ExpenseForm[<select>.onChange]"];
+        $[39] = t20;
+    } else {
+        t20 = $[39];
+    }
+    const t21 = !!newSubcategoryName;
+    const t22 = `p-3 bg-gray-700 rounded border border-gray-600 focus:outline-none ${newSubcategoryName ? "opacity-50" : ""}`;
+    let t23;
+    if ($[40] === Symbol.for("react.memo_cache_sentinel")) {
+        t23 = /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("option", {
+            value: "",
+            children: "Subcategoria (Opcional)"
+        }, void 0, false, {
+            fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/expenses/page.js",
+            lineNumber: 266,
+            columnNumber: 11
+        }, this);
+        $[40] = t23;
+    } else {
+        t23 = $[40];
+    }
+    let t24;
+    if ($[41] !== subcategories) {
+        t24 = subcategories.map(_ExpenseFormSubcategoriesMap);
+        $[41] = subcategories;
+        $[42] = t24;
+    } else {
+        t24 = $[42];
+    }
+    let t25;
+    if ($[43] !== subcategoryId || $[44] !== t21 || $[45] !== t22 || $[46] !== t24) {
+        t25 = /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("select", {
+            value: subcategoryId,
+            onChange: t20,
+            disabled: t21,
+            className: t22,
+            children: [
+                t23,
+                t24
+            ]
+        }, void 0, true, {
+            fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/expenses/page.js",
+            lineNumber: 281,
+            columnNumber: 11
+        }, this);
+        $[43] = subcategoryId;
+        $[44] = t21;
+        $[45] = t22;
+        $[46] = t24;
+        $[47] = t25;
+    } else {
+        t25 = $[47];
+    }
+    let t26;
+    if ($[48] === Symbol.for("react.memo_cache_sentinel")) {
+        t26 = ({
+            "ExpenseForm[<input>.onChange]": (e_5)=>setNewSubcategoryName(e_5.target.value)
+        })["ExpenseForm[<input>.onChange]"];
+        $[48] = t26;
+    } else {
+        t26 = $[48];
+    }
+    const t27 = !!subcategoryId;
+    const t28 = `p-3 bg-gray-700 rounded border border-gray-600 focus:outline-none ${subcategoryId ? "opacity-50" : ""}`;
+    let t29;
+    if ($[49] !== newSubcategoryName || $[50] !== t27 || $[51] !== t28) {
+        t29 = /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
+            type: "text",
+            value: newSubcategoryName,
+            onChange: t26,
+            disabled: t27,
+            placeholder: "Ou digite uma nova Subcategoria...",
+            className: t28
+        }, void 0, false, {
+            fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/expenses/page.js",
+            lineNumber: 303,
+            columnNumber: 11
+        }, this);
+        $[49] = newSubcategoryName;
+        $[50] = t27;
+        $[51] = t28;
+        $[52] = t29;
+    } else {
+        t29 = $[52];
+    }
+    let t30;
+    if ($[53] !== t25 || $[54] !== t29) {
+        t30 = /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+            className: "grid grid-cols-1 md:grid-cols-2 gap-4",
+            children: [
+                t25,
+                t29
+            ]
+        }, void 0, true, {
+            fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/expenses/page.js",
+            lineNumber: 313,
+            columnNumber: 11
+        }, this);
+        $[53] = t25;
+        $[54] = t29;
+        $[55] = t30;
+    } else {
+        t30 = $[55];
+    }
+    let t31;
+    if ($[56] !== goals || $[57] !== isMetaGroupSelected || $[58] !== selectedGoalId) {
+        t31 = isMetaGroupSelected && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+            className: "mt-4",
+            children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("select", {
+                value: selectedGoalId,
+                onChange: {
+                    "ExpenseForm[<select>.onChange]": (e_6)=>setSelectedGoalId(e_6.target.value)
+                }["ExpenseForm[<select>.onChange]"],
+                className: "w-full p-3 bg-gray-700 rounded border border-yellow-500 focus:outline-none",
+                children: [
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("option", {
+                        value: "",
+                        children: "Vincular a qual meta?"
+                    }, void 0, false, {
+                        fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/expenses/page.js",
+                        lineNumber: 324,
+                        columnNumber: 131
+                    }, this),
+                    goals.map(_ExpenseFormGoalsMap)
+                ]
+            }, void 0, true, {
+                fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/expenses/page.js",
+                lineNumber: 322,
+                columnNumber: 56
+            }, this)
+        }, void 0, false, {
+            fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/expenses/page.js",
+            lineNumber: 322,
+            columnNumber: 34
+        }, this);
+        $[56] = goals;
+        $[57] = isMetaGroupSelected;
+        $[58] = selectedGoalId;
+        $[59] = t31;
+    } else {
+        t31 = $[59];
+    }
+    let t32;
+    if ($[60] === Symbol.for("react.memo_cache_sentinel")) {
+        t32 = /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
             type: "submit",
             className: "mt-6 w-full bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-4 rounded transition duration-300",
             children: "Adicionar Despesa"
         }, void 0, false, {
             fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/expenses/page.js",
-            lineNumber: 241,
+            lineNumber: 334,
             columnNumber: 11
         }, this);
-        $[41] = t20;
+        $[60] = t32;
     } else {
-        t20 = $[41];
+        t32 = $[60];
     }
-    let t21;
-    if ($[42] !== handleSubmit || $[43] !== t11 || $[44] !== t19) {
-        t21 = /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("form", {
+    let t33;
+    if ($[61] !== handleSubmit || $[62] !== t12 || $[63] !== t19 || $[64] !== t30 || $[65] !== t31) {
+        t33 = /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("form", {
             onSubmit: handleSubmit,
             className: "bg-gray-800 p-6 rounded-lg shadow-lg mb-8",
             children: [
-                t6,
-                t11,
+                t7,
+                t12,
                 t19,
-                t20
+                t30,
+                t31,
+                t32
             ]
         }, void 0, true, {
             fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/expenses/page.js",
-            lineNumber: 248,
+            lineNumber: 341,
             columnNumber: 11
         }, this);
-        $[42] = handleSubmit;
-        $[43] = t11;
-        $[44] = t19;
-        $[45] = t21;
+        $[61] = handleSubmit;
+        $[62] = t12;
+        $[63] = t19;
+        $[64] = t30;
+        $[65] = t31;
+        $[66] = t33;
     } else {
-        t21 = $[45];
+        t33 = $[66];
     }
-    return t21;
+    return t33;
 }
-_s(ExpenseForm, "4S8Fv9TSGjBLw6ExRGlhM4G89Fc=");
+_s(ExpenseForm, "J2kLZnyQfZIUFQk3q5s6YKjwC58=");
 _c = ExpenseForm;
-// ... O resto da página (ExpenseList, ExpensesPage) permanece o mesmo ...
-// --- Componente da Lista de Despesas ---
 function _ExpenseFormGoalsMap(goal) {
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("option", {
         value: goal.id,
         children: goal.name
     }, goal.id, false, {
         fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/expenses/page.js",
-        lineNumber: 262,
+        lineNumber: 354,
         columnNumber: 10
     }, this);
 }
-function _ExpenseFormCategoriesMap(cat_0) {
+function _ExpenseFormSubcategoriesMap(cat) {
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("option", {
-        value: cat_0.id,
-        children: cat_0.name
-    }, cat_0.id, false, {
+        value: cat.id,
+        children: cat.name
+    }, cat.id, false, {
         fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/expenses/page.js",
-        lineNumber: 265,
+        lineNumber: 357,
+        columnNumber: 10
+    }, this);
+}
+function _ExpenseFormBudgetGroupsMap(group) {
+    return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("option", {
+        value: group.id,
+        children: group.name
+    }, group.id, false, {
+        fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/expenses/page.js",
+        lineNumber: 360,
         columnNumber: 10
     }, this);
 }
 function _ExpenseFormHandleSubmitAnonymous(error_0) {
     return console.error("Erro ao adicionar despesa:", error_0);
 }
-function _ExpenseFormUseEffectAnonymous(error) {
-    return console.error("Erro ao buscar dados:", error);
-}
-function _ExpenseFormUseEffectAnonymousAllCategoriesFind(cat) {
-    return cat.name.toLowerCase().includes("sonhos");
+function _ExpenseFormUseEffectAnonymousGroupsResDataFind(g) {
+    return g.name.toLowerCase().includes("metas");
 }
 function ExpenseList(t0) {
-    const $ = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$compiler$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["c"])(8);
-    if ($[0] !== "b9593ec6a0f74a0c125e5c28833286ea558cdce4861a5022f86613a3aa1fcd1e") {
-        for(let $i = 0; $i < 8; $i += 1){
+    const $ = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$compiler$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["c"])(12);
+    if ($[0] !== "8a99842b2b1fdff5c135bc9d872b0bbd4cd3d926b31702ac315d114432229151") {
+        for(let $i = 0; $i < 12; $i += 1){
             $[$i] = Symbol.for("react.memo_cache_sentinel");
         }
-        $[0] = "b9593ec6a0f74a0c125e5c28833286ea558cdce4861a5022f86613a3aa1fcd1e";
+        $[0] = "8a99842b2b1fdff5c135bc9d872b0bbd4cd3d926b31702ac315d114432229151";
     }
     const { expenses, setExpenses } = t0;
     let t1;
     if ($[1] !== expenses || $[2] !== setExpenses) {
         t1 = ({
             "ExpenseList[handleDelete]": (id)=>{
-                if (confirm("Tem certeza que deseja deletar esta despesa?")) {
+                if (confirm("Deletar despesa?")) {
                     __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$axios$2f$lib$2f$axios$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].delete(`${API_URL}/expenses/${id}`).then({
-                        "ExpenseList[handleDelete > (anonymous)()]": ()=>{
-                            setExpenses(expenses.filter({
+                        "ExpenseList[handleDelete > (anonymous)()]": ()=>setExpenses(expenses.filter({
                                 "ExpenseList[handleDelete > (anonymous)() > expenses.filter()]": (exp)=>exp.id !== id
-                            }["ExpenseList[handleDelete > (anonymous)() > expenses.filter()]"]));
-                        }
+                            }["ExpenseList[handleDelete > (anonymous)() > expenses.filter()]"]))
                     }["ExpenseList[handleDelete > (anonymous)()]"]).catch(_ExpenseListHandleDeleteAnonymous);
                 }
             }
@@ -455,10 +606,10 @@ function ExpenseList(t0) {
     if ($[4] === Symbol.for("react.memo_cache_sentinel")) {
         t2 = /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
             className: "text-2xl font-bold mb-4 text-red-400",
-            children: "Todas as Despesas"
+            children: "Últimas Despesas"
         }, void 0, false, {
             fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/expenses/page.js",
-            lineNumber: 313,
+            lineNumber: 403,
             columnNumber: 10
         }, this);
         $[4] = t2;
@@ -467,141 +618,157 @@ function ExpenseList(t0) {
     }
     let t3;
     if ($[5] !== expenses || $[6] !== handleDelete) {
-        t3 = /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-            className: "bg-gray-800 p-6 rounded-lg shadow-lg",
-            children: [
-                t2,
-                expenses.length === 0 ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                    className: "text-gray-400",
-                    children: "Nenhuma despesa registrada ainda."
-                }, void 0, false, {
-                    fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/expenses/page.js",
-                    lineNumber: 320,
-                    columnNumber: 93
-                }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("ul", {
-                    className: "space-y-4",
-                    children: expenses.map({
-                        "ExpenseList[expenses.map()]": (expense)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("li", {
-                                className: "flex justify-between items-center bg-gray-700 p-4 rounded",
+        let t4;
+        if ($[8] !== handleDelete) {
+            t4 = ({
+                "ExpenseList[expenses.map()]": (expense)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("li", {
+                        className: "flex justify-between items-center bg-gray-700 p-4 rounded",
+                        children: [
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                 children: [
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                        children: [
-                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                className: "text-xs text-gray-400 block mb-1",
-                                                children: formatDate(expense.date)
-                                            }, void 0, false, {
-                                                fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/expenses/page.js",
-                                                lineNumber: 321,
-                                                columnNumber: 149
-                                            }, this),
-                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                className: "font-semibold text-lg",
-                                                children: expense.description
-                                            }, void 0, false, {
-                                                fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/expenses/page.js",
-                                                lineNumber: 321,
-                                                columnNumber: 233
-                                            }, this),
-                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                className: `text-sm ml-2 px-2 py-0.5 rounded ${expense.category ? "bg-blue-600" : "bg-gray-600"}`,
-                                                children: expense.category ? expense.category.name : "Sem Categoria"
-                                            }, void 0, false, {
-                                                fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/expenses/page.js",
-                                                lineNumber: 321,
-                                                columnNumber: 301
-                                            }, this),
-                                            expense.goal && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                className: "text-sm ml-2 px-2 py-0.5 rounded bg-yellow-600",
-                                                children: [
-                                                    "→ ",
-                                                    expense.goal.name
-                                                ]
-                                            }, void 0, true, {
-                                                fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/expenses/page.js",
-                                                lineNumber: 321,
-                                                columnNumber: 490
-                                            }, this)
-                                        ]
-                                    }, void 0, true, {
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                        className: "text-xs text-gray-400 block mb-1",
+                                        children: formatDate(expense.date)
+                                    }, void 0, false, {
                                         fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/expenses/page.js",
-                                        lineNumber: 321,
-                                        columnNumber: 144
+                                        lineNumber: 413,
+                                        columnNumber: 147
                                     }, this),
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                        className: "flex items-center space-x-4",
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                        className: "font-semibold text-lg",
+                                        children: expense.description
+                                    }, void 0, false, {
+                                        fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/expenses/page.js",
+                                        lineNumber: 413,
+                                        columnNumber: 231
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                        className: "text-sm ml-2 px-2 py-0.5 rounded bg-blue-900 text-blue-200 font-bold",
+                                        children: expense.budget_group?.name
+                                    }, void 0, false, {
+                                        fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/expenses/page.js",
+                                        lineNumber: 413,
+                                        columnNumber: 299
+                                    }, this),
+                                    expense.category && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                        className: "text-sm ml-2 px-2 py-0.5 rounded bg-gray-600",
+                                        children: expense.category.name
+                                    }, void 0, false, {
+                                        fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/expenses/page.js",
+                                        lineNumber: 413,
+                                        columnNumber: 442
+                                    }, this),
+                                    expense.goal && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                        className: "text-sm ml-2 px-2 py-0.5 rounded bg-yellow-600",
                                         children: [
-                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                className: "font-bold text-red-400 text-lg",
-                                                children: [
-                                                    "R$ ",
-                                                    expense.amount.toFixed(2)
-                                                ]
-                                            }, void 0, true, {
-                                                fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/expenses/page.js",
-                                                lineNumber: 321,
-                                                columnNumber: 635
-                                            }, this),
-                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
-                                                onClick: {
-                                                    "ExpenseList[expenses.map() > <button>.onClick]": ()=>handleDelete(expense.id)
-                                                }["ExpenseList[expenses.map() > <button>.onClick]"],
-                                                className: "text-gray-400 hover:text-red-500 transition duration-300",
-                                                children: "×"
-                                            }, void 0, false, {
-                                                fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/expenses/page.js",
-                                                lineNumber: 321,
-                                                columnNumber: 721
-                                            }, this)
+                                            "→ ",
+                                            expense.goal.name
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/expenses/page.js",
-                                        lineNumber: 321,
-                                        columnNumber: 590
+                                        lineNumber: 413,
+                                        columnNumber: 553
                                     }, this)
                                 ]
-                            }, expense.id, true, {
+                            }, void 0, true, {
                                 fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/expenses/page.js",
-                                lineNumber: 321,
-                                columnNumber: 53
+                                lineNumber: 413,
+                                columnNumber: 142
+                            }, this),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                className: "flex items-center space-x-4",
+                                children: [
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                        className: "font-bold text-red-400 text-lg",
+                                        children: [
+                                            "R$ ",
+                                            expense.amount.toFixed(2)
+                                        ]
+                                    }, void 0, true, {
+                                        fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/expenses/page.js",
+                                        lineNumber: 413,
+                                        columnNumber: 698
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                        onClick: {
+                                            "ExpenseList[expenses.map() > <button>.onClick]": ()=>handleDelete(expense.id)
+                                        }["ExpenseList[expenses.map() > <button>.onClick]"],
+                                        className: "text-gray-400 hover:text-red-500",
+                                        children: "×"
+                                    }, void 0, false, {
+                                        fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/expenses/page.js",
+                                        lineNumber: 413,
+                                        columnNumber: 784
+                                    }, this)
+                                ]
+                            }, void 0, true, {
+                                fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/expenses/page.js",
+                                lineNumber: 413,
+                                columnNumber: 653
                             }, this)
-                    }["ExpenseList[expenses.map()]"])
-                }, void 0, false, {
-                    fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/expenses/page.js",
-                    lineNumber: 320,
-                    columnNumber: 162
-                }, this)
-            ]
-        }, void 0, true, {
-            fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/expenses/page.js",
-            lineNumber: 320,
-            columnNumber: 10
-        }, this);
+                        ]
+                    }, expense.id, true, {
+                        fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/expenses/page.js",
+                        lineNumber: 413,
+                        columnNumber: 51
+                    }, this)
+            })["ExpenseList[expenses.map()]"];
+            $[8] = handleDelete;
+            $[9] = t4;
+        } else {
+            t4 = $[9];
+        }
+        t3 = expenses.map(t4);
         $[5] = expenses;
         $[6] = handleDelete;
         $[7] = t3;
     } else {
         t3 = $[7];
     }
-    return t3;
+    let t4;
+    if ($[10] !== t3) {
+        t4 = /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+            className: "bg-gray-800 p-6 rounded-lg shadow-lg",
+            children: [
+                t2,
+                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("ul", {
+                    className: "space-y-4",
+                    children: t3
+                }, void 0, false, {
+                    fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/expenses/page.js",
+                    lineNumber: 431,
+                    columnNumber: 68
+                }, this)
+            ]
+        }, void 0, true, {
+            fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/expenses/page.js",
+            lineNumber: 431,
+            columnNumber: 10
+        }, this);
+        $[10] = t3;
+        $[11] = t4;
+    } else {
+        t4 = $[11];
+    }
+    return t4;
 }
 _c1 = ExpenseList;
-// --- Componente Principal da Página de Despesas ---
-function _ExpenseListFormatDate(dateString) {
-    return new Date(dateString).toLocaleDateString("pt-BR", {
+function _ExpenseListFormatDate(d) {
+    return new Date(d).toLocaleDateString("pt-BR", {
         timeZone: "UTC"
     });
 }
 function _ExpenseListHandleDeleteAnonymous(error) {
-    return console.error("Erro ao deletar despesa:", error);
+    return console.error("Erro:", error);
 }
 function ExpensesPage() {
     _s1();
     const $ = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$compiler$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["c"])(8);
-    if ($[0] !== "b9593ec6a0f74a0c125e5c28833286ea558cdce4861a5022f86613a3aa1fcd1e") {
+    if ($[0] !== "8a99842b2b1fdff5c135bc9d872b0bbd4cd3d926b31702ac315d114432229151") {
         for(let $i = 0; $i < 8; $i += 1){
             $[$i] = Symbol.for("react.memo_cache_sentinel");
         }
-        $[0] = "b9593ec6a0f74a0c125e5c28833286ea558cdce4861a5022f86613a3aa1fcd1e";
+        $[0] = "8a99842b2b1fdff5c135bc9d872b0bbd4cd3d926b31702ac315d114432229151";
     }
     let t0;
     if ($[1] === Symbol.for("react.memo_cache_sentinel")) {
@@ -616,10 +783,8 @@ function ExpensesPage() {
         t1 = ({
             "ExpensesPage[fetchExpenses]": ()=>{
                 __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$axios$2f$lib$2f$axios$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].get(`${API_URL}/expenses/`).then({
-                    "ExpensesPage[fetchExpenses > (anonymous)()]": (response)=>{
-                        setExpenses(response.data);
-                    }
-                }["ExpensesPage[fetchExpenses > (anonymous)()]"]).catch(_ExpensesPageFetchExpensesAnonymous);
+                    "ExpensesPage[fetchExpenses > (anonymous)()]": (res)=>setExpenses(res.data)
+                }["ExpensesPage[fetchExpenses > (anonymous)()]"]);
             }
         })["ExpensesPage[fetchExpenses]"];
         $[2] = t1;
@@ -645,16 +810,11 @@ function ExpensesPage() {
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])(t2, t3);
     let t4;
     if ($[5] === Symbol.for("react.memo_cache_sentinel")) {
-        const handleNewExpense = {
-            "ExpensesPage[handleNewExpense]": (newExpense)=>{
-                fetchExpenses();
-            }
-        }["ExpensesPage[handleNewExpense]"];
         t4 = /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(ExpenseForm, {
-            onExpenseAdded: handleNewExpense
+            onExpenseAdded: fetchExpenses
         }, void 0, false, {
             fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/expenses/page.js",
-            lineNumber: 398,
+            lineNumber: 495,
             columnNumber: 10
         }, this);
         $[5] = t4;
@@ -671,13 +831,13 @@ function ExpensesPage() {
                     setExpenses: setExpenses
                 }, void 0, false, {
                     fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/expenses/page.js",
-                    lineNumber: 405,
+                    lineNumber: 502,
                     columnNumber: 19
                 }, this)
             ]
         }, void 0, true, {
             fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/expenses/page.js",
-            lineNumber: 405,
+            lineNumber: 502,
             columnNumber: 10
         }, this);
         $[6] = expenses;
@@ -689,9 +849,6 @@ function ExpensesPage() {
 }
 _s1(ExpensesPage, "YLDlD2ke0eDKDsPlZUgUzdtmFKs=");
 _c2 = ExpensesPage;
-function _ExpensesPageFetchExpensesAnonymous(error) {
-    return console.error("Erro ao buscar despesas:", error);
-}
 var _c, _c1, _c2;
 __turbopack_context__.k.register(_c, "ExpenseForm");
 __turbopack_context__.k.register(_c1, "ExpenseList");

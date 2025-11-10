@@ -2,18 +2,11 @@
 
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-// 👇 1. IMPORTAR AS BIBLIOTECAS DE GRÁFICO
-import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
-import { Doughnut } from 'react-chartjs-2';
-
-// 👇 2. REGISTRAR OS COMPONENTES DO GRÁFICO
-ChartJS.register(ArcElement, Tooltip, Legend);
 
 const API_URL = 'http://localhost:8000';
 
-// --- Componente: Seletor de Mês (O mesmo de antes) ---
+// --- Seletor de Mês Estilizado ---
 function MonthSelector({ currentDate, onDateChange }) {
-  
   const handlePreviousMonth = () => {
     const newDate = new Date(currentDate);
     newDate.setMonth(newDate.getMonth() - 1);
@@ -24,240 +17,158 @@ function MonthSelector({ currentDate, onDateChange }) {
     newDate.setMonth(newDate.getMonth() + 1);
     onDateChange(newDate);
   };
-  const formattedDate = currentDate.toLocaleString('pt-BR', {
-    month: 'long',
-    year: 'numeric',
-  }).replace(/^\w/, (c) => c.toUpperCase());
+  const formattedDate = currentDate.toLocaleString('pt-BR', { month: 'long', year: 'numeric' }).replace(/^\w/, (c) => c.toUpperCase());
 
   return (
-    <div className="flex justify-between items-center bg-gray-800 p-4 rounded-lg shadow-lg mb-8">
-      <button onClick={handlePreviousMonth} className="px-4 py-2 bg-gray-700 hover:bg-gray-600 rounded-lg transition-colors">
-        &lt; Anterior
+    <div className="flex justify-between items-center mb-8">
+      <button onClick={handlePreviousMonth} className="p-2 text-fin-gold hover:bg-fin-card rounded-full transition-colors">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-6 h-6">
+          <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
+        </svg>
       </button>
-      <h2 className="text-xl font-bold text-white">{formattedDate}</h2>
-      <button onClick={handleNextMonth} className="px-4 py-2 bg-gray-700 hover:bg-gray-600 rounded-lg transition-colors">
-        Próximo &gt;
+      <h2 className="text-3xl font-light text-white tracking-wide">{formattedDate}</h2>
+      <button onClick={handleNextMonth} className="p-2 text-fin-gold hover:bg-fin-card rounded-full transition-colors">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-6 h-6">
+          <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+        </svg>
       </button>
     </div>
   );
 }
 
-// --- Componente: Card de Resumo (O mesmo de antes, mas com % de poupança) ---
-function SummaryCard({ title, amount, colorClass, isCurrency = true }) {
-  const formattedAmount = isCurrency
-    ? amount.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })
-    : `${amount.toFixed(1)}%`; // Formata para porcentagem
+// --- Card de Resumo com novas cores ---
+function SummaryCard({ title, amount, type }) {
+  const formattedAmount = amount.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+  
+  let colorClass = "text-white";
+  if (type === 'income') colorClass = "text-fin-gold"; // Dourado para Entradas
+  if (type === 'expense') colorClass = "text-fin-red"; // Vermelho terra para Despesas
+  if (type === 'balance') colorClass = amount >= 0 ? "text-fin-highlight" : "text-fin-red";
 
   return (
-    <div className={`bg-gray-800 p-6 rounded-lg shadow-lg`}>
-      <h2 className="text-sm font-medium text-gray-400 mb-1">{title}</h2>
+    <div className="bg-fin-card/80 backdrop-blur-sm p-6 rounded-2xl shadow-lg border border-white/5">
+      <h2 className="text-sm font-medium text-gray-300 mb-2 uppercase tracking-wider">{title}</h2>
       <p className={`text-3xl font-bold ${colorClass}`}>{formattedAmount}</p>
     </div>
   );
 }
 
-// --- NOVO Componente: Gráfico de Despesas ---
-function ExpenseChart({ chartData }) {
-  
-  // Transforma os dados da API no formato do Chart.js
-  const data = {
-    labels: chartData.map(item => item.category_name),
-    datasets: [
-      {
-        label: 'Gastos por Categoria',
-        data: chartData.map(item => item.total),
-        backgroundColor: [
-          '#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0',
-          '#9966FF', '#FF9F40', '#E7E9ED', '#8B0000',
-          '#008B8B', '#BDB76B', '#556B2F', '#FF8C00',
-        ],
-        borderColor: '#4B5563', // bg-gray-600
-        borderWidth: 1,
-      },
-    ],
+// --- Lista de Despesas Modernizada ---
+function ExpenseList({ expenses, onExpenseDeleted }) {
+  const handleDelete = (id) => {
+    if (confirm("Tem certeza que deseja deletar esta despesa?")) {
+      axios.delete(`${API_URL}/expenses/${id}`).then(() => onExpenseDeleted()).catch(e => console.error(e));
+    }
   };
-
-  const options = {
-    responsive: true,
-    maintainAspectRatio: false,
-    plugins: {
-      legend: {
-        position: 'right',
-        labels: {
-          color: '#E5E7EB', // text-gray-200
-          boxWidth: 20,
-        }
-      },
-      tooltip: {
-        callbacks: {
-          label: function(context) {
-            let label = context.label || '';
-            if (label) {
-              label += ': ';
-            }
-            if (context.parsed !== null) {
-              label += new Intl.NumberFormat('pt-BR', {
-                style: 'currency',
-                currency: 'BRL',
-              }).format(context.parsed);
-            }
-            return label;
-          }
-        }
-      }
-    },
-  };
+  const formatDate = (d) => new Date(d).toLocaleDateString('pt-BR', { timeZone: 'UTC' });
 
   return (
-    <div className="bg-gray-800 p-6 rounded-lg shadow-lg h-[400px]">
-      <h2 className="text-2xl font-bold mb-4 text-green-400">Gastos por Categoria</h2>
-      {chartData.length > 0 ? (
-        <div className="relative h-full w-full max-h-[320px]">
-          <Doughnut data={data} options={options} />
-        </div>
+    <div className="bg-fin-card/50 p-6 rounded-2xl border border-white/5">
+      <h2 className="text-xl font-semibold mb-6 text-fin-terra">Últimas Movimentações</h2>
+      {expenses.length === 0 ? (
+        <p className="text-gray-400 font-light italic">Nenhuma despesa neste mês.</p>
       ) : (
-        <p className="text-gray-400 h-full flex items-center justify-center">
-          Nenhuma despesa registrada para este mês.
-        </p>
+        <ul className="space-y-3">
+          {expenses.map(expense => (
+            <li key={expense.id} className="flex justify-between items-center bg-fin-dark/40 p-4 rounded-xl hover:bg-fin-dark/60 transition-all border border-white/5">
+              <div>
+                <div className="flex items-center gap-2 mb-1">
+                   <span className="text-xs text-gray-400">{formatDate(expense.date)}</span>
+                   {expense.goal && <span className="text-[10px] px-2 py-0.5 rounded-full bg-fin-highlight/20 text-fin-highlight font-bold">Meta: {expense.goal.name}</span>}
+                </div>
+                <span className="font-medium text-white">{expense.description}</span>
+                <span className="text-sm ml-2 text-fin-gold/80">
+                  {expense.budget_group?.name} {expense.category ? `→ ${expense.category.name}` : ''}
+                </span>
+              </div>
+              <div className="flex items-center gap-4">
+                <span className="font-bold text-fin-red">- R$ {expense.amount.toFixed(2)}</span>
+                <button onClick={() => handleDelete(expense.id)} className="text-fin-red/50 hover:text-fin-red transition-colors text-xl">&times;</button>
+              </div>
+            </li>
+          ))}
+        </ul>
       )}
     </div>
   );
 }
 
-// --- Card de Metas (ATUALIZADO com personalização) ---
+// --- Card de Meta Destaque ---
 function GoalsCard({ goals }) {
-  
-  // 👇 PERSONALIZAÇÃO: Procura a meta "Casamento"
-  let featuredGoal = goals.find(g => 
-    g.name.toLowerCase().includes('casamento')
-  );
-  // Se não achar, pega a primeira meta da lista
-  if (!featuredGoal && goals.length > 0) {
-    featuredGoal = goals[0];
-  }
+  const featuredGoal = goals.length > 0 ? goals[0] : null;
+  if (!featuredGoal) return <div className="bg-fin-card/50 p-6 rounded-2xl border border-white/5 text-gray-400">Sem metas ativas.</div>;
 
-  if (!featuredGoal) {
-    return (
-      <div className="bg-gray-800 p-6 rounded-lg shadow-lg h-full">
-        <h2 className="text-2xl font-bold mb-4 text-yellow-400">Suas Metas</h2>
-        <p className="text-gray-400">Nenhuma meta criada. Vá para a página de <a href="/metas" className="text-yellow-500 hover:underline">Metas</a> para criar uma.</p>
-      </div>
-    );
-  }
-
-  // Cálculos
   const { name, current_amount, target_amount } = featuredGoal;
-  const progressPercentage = target_amount > 0 
-    ? (current_amount / target_amount) * 100 
-    : 100;
+  const progress = target_amount > 0 ? (current_amount / target_amount) * 100 : 0;
 
   return (
-    <div className="bg-gray-800 p-6 rounded-lg shadow-lg h-full">
-      <h2 className="text-2xl font-bold mb-4 text-yellow-400">Meta em Destaque</h2>
+    <div className="bg-gradient-to-br from-fin-card to-fin-dark p-6 rounded-2xl shadow-xl border border-fin-gold/20 h-full relative overflow-hidden">
+      {/* Efeito de brilho no fundo */}
+      <div className="absolute top-0 right-0 -mt-8 -mr-8 w-32 h-32 bg-fin-gold/10 rounded-full blur-3xl"></div>
+      
+      <h2 className="text-xl font-bold mb-6 text-fin-highlight flex items-center gap-2">
+        🎯 Foco Principal
+      </h2>
       <div>
-        <div className="flex justify-between items-center mb-1">
-          <span className="font-semibold text-lg">{name}</span>
-          <span className="text-sm font-medium text-yellow-400">{progressPercentage.toFixed(1)}%</span>
+        <div className="flex justify-between items-baseline mb-2">
+          <span className="font-semibold text-2xl text-white">{name}</span>
+          <span className="text-lg font-bold text-fin-highlight">{progress.toFixed(0)}%</span>
         </div>
-        <div className="w-full bg-gray-700 rounded-full h-2.5 mb-2">
-          <div className="bg-yellow-500 h-2.5 rounded-full" style={{ width: `${progressPercentage.toFixed(1)}%` }}/>
+        <div className="w-full bg-fin-dark rounded-full h-4 mb-4 p-0.5 border border-white/10">
+          <div className="bg-gradient-to-r from-fin-gold to-fin-highlight h-full rounded-full shadow-[0_0_10px_rgba(242,171,109,0.5)]" style={{ width: `${progress}%` }}></div>
         </div>
         <div className="flex justify-between items-center text-sm text-gray-300">
-          <span>R$ {current_amount.toLocaleString('pt-BR')}</span>
-          <span>R$ {target_amount.toLocaleString('pt-BR')}</span>
+          <span>Atual: <strong className="text-white">R$ {current_amount.toLocaleString('pt-BR')}</strong></span>
+          <span>Alvo: <strong className="text-white">R$ {target_amount.toLocaleString('pt-BR')}</strong></span>
         </div>
-        <a href="/metas" className="text-yellow-500 hover:underline text-sm mt-4 inline-block">
-          Ver todas as metas &rarr;
-        </a>
       </div>
     </div>
   );
 }
 
-
-// --- Componente Principal da Página (Dashboard) ---
 export default function Home() {
+  const [expenses, setExpenses] = useState([]);
   const [goals, setGoals] = useState([]);
-  
-  // Estado unificado para o resumo do dashboard
-  const [summary, setSummary] = useState({
-    total_income: 0,
-    total_expenses: 0,
-    balance: 0,
-    savings_rate: 0,
-    category_summary: []
-  });
-
+  const [totalIncome, setTotalIncome] = useState(0);
+  const [totalExpenses, setTotalExpenses] = useState(0);
+  const [balance, setBalance] = useState(0);
   const [currentDate, setCurrentDate] = useState(new Date());
   const [lastUpdate, setLastUpdate] = useState(new Date());
 
-  // Busca os dados quando a página é carregada ou a data/update muda
   useEffect(() => {
     const fetchData = async () => {
       const month = currentDate.getMonth() + 1;
       const year = currentDate.getFullYear();
-
       try {
-        // 👇 REQUISIÇÃO ÚNICA PARA O RESUMO
-        const summaryRes = await axios.get(
-          `${API_URL}/dashboard/summary?year=${year}&month=${month}`
-        );
-        setSummary(summaryRes.data);
-
-        // Requisição separada para as metas (que não são filtradas por mês)
-        const goalsRes = await axios.get(`${API_URL}/goals/`);
+        const [expenseRes, incomeRes, goalsRes] = await Promise.all([
+          axios.get(`${API_URL}/expenses/?year=${year}&month=${month}`),
+          axios.get(`${API_URL}/income/?year=${year}&month=${month}`),
+          axios.get(`${API_URL}/goals/`)
+        ]);
+        setExpenses(expenseRes.data);
         setGoals(goalsRes.data);
-
-      } catch (error) {
-        console.error("Erro ao buscar dados do dashboard:", error);
-      }
+        const tInc = incomeRes.data.reduce((acc, i) => acc + i.amount, 0);
+        const tExp = expenseRes.data.reduce((acc, e) => acc + e.amount, 0);
+        setTotalIncome(tInc);
+        setTotalExpenses(tExp);
+        setBalance(tInc - tExp);
+      } catch (error) { console.error("Erro:", error); }
     };
-
     fetchData();
-  }, [currentDate, lastUpdate]); // Recarrega se a data mudar
-
+  }, [currentDate, lastUpdate]);
 
   return (
     <div>
-      <MonthSelector 
-        currentDate={currentDate}
-        onDateChange={setCurrentDate}
-      />
-
-      {/* 👇 Grid de Resumo com 4 cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-        <SummaryCard 
-          title="Total Entradas" 
-          amount={summary.total_income} 
-          colorClass="text-green-400"
-        />
-        <SummaryCard 
-          title="Total Despesas" 
-          amount={summary.total_expenses} 
-          colorClass="text-red-400"
-        />
-        <SummaryCard 
-          title="Balanço Atual" 
-          amount={summary.balance} 
-          colorClass={summary.balance >= 0 ? "text-blue-400" : "text-red-500"}
-        />
-        {/*  Taxa de Poupança */}
-        <SummaryCard 
-          title="Taxa de Poupança" 
-          amount={summary.savings_rate} 
-          colorClass={summary.savings_rate >= 0 ? "text-green-400" : "text-red-500"}
-          isCurrency={false}
-        />
+      <MonthSelector currentDate={currentDate} onDateChange={setCurrentDate} />
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+        <SummaryCard title="Entradas" amount={totalIncome} type="income" />
+        <SummaryCard title="Saídas" amount={totalExpenses} type="expense" />
+        <SummaryCard title="Balanço" amount={balance} type="balance" />
       </div>
-
-      {/* Layout em duas colunas: Gráfico e Metas */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-        
-        {/* 👇 GRÁFICO (substitui a lista de despesas) */}
         <div className="lg:col-span-2">
-          <ExpenseChart chartData={summary.category_summary} />
+          <ExpenseList expenses={expenses} onExpenseDeleted={() => setLastUpdate(new Date())} />
         </div>
-        
         <div className="lg:col-span-1">
           <GoalsCard goals={goals} />
         </div>
