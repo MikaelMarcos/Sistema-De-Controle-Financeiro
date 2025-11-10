@@ -7,10 +7,9 @@ class BudgetGroup(SQLModel, table=True):
     id: Optional[int] = Field(default=None, primary_key=True)
     name: str = Field(unique=True, index=True)
     target_percentage: int = Field(default=0)
-    
     expenses: List["Expense"] = Relationship(back_populates="budget_group")
 
-# --- Modelos de Categoria (Subgrupos Opcionais) ---
+# --- Modelos de Categoria ---
 class CategoryBase(SQLModel):
     name: str = Field(index=True, unique=True)
     description: Optional[str] = None
@@ -52,9 +51,13 @@ class ExpenseBase(SQLModel):
     description: str
     amount: float
     date: datetime = Field(default_factory=datetime.utcnow)
-    budget_group_id: int = Field(foreign_key="budgetgroup.id") # Obrigatório
-    category_id: Optional[int] = Field(default=None, foreign_key="category.id") # Opcional
-    goal_id: Optional[int] = Field(default=None, foreign_key="goal.id") # Opcional
+    
+    # 👇 NOVO CAMPO: Status de Pagamento (Padrão: True/Pago)
+    paid: bool = Field(default=True)
+    
+    budget_group_id: int = Field(foreign_key="budgetgroup.id")
+    category_id: Optional[int] = Field(default=None, foreign_key="category.id")
+    goal_id: Optional[int] = Field(default=None, foreign_key="goal.id")
 
 class ExpenseCreate(ExpenseBase):
     pass
@@ -68,23 +71,18 @@ class Expense(ExpenseBase, table=True):
 class ExpenseRead(ExpenseBase):
     id: int
 
-# --- Modelos de Leitura Combinados (ESTAVAM FALTANDO AQUI) ---
 class ExpenseReadWithDetails(ExpenseRead):
     budget_group: BudgetGroup
     category: Optional[CategoryRead] = None
     goal: Optional[GoalRead] = None
-
-class CategoryReadWithExpenses(CategoryRead):
-    expenses: List[ExpenseRead] = []
-
-class GoalReadWithExpenses(GoalRead):
-    expenses: List[ExpenseRead] = []
 
 # --- Modelos de Entrada ---
 class IncomeBase(SQLModel):
     description: str
     amount: float
     date: datetime = Field(default_factory=datetime.utcnow)
+    # 👇 NOVO CAMPO: Status de Recebimento (Padrão: True/Recebido)
+    received: bool = Field(default=True)
 
 class IncomeCreate(IncomeBase):
     pass
@@ -94,3 +92,10 @@ class Income(IncomeBase, table=True):
 
 class IncomeRead(IncomeBase):
     id: int
+
+# --- Modelos de Leitura Combinados ---
+class CategoryReadWithExpenses(CategoryRead):
+    expenses: List[ExpenseRead] = []
+
+class GoalReadWithExpenses(GoalRead):
+    expenses: List[ExpenseRead] = []

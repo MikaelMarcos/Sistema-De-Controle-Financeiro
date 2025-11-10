@@ -1,7 +1,7 @@
 from fastapi import APIRouter, Depends, HTTPException
 from sqlmodel import Session, select
 from typing import List, Optional
-from sqlalchemy import extract
+from sqlalchemy import extract, func
 
 from .database import get_session
 from .models import (
@@ -18,13 +18,20 @@ router_income = APIRouter(prefix="/income", tags=["Income"])
 router_goals = APIRouter(prefix="/goals", tags=["Goals"])
 router_budget = APIRouter(prefix="/budget", tags=["Budget Groups"])
 
-# --- Rotas de Grupos de Orçamento ---
+# --- Rotas de Grupos de Orçamento (Budget Groups) ---
 @router_budget.get("/", response_model=List[BudgetGroup])
 def read_budget_groups(*, session: Session = Depends(get_session)):
+    """Lê todos os grupos de orçamento."""
     return session.exec(select(BudgetGroup)).all()
 
 @router_budget.put("/{group_id}", response_model=BudgetGroup)
-def update_budget_group_percentage(*, session: Session = Depends(get_session), group_id: int, target_percentage: int):
+def update_budget_group_percentage(
+    *,
+    session: Session = Depends(get_session),
+    group_id: int,
+    target_percentage: int
+):
+    """Atualiza apenas a porcentagem alvo de um grupo."""
     group = session.get(BudgetGroup, group_id)
     if not group:
         raise HTTPException(status_code=404, detail="Grupo não encontrado")
@@ -33,6 +40,57 @@ def update_budget_group_percentage(*, session: Session = Depends(get_session), g
     session.commit()
     session.refresh(group)
     return group
+
+@router_budget.get("/analysis")
+def analyze_budget(
+    *,
+    session: Session = Depends(get_session),
+    month: int,
+    year: int
+):
+    """
+    Retorna uma análise comparativa de Planejado vs. Realizado para um mês específico.
+    """
+    # 1. Calcula a Renda Total do mês (para saber quanto é 100%)
+    income_stmt = select(func.sum(Income.amount)).where(
+        extract('month', Income.date) == month,
+        extract('year', Income.date) == year
+    )
+    # .one() retorna (None,) se não houver renda, por isso o 'or 0.0'
+    total_income = session.exec(income_stmt).one() or 0.0
+
+    # 2. Busca todos os grupos
+    groups = session.exec(select(BudgetGroup)).all()
+    analysis = []
+
+    for group in groups:
+        # 3. Calcula quanto foi REALMENTE gasto neste grupo neste mês
+        expense_stmt = select(func.sum(Expense.amount)).where(
+            Expense.budget_group_id == group.id,
+            extract('month', Expense.date) == month,
+            extract('year', Expense.date) == year
+        )
+        actual_spent = session.exec(expense_stmt).one() or 0.0
+        
+        # 4. Calcula quanto foi PLANEJADO (baseado na % e na renda total do mês)
+        planned_amount = (total_income * (group.target_percentage / 100.0))
+
+        analysis.append({
+            "group_id": group.id,
+            "name": group.name,
+            "target_percentage": group.target_percentage,
+            "planned_amount": planned_amount,
+            "actual_spent": actual_spent,
+            # Status: se gastou menos ou igual ao planejado, está "OK"
+            "is_over_budget": actual_spent > planned_amount if planned_amount > 0 else False
+        })
+    
+    return {
+        "month": month,
+        "year": year,
+        "total_income": total_income,
+        "analysis": analysis
+    }
 
 # --- Rotas de Despesas ---
 @router_expenses.post("/", response_model=ExpenseRead)
@@ -69,6 +127,18 @@ def delete_expense(*, session: Session = Depends(get_session), expense_id: int):
     session.delete(expense)
     session.commit()
     return {"ok": True, "detail": "Despesa deletada com sucesso"}
+
+@router_expenses.patch("/{expense_id}/toggle-status", response_model=ExpenseRead)
+def toggle_expense_status(*, session: Session = Depends(get_session), expense_id: int):
+    """Alterna o status de uma despesa entre Pago e Pendente."""
+    expense = session.get(Expense, expense_id)
+    if not expense:
+        raise HTTPException(status_code=404, detail="Despesa não encontrada")
+    expense.paid = not expense.paid
+    session.add(expense)
+    session.commit()
+    session.refresh(expense)
+    return expense
 
 # --- Rotas de Categorias (Subgrupos) ---
 @router_categories.post("/", response_model=CategoryRead)
@@ -113,6 +183,18 @@ def delete_income(*, session: Session = Depends(get_session), income_id: int):
     session.delete(income)
     session.commit()
     return {"ok": True, "detail": "Entrada deletada com sucesso"}
+
+@router_income.patch("/{income_id}/toggle-status", response_model=IncomeRead)
+def toggle_income_status(*, session: Session = Depends(get_session), income_id: int):
+    """Alterna o status de uma entrada entre Recebido e Pendente."""
+    income = session.get(Income, income_id)
+    if not income:
+        raise HTTPException(status_code=404, detail="Entrada não encontrada")
+    income.received = not income.received
+    session.add(income)
+    session.commit()
+    session.refresh(income)
+    return income
 
 # --- Rotas de Metas ---
 @router_goals.post("/", response_model=GoalRead)
