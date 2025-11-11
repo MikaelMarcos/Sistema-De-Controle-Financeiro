@@ -10,19 +10,24 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgr
 var __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$compiler$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/node_modules/next/dist/compiled/react/compiler-runtime.js [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/node_modules/next/dist/compiled/react/index.js [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$axios$2f$lib$2f$axios$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/node_modules/axios/lib/axios.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/node_modules/framer-motion/dist/es/render/components/motion/proxy.mjs [app-client] (ecmascript)");
 ;
 var _s = __turbopack_context__.k.signature(), _s1 = __turbopack_context__.k.signature(), _s2 = __turbopack_context__.k.signature();
 'use client';
 ;
 ;
 ;
+;
 const API_URL = 'http://localhost:8000';
+// ==========================
+// 📥 FORMULÁRIO DE ENTRADA
+// ==========================
 function IncomeForm({ onIncomeAdded }) {
     _s();
     const [description, setDescription] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])('');
     const [amount, setAmount] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])('');
     const [date, setDate] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])('');
-    const [received, setReceived] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(true); // 👈 Status de Recebimento
+    const [received, setReceived] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(true);
     const [isSubmitting, setIsSubmitting] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
     const handleSubmit = async (e)=>{
         e.preventDefault();
@@ -36,9 +41,10 @@ function IncomeForm({ onIncomeAdded }) {
                 description,
                 amount: parseFloat(amount),
                 date: date ? new Date(date).toISOString() : new Date().toISOString(),
-                received: received // 👈 Envia o status
+                received
             };
             await __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$axios$2f$lib$2f$axios$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].post(`${API_URL}/income/`, newIncome);
+            // resetar campos
             setDescription('');
             setAmount('');
             setDate('');
@@ -51,7 +57,18 @@ function IncomeForm({ onIncomeAdded }) {
             setIsSubmitting(false);
         }
     };
-    return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+    return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].div, {
+        initial: {
+            opacity: 0,
+            y: 15
+        },
+        animate: {
+            opacity: 1,
+            y: 0
+        },
+        transition: {
+            duration: 0.4
+        },
         className: "bg-gradient-to-br from-fin-card to-fin-dark/80 p-8 rounded-3xl shadow-2xl mb-8 border border-fin-gold/20 backdrop-blur-sm",
         children: [
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -64,12 +81,12 @@ function IncomeForm({ onIncomeAdded }) {
                             children: "💸"
                         }, void 0, false, {
                             fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/income/page.js",
-                            lineNumber: 45,
+                            lineNumber: 60,
                             columnNumber: 11
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/income/page.js",
-                        lineNumber: 44,
+                        lineNumber: 59,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -79,7 +96,7 @@ function IncomeForm({ onIncomeAdded }) {
                                 children: "Nova Receita"
                             }, void 0, false, {
                                 fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/income/page.js",
-                                lineNumber: 48,
+                                lineNumber: 63,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -87,19 +104,19 @@ function IncomeForm({ onIncomeAdded }) {
                                 children: "Registre ganhos ou agende recebimentos"
                             }, void 0, false, {
                                 fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/income/page.js",
-                                lineNumber: 49,
+                                lineNumber: 64,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/income/page.js",
-                        lineNumber: 47,
+                        lineNumber: 62,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/income/page.js",
-                lineNumber: 43,
+                lineNumber: 58,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("form", {
@@ -114,7 +131,7 @@ function IncomeForm({ onIncomeAdded }) {
                                 children: "Detalhes da Receita"
                             }, void 0, false, {
                                 fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/income/page.js",
-                                lineNumber: 55,
+                                lineNumber: 71,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -127,7 +144,7 @@ function IncomeForm({ onIncomeAdded }) {
                                                 children: "Descrição *"
                                             }, void 0, false, {
                                                 fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/income/page.js",
-                                                lineNumber: 59,
+                                                lineNumber: 78,
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -138,13 +155,13 @@ function IncomeForm({ onIncomeAdded }) {
                                                 className: "w-full p-4 bg-fin-dark/60 rounded-xl border-2 border-white/10 focus:border-fin-gold focus:ring-2 focus:ring-fin-gold/20 transition-all text-white placeholder-white/40"
                                             }, void 0, false, {
                                                 fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/income/page.js",
-                                                lineNumber: 60,
+                                                lineNumber: 79,
                                                 columnNumber: 15
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/income/page.js",
-                                        lineNumber: 58,
+                                        lineNumber: 77,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -154,7 +171,7 @@ function IncomeForm({ onIncomeAdded }) {
                                                 children: "Valor *"
                                             }, void 0, false, {
                                                 fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/income/page.js",
-                                                lineNumber: 63,
+                                                lineNumber: 84,
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -165,7 +182,7 @@ function IncomeForm({ onIncomeAdded }) {
                                                         children: "R$"
                                                     }, void 0, false, {
                                                         fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/income/page.js",
-                                                        lineNumber: 65,
+                                                        lineNumber: 86,
                                                         columnNumber: 17
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -177,25 +194,25 @@ function IncomeForm({ onIncomeAdded }) {
                                                         className: "w-full p-4 pl-12 bg-fin-dark/60 rounded-xl border-2 border-white/10 focus:border-green-400 focus:ring-2 focus:ring-green-400/20 transition-all text-white"
                                                     }, void 0, false, {
                                                         fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/income/page.js",
-                                                        lineNumber: 66,
+                                                        lineNumber: 87,
                                                         columnNumber: 17
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/income/page.js",
-                                                lineNumber: 64,
+                                                lineNumber: 85,
                                                 columnNumber: 15
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/income/page.js",
-                                        lineNumber: 62,
+                                        lineNumber: 83,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/income/page.js",
-                                lineNumber: 57,
+                                lineNumber: 75,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -208,7 +225,7 @@ function IncomeForm({ onIncomeAdded }) {
                                                 children: "Data Prevista"
                                             }, void 0, false, {
                                                 fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/income/page.js",
-                                                lineNumber: 73,
+                                                lineNumber: 95,
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -218,13 +235,13 @@ function IncomeForm({ onIncomeAdded }) {
                                                 className: "w-full p-4 bg-fin-dark/60 rounded-xl border-2 border-white/10 focus:border-fin-gold transition-all text-white"
                                             }, void 0, false, {
                                                 fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/income/page.js",
-                                                lineNumber: 74,
+                                                lineNumber: 96,
                                                 columnNumber: 15
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/income/page.js",
-                                        lineNumber: 72,
+                                        lineNumber: 94,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -234,57 +251,50 @@ function IncomeForm({ onIncomeAdded }) {
                                                 children: "Status"
                                             }, void 0, false, {
                                                 fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/income/page.js",
-                                                lineNumber: 77,
+                                                lineNumber: 100,
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                className: `w-full p-4 rounded-xl border-2 transition-all cursor-pointer ${received ? 'bg-green-500/20 border-green-500/50 text-green-400' : 'bg-yellow-500/20 border-yellow-500/50 text-yellow-400'}`,
                                                 onClick: ()=>setReceived(!received),
-                                                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                    className: "flex items-center justify-between",
-                                                    children: [
-                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                            className: "font-bold",
-                                                            children: received ? '✅ RECEBIDO' : '⏳ A RECEBER'
-                                                        }, void 0, false, {
-                                                            fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/income/page.js",
-                                                            lineNumber: 80,
-                                                            columnNumber: 19
-                                                        }, this),
-                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                            className: `w-3 h-3 rounded-full ${received ? 'bg-green-400' : 'bg-yellow-400'}`
-                                                        }, void 0, false, {
-                                                            fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/income/page.js",
-                                                            lineNumber: 81,
-                                                            columnNumber: 19
-                                                        }, this)
-                                                    ]
-                                                }, void 0, true, {
-                                                    fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/income/page.js",
-                                                    lineNumber: 79,
-                                                    columnNumber: 17
-                                                }, this)
-                                            }, void 0, false, {
+                                                className: `w-full p-4 rounded-xl border-2 transition-all cursor-pointer flex items-center justify-between ${received ? 'bg-green-500/20 border-green-500/50 text-green-400' : 'bg-yellow-500/20 border-yellow-500/50 text-yellow-400'}`,
+                                                children: [
+                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                        className: "font-bold",
+                                                        children: received ? '✅ RECEBIDO' : '⏳ A RECEBER'
+                                                    }, void 0, false, {
+                                                        fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/income/page.js",
+                                                        lineNumber: 102,
+                                                        columnNumber: 17
+                                                    }, this),
+                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                        className: `w-3 h-3 rounded-full ${received ? 'bg-green-400' : 'bg-yellow-400'}`
+                                                    }, void 0, false, {
+                                                        fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/income/page.js",
+                                                        lineNumber: 103,
+                                                        columnNumber: 17
+                                                    }, this)
+                                                ]
+                                            }, void 0, true, {
                                                 fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/income/page.js",
-                                                lineNumber: 78,
+                                                lineNumber: 101,
                                                 columnNumber: 15
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/income/page.js",
-                                        lineNumber: 76,
+                                        lineNumber: 99,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/income/page.js",
-                                lineNumber: 71,
+                                lineNumber: 93,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/income/page.js",
-                        lineNumber: 54,
+                        lineNumber: 70,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -297,41 +307,43 @@ function IncomeForm({ onIncomeAdded }) {
                                     children: received ? '💰' : '📅'
                                 }, void 0, false, {
                                     fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/income/page.js",
-                                    lineNumber: 89,
-                                    columnNumber: 48
+                                    lineNumber: 112,
+                                    columnNumber: 15
                                 }, this),
-                                " ",
                                 received ? 'Registrar Entrada' : 'Agendar Recebimento'
                             ]
                         }, void 0, true)
                     }, void 0, false, {
                         fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/income/page.js",
-                        lineNumber: 88,
+                        lineNumber: 110,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/income/page.js",
-                lineNumber: 53,
+                lineNumber: 68,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/income/page.js",
-        lineNumber: 42,
+        lineNumber: 49,
         columnNumber: 10
     }, this);
 }
 _s(IncomeForm, "U1TM8C//v2NDXozDfTsaVk6OKTQ=");
 _c = IncomeForm;
+// ==========================
+// 📊 LISTA DE ENTRADAS
+// ==========================
 function IncomeList(t0) {
     _s1();
-    const $ = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$compiler$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["c"])(17);
-    if ($[0] !== "b2dfb7d4de3ce41031019a57ec5ba3cc01153e542d96a5ab8cf7630c6b4f7912") {
-        for(let $i = 0; $i < 17; $i += 1){
+    const $ = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$compiler$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["c"])(18);
+    if ($[0] !== "0cf4f50a336c7e36ebe1863925a737df5c780e0e2a5edab092d86c01c415bd6f") {
+        for(let $i = 0; $i < 18; $i += 1){
             $[$i] = Symbol.for("react.memo_cache_sentinel");
         }
-        $[0] = "b2dfb7d4de3ce41031019a57ec5ba3cc01153e542d96a5ab8cf7630c6b4f7912";
+        $[0] = "0cf4f50a336c7e36ebe1863925a737df5c780e0e2a5edab092d86c01c415bd6f";
     }
     const { incomes, setIncomes } = t0;
     const [filter, setFilter] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])("all");
@@ -340,15 +352,7 @@ function IncomeList(t0) {
         let t2;
         if ($[5] !== filter) {
             t2 = ({
-                "IncomeList[incomes.filter()]": (income)=>{
-                    if (filter === "received") {
-                        return income.received;
-                    }
-                    if (filter === "pending") {
-                        return !income.received;
-                    }
-                    return true;
-                }
+                "IncomeList[incomes.filter()]": (i)=>filter === "received" ? i.received : filter === "pending" ? !i.received : true
             })["IncomeList[incomes.filter()]"];
             $[5] = filter;
             $[6] = t2;
@@ -357,7 +361,7 @@ function IncomeList(t0) {
         }
         const filteredIncomes = incomes.filter(t2);
         let t3;
-        if ($[7] !== incomes || $[8] !== setIncomes) {
+        if ($[7] !== setIncomes) {
             t3 = ({
                 "IncomeList[handleDelete]": async (id)=>{
                     if (!confirm("Excluir esta receita?")) {
@@ -366,51 +370,69 @@ function IncomeList(t0) {
                     ;
                     try {
                         await __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$axios$2f$lib$2f$axios$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].delete(`${API_URL}/income/${id}`);
-                        setIncomes(incomes.filter({
-                            "IncomeList[handleDelete > incomes.filter()]": (inc)=>inc.id !== id
-                        }["IncomeList[handleDelete > incomes.filter()]"]));
+                        setIncomes({
+                            "IncomeList[handleDelete > setIncomes()]": (prev)=>prev.filter({
+                                    "IncomeList[handleDelete > setIncomes() > prev.filter()]": (i_0)=>i_0.id !== id
+                                }["IncomeList[handleDelete > setIncomes() > prev.filter()]"])
+                        }["IncomeList[handleDelete > setIncomes()]"]);
                     } catch (t4) {
-                        const error = t4;
-                        console.error("Erro:", error);
+                        const err = t4;
+                        console.error(err);
                     }
                 }
             })["IncomeList[handleDelete]"];
-            $[7] = incomes;
-            $[8] = setIncomes;
-            $[9] = t3;
+            $[7] = setIncomes;
+            $[8] = t3;
         } else {
-            t3 = $[9];
+            t3 = $[8];
         }
         const handleDelete = t3;
         let t4;
-        if ($[10] !== setIncomes) {
+        if ($[9] !== setIncomes) {
             t4 = ({
-                "IncomeList[handleToggleStatus]": async (income_0)=>{
+                "IncomeList[handleToggleStatus]": async (income)=>{
                     ;
                     try {
-                        const response = await __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$axios$2f$lib$2f$axios$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].patch(`${API_URL}/income/${income_0.id}/toggle-status`);
+                        const res = await __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$axios$2f$lib$2f$axios$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].patch(`${API_URL}/income/${income.id}/toggle-status`);
                         setIncomes({
-                            "IncomeList[handleToggleStatus > setIncomes()]": (prev)=>prev.map({
-                                    "IncomeList[handleToggleStatus > setIncomes() > prev.map()]": (inc_0)=>inc_0.id === income_0.id ? response.data : inc_0
-                                }["IncomeList[handleToggleStatus > setIncomes() > prev.map()]"])
+                            "IncomeList[handleToggleStatus > setIncomes()]": (prev_0)=>prev_0.map({
+                                    "IncomeList[handleToggleStatus > setIncomes() > prev_0.map()]": (i_1)=>i_1.id === income.id ? res.data : i_1
+                                }["IncomeList[handleToggleStatus > setIncomes() > prev_0.map()]"])
                         }["IncomeList[handleToggleStatus > setIncomes()]"]);
                     } catch (t5) {
-                        const error_0 = t5;
-                        console.error("Erro:", error_0);
+                        const err_0 = t5;
+                        console.error(err_0);
                     }
                 }
             })["IncomeList[handleToggleStatus]"];
-            $[10] = setIncomes;
-            $[11] = t4;
+            $[9] = setIncomes;
+            $[10] = t4;
         } else {
-            t4 = $[11];
+            t4 = $[10];
         }
         const handleToggleStatus = t4;
         const formatDate = _IncomeListFormatDate;
         const totalAmount = filteredIncomes.reduce(_IncomeListFilteredIncomesReduce, 0);
         let t5;
-        if ($[12] === Symbol.for("react.memo_cache_sentinel")) {
-            t5 = /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+        let t6;
+        if ($[11] === Symbol.for("react.memo_cache_sentinel")) {
+            t5 = {
+                opacity: 0,
+                y: 10
+            };
+            t6 = {
+                opacity: 1,
+                y: 0
+            };
+            $[11] = t5;
+            $[12] = t6;
+        } else {
+            t5 = $[11];
+            t6 = $[12];
+        }
+        let t7;
+        if ($[13] === Symbol.for("react.memo_cache_sentinel")) {
+            t7 = /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                 className: "flex items-center gap-3",
                 children: [
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -420,12 +442,12 @@ function IncomeList(t0) {
                             children: "📈"
                         }, void 0, false, {
                             fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/income/page.js",
-                            lineNumber: 182,
+                            lineNumber: 221,
                             columnNumber: 102
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/income/page.js",
-                        lineNumber: 182,
+                        lineNumber: 221,
                         columnNumber: 53
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -435,7 +457,7 @@ function IncomeList(t0) {
                                 children: "Histórico de Receitas"
                             }, void 0, false, {
                                 fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/income/page.js",
-                                lineNumber: 182,
+                                lineNumber: 221,
                                 columnNumber: 149
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -443,28 +465,28 @@ function IncomeList(t0) {
                                 children: "Ganhos registrados e previstos"
                             }, void 0, false, {
                                 fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/income/page.js",
-                                lineNumber: 182,
+                                lineNumber: 221,
                                 columnNumber: 221
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/income/page.js",
-                        lineNumber: 182,
+                        lineNumber: 221,
                         columnNumber: 144
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/income/page.js",
-                lineNumber: 182,
+                lineNumber: 221,
                 columnNumber: 12
             }, this);
-            $[12] = t5;
+            $[13] = t7;
         } else {
-            t5 = $[12];
+            t7 = $[13];
         }
-        let t6;
-        if ($[13] === Symbol.for("react.memo_cache_sentinel")) {
-            t6 = [
+        let t8;
+        if ($[14] === Symbol.for("react.memo_cache_sentinel")) {
+            t8 = [
                 {
                     key: "all",
                     label: "Todas",
@@ -481,21 +503,21 @@ function IncomeList(t0) {
                     emoji: "\u23F3"
                 }
             ];
-            $[13] = t6;
+            $[14] = t8;
         } else {
-            t6 = $[13];
+            t8 = $[14];
         }
-        let t7;
-        if ($[14] !== filter) {
-            t7 = /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+        let t9;
+        if ($[15] !== filter) {
+            t9 = /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                 className: "flex flex-col lg:flex-row lg:items-center justify-between mb-8 gap-4",
                 children: [
-                    t5,
+                    t7,
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                         className: "flex gap-2 bg-fin-dark/60 p-1 rounded-xl",
-                        children: t6.map({
-                            "IncomeList[(anonymous)()]": (t8)=>{
-                                const { key, label, emoji } = t8;
+                        children: t8.map({
+                            "IncomeList[(anonymous)()]": (t10)=>{
+                                const { key, label, emoji } = t10;
                                 return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
                                     onClick: {
                                         "IncomeList[(anonymous)() > <button>.onClick]": ()=>setFilter(key)
@@ -506,56 +528,58 @@ function IncomeList(t0) {
                                             children: emoji
                                         }, void 0, false, {
                                             fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/income/page.js",
-                                            lineNumber: 217,
+                                            lineNumber: 256,
                                             columnNumber: 234
                                         }, this),
                                         label
                                     ]
                                 }, key, true, {
                                     fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/income/page.js",
-                                    lineNumber: 215,
+                                    lineNumber: 254,
                                     columnNumber: 22
                                 }, this);
                             }
                         }["IncomeList[(anonymous)()]"])
                     }, void 0, false, {
                         fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/income/page.js",
-                        lineNumber: 208,
+                        lineNumber: 247,
                         columnNumber: 102
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/income/page.js",
-                lineNumber: 208,
+                lineNumber: 247,
                 columnNumber: 12
             }, this);
-            $[14] = filter;
-            $[15] = t7;
+            $[15] = filter;
+            $[16] = t9;
         } else {
-            t7 = $[15];
+            t9 = $[16];
         }
-        let t8;
-        if ($[16] === Symbol.for("react.memo_cache_sentinel")) {
-            t8 = /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+        let t10;
+        if ($[17] === Symbol.for("react.memo_cache_sentinel")) {
+            t10 = /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                 className: "text-green-400 text-sm mb-1",
                 children: "Total no Filtro Atual"
             }, void 0, false, {
                 fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/income/page.js",
-                lineNumber: 227,
-                columnNumber: 12
+                lineNumber: 266,
+                columnNumber: 13
             }, this);
-            $[16] = t8;
+            $[17] = t10;
         } else {
-            t8 = $[16];
+            t10 = $[17];
         }
-        t1 = /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+        t1 = /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].div, {
+            initial: t5,
+            animate: t6,
             className: "bg-gradient-to-br from-fin-card to-fin-dark/80 p-8 rounded-3xl border border-white/5 backdrop-blur-sm",
             children: [
-                t7,
+                t9,
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                     className: "bg-green-500/10 p-4 rounded-xl border border-green-500/20 mb-6 text-center",
                     children: [
-                        t8,
+                        t10,
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                             className: "text-3xl font-bold text-green-400",
                             children: [
@@ -564,14 +588,14 @@ function IncomeList(t0) {
                             ]
                         }, void 0, true, {
                             fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/income/page.js",
-                            lineNumber: 232,
-                            columnNumber: 229
+                            lineNumber: 271,
+                            columnNumber: 263
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/income/page.js",
-                    lineNumber: 232,
-                    columnNumber: 133
+                    lineNumber: 271,
+                    columnNumber: 166
                 }, this),
                 filteredIncomes.length === 0 ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                     className: "text-center py-12 text-white/40",
@@ -581,26 +605,37 @@ function IncomeList(t0) {
                             children: "📭"
                         }, void 0, false, {
                             fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/income/page.js",
-                            lineNumber: 232,
-                            columnNumber: 400
+                            lineNumber: 271,
+                            columnNumber: 434
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                             children: "Nenhuma receita encontrada"
                         }, void 0, false, {
                             fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/income/page.js",
-                            lineNumber: 232,
-                            columnNumber: 439
+                            lineNumber: 271,
+                            columnNumber: 473
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/income/page.js",
-                    lineNumber: 232,
-                    columnNumber: 351
+                    lineNumber: 271,
+                    columnNumber: 385
                 }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                     className: "space-y-3",
                     children: filteredIncomes.map({
-                        "IncomeList[filteredIncomes.map()]": (income_1)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                className: `flex justify-between items-center p-5 rounded-2xl border-2 transition-all hover:scale-[1.01] ${income_1.received ? "bg-fin-dark/30 border-white/5" : "bg-yellow-500/10 border-yellow-500/20"}`,
+                        "IncomeList[filteredIncomes.map()]": (income_0)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].div, {
+                                initial: {
+                                    opacity: 0,
+                                    y: 5
+                                },
+                                animate: {
+                                    opacity: 1,
+                                    y: 0
+                                },
+                                transition: {
+                                    duration: 0.3
+                                },
+                                className: `flex justify-between items-center p-5 rounded-2xl border-2 transition-all hover:scale-[1.01] ${income_0.received ? "bg-fin-dark/30 border-white/5" : "bg-yellow-500/10 border-yellow-500/20"}`,
                                 children: [
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                         className: "flex-1",
@@ -609,100 +644,100 @@ function IncomeList(t0) {
                                                 className: "flex items-center gap-3 mb-2",
                                                 children: [
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                        className: `text-xs font-bold px-3 py-1 rounded-full ${income_1.received ? "text-green-400 bg-green-400/10" : "text-yellow-400 bg-yellow-400/10"}`,
-                                                        children: formatDate(income_1.date)
+                                                        className: `text-xs font-bold px-3 py-1 rounded-full ${income_0.received ? "text-green-400 bg-green-400/10" : "text-yellow-400 bg-yellow-400/10"}`,
+                                                        children: formatDate(income_0.date)
                                                     }, void 0, false, {
                                                         fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/income/page.js",
-                                                        lineNumber: 233,
-                                                        columnNumber: 357
+                                                        lineNumber: 280,
+                                                        columnNumber: 288
                                                     }, this),
-                                                    !income_1.received && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                    !income_0.received && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                                         className: "text-xs text-yellow-400 font-bold uppercase tracking-wider bg-yellow-400/10 px-2 py-1 rounded",
                                                         children: "A Receber"
                                                     }, void 0, false, {
                                                         fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/income/page.js",
-                                                        lineNumber: 233,
-                                                        columnNumber: 568
+                                                        lineNumber: 280,
+                                                        columnNumber: 499
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/income/page.js",
-                                                lineNumber: 233,
-                                                columnNumber: 311
+                                                lineNumber: 280,
+                                                columnNumber: 242
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                                 className: "font-semibold text-white text-lg",
-                                                children: income_1.description
+                                                children: income_0.description
                                             }, void 0, false, {
                                                 fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/income/page.js",
-                                                lineNumber: 233,
-                                                columnNumber: 703
+                                                lineNumber: 280,
+                                                columnNumber: 634
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/income/page.js",
-                                        lineNumber: 233,
-                                        columnNumber: 287
+                                        lineNumber: 280,
+                                        columnNumber: 218
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                         className: "flex items-center gap-4",
                                         children: [
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                className: `font-bold text-xl ${income_1.received ? "text-green-400" : "text-white/70"}`,
+                                                className: `font-bold text-xl ${income_0.received ? "text-green-400" : "text-white/70"}`,
                                                 children: [
                                                     "+ R$ ",
-                                                    income_1.amount.toFixed(2)
+                                                    income_0.amount.toFixed(2)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/income/page.js",
-                                                lineNumber: 233,
-                                                columnNumber: 828
+                                                lineNumber: 280,
+                                                columnNumber: 759
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
                                                 onClick: {
-                                                    "IncomeList[filteredIncomes.map() > <button>.onClick]": ()=>handleToggleStatus(income_1)
+                                                    "IncomeList[filteredIncomes.map() > <button>.onClick]": ()=>handleToggleStatus(income_0)
                                                 }["IncomeList[filteredIncomes.map() > <button>.onClick]"],
-                                                className: `p-3 rounded-xl transition-all hover:scale-110 ${income_1.received ? "text-gray-500 hover:text-yellow-400 bg-fin-dark/50" : "text-green-400 bg-green-400/20 hover:bg-green-400/30"}`,
-                                                title: income_1.received ? "Marcar como A Receber" : "Confirmar Recebimento",
-                                                children: income_1.received ? "\u21A9\uFE0F" : "\uD83D\uDCB0"
+                                                className: `p-3 rounded-xl transition-all hover:scale-110 ${income_0.received ? "text-gray-500 hover:text-yellow-400 bg-fin-dark/50" : "text-green-400 bg-green-400/20 hover:bg-green-400/30"}`,
+                                                title: income_0.received ? "Marcar como A Receber" : "Confirmar Recebimento",
+                                                children: income_0.received ? "\u21A9\uFE0F" : "\uD83D\uDCB0"
                                             }, void 0, false, {
                                                 fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/income/page.js",
-                                                lineNumber: 233,
-                                                columnNumber: 964
+                                                lineNumber: 280,
+                                                columnNumber: 895
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
                                                 onClick: {
-                                                    "IncomeList[filteredIncomes.map() > <button>.onClick]": ()=>handleDelete(income_1.id)
+                                                    "IncomeList[filteredIncomes.map() > <button>.onClick]": ()=>handleDelete(income_0.id)
                                                 }["IncomeList[filteredIncomes.map() > <button>.onClick]"],
                                                 className: "p-3 rounded-xl text-red-400/50 hover:text-red-400 hover:bg-red-400/10 transition-all",
                                                 children: "🗑️"
                                             }, void 0, false, {
                                                 fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/income/page.js",
-                                                lineNumber: 235,
+                                                lineNumber: 282,
                                                 columnNumber: 407
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/income/page.js",
-                                        lineNumber: 233,
-                                        columnNumber: 787
+                                        lineNumber: 280,
+                                        columnNumber: 718
                                     }, this)
                                 ]
-                            }, income_1.id, true, {
+                            }, income_0.id, true, {
                                 fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/income/page.js",
-                                lineNumber: 233,
+                                lineNumber: 272,
                                 columnNumber: 60
                             }, this)
                     }["IncomeList[filteredIncomes.map()]"])
                 }, void 0, false, {
                     fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/income/page.js",
-                    lineNumber: 232,
-                    columnNumber: 481
+                    lineNumber: 271,
+                    columnNumber: 515
                 }, this)
             ]
         }, void 0, true, {
             fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/income/page.js",
-            lineNumber: 232,
+            lineNumber: 271,
             columnNumber: 10
         }, this);
         $[1] = filter;
@@ -716,8 +751,11 @@ function IncomeList(t0) {
 }
 _s1(IncomeList, "boPJerHaELAyf+PNkR+Y8+JetQg=");
 _c1 = IncomeList;
-function _IncomeListFilteredIncomesReduce(sum, inc_1) {
-    return sum + inc_1.amount;
+// ==========================
+// 🌟 PÁGINA PRINCIPAL
+// ==========================
+function _IncomeListFilteredIncomesReduce(sum, i_2) {
+    return sum + i_2.amount;
 }
 function _IncomeListFormatDate(d) {
     return new Date(d).toLocaleDateString("pt-BR", {
@@ -726,115 +764,65 @@ function _IncomeListFormatDate(d) {
 }
 function IncomePage() {
     _s2();
-    const $ = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$compiler$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["c"])(9);
-    if ($[0] !== "b2dfb7d4de3ce41031019a57ec5ba3cc01153e542d96a5ab8cf7630c6b4f7912") {
-        for(let $i = 0; $i < 9; $i += 1){
-            $[$i] = Symbol.for("react.memo_cache_sentinel");
-        }
-        $[0] = "b2dfb7d4de3ce41031019a57ec5ba3cc01153e542d96a5ab8cf7630c6b4f7912";
-    }
-    let t0;
-    if ($[1] === Symbol.for("react.memo_cache_sentinel")) {
-        t0 = [];
-        $[1] = t0;
-    } else {
-        t0 = $[1];
-    }
-    const [incomes, setIncomes] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(t0);
+    const [incomes, setIncomes] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])([]);
     const [isLoading, setIsLoading] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(true);
-    let t1;
-    if ($[2] === Symbol.for("react.memo_cache_sentinel")) {
-        t1 = ({
-            "IncomePage[fetchIncomes]": ()=>{
-                setIsLoading(true);
-                __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$axios$2f$lib$2f$axios$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].get(`${API_URL}/income/`).then({
-                    "IncomePage[fetchIncomes > (anonymous)()]": (res)=>setIncomes(res.data)
-                }["IncomePage[fetchIncomes > (anonymous)()]"]).catch(_IncomePageFetchIncomesAnonymous).finally({
-                    "IncomePage[fetchIncomes > (anonymous)()]": ()=>setIsLoading(false)
-                }["IncomePage[fetchIncomes > (anonymous)()]"]);
-            }
-        })["IncomePage[fetchIncomes]"];
-        $[2] = t1;
-    } else {
-        t1 = $[2];
-    }
-    const fetchIncomes = t1;
-    let t2;
-    let t3;
-    if ($[3] === Symbol.for("react.memo_cache_sentinel")) {
-        t2 = ({
-            "IncomePage[useEffect()]": ()=>{
-                fetchIncomes();
-            }
-        })["IncomePage[useEffect()]"];
-        t3 = [];
-        $[3] = t2;
-        $[4] = t3;
-    } else {
-        t2 = $[3];
-        t3 = $[4];
-    }
-    (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])(t2, t3);
-    let t4;
-    if ($[5] === Symbol.for("react.memo_cache_sentinel")) {
-        t4 = /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(IncomeForm, {
-            onIncomeAdded: fetchIncomes
-        }, void 0, false, {
+    const fetchIncomes = async ()=>{
+        setIsLoading(true);
+        try {
+            const res = await __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$axios$2f$lib$2f$axios$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].get(`${API_URL}/income/`);
+            setIncomes(res.data);
+        } catch (error) {
+            console.error('Erro:', error);
+        } finally{
+            setIsLoading(false);
+        }
+    };
+    (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
+        "IncomePage.useEffect": ()=>{
+            fetchIncomes();
+        }
+    }["IncomePage.useEffect"], []);
+    return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+        className: "min-h-screen bg-gradient-to-br from-fin-dark to-fin-card py-8 px-4",
+        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+            className: "max-w-5xl mx-auto",
+            children: [
+                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(IncomeForm, {
+                    onIncomeAdded: fetchIncomes
+                }, void 0, false, {
+                    fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/income/page.js",
+                    lineNumber: 326,
+                    columnNumber: 9
+                }, this),
+                isLoading ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                    className: "text-center text-white/60 py-12 animate-pulse",
+                    children: "Carregando receitas..."
+                }, void 0, false, {
+                    fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/income/page.js",
+                    lineNumber: 327,
+                    columnNumber: 22
+                }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(IncomeList, {
+                    incomes: incomes,
+                    setIncomes: setIncomes
+                }, void 0, false, {
+                    fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/income/page.js",
+                    lineNumber: 329,
+                    columnNumber: 20
+                }, this)
+            ]
+        }, void 0, true, {
             fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/income/page.js",
-            lineNumber: 308,
-            columnNumber: 10
-        }, this);
-        $[5] = t4;
-    } else {
-        t4 = $[5];
-    }
-    let t5;
-    if ($[6] !== incomes || $[7] !== isLoading) {
-        t5 = /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-            className: "min-h-screen bg-gradient-to-br from-fin-dark to-fin-darker py-8 px-4",
-            children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                className: "max-w-5xl mx-auto",
-                children: [
-                    t4,
-                    isLoading ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                        className: "text-center text-white/60 py-12",
-                        children: "Carregando..."
-                    }, void 0, false, {
-                        fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/income/page.js",
-                        lineNumber: 315,
-                        columnNumber: 148
-                    }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(IncomeList, {
-                        incomes: incomes,
-                        setIncomes: setIncomes
-                    }, void 0, false, {
-                        fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/income/page.js",
-                        lineNumber: 315,
-                        columnNumber: 219
-                    }, this)
-                ]
-            }, void 0, true, {
-                fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/income/page.js",
-                lineNumber: 315,
-                columnNumber: 96
-            }, this)
-        }, void 0, false, {
-            fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/income/page.js",
-            lineNumber: 315,
-            columnNumber: 10
-        }, this);
-        $[6] = incomes;
-        $[7] = isLoading;
-        $[8] = t5;
-    } else {
-        t5 = $[8];
-    }
-    return t5;
+            lineNumber: 325,
+            columnNumber: 7
+        }, this)
+    }, void 0, false, {
+        fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/income/page.js",
+        lineNumber: 324,
+        columnNumber: 10
+    }, this);
 }
-_s2(IncomePage, "RCWIiD4OHf/H90nkI1WelwUNY9A=");
+_s2(IncomePage, "kFn8NPHqJMQlmiJ9vt9urKdeUto=");
 _c2 = IncomePage;
-function _IncomePageFetchIncomesAnonymous(error) {
-    return console.error("Erro:", error);
-}
 var _c, _c1, _c2;
 __turbopack_context__.k.register(_c, "IncomeForm");
 __turbopack_context__.k.register(_c1, "IncomeList");

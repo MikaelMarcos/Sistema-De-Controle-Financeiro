@@ -3,8 +3,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from sqlmodel import Session, select
 from .database import create_db_and_tables, engine
 from .models import BudgetGroup
-from .routers import router_expenses, router_categories, router_income, router_goals, router_budget
-
+from .routers import router_expenses, router_categories, router_income, router_goals, router_budget, router_rules # 👈 ADICIONE AQUI
 app = FastAPI(
     title="API de Controle Financeiro Pessoal",
     description="Backend para o sistema de finanças pessoais com FastAPI e SQLModel.",
@@ -47,3 +46,4 @@ app.include_router(router_categories)
 app.include_router(router_income)
 app.include_router(router_goals)
 app.include_router(router_budget) 
+app.include_router(router_rules) 
