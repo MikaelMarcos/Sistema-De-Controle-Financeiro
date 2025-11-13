@@ -1,68 +1,96 @@
 'use client'; 
 
-import { useState, useEffect, Fragment, useRef } from 'react'; // Importa useRef
+import { useState, useEffect, Fragment, useRef } from 'react';
 import axios from 'axios';
 import { Listbox, Transition } from '@headlessui/react';
 
-// --- Ícones (sem alteração) ---
+// --- Ícones ---
 const SelectorIcon = () => (
   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5 text-gray-400">
     <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 15L12 18.75 15.75 15m-7.5-6L12 5.25 15.75 9" />
   </svg>
 );
 const CheckIcon = () => (
-  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5 text-fin-gold">
+  // Mudei o ícone de check para uma cor mais escura para aparecer no fundo claro
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5 text-blue-800">
     <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
   </svg>
 );
 
 const API_URL = 'http://localhost:8000';
 
-// --- COMPONENTE DE SELEÇÃO (sem alteração) ---
+// --- COMPONENTE DE SELEÇÃO (Com sua cor personalizada) ---
 function CustomSelect({ label, value, onChange, options, placeholder, required = false, textClass = "text-white" }) {
-  // ... (código do CustomSelect idêntico ao anterior)
   const selectedOption = options.find(option => option.id === value) || null;
+
   return (
     <div>
       {label && <label className="block text-sm font-medium text-white/80 mb-2">{label} {required && '*'}</label>}
       <Listbox value={value} onChange={onChange}>
-        <div className="relative">
-          <Listbox.Button 
-            className={`relative w-full p-4 pr-10 text-left bg-fin-dark/60 rounded-xl border-2 border-white/10 focus:border-fin-gold focus:ring-2 focus:ring-fin-gold/20 transition-all text-white ${textClass}`}
-            style={label === "Grupo *" ? {background: 'linear-gradient(to right, rgba(59, 130, 246, 0.1), rgba(168, 85, 247, 0.1))', borderColor: 'rgba(59, 130, 246, 0.3)'} : {}}
-          >
-            <span className="block truncate">
-              {selectedOption ? selectedOption.name : <span className="text-white/40">{placeholder}</span>}
-            </span>
-            <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
-              <SelectorIcon />
-            </span>
-          </Listbox.Button>
-          <Transition as={Fragment} leave="transition ease-in duration-100" leaveFrom="opacity-100" leaveTo="opacity-0">
-            <Listbox.Options className="absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-xl bg-fin-dark py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm border border-fin-gold/50">
-              {options.length === 0 ? (
-                 <div className="relative cursor-default select-none py-2 px-4 text-gray-400">Nenhuma opção.</div>
-              ) : (
-                options.map((option) => (
-                  <Listbox.Option key={option.id} className={({ active }) => `relative cursor-pointer select-none py-2 pl-10 pr-4 ${ active ? 'bg-fin-card/80 text-fin-gold' : 'text-white' }`} value={option.id}>
-                    {({ selected }) => (
-                      <>
-                        <span className={`block truncate ${selected ? 'font-bold' : 'font-normal'}`}>{option.name}</span>
-                        {selected ? (<span className="absolute inset-y-0 left-0 flex items-center pl-3"><CheckIcon /></span>) : null}
-                      </>
-                    )}
-                  </Listbox.Option>
-                ))
-              )}
-            </Listbox.Options>
-          </Transition>
-        </div>
+        {({ open }) => (
+          <div className="relative">
+            <Listbox.Button 
+              className={`relative w-full p-4 pr-10 text-left bg-fin-dark/60 rounded-xl border-2 transition-all text-white ${textClass} ${
+                open 
+                  ? 'border-fin-gold focus:ring-2 focus:ring-fin-gold/20' 
+                  : 'border-white/10 focus:border-fin-gold focus:ring-2 focus:ring-fin-gold/20'
+              }`}
+              style={label === "Grupo *" ? {background: 'linear-gradient(to right, rgba(59, 130, 246, 0.1), rgba(168, 85, 247, 0.1))', borderColor: 'rgba(59, 130, 246, 0.3)'} : {}}
+            >
+              <span className="block truncate">
+                {selectedOption ? selectedOption.name : <span className="text-white/40">{placeholder}</span>}
+              </span>
+              <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
+                <SelectorIcon />
+              </span>
+            </Listbox.Button>
+            <Transition as={Fragment} leave="transition ease-in duration-100" leaveFrom="opacity-100" leaveTo="opacity-0">
+              {/* 👇 Seu fundo azul pastel sólido (MANTIDO) 👇 */}
+              <Listbox.Options 
+                className="absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-xl py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm border border-fin-gold/50"
+                style={{
+                  backgroundColor: '#A7C7E7' // azul pastel sólido
+                }}
+              >
+                {options.length === 0 ? (
+                  <div className="relative cursor-default select-none py-2 px-4 text-gray-700">Nenhuma opção.</div>
+                ) : (
+                  options.map((option) => (
+                    <Listbox.Option
+                      key={option.id}
+                      // 👇 Corrigido para texto escuro no fundo claro
+                      className={({ active }) =>
+                        `relative cursor-pointer select-none py-2 pl-10 pr-4 ${
+                          active ? 'bg-blue-200 text-blue-900' : 'text-gray-800'
+                        }`
+                      }
+                      value={option.id}
+                    >
+                      {({ selected }) => (
+                        <>
+                          <span className={`block truncate ${selected ? 'font-bold' : 'font-normal'}`}>
+                            {option.name}
+                          </span>
+                          {selected ? (
+                            <span className="absolute inset-y-0 left-0 flex items-center pl-3">
+                              <CheckIcon />
+                            </span>
+                          ) : null}
+                        </>
+                      )}
+                    </Listbox.Option>
+                  ))
+                )}
+              </Listbox.Options>
+            </Transition>
+          </div>
+        )}
       </Listbox>
     </div>
   );
 }
 
-// --- FORMULÁRIO (ATUALIZADO COM LÓGICA DE SUGESTÃO) ---
+// --- FORMULÁRIO (Com seu botão personalizado) ---
 function ExpenseForm({ onExpenseAdded }) {
   const [description, setDescription] = useState('');
   const [amount, setAmount] = useState('');
@@ -77,12 +105,9 @@ function ExpenseForm({ onExpenseAdded }) {
   const [selectedGoalId, setSelectedGoalId] = useState(null);
   const [metaGroupId, setMetaGroupId] = useState(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [suggestionApplied, setSuggestionApplied] = useState(false); // 💡 NOVO
-
-  // Ref para o timer do debounce
+  const [suggestionApplied, setSuggestionApplied] = useState(false);
   const debounceTimer = useRef(null);
 
-  // Carrega dados iniciais (grupos, categorias, metas)
   useEffect(() => {
     Promise.all([
       axios.get(`${API_URL}/budget/`),
@@ -97,48 +122,32 @@ function ExpenseForm({ onExpenseAdded }) {
     });
   }, []);
 
-  // --- 👇 LÓGICA DE SUGESTÃO AUTOMÁTICA 👇 ---
   useEffect(() => {
-    // Limpa qualquer sugestão anterior
     setSuggestionApplied(false);
-    
-    // Limpa o timer anterior se o usuário ainda estiver digitando
     if (debounceTimer.current) {
       clearTimeout(debounceTimer.current);
     }
-
-    // Se a descrição estiver vazia, não faz nada
     if (description.trim() === '') {
       return;
     }
-
-    // Cria um novo timer
     debounceTimer.current = setTimeout(() => {
       axios.get(`${API_URL}/rules/suggest?description=${description}`)
         .then(response => {
-          // Sugestão encontrada!
           const rule = response.data;
           setGroupId(rule.budget_group_id);
           setSubcategoryId(rule.category_id);
-          setSuggestionApplied(true); // 💡 Mostra o feedback
+          setSuggestionApplied(true);
         })
-        .catch(error => {
-          // Nenhuma sugestão encontrada, não faz nada
-          // console.log("Nenhuma sugestão encontrada");
-        });
-    }, 800); // Espera 800ms após o usuário parar de digitar
-
-    // Limpa o timer se o componente for desmontado
+        .catch(error => { /* Nenhuma sugestão */ });
+    }, 800);
     return () => {
       if (debounceTimer.current) {
         clearTimeout(debounceTimer.current);
       }
     };
-  }, [description]); // Este efeito roda toda vez que 'description' muda
-  // ------------------------------------------
+  }, [description]);
 
   const handleSubmit = async (e) => {
-    // ... (lógica de handleSubmit idêntica à anterior)
     e.preventDefault();
     if (!description || !amount || !groupId) {
       alert("Preencha os campos obrigatórios.");
@@ -191,7 +200,6 @@ function ExpenseForm({ onExpenseAdded }) {
               <label className="block text-sm font-medium text-white/80 mb-2">Descrição *</label>
               <input type="text" value={description} onChange={(e) => setDescription(e.target.value)} placeholder="Ex: Conta de Luz, Supermercado..." className="w-full p-4 bg-fin-dark/60 rounded-xl border-2 border-white/10 focus:border-fin-gold focus:ring-2 focus:ring-fin-gold/20 transition-all text-white placeholder-white/40"/>
             </div>
-            {/* ... (campo de Valor) ... */}
             <div>
               <label className="block text-sm font-medium text-white/80 mb-2">Valor *</label>
               <div className="relative">
@@ -201,19 +209,14 @@ function ExpenseForm({ onExpenseAdded }) {
             </div>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            {/* ... (campo de Data) ... */}
             <div>
               <label className="block text-sm font-medium text-white/80 mb-2">Data</label>
               <input type="date" value={date} onChange={(e) => setDate(e.target.value)} className="w-full p-4 bg-fin-dark/60 rounded-xl border-2 border-white/10 focus:border-fin-gold focus:ring-2 focus:ring-fin-gold/20 transition-all text-white"/>
             </div>
-            
             <div className="relative">
               <CustomSelect label="Grupo *" required value={groupId} onChange={setGroupId} options={budgetGroups} placeholder="Selecione um grupo" textClass="font-semibold"/>
-              {/* 💡 Feedback de Sugestão 💡 */}
               {suggestionApplied && <span className="absolute -top-2 -right-2 text-xs bg-fin-highlight text-fin-dark font-bold px-2 py-0.5 rounded-full animate-pulse">💡</span>}
             </div>
-            
-            {/* ... (campo de Status) ... */}
             <div>
               <label className="block text-sm font-medium text-white/80 mb-2">Status</label>
               <div className={`w-full p-4 rounded-xl border-2 transition-all cursor-pointer ${paid ? 'bg-green-500/20 border-green-500/50 text-green-400' : 'bg-yellow-500/20 border-yellow-500/50 text-yellow-400'}`} onClick={() => setPaid(!paid)}>
@@ -243,17 +246,25 @@ function ExpenseForm({ onExpenseAdded }) {
           )}
         </div>
 
-        {/* 👇 Botão com gradiente verde/azul (MANTIDO) 👇 */}
+        {/* 👇 Seu botão com gradiente avermelhado (MANTIDO) 👇 */}
         <button 
           type="submit" 
           disabled={isSubmitting}
-          className="w-full bg-gradient-to-r from-fin-green to-fin-blue hover:from-fin-green/90 hover:to-fin-blue/90 disabled:opacity-50 text-white font-bold py-4 px-6 rounded-xl transition-all transform hover:scale-[1.02] shadow-lg flex items-center justify-center gap-2"
+          className="w-full bg-gradient-to-r from-rose-500 to-fin-red hover:from-rose-600 hover:to-red-700 disabled:opacity-50 text-white font-bold py-4 px-6 rounded-xl transition-all transform hover:scale-[1.02] shadow-lg flex items-center justify-center gap-2"
           style={{
-            boxShadow: '0 4px 20px rgba(74, 222, 128, 0.25)'
+            boxShadow: '0 4px 20px rgba(244, 63, 94, 0.25)' // sombra avermelhada
           }}
         >
-          {isSubmitting ? 'Processando...' : (
-            <><span>{paid ? '💾' : '📅'}</span> {paid ? 'Registrar Pagamento' : 'Agendar Despesa'}</>
+          {isSubmitting ? (
+            <>
+              <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+              Processando...
+            </>
+          ) : (
+            <>
+              <span>{paid ? '💾' : '📅'}</span>
+              {paid ? 'Registrar Pagamento' : 'Agendar Despesa'}
+            </>
           )}
         </button>
       </form>
@@ -261,28 +272,31 @@ function ExpenseForm({ onExpenseAdded }) {
   );
 }
 
-// --- LISTA DE DESPESAS (sem alteração) ---
+// --- LISTA DE DESPESAS (Corrigida e Limpa) ---
 function ExpenseList({ expenses, setExpenses }) {
-  // ... (código idêntico ao anterior)
-  const [filter, setFilter] = useState('all');
+  const [filter, setFilter] = useState('all'); // all, paid, pending
+
   const filteredExpenses = expenses.filter(expense => {
     if (filter === 'paid') return expense.paid;
     if (filter === 'pending') return !expense.paid;
     return true;
   });
+
   const handleDelete = async (id) => {
     if (!confirm("Tem certeza que deseja excluir esta transação?")) return;
     try {
       await axios.delete(`${API_URL}/expenses/${id}`);
       setExpenses(expenses.filter(e => e.id !== id));
-    } catch (error) { console.error("Erro:", error); alert("Erro ao excluir transação."); }
+    } catch (error) { console.error("Erro ao excluir:", error); alert("Erro ao excluir transação."); }
   };
+
   const handleToggleStatus = async (expense) => {
     try {
       const response = await axios.patch(`${API_URL}/expenses/${expense.id}/toggle-status`);
       setExpenses(prev => prev.map(e => e.id === expense.id ? response.data : e));
-    } catch (error) { console.error("Erro:", error); }
+    } catch (error) { console.error("Erro ao atualizar status:", error); }
   };
+
   const formatDate = (d) => new Date(d).toLocaleDateString('pt-BR', { timeZone: 'UTC' });
   const totalAmount = filteredExpenses.reduce((sum, expense) => sum + expense.amount, 0);
   const paidAmount = filteredExpenses.filter(e => e.paid).reduce((sum, expense) => sum + expense.amount, 0);
@@ -304,42 +318,85 @@ function ExpenseList({ expenses, setExpenses }) {
             { key: 'paid', label: 'Pagas', emoji: '✅' },
             { key: 'pending', label: 'Pendentes', emoji: '⏳' }
           ].map(({ key, label, emoji }) => (
-            <button key={key} onClick={() => setFilter(key)} className={`px-4 py-2 rounded-lg transition-all flex items-center gap-2 ${ filter === key ? 'bg-fin-gold text-fin-dark font-bold' : 'text-white/70 hover:text-white' }`}>
-              <span>{emoji}</span>{label}
+            <button
+              key={key}
+              onClick={() => setFilter(key)}
+              className={`px-4 py-2 rounded-lg transition-all flex items-center gap-2 ${
+                filter === key 
+                  ? 'bg-fin-gold text-fin-dark font-bold' 
+                  : 'text-white/70 hover:text-white'
+              }`}
+            >
+              <span>{emoji}</span>
+              {label}
             </button>
           ))}
         </div>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-        <div className="bg-fin-dark/40 p-4 rounded-xl border border-white/5"><div className="text-white/60 text-sm">Total</div><div className="text-2xl font-bold text-white">R$ {totalAmount.toFixed(2)}</div></div>
-        <div className="bg-green-500/10 p-4 rounded-xl border border-green-500/20"><div className="text-green-400 text-sm">Pagas</div><div className="text-2xl font-bold text-green-400">R$ {paidAmount.toFixed(2)}</div></div>
-        <div className="bg-yellow-500/10 p-4 rounded-xl border border-yellow-500/20"><div className="text-yellow-400 text-sm">Pendentes</div><div className="text-2xl font-bold text-yellow-400">R$ {pendingAmount.toFixed(2)}</div></div>
+        <div className="bg-fin-dark/40 p-4 rounded-xl border border-white/5">
+          <div className="text-white/60 text-sm">Total</div>
+          <div className="text-2xl font-bold text-white">R$ {totalAmount.toFixed(2)}</div>
+        </div>
+        <div className="bg-green-500/10 p-4 rounded-xl border border-green-500/20">
+          <div className="text-green-400 text-sm">Pagas</div>
+          <div className="text-2xl font-bold text-green-400">R$ {paidAmount.toFixed(2)}</div>
+        </div>
+        <div className="bg-yellow-500/10 p-4 rounded-xl border border-yellow-500/20">
+          <div className="text-yellow-400 text-sm">Pendentes</div>
+          <div className="text-2xl font-bold text-yellow-400">R$ {pendingAmount.toFixed(2)}</div>
+        </div>
       </div>
       {filteredExpenses.length === 0 ? (
-        <div className="text-center py-12 text-white/40"><div className="text-6xl mb-4">📭</div><p>Nenhuma transação encontrada</p></div>
+        <div className="text-center py-12 text-white/40">
+          <div className="text-6xl mb-4">📭</div>
+          <p>Nenhuma transação encontrada</p>
+        </div>
       ) : (
         <div className="space-y-3">
           {filteredExpenses.map(expense => (
-            <div key={expense.id} className={`flex justify-between items-center p-5 rounded-2xl border-2 transition-all hover:scale-[1.01] ${ expense.paid ? 'bg-fin-dark/30 border-white/5 hover:border-white/10' : 'bg-yellow-500/10 border-yellow-500/20 hover:border-yellow-500/30'}`}>
+            <div 
+              key={expense.id} 
+              className={`flex justify-between items-center p-5 rounded-2xl border-2 transition-all hover:scale-[1.01] ${
+                expense.paid 
+                  ? 'bg-fin-dark/30 border-white/5 hover:border-white/10' 
+                  : 'bg-yellow-500/10 border-yellow-500/20 hover:border-yellow-500/30'
+              }`}
+            >
               <div className="flex items-start gap-4 flex-1">
-                <div className={`p-3 rounded-xl ${expense.paid ? 'bg-green-500/20' : 'bg-yellow-500/20'}`}><span className="text-lg">{expense.paid ? '✅' : '⏳'}</span></div>
+                <div className={`p-3 rounded-xl ${expense.paid ? 'bg-green-500/20' : 'bg-yellow-500/20'}`}>
+                  <span className="text-lg">{expense.paid ? '✅' : '⏳'}</span>
+                </div>
                 <div className="flex-1">
                   <div className="flex items-center gap-3 mb-2">
-                    <span className={`text-xs font-bold px-3 py-1 rounded-full ${expense.paid ? 'text-green-400 bg-green-400/10' : 'text-yellow-400 bg-yellow-400/10'}`}>{formatDate(expense.date)}</span>
-                    {!expense.paid && (<span className="text-xs text-yellow-400 font-bold uppercase tracking-wider bg-yellow-400/10 px-2 py-1 rounded">Pendente</span>)}
+                    <span className={`text-xs font-bold px-3 py-1 rounded-full ${expense.paid ? 'text-green-400 bg-green-400/10' : 'text-yellow-400 bg-yellow-400/10'}`}>
+                      {formatDate(expense.date)}
+                    </span>
+                    {!expense.paid && (
+                      <span className="text-xs text-yellow-400 font-bold uppercase tracking-wider bg-yellow-400/10 px-2 py-1 rounded">
+                        Pendente
+                      </span>
+                    )}
                   </div>
                   <div className="font-semibold text-white text-lg mb-1">{expense.description}</div>
                   <div className="text-sm text-white/60">
+                    {/* 👇 CORREÇÃO DO BUG OCULTO APLICADA AQUI 👇 */}
                     <span className="text-fin-gold/80">{expense.budget_group?.name}</span>
                     {expense.category && ` • ${expense.category.name}`}
                   </div>
                 </div>
               </div>
               <div className="flex items-center gap-3">
-                <span className={`text-xl font-bold ${expense.paid ? 'text-fin-red' : 'text-white/70'}`}>R$ {expense.amount.toFixed(2)}</span>
+                <span className={`text-xl font-bold ${expense.paid ? 'text-fin-red' : 'text-white/70'}`}>
+                  R$ {expense.amount.toFixed(2)}
+                </span>
                 <div className="flex gap-1">
-                  <button onClick={() => handleToggleStatus(expense)} className={`p-3 rounded-xl transition-all hover:scale-110 ${expense.paid ? 'text-gray-500 hover:text-yellow-400 hover:bg-yellow-400/10' : 'text-green-400 hover:bg-green-400/20'}`} title={expense.paid ? "Marcar como Pendente" : "Marcar como Pago"}>{expense.paid ? '↩️' : '✅'}</button>
-                  <button onClick={() => handleDelete(expense.id)} className="p-3 rounded-xl text-fin-red/50 hover:text-fin-red hover:bg-fin-red/10 transition-all" title="Excluir transação">🗑️</button>
+                  <button onClick={() => handleToggleStatus(expense)} className={`p-3 rounded-xl transition-all hover:scale-110 ${expense.paid ? 'text-gray-500 hover:text-yellow-400 hover:bg-yellow-400/10' : 'text-green-400 hover:bg-green-400/20'}`} title={expense.paid ? "Marcar como Pendente" : "Marcar como Pago"}>
+                    {expense.paid ? '↩️' : '✅'}
+                  </button>
+                  <button onClick={() => handleDelete(expense.id)} className="p-3 rounded-xl text-fin-red/50 hover:text-fin-red hover:bg-fin-red/10 transition-all" title="Excluir transação">
+                    🗑️
+                  </button>
                 </div>
               </div>
             </div>
@@ -350,7 +407,7 @@ function ExpenseList({ expenses, setExpenses }) {
   );
 }
 
-// --- COMPONENTE PRINCIPAL (sem alteração) ---
+// --- COMPONENTE PRINCIPAL (Wrapper) ---
 export default function ExpensesPage() {
   const [expenses, setExpenses] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -367,6 +424,7 @@ export default function ExpensesPage() {
     fetchExpenses(); 
   }, []);
 
+  // Usei o wrapper da sua versão anterior, que é mais limpo
   return (
     <div className="min-h-screen">
       <div className="max-w-6xl mx-auto">

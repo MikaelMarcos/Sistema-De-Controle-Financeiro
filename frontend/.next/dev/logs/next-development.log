@@ -1,120 +1,26 @@
-[00:00:01.735] Server  LOG      ✓ Ready in 1139ms
-[00:00:04.818] Server  LOG      ○ Compiling / ...
-[00:00:09.440] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:00:17.914] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:00:19.982] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:00:35.040] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:00:44.144] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:19:07.283] Server  LOG      ✓ Compiled in 1737ms
-[00:19:22.681] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:19:22.912] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
-
-- A server/client branch `if (typeof window !== 'undefined')`.
-- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
-- Date formatting in a user's locale which doesn't match the server.
-- External changing data without sending a snapshot of it along with the HTML.
-- Invalid HTML tag nesting.
-
-It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
-
-%s%s https://react.dev/link/hydration-mismatch 
-
-  ...
-    <ScrollAndFocusHandler segmentPath={[...]}>
-      <InnerScrollAndFocusHandler segmentPath={[...]} focusAndScrollRef={{apply:false, ...}}>
-        <ErrorBoundary errorComponent={undefined} errorStyles={undefined} errorScripts={undefined}>
-          <LoadingBoundary name="expenses/" loading={null}>
-            <HTTPAccessFallbackBoundary notFound={undefined} forbidden={undefined} unauthorized={undefined}>
-              <RedirectBoundary>
-                <RedirectErrorBoundary router={{...}}>
-                  <InnerLayoutRouter url="/expenses" tree={[...]} params={{}} cacheNode={{lazyData:null, ...}} ...>
-                    <SegmentViewNode type="page" pagePath="/Documents...">
-                      <SegmentTrieNode>
-                      <ClientPageRoot Component={function FinancasPage} serverProvidedParams={{...}}>
-                        <FinancasPage params={Promise} searchParams={Promise}>
-                          <div className="p-8 space-...">
-                            <ExpenseForm>
-                            <ExpenseList expenses={[...]} setExpenses={function bound dispatchSetState}>
-                              <div
-+                               className={"bg-gradient-to-br from-fin-card to-fin-dark/80 p-8 rounded-3xl border bor..."}
--                               className="bg-gradient-to-br from-fin-card to-fin-dark/80 p-8 rounded-3xl border borde..."
-                              >
-                    ...
-                  ...
-        ...
-
-[00:19:46.378] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:19:46.568] Browser ERROR   A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
-
-- A server/client branch `if (typeof window !== 'undefined')`.
-- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
-- Date formatting in a user's locale which doesn't match the server.
-- External changing data without sending a snapshot of it along with the HTML.
-- Invalid HTML tag nesting.
-
-It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
-
-%s%s https://react.dev/link/hydration-mismatch 
-
-  ...
-    <ScrollAndFocusHandler segmentPath={[...]}>
-      <InnerScrollAndFocusHandler segmentPath={[...]} focusAndScrollRef={{apply:false, ...}}>
-        <ErrorBoundary errorComponent={undefined} errorStyles={undefined} errorScripts={undefined}>
-          <LoadingBoundary name="expenses/" loading={null}>
-            <HTTPAccessFallbackBoundary notFound={undefined} forbidden={undefined} unauthorized={undefined}>
-              <RedirectBoundary>
-                <RedirectErrorBoundary router={{...}}>
-                  <InnerLayoutRouter url="/expenses" tree={[...]} params={{}} cacheNode={{lazyData:null, ...}} ...>
-                    <SegmentViewNode type="page" pagePath="/Documents...">
-                      <SegmentTrieNode>
-                      <ClientPageRoot Component={function FinancasPage} serverProvidedParams={{...}}>
-                        <FinancasPage params={Promise} searchParams={Promise}>
-                          <div className="p-8 space-...">
-                            <ExpenseForm>
-                            <ExpenseList expenses={[...]} setExpenses={function bound dispatchSetState}>
-                              <div
-+                               className={"bg-gradient-to-br from-fin-card to-fin-dark/80 p-8 rounded-3xl border bor..."}
--                               className="bg-gradient-to-br from-fin-card to-fin-dark/80 p-8 rounded-3xl border borde..."
-                              >
-                    ...
-                  ...
-        ...
-
-[00:19:51.077] Server  LOG      ✓ Compiled in 616ms
-[00:19:53.007] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:20:03.326] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:20:30.031] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:20:30.962] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:20:32.861] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:20:34.135] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:20:35.729] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:20:36.874] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:20:39.117] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:24:43.779] Server  LOG      ✓ Compiled in 1059ms
-[00:24:47.924] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:24:49.507] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:26:09.519] Server  LOG      ✓ Compiled in 1114ms
-[00:26:13.966] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:26:34.549] Browser ERROR   Erro ao atualizar porcentagem: {"code":"ERR_BAD_REQUEST","config":{"adapter":["xhr","http","fetch"],"allowAbsoluteUrls":true,"env":{},"headers":{"Accept":"application/json, text/plain, */*","Content-Type":"application/x-www-form-urlencoded"},"maxBodyLength":-1,"maxContentLength":-1,"method":"put","timeout":0,"transformRequest":[null],"transformResponse":[null],"transitional":{"clarifyTimeoutError":false,"forcedJSONParsing":true,"silentJSONParsing":true},"url":"http://localhost:8000/budget/5?target_percentage=","xsrfCookieName":"XSRF-TOKEN","xsrfHeaderName":"X-XSRF-TOKEN"},"message":"Request failed with status code 422","name":"AxiosError","stack":"AxiosError: Request failed with status code 422\n    at settle (http://localhost:3000/_next/static/chunks/19f28_923ba700._.js:3744:16)\n    at XMLHttpRequest.onloadend (http://localhost:3000/_next/static/chunks/19f28_923ba700._.js:4259:249)\n    at Axios.request (http://localhost:3000/_next/static/chunks/19f28_923ba700._.js:5063:49)","status":422}
-[00:26:40.631] Browser ERROR   Erro ao atualizar porcentagem: {"code":"ERR_BAD_REQUEST","config":{"adapter":["xhr","http","fetch"],"allowAbsoluteUrls":true,"env":{},"headers":{"Accept":"application/json, text/plain, */*","Content-Type":"application/x-www-form-urlencoded"},"maxBodyLength":-1,"maxContentLength":-1,"method":"put","timeout":0,"transformRequest":[null],"transformResponse":[null],"transitional":{"clarifyTimeoutError":false,"forcedJSONParsing":true,"silentJSONParsing":true},"url":"http://localhost:8000/budget/3?target_percentage=","xsrfCookieName":"XSRF-TOKEN","xsrfHeaderName":"X-XSRF-TOKEN"},"message":"Request failed with status code 422","name":"AxiosError","stack":"AxiosError: Request failed with status code 422\n    at settle (http://localhost:3000/_next/static/chunks/19f28_923ba700._.js:3744:16)\n    at XMLHttpRequest.onloadend (http://localhost:3000/_next/static/chunks/19f28_923ba700._.js:4259:249)\n    at Axios.request (http://localhost:3000/_next/static/chunks/19f28_923ba700._.js:5063:49)","status":422}
-[00:27:37.301] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:28:04.316] Server  LOG      ✓ Compiled in 1463ms
-[00:28:07.552] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:28:08.020] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:28:29.699] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:28:34.149] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:40:31.062] Server  LOG      ✓ Compiled in 1091ms
-[00:41:01.017] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:45:18.443] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:46:13.197] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:50:02.434] Server  LOG      ✓ Compiled in 1383ms
-[00:50:02.805] Server  WARN     ⚠ Fast Refresh had to perform a full reload when ./Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/expenses/page.js changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
-[00:50:03.916] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:50:09.619] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:50:13.531] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:50:19.823] Server  LOG      ✓ Compiled in 1555ms
-[00:50:19.982] Server  WARN     ⚠ Fast Refresh had to perform a full reload when ./Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/expenses/page.js changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
-[00:50:21.715] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:50:23.747] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:50:26.284] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:50:28.365] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:00:01.263] Server  LOG      ✓ Ready in 829ms
+[00:00:08.187] Server  LOG      ○ Compiling /portfolio ...
+[00:00:11.884] Server  WARN     ⚠ Cross origin request detected from 10.105.145.168 to /_next/* resource. In a future major version of Next.js, you will need to explicitly configure "allowedDevOrigins" in next.config to allow this.
+Read more: https://nextjs.org/docs/app/api-reference/config/next-config-js/allowedDevOrigins
+[00:00:11.917] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:03:24.794] Server  LOG      ✓ Compiled in 788ms
+[00:03:44.920] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:03:46.714] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:04:01.278] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:04:04.302] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:04:05.216] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:04:06.470] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:05:42.087] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:05:45.179] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:05:48.729] Browser ERROR   Falha ao buscar ITUB4
+[00:05:51.755] Browser ERROR   Falha ao buscar ITUB4
+[00:06:07.904] Browser ERROR   Falha ao buscar MXRF11
+[00:06:09.905] Browser ERROR   Falha ao buscar MXRF11
+[00:07:13.089] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:07:15.787] Browser ERROR   Falha ao buscar ITUB4
+[00:07:18.035] Browser ERROR   Falha ao buscar ITUB4
+[00:07:33.958] Browser ERROR   Falha ao buscar MXRF11
+[00:07:35.906] Browser ERROR   Falha ao buscar MXRF11
+[00:08:43.566] Server  LOG      ✓ Compiled in 447ms
+[00:08:46.904] Browser ERROR   Erro ao buscar portfólio: {"code":"ERR_NETWORK","config":{"adapter":["xhr","http","fetch"],"allowAbsoluteUrls":true,"env":{},"headers":{"Accept":"application/json, text/plain, */*"},"maxBodyLength":-1,"maxContentLength":-1,"method":"get","timeout":0,"transformRequest":[null],"transformResponse":[null],"transitional":{"clarifyTimeoutError":false,"forcedJSONParsing":true,"silentJSONParsing":true},"url":"http://localhost:8000/portfolio/","xsrfCookieName":"XSRF-TOKEN","xsrfHeaderName":"X-XSRF-TOKEN"},"message":"Network Error","name":"AxiosError","stack":"AxiosError: Network Error\n    at XMLHttpRequest.handleError (http://localhost:3000/_next/static/chunks/19f28_axios_lib_b2a1da8b._.js:2515:25)\n    at Axios.request (http://localhost:3000/_next/static/chunks/19f28_axios_lib_b2a1da8b._.js:3273:49)"}
+[00:08:54.579] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
