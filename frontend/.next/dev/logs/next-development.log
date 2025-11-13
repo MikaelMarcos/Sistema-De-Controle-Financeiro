@@ -305,3 +305,430 @@ Import traces:
 [00:54:56.184] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
 [00:54:59.117] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
 [00:55:04.870] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:02:08.242] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:02:42.277] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:02:47.609] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:03:00.437] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:03:05.928] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:03:07.376] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:03:24.592] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:03:54.597] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:03:57.971] Browser ERROR   Erro: {"code":"ERR_NETWORK","config":{"adapter":["xhr","http","fetch"],"allowAbsoluteUrls":true,"env":{},"headers":{"Accept":"application/json, text/plain, */*"},"maxBodyLength":-1,"maxContentLength":-1,"method":"get","timeout":0,"transformRequest":[null],"transformResponse":[null],"transitional":{"clarifyTimeoutError":false,"forcedJSONParsing":true,"silentJSONParsing":true},"url":"http://localhost:8000/expenses/?year=2025&month=11","xsrfCookieName":"XSRF-TOKEN","xsrfHeaderName":"X-XSRF-TOKEN"},"message":"Network Error","name":"AxiosError","stack":"AxiosError: Network Error\n    at XMLHttpRequest.handleError (http://localhost:3000/_next/static/chunks/19f28_923ba700._.js:4305:25)\n    at Axios.request (http://localhost:3000/_next/static/chunks/19f28_923ba700._.js:5063:49)\n    at async Promise.all (index 0)\n    at async Home[useEffect() > fetchData] (http://localhost:3000/_next/static/chunks/Documents_ProjetosdeProgramacao_projeto-financeiro_frontend_app_page_a599ba7f.js:728:71)"}
+[01:06:22.396] Server  LOG      ✓ Compiled in 169ms
+[01:06:22.977] Browser ERROR   ./Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/page.js:5:4
+Parsing ecmascript source code failed
+  3 | {/* 👇 NOVO LINK 👇 */}
+  4 | <a href="/cards" className="px-4 py-2 rounded-lg text-gray-300 hover:text-fin-terra hover:bg-fin-dark/30 transition-all duration-300">Cartões</a>
+> 5 | <a href="/metas" className="px-4 py-2 rounded-lg text-gray-300 hover:text-fin-highlight hover:bg-fin-dark/30 transition-all duration-300">Metas</a>
+    |    ^^^^
+  6 | // ...
+
+Expected ';', '}' or <eof>
+
+Import traces:
+  Client Component Browser:
+    ./Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/page.js [Client Component Browser]
+    ./Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/page.js [Server Component]
+
+  Client Component SSR:
+    ./Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/page.js [Client Component SSR]
+    ./Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/page.js [Server Component]
+[01:08:03.388] Server  LOG      ✓ Compiled in 213ms
+[01:08:21.318] Server  LOG      ✓ Compiled in 1938ms
+[01:09:10.937] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:09:39.823] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:10:33.593] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:13:35.116] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:14:09.517] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:14:15.569] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:14:30.175] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:14:31.468] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:15:37.524] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:15:44.235] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:18:33.641] Server  LOG      ✓ Compiled in 783ms
+[01:18:50.342] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:19:29.099] Browser ERROR   Erro: {"code":"ERR_BAD_REQUEST","config":{"adapter":["xhr","http","fetch"],"allowAbsoluteUrls":true,"data":"{\"description\":\"Conta de liz\",\"amount\":560,\"date\":\"2025-11-13T15:02:30.485Z\",\"paid\":true,\"budget_group_id\":2,\"category_id\":1,\"goal_id\":null}","env":{},"headers":{"Accept":"application/json, text/plain, */*","Content-Type":"application/json"},"maxBodyLength":-1,"maxContentLength":-1,"method":"post","timeout":0,"transformRequest":[null],"transformResponse":[null],"transitional":{"clarifyTimeoutError":false,"forcedJSONParsing":true,"silentJSONParsing":true},"url":"http://localhost:8000/expenses/","xsrfCookieName":"XSRF-TOKEN","xsrfHeaderName":"X-XSRF-TOKEN"},"message":"Request failed with status code 422","name":"AxiosError","stack":"AxiosError: Request failed with status code 422\n    at settle (http://localhost:3000/_next/static/chunks/19f28_axios_lib_b2a1da8b._.js:1954:16)\n    at XMLHttpRequest.onloadend (http://localhost:3000/_next/static/chunks/19f28_axios_lib_b2a1da8b._.js:2469:249)\n    at Axios.request (http://localhost:3000/_next/static/chunks/19f28_axios_lib_b2a1da8b._.js:3273:49)\n    at async handleSubmit (http://localhost:3000/_next/static/chunks/80b94_ProjetosdeProgramacao_projeto-financeiro_frontend_app_expenses_page_bf7b4c0e.js:408:13)","status":422}
+[01:19:43.742] Browser ERROR   Erro: {"code":"ERR_BAD_REQUEST","config":{"adapter":["xhr","http","fetch"],"allowAbsoluteUrls":true,"data":"{\"description\":\"Conta de liz\",\"amount\":560,\"date\":\"2025-11-13T00:00:00.000Z\",\"paid\":true,\"budget_group_id\":2,\"category_id\":1,\"goal_id\":null}","env":{},"headers":{"Accept":"application/json, text/plain, */*","Content-Type":"application/json"},"maxBodyLength":-1,"maxContentLength":-1,"method":"post","timeout":0,"transformRequest":[null],"transformResponse":[null],"transitional":{"clarifyTimeoutError":false,"forcedJSONParsing":true,"silentJSONParsing":true},"url":"http://localhost:8000/expenses/","xsrfCookieName":"XSRF-TOKEN","xsrfHeaderName":"X-XSRF-TOKEN"},"message":"Request failed with status code 422","name":"AxiosError","stack":"AxiosError: Request failed with status code 422\n    at settle (http://localhost:3000/_next/static/chunks/19f28_axios_lib_b2a1da8b._.js:1954:16)\n    at XMLHttpRequest.onloadend (http://localhost:3000/_next/static/chunks/19f28_axios_lib_b2a1da8b._.js:2469:249)\n    at Axios.request (http://localhost:3000/_next/static/chunks/19f28_axios_lib_b2a1da8b._.js:3273:49)\n    at async handleSubmit (http://localhost:3000/_next/static/chunks/80b94_ProjetosdeProgramacao_projeto-financeiro_frontend_app_expenses_page_bf7b4c0e.js:408:13)","status":422}
+[01:19:44.701] Browser ERROR   Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. 1
+[01:19:44.701] Browser ERROR   Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. 1
+[01:19:44.701] Browser ERROR   Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. 1
+[01:19:44.701] Browser ERROR   Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. 1
+[01:19:44.941] Browser ERROR   Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. 1
+[01:19:45.711] Browser ERROR   Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. 1
+[01:19:45.711] Browser ERROR   Encountered two children with the same key, `%s`. Keys should be unique so that components maintain their identity across updates. Non-unique keys may cause children to be duplicated and/or omitted — the behavior is unsupported and could change in a future version. 1
+[01:19:47.946] Browser ERROR   Erro: {"code":"ERR_BAD_REQUEST","config":{"adapter":["xhr","http","fetch"],"allowAbsoluteUrls":true,"data":"{\"description\":\"Conta de liz\",\"amount\":560,\"date\":\"2025-11-13T00:00:00.000Z\",\"paid\":true,\"budget_group_id\":2,\"category_id\":1,\"goal_id\":null}","env":{},"headers":{"Accept":"application/json, text/plain, */*","Content-Type":"application/json"},"maxBodyLength":-1,"maxContentLength":-1,"method":"post","timeout":0,"transformRequest":[null],"transformResponse":[null],"transitional":{"clarifyTimeoutError":false,"forcedJSONParsing":true,"silentJSONParsing":true},"url":"http://localhost:8000/expenses/","xsrfCookieName":"XSRF-TOKEN","xsrfHeaderName":"X-XSRF-TOKEN"},"message":"Request failed with status code 422","name":"AxiosError","stack":"AxiosError: Request failed with status code 422\n    at settle (http://localhost:3000/_next/static/chunks/19f28_axios_lib_b2a1da8b._.js:1954:16)\n    at XMLHttpRequest.onloadend (http://localhost:3000/_next/static/chunks/19f28_axios_lib_b2a1da8b._.js:2469:249)\n    at Axios.request (http://localhost:3000/_next/static/chunks/19f28_axios_lib_b2a1da8b._.js:3273:49)\n    at async handleSubmit (http://localhost:3000/_next/static/chunks/80b94_ProjetosdeProgramacao_projeto-financeiro_frontend_app_expenses_page_bf7b4c0e.js:408:13)","status":422}
+[01:21:07.729] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:21:12.905] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:21:36.112] Browser ERROR   Erro: {"code":"ERR_BAD_REQUEST","config":{"adapter":["xhr","http","fetch"],"allowAbsoluteUrls":true,"data":"{\"description\":\"fatura\",\"amount\":500,\"date\":\"2025-11-13T15:04:38.414Z\",\"paid\":true,\"budget_group_id\":1,\"category_id\":2,\"goal_id\":null}","env":{},"headers":{"Accept":"application/json, text/plain, */*","Content-Type":"application/json"},"maxBodyLength":-1,"maxContentLength":-1,"method":"post","timeout":0,"transformRequest":[null],"transformResponse":[null],"transitional":{"clarifyTimeoutError":false,"forcedJSONParsing":true,"silentJSONParsing":true},"url":"http://localhost:8000/expenses/","xsrfCookieName":"XSRF-TOKEN","xsrfHeaderName":"X-XSRF-TOKEN"},"message":"Request failed with status code 422","name":"AxiosError","stack":"AxiosError: Request failed with status code 422\n    at settle (http://localhost:3000/_next/static/chunks/19f28_axios_lib_b2a1da8b._.js:1954:16)\n    at XMLHttpRequest.onloadend (http://localhost:3000/_next/static/chunks/19f28_axios_lib_b2a1da8b._.js:2469:249)\n    at Axios.request (http://localhost:3000/_next/static/chunks/19f28_axios_lib_b2a1da8b._.js:3273:49)\n    at async handleSubmit (http://localhost:3000/_next/static/chunks/80b94_ProjetosdeProgramacao_projeto-financeiro_frontend_app_expenses_page_bf7b4c0e.js:408:13)","status":422}
+[01:22:09.239] Server  LOG      ✓ Compiled in 658ms
+[01:22:19.147] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:26:32.768] Server  LOG      ✓ Compiled in 149ms
+[01:26:32.979] Browser ERROR   ./Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/cards/page.js:134:68
+Parsing ecmascript source code failed
+  132 |       <h2 className="text-2xl font-bold text-white mb-6">Meus Cartões</h2>
+  133 |       {cards.length === 0 ? (
+> 134 |         <p className="text-white/60">Nenhum cartão cadastrado.</p>
+      |                                                                    ^
+
+Expected '</', got '<eof>'
+
+Import traces:
+  Client Component Browser:
+    ./Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/cards/page.js [Client Component Browser]
+    ./Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/cards/page.js [Server Component]
+
+  Client Component SSR:
+    ./Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/cards/page.js [Client Component SSR]
+    ./Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/cards/page.js [Server Component]
+[01:26:59.378] Browser ERROR   ./Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/cards/page.js:134:68
+Parsing ecmascript source code failed
+  132 |       <h2 className="text-2xl font-bold text-white mb-6">Meus Cartões</h2>
+  133 |       {cards.length === 0 ? (
+> 134 |         <p className="text-white/60">Nenhum cartão cadastrado.</p>
+      |                                                                    ^
+
+Expected '</', got '<eof>'
+
+Import traces:
+  Client Component Browser:
+    ./Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/cards/page.js [Client Component Browser]
+    ./Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/cards/page.js [Server Component]
+
+  Client Component SSR:
+    ./Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/cards/page.js [Client Component SSR]
+    ./Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/cards/page.js [Server Component]
+[01:27:02.352] Browser ERROR   ./Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/cards/page.js:134:69
+Parsing ecmascript source code failed
+  132 |       <h2 className="text-2xl font-bold text-white mb-6">Meus Cartões</h2>
+  133 |       {cards.length === 0 ? (
+> 134 |         <p className="text-white/60">Nenhum cartão cadastrado.</p>)
+      |                                                                     ^
+
+Expected '</', got '<eof>'
+
+Import traces:
+  Client Component Browser:
+    ./Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/cards/page.js [Client Component Browser]
+    ./Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/cards/page.js [Server Component]
+
+  Client Component SSR:
+    ./Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/cards/page.js [Client Component SSR]
+    ./Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/cards/page.js [Server Component]
+[01:27:07.374] Browser ERROR   ./Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/cards/page.js:134:69
+Parsing ecmascript source code failed
+  132 |       <h2 className="text-2xl font-bold text-white mb-6">Meus Cartões</h2>
+  133 |       {cards.length === 0 ? (
+> 134 |         <p className="text-white/60">Nenhum cartão cadastrado.</p>)
+      |                                                                     ^
+  135 |         
+
+Expected '</', got '<eof>'
+
+Import traces:
+  Client Component Browser:
+    ./Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/cards/page.js [Client Component Browser]
+    ./Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/cards/page.js [Server Component]
+
+  Client Component SSR:
+    ./Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/cards/page.js [Client Component SSR]
+    ./Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/cards/page.js [Server Component]
+[01:27:10.343] Browser ERROR   ./Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/cards/page.js:135:7
+Parsing ecmascript source code failed
+  133 |       {cards.length === 0 ? (
+  134 |         <p className="text-white/60">Nenhum cartão cadastrado.</p>)
+> 135 |       }
+      |       ^
+  136 |       
+
+Expected '</', got '}'
+
+Import traces:
+  Client Component Browser:
+    ./Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/cards/page.js [Client Component Browser]
+    ./Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/cards/page.js [Server Component]
+
+  Client Component SSR:
+    ./Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/cards/page.js [Client Component SSR]
+    ./Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/cards/page.js [Server Component]
+[01:27:14.972] Browser ERROR   ./Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/cards/page.js:134:69
+Parsing ecmascript source code failed
+  132 |       <h2 className="text-2xl font-bold text-white mb-6">Meus Cartões</h2>
+  133 |       {cards.length === 0 ? (
+> 134 |         <p className="text-white/60">Nenhum cartão cadastrado.</p>)
+      |                                                                     ^
+  135 |       
+
+Expected '</', got '<eof>'
+
+Import traces:
+  Client Component Browser:
+    ./Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/cards/page.js [Client Component Browser]
+    ./Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/cards/page.js [Server Component]
+
+  Client Component SSR:
+    ./Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/cards/page.js [Client Component SSR]
+    ./Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/cards/page.js [Server Component]
+[01:27:37.755] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:27:38.055] Browser ERROR   ./Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/cards/page.js:134:69
+Parsing ecmascript source code failed
+  132 |       <h2 className="text-2xl font-bold text-white mb-6">Meus Cartões</h2>
+  133 |       {cards.length === 0 ? (
+> 134 |         <p className="text-white/60">Nenhum cartão cadastrado.</p>)
+      |                                                                     ^
+  135 |       
+
+Expected '</', got '<eof>'
+
+Import traces:
+  Client Component Browser:
+    ./Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/cards/page.js [Client Component Browser]
+    ./Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/cards/page.js [Server Component]
+
+  Client Component SSR:
+    ./Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/cards/page.js [Client Component SSR]
+    ./Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/cards/page.js [Server Component]
+[01:27:38.636] Server  LOG      ✓ Compiled in 5.5s
+[01:27:53.975] Browser ERROR   ./Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/cards/page.js:134:69
+Parsing ecmascript source code failed
+  132 |       <h2 className="text-2xl font-bold text-white mb-6">Meus Cartões</h2>
+  133 |       {cards.length === 0 ? (
+> 134 |         <p className="text-white/60">Nenhum cartão cadastrado.</p>)
+      |                                                                     ^
+  135 |       
+
+Expected '</', got '<eof>'
+
+Import traces:
+  Client Component Browser:
+    ./Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/cards/page.js [Client Component Browser]
+    ./Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/cards/page.js [Server Component]
+
+  Client Component SSR:
+    ./Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/cards/page.js [Client Component SSR]
+    ./Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/cards/page.js [Server Component]
+[01:28:00.047] Server  LOG      ✓ Compiled in 1068ms
+[01:28:00.973] Browser ERROR   ./Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/cards/page.js:134:69
+Parsing ecmascript source code failed
+  132 |       <h2 className="text-2xl font-bold text-white mb-6">Meus Cartões</h2>
+  133 |       {cards.length === 0 ? (
+> 134 |         <p className="text-white/60">Nenhum cartão cadastrado.</p>)
+      |                                                                     ^
+  135 |       
+
+Expected '</', got '<eof>'
+
+Import traces:
+  Client Component Browser:
+    ./Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/cards/page.js [Client Component Browser]
+    ./Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/cards/page.js [Server Component]
+
+  Client Component SSR:
+    ./Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/cards/page.js [Client Component SSR]
+    ./Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/cards/page.js [Server Component]
+[01:28:04.976] Browser ERROR   ./Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/cards/page.js:134:69
+Parsing ecmascript source code failed
+  132 |       <h2 className="text-2xl font-bold text-white mb-6">Meus Cartões</h2>
+  133 |       {cards.length === 0 ? (
+> 134 |         <p className="text-white/60">Nenhum cartão cadastrado.</p>)
+      |                                                                     ^
+  135 |       
+
+Expected '</', got '<eof>'
+
+Import traces:
+  Client Component Browser:
+    ./Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/cards/page.js [Client Component Browser]
+    ./Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/cards/page.js [Server Component]
+
+  Client Component SSR:
+    ./Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/cards/page.js [Client Component SSR]
+    ./Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/cards/page.js [Server Component]
+[01:28:12.968] Browser ERROR   ./Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/cards/page.js:134:69
+Parsing ecmascript source code failed
+  132 |       <h2 className="text-2xl font-bold text-white mb-6">Meus Cartões</h2>
+  133 |       {cards.length === 0 ? (
+> 134 |         <p className="text-white/60">Nenhum cartão cadastrado.</p>)
+      |                                                                     ^
+  135 |       
+
+Expected '</', got '<eof>'
+
+Import traces:
+  Client Component Browser:
+    ./Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/cards/page.js [Client Component Browser]
+    ./Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/cards/page.js [Server Component]
+
+  Client Component SSR:
+    ./Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/cards/page.js [Client Component SSR]
+    ./Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/cards/page.js [Server Component]
+[01:28:34.572] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:28:34.813] Browser ERROR   ./Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/cards/page.js:134:69
+Parsing ecmascript source code failed
+  132 |       <h2 className="text-2xl font-bold text-white mb-6">Meus Cartões</h2>
+  133 |       {cards.length === 0 ? (
+> 134 |         <p className="text-white/60">Nenhum cartão cadastrado.</p>)
+      |                                                                     ^
+  135 |       
+
+Expected '</', got '<eof>'
+
+Import traces:
+  Client Component Browser:
+    ./Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/cards/page.js [Client Component Browser]
+    ./Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/cards/page.js [Server Component]
+
+  Client Component SSR:
+    ./Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/cards/page.js [Client Component SSR]
+    ./Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/cards/page.js [Server Component]
+[01:28:34.813] Browser ERROR   ./Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/cards/page.js:134:69
+Parsing ecmascript source code failed
+  132 |       <h2 className="text-2xl font-bold text-white mb-6">Meus Cartões</h2>
+  133 |       {cards.length === 0 ? (
+> 134 |         <p className="text-white/60">Nenhum cartão cadastrado.</p>)
+      |                                                                     ^
+  135 |       
+
+Expected '</', got '<eof>'
+
+Import traces:
+  Client Component Browser:
+    ./Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/cards/page.js [Client Component Browser]
+    ./Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/cards/page.js [Server Component]
+
+  Client Component SSR:
+    ./Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/cards/page.js [Client Component SSR]
+    ./Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/cards/page.js [Server Component]
+[01:28:53.068] Browser ERROR   ./Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/cards/page.js:134:69
+Parsing ecmascript source code failed
+  132 |       <h2 className="text-2xl font-bold text-white mb-6">Meus Cartões</h2>
+  133 |       {cards.length === 0 ? (
+> 134 |         <p className="text-white/60">Nenhum cartão cadastrado.</p>)
+      |                                                                     ^
+  135 |       
+
+Expected '</', got '<eof>'
+
+Import traces:
+  Client Component Browser:
+    ./Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/cards/page.js [Client Component Browser]
+    ./Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/cards/page.js [Server Component]
+
+  Client Component SSR:
+    ./Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/cards/page.js [Client Component SSR]
+    ./Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/cards/page.js [Server Component]
+[01:29:01.976] Browser ERROR   ./Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/cards/page.js:134:69
+Parsing ecmascript source code failed
+  132 |       <h2 className="text-2xl font-bold text-white mb-6">Meus Cartões</h2>
+  133 |       {cards.length === 0 ? (
+> 134 |         <p className="text-white/60">Nenhum cartão cadastrado.</p>)
+      |                                                                     ^
+  135 |       
+
+Expected '</', got '<eof>'
+
+Import traces:
+  Client Component Browser:
+    ./Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/cards/page.js [Client Component Browser]
+    ./Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/cards/page.js [Server Component]
+
+  Client Component SSR:
+    ./Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/cards/page.js [Client Component SSR]
+    ./Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/cards/page.js [Server Component]
+[01:29:04.864] Browser ERROR   ./Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/cards/page.js:134:69
+Parsing ecmascript source code failed
+  132 |       <h2 className="text-2xl font-bold text-white mb-6">Meus Cartões</h2>
+  133 |       {cards.length === 0 ? (
+> 134 |         <p className="text-white/60">Nenhum cartão cadastrado.</p>)
+      |                                                                     ^
+  135 |       
+
+Expected '</', got '<eof>'
+
+Import traces:
+  Client Component Browser:
+    ./Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/cards/page.js [Client Component Browser]
+    ./Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/cards/page.js [Server Component]
+
+  Client Component SSR:
+    ./Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/cards/page.js [Client Component SSR]
+    ./Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/cards/page.js [Server Component]
+[01:29:07.977] Browser ERROR   ./Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/cards/page.js:134:69
+Parsing ecmascript source code failed
+  132 |       <h2 className="text-2xl font-bold text-white mb-6">Meus Cartões</h2>
+  133 |       {cards.length === 0 ? (
+> 134 |         <p className="text-white/60">Nenhum cartão cadastrado.</p>)
+      |                                                                     ^
+  135 |       
+
+Expected '</', got '<eof>'
+
+Import traces:
+  Client Component Browser:
+    ./Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/cards/page.js [Client Component Browser]
+    ./Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/cards/page.js [Server Component]
+
+  Client Component SSR:
+    ./Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/cards/page.js [Client Component SSR]
+    ./Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/cards/page.js [Server Component]
+[01:29:07.977] Browser ERROR   ./Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/cards/page.js:134:69
+Parsing ecmascript source code failed
+  132 |       <h2 className="text-2xl font-bold text-white mb-6">Meus Cartões</h2>
+  133 |       {cards.length === 0 ? (
+> 134 |         <p className="text-white/60">Nenhum cartão cadastrado.</p>)
+      |                                                                     ^
+  135 |       
+
+Expected '</', got '<eof>'
+
+Import traces:
+  Client Component Browser:
+    ./Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/cards/page.js [Client Component Browser]
+    ./Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/cards/page.js [Server Component]
+
+  Client Component SSR:
+    ./Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/cards/page.js [Client Component SSR]
+    ./Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/cards/page.js [Server Component]
+[01:29:09.282] Server  LOG      ✓ Compiled in 94ms
+[01:35:00.649] Server  LOG      ✓ Compiled in 335ms
+[01:35:10.080] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:36:42.897] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:36:45.392] Browser ERROR   Erro ao buscar análise: {"code":"ERR_NETWORK","config":{"adapter":["xhr","http","fetch"],"allowAbsoluteUrls":true,"env":{},"headers":{"Accept":"application/json, text/plain, */*"},"maxBodyLength":-1,"maxContentLength":-1,"method":"get","timeout":0,"transformRequest":[null],"transformResponse":[null],"transitional":{"clarifyTimeoutError":false,"forcedJSONParsing":true,"silentJSONParsing":true},"url":"http://localhost:8000/budget/analysis?month=11&year=2025","xsrfCookieName":"XSRF-TOKEN","xsrfHeaderName":"X-XSRF-TOKEN"},"message":"Network Error","name":"AxiosError","stack":"AxiosError: Network Error\n    at XMLHttpRequest.handleError (http://localhost:3000/_next/static/chunks/19f28_923ba700._.js:4305:25)\n    at Axios.request (http://localhost:3000/_next/static/chunks/19f28_923ba700._.js:5063:49)\n    at async BudgetPage[fetchAnalysis] (http://localhost:3000/_next/static/chunks/80b94_ProjetosdeProgramacao_projeto-financeiro_frontend_app_budget_page_5b3479db.js:560:38)"}
+[01:36:47.622] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:36:49.064] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:36:50.159] Browser ERROR   Erro ao buscar análise: {"code":"ERR_NETWORK","config":{"adapter":["xhr","http","fetch"],"allowAbsoluteUrls":true,"env":{},"headers":{"Accept":"application/json, text/plain, */*"},"maxBodyLength":-1,"maxContentLength":-1,"method":"get","timeout":0,"transformRequest":[null],"transformResponse":[null],"transitional":{"clarifyTimeoutError":false,"forcedJSONParsing":true,"silentJSONParsing":true},"url":"http://localhost:8000/budget/analysis?month=11&year=2025","xsrfCookieName":"XSRF-TOKEN","xsrfHeaderName":"X-XSRF-TOKEN"},"message":"Network Error","name":"AxiosError","stack":"AxiosError: Network Error\n    at XMLHttpRequest.handleError (http://localhost:3000/_next/static/chunks/19f28_923ba700._.js:4305:25)\n    at Axios.request (http://localhost:3000/_next/static/chunks/19f28_923ba700._.js:5063:49)\n    at async BudgetPage[fetchAnalysis] (http://localhost:3000/_next/static/chunks/80b94_ProjetosdeProgramacao_projeto-financeiro_frontend_app_budget_page_5b3479db.js:560:38)"}
+[01:36:50.514] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:36:51.896] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:36:53.001] Browser ERROR   Erro ao buscar análise: {"code":"ERR_NETWORK","config":{"adapter":["xhr","http","fetch"],"allowAbsoluteUrls":true,"env":{},"headers":{"Accept":"application/json, text/plain, */*"},"maxBodyLength":-1,"maxContentLength":-1,"method":"get","timeout":0,"transformRequest":[null],"transformResponse":[null],"transitional":{"clarifyTimeoutError":false,"forcedJSONParsing":true,"silentJSONParsing":true},"url":"http://localhost:8000/budget/analysis?month=11&year=2025","xsrfCookieName":"XSRF-TOKEN","xsrfHeaderName":"X-XSRF-TOKEN"},"message":"Network Error","name":"AxiosError","stack":"AxiosError: Network Error\n    at XMLHttpRequest.handleError (http://localhost:3000/_next/static/chunks/19f28_923ba700._.js:4305:25)\n    at Axios.request (http://localhost:3000/_next/static/chunks/19f28_923ba700._.js:5063:49)\n    at async BudgetPage[fetchAnalysis] (http://localhost:3000/_next/static/chunks/80b94_ProjetosdeProgramacao_projeto-financeiro_frontend_app_budget_page_5b3479db.js:560:38)"}
+[01:36:53.255] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:36:54.162] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:36:54.356] Browser ERROR   Erro ao buscar dados: {"code":"ERR_NETWORK","config":{"adapter":["xhr","http","fetch"],"allowAbsoluteUrls":true,"env":{},"headers":{"Accept":"application/json, text/plain, */*"},"maxBodyLength":-1,"maxContentLength":-1,"method":"get","timeout":0,"transformRequest":[null],"transformResponse":[null],"transitional":{"clarifyTimeoutError":false,"forcedJSONParsing":true,"silentJSONParsing":true},"url":"http://localhost:8000/cards/","xsrfCookieName":"XSRF-TOKEN","xsrfHeaderName":"X-XSRF-TOKEN"},"message":"Network Error","name":"AxiosError","stack":"AxiosError: Network Error\n    at XMLHttpRequest.handleError (http://localhost:3000/_next/static/chunks/19f28_axios_lib_b2a1da8b._.js:2515:25)\n    at Axios.request (http://localhost:3000/_next/static/chunks/19f28_axios_lib_b2a1da8b._.js:3273:49)\n    at async Promise.all (index 0)"}
+[01:36:55.665] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:36:56.590] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:36:58.974] Browser ERROR   Erro: {"code":"ERR_NETWORK","config":{"adapter":["xhr","http","fetch"],"allowAbsoluteUrls":true,"env":{},"headers":{"Accept":"application/json, text/plain, */*"},"maxBodyLength":-1,"maxContentLength":-1,"method":"get","timeout":0,"transformRequest":[null],"transformResponse":[null],"transitional":{"clarifyTimeoutError":false,"forcedJSONParsing":true,"silentJSONParsing":true},"url":"http://localhost:8000/income/","xsrfCookieName":"XSRF-TOKEN","xsrfHeaderName":"X-XSRF-TOKEN"},"message":"Network Error","name":"AxiosError","stack":"AxiosError: Network Error\n    at XMLHttpRequest.handleError (http://localhost:3000/_next/static/chunks/19f28_axios_lib_b2a1da8b._.js:2515:25)\n    at Axios.request (http://localhost:3000/_next/static/chunks/19f28_axios_lib_b2a1da8b._.js:3273:49)\n    at async fetchIncomes (http://localhost:3000/_next/static/chunks/80b94_ProjetosdeProgramacao_projeto-financeiro_frontend_app_income_page_8d60405b.js:772:25)"}
+[01:37:00.689] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:37:02.442] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:37:03.165] Browser ERROR   Erro ao buscar análise: {"code":"ERR_NETWORK","config":{"adapter":["xhr","http","fetch"],"allowAbsoluteUrls":true,"env":{},"headers":{"Accept":"application/json, text/plain, */*"},"maxBodyLength":-1,"maxContentLength":-1,"method":"get","timeout":0,"transformRequest":[null],"transformResponse":[null],"transitional":{"clarifyTimeoutError":false,"forcedJSONParsing":true,"silentJSONParsing":true},"url":"http://localhost:8000/budget/analysis?month=11&year=2025","xsrfCookieName":"XSRF-TOKEN","xsrfHeaderName":"X-XSRF-TOKEN"},"message":"Network Error","name":"AxiosError","stack":"AxiosError: Network Error\n    at XMLHttpRequest.handleError (http://localhost:3000/_next/static/chunks/19f28_923ba700._.js:4305:25)\n    at Axios.request (http://localhost:3000/_next/static/chunks/19f28_923ba700._.js:5063:49)\n    at async BudgetPage[fetchAnalysis] (http://localhost:3000/_next/static/chunks/80b94_ProjetosdeProgramacao_projeto-financeiro_frontend_app_budget_page_5b3479db.js:560:38)"}
+[01:39:00.412] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:39:02.867] Browser ERROR   Erro ao buscar análise: {"code":"ERR_NETWORK","config":{"adapter":["xhr","http","fetch"],"allowAbsoluteUrls":true,"env":{},"headers":{"Accept":"application/json, text/plain, */*"},"maxBodyLength":-1,"maxContentLength":-1,"method":"get","timeout":0,"transformRequest":[null],"transformResponse":[null],"transitional":{"clarifyTimeoutError":false,"forcedJSONParsing":true,"silentJSONParsing":true},"url":"http://localhost:8000/budget/analysis?month=11&year=2025","xsrfCookieName":"XSRF-TOKEN","xsrfHeaderName":"X-XSRF-TOKEN"},"message":"Network Error","name":"AxiosError","stack":"AxiosError: Network Error\n    at XMLHttpRequest.handleError (http://localhost:3000/_next/static/chunks/19f28_923ba700._.js:4305:25)\n    at Axios.request (http://localhost:3000/_next/static/chunks/19f28_923ba700._.js:5063:49)\n    at async BudgetPage[fetchAnalysis] (http://localhost:3000/_next/static/chunks/80b94_ProjetosdeProgramacao_projeto-financeiro_frontend_app_budget_page_5b3479db.js:560:38)"}
+[01:39:09.176] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:39:10.583] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:39:13.502] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:39:16.250] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:39:19.171] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:39:29.697] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:39:30.143] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:40:48.936] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:40:50.169] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:41:08.180] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:41:46.810] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:41:47.833] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:42:16.524] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:43:54.489] Server  LOG      ✓ Compiled in 447ms
+[01:44:18.488] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:44:56.672] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:45:18.787] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:45:22.126] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:45:24.479] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:45:26.284] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:45:30.658] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:45:33.046] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold

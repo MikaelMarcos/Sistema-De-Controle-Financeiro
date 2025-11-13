@@ -5,3 +5,4 @@ fastapi-cors
 alpha-vantage
 scikit-learn
 joblib
+python-dateutil

@@ -23,6 +23,7 @@ function Header() {
             { href: "/expenses", label: "Despesas", color: "text-fin-terra" },
             { href: "/budget", label: "Orçamento", color: "text-blue-300" },
             // 👇 NOVO LINK ADICIONADO AQUI 👇
+            { href: "/cards", label: "Cartões", color: "text-fin-terra" },
             { href: "/portfolio", label: "Investimentos", color: "text-fin-highlight" },
             { href: "/metas", label: "Metas", color: "text-fin-highlight" },
           ].map((item) => (
