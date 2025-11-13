@@ -11,7 +11,6 @@ const SelectorIcon = () => (
   </svg>
 );
 const CheckIcon = () => (
-  // Mudei o ícone de check para uma cor mais escura para aparecer no fundo claro
   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5 text-blue-800">
     <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
   </svg>
@@ -45,7 +44,6 @@ function CustomSelect({ label, value, onChange, options, placeholder, required =
               </span>
             </Listbox.Button>
             <Transition as={Fragment} leave="transition ease-in duration-100" leaveFrom="opacity-100" leaveTo="opacity-0">
-              {/* 👇 Seu fundo azul pastel sólido (MANTIDO) 👇 */}
               <Listbox.Options 
                 className="absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-xl py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm border border-fin-gold/50"
                 style={{
@@ -58,7 +56,6 @@ function CustomSelect({ label, value, onChange, options, placeholder, required =
                   options.map((option) => (
                     <Listbox.Option
                       key={option.id}
-                      // 👇 Corrigido para texto escuro no fundo claro
                       className={({ active }) =>
                         `relative cursor-pointer select-none py-2 pl-10 pr-4 ${
                           active ? 'bg-blue-200 text-blue-900' : 'text-gray-800'
@@ -90,7 +87,7 @@ function CustomSelect({ label, value, onChange, options, placeholder, required =
   );
 }
 
-// --- FORMULÁRIO (Com seu botão personalizado) ---
+// --- FORMULÁRIO (ATUALIZADO COM LÓGICA DE SUGESTÃO DA IA) ---
 function ExpenseForm({ onExpenseAdded }) {
   const [description, setDescription] = useState('');
   const [amount, setAmount] = useState('');
@@ -122,30 +119,32 @@ function ExpenseForm({ onExpenseAdded }) {
     });
   }, []);
 
+  // --- 👇 LÓGICA DE SUGESTÃO AUTOMÁTICA (AGORA USA A IA) 👇 ---
   useEffect(() => {
     setSuggestionApplied(false);
-    if (debounceTimer.current) {
-      clearTimeout(debounceTimer.current);
-    }
-    if (description.trim() === '') {
-      return;
-    }
+    if (debounceTimer.current) clearTimeout(debounceTimer.current);
+    if (description.trim() === '') return;
+
     debounceTimer.current = setTimeout(() => {
-      axios.get(`${API_URL}/rules/suggest?description=${description}`)
+      // 👇 ROTA ATUALIZADA
+      axios.get(`${API_URL}/ai/suggest?description=${description}`) 
         .then(response => {
           const rule = response.data;
           setGroupId(rule.budget_group_id);
           setSubcategoryId(rule.category_id);
           setSuggestionApplied(true);
         })
-        .catch(error => { /* Nenhuma sugestão */ });
-    }, 800);
+        .catch(error => {
+          // A IA não encontrou sugestão (ou não está treinada)
+          // console.log("Nenhuma sugestão da IA.");
+        });
+    }, 800); 
+
     return () => {
-      if (debounceTimer.current) {
-        clearTimeout(debounceTimer.current);
-      }
+      if (debounceTimer.current) clearTimeout(debounceTimer.current);
     };
   }, [description]);
+  // ------------------------------------------
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -252,7 +251,7 @@ function ExpenseForm({ onExpenseAdded }) {
           disabled={isSubmitting}
           className="w-full bg-gradient-to-r from-rose-500 to-fin-red hover:from-rose-600 hover:to-red-700 disabled:opacity-50 text-white font-bold py-4 px-6 rounded-xl transition-all transform hover:scale-[1.02] shadow-lg flex items-center justify-center gap-2"
           style={{
-            boxShadow: '0 4px 20px rgba(244, 63, 94, 0.25)' // sombra avermelhada
+            boxShadow: '0 4px 20px rgba(244, 63, 94, 0.25)'
           }}
         >
           {isSubmitting ? (
@@ -272,10 +271,9 @@ function ExpenseForm({ onExpenseAdded }) {
   );
 }
 
-// --- LISTA DE DESPESAS (Corrigida e Limpa) ---
+// --- LISTA DE DESPESAS (Corrigida) ---
 function ExpenseList({ expenses, setExpenses }) {
-  const [filter, setFilter] = useState('all'); // all, paid, pending
-
+  const [filter, setFilter] = useState('all'); 
   const filteredExpenses = expenses.filter(expense => {
     if (filter === 'paid') return expense.paid;
     if (filter === 'pending') return !expense.paid;
@@ -287,14 +285,14 @@ function ExpenseList({ expenses, setExpenses }) {
     try {
       await axios.delete(`${API_URL}/expenses/${id}`);
       setExpenses(expenses.filter(e => e.id !== id));
-    } catch (error) { console.error("Erro ao excluir:", error); alert("Erro ao excluir transação."); }
+    } catch (error) { console.error("Erro:", error); alert("Erro ao excluir transação."); }
   };
 
   const handleToggleStatus = async (expense) => {
     try {
       const response = await axios.patch(`${API_URL}/expenses/${expense.id}/toggle-status`);
       setExpenses(prev => prev.map(e => e.id === expense.id ? response.data : e));
-    } catch (error) { console.error("Erro ao atualizar status:", error); }
+    } catch (error) { console.error("Erro:", error); }
   };
 
   const formatDate = (d) => new Date(d).toLocaleDateString('pt-BR', { timeZone: 'UTC' });
@@ -381,7 +379,7 @@ function ExpenseList({ expenses, setExpenses }) {
                   <div className="font-semibold text-white text-lg mb-1">{expense.description}</div>
                   <div className="text-sm text-white/60">
                     {/* 👇 CORREÇÃO DO BUG OCULTO APLICADA AQUI 👇 */}
-                    <span className="text-fin-gold/80">{expense.budget_group?.name}</span>
+                    <span className="text-fin-gold/80">{expense.budget_group?.name || 'Sem grupo'}</span>
                     {expense.category && ` • ${expense.category.name}`}
                   </div>
                 </div>
@@ -424,7 +422,6 @@ export default function ExpensesPage() {
     fetchExpenses(); 
   }, []);
 
-  // Usei o wrapper da sua versão anterior, que é mais limpo
   return (
     <div className="min-h-screen">
       <div className="max-w-6xl mx-auto">

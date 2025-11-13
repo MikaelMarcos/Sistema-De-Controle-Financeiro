@@ -11,20 +11,20 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgr
 var __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/node_modules/next/dist/compiled/react/index.js [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$axios$2f$lib$2f$axios$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/node_modules/axios/lib/axios.js [app-client] (ecmascript)");
 ;
-var _s = __turbopack_context__.k.signature();
+var _s = __turbopack_context__.k.signature(), _s1 = __turbopack_context__.k.signature();
 'use client';
 ;
 ;
 ;
 const API_URL = 'http://localhost:8000';
-// --- Componente: Banner de Alerta ---
+// --- Componente: Banner de Alerta (O mesmo de antes) ---
 function AlertBanner(t0) {
     const $ = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$compiler$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["c"])(8);
-    if ($[0] !== "53a1ba38af044f9eaea5db9a143b2aa7dc42a8266d03b695f1694d45423b2dcf") {
+    if ($[0] !== "d0de1dd126b0c05277b1df1b1fb35a32f1ec61810c76d33db06baec6e29e2151") {
         for(let $i = 0; $i < 8; $i += 1){
             $[$i] = Symbol.for("react.memo_cache_sentinel");
         }
-        $[0] = "53a1ba38af044f9eaea5db9a143b2aa7dc42a8266d03b695f1694d45423b2dcf";
+        $[0] = "d0de1dd126b0c05277b1df1b1fb35a32f1ec61810c76d33db06baec6e29e2151";
     }
     const { overBudgetGroups } = t0;
     if (overBudgetGroups.length === 0) {
@@ -37,7 +37,7 @@ function AlertBanner(t0) {
         t1 = /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
             className: "flex-shrink-0",
             children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
-                className: "h-7 w-7 text-fin-red animate-bounce",
+                className: "h-7 w-7 text-fin-red",
                 fill: "none",
                 viewBox: "0 0 24 24",
                 stroke: "currentColor",
@@ -49,7 +49,7 @@ function AlertBanner(t0) {
                 }, void 0, false, {
                     fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/budget/page.js",
                     lineNumber: 27,
-                    columnNumber: 148
+                    columnNumber: 133
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/budget/page.js",
@@ -71,7 +71,7 @@ function AlertBanner(t0) {
         }, this);
         t3 = /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
             className: "text-sm text-gray-300",
-            children: "Você excedeu o limite planejado nos seguintes grupos:"
+            children: "Você excedeu o limite planejado:"
         }, void 0, false, {
             fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/budget/page.js",
             lineNumber: 29,
@@ -96,7 +96,7 @@ function AlertBanner(t0) {
     let t5;
     if ($[6] !== t4) {
         t5 = /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-            className: "bg-gradient-to-r from-red-900/40 to-red-700/30 border-l-4 border-fin-red p-5 mb-8 rounded-xl shadow-lg backdrop-blur-md animate-pulse",
+            className: "bg-gradient-to-r from-red-900/40 to-red-700/30 border-l-4 border-fin-red p-5 mb-8 rounded-xl shadow-lg backdrop-blur-md",
             children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                 className: "flex items-start gap-3",
                 children: [
@@ -111,19 +111,19 @@ function AlertBanner(t0) {
                             }, void 0, false, {
                                 fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/budget/page.js",
                                 lineNumber: 48,
-                                columnNumber: 218
+                                columnNumber: 204
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/budget/page.js",
                         lineNumber: 48,
-                        columnNumber: 205
+                        columnNumber: 191
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/budget/page.js",
                 lineNumber: 48,
-                columnNumber: 161
+                columnNumber: 147
             }, this)
         }, void 0, false, {
             fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/budget/page.js",
@@ -138,17 +138,13 @@ function AlertBanner(t0) {
     return t5;
 }
 _c = AlertBanner;
-// --- Seletor de Mês ---
+// --- Seletor de Mês (O mesmo de antes) ---
 function _AlertBannerOverBudgetGroupsMap(group) {
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("li", {
         children: [
             group.name,
-            " (Estourado em",
-            " ",
-            (group.actual_spent - group.planned_amount).toLocaleString("pt-BR", {
-                style: "currency",
-                currency: "BRL"
-            }),
+            " (Estourado em ",
+            formatCurrency(group.actual_spent - group.planned_amount),
             ")"
         ]
     }, group.group_id, true, {
@@ -159,11 +155,11 @@ function _AlertBannerOverBudgetGroupsMap(group) {
 }
 function MonthSelector(t0) {
     const $ = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$compiler$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["c"])(20);
-    if ($[0] !== "53a1ba38af044f9eaea5db9a143b2aa7dc42a8266d03b695f1694d45423b2dcf") {
+    if ($[0] !== "d0de1dd126b0c05277b1df1b1fb35a32f1ec61810c76d33db06baec6e29e2151") {
         for(let $i = 0; $i < 20; $i += 1){
             $[$i] = Symbol.for("react.memo_cache_sentinel");
         }
-        $[0] = "53a1ba38af044f9eaea5db9a143b2aa7dc42a8266d03b695f1694d45423b2dcf";
+        $[0] = "d0de1dd126b0c05277b1df1b1fb35a32f1ec61810c76d33db06baec6e29e2151";
     }
     const { currentDate, onDateChange } = t0;
     let t1;
@@ -225,7 +221,7 @@ function MonthSelector(t0) {
             children: "< Anterior"
         }, void 0, false, {
             fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/budget/page.js",
-            lineNumber: 129,
+            lineNumber: 126,
             columnNumber: 10
         }, this);
         $[10] = handlePreviousMonth;
@@ -240,7 +236,7 @@ function MonthSelector(t0) {
             children: formattedDate
         }, void 0, false, {
             fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/budget/page.js",
-            lineNumber: 137,
+            lineNumber: 134,
             columnNumber: 10
         }, this);
         $[12] = formattedDate;
@@ -256,7 +252,7 @@ function MonthSelector(t0) {
             children: "Pr\xF3ximo >"
         }, void 0, false, {
             fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/budget/page.js",
-            lineNumber: 145,
+            lineNumber: 142,
             columnNumber: 10
         }, this);
         $[14] = handleNextMonth;
@@ -275,7 +271,7 @@ function MonthSelector(t0) {
             ]
         }, void 0, true, {
             fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/budget/page.js",
-            lineNumber: 153,
+            lineNumber: 150,
             columnNumber: 10
         }, this);
         $[16] = t4;
@@ -288,17 +284,252 @@ function MonthSelector(t0) {
     return t7;
 }
 _c1 = MonthSelector;
+// --- 👇 NOVO COMPONENTE: Card de Treinamento da IA 👇 ---
 function _MonthSelectorAnonymous(c) {
     return c.toUpperCase();
 }
-function BudgetPage() {
+function AITrainingCard() {
     _s();
-    const $ = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$compiler$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["c"])(52);
-    if ($[0] !== "53a1ba38af044f9eaea5db9a143b2aa7dc42a8266d03b695f1694d45423b2dcf") {
-        for(let $i = 0; $i < 52; $i += 1){
+    const $ = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$compiler$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["c"])(18);
+    if ($[0] !== "d0de1dd126b0c05277b1df1b1fb35a32f1ec61810c76d33db06baec6e29e2151") {
+        for(let $i = 0; $i < 18; $i += 1){
             $[$i] = Symbol.for("react.memo_cache_sentinel");
         }
-        $[0] = "53a1ba38af044f9eaea5db9a143b2aa7dc42a8266d03b695f1694d45423b2dcf";
+        $[0] = "d0de1dd126b0c05277b1df1b1fb35a32f1ec61810c76d33db06baec6e29e2151";
+    }
+    let t0;
+    if ($[1] === Symbol.for("react.memo_cache_sentinel")) {
+        t0 = {
+            trained: false,
+            message: "Verificando status..."
+        };
+        $[1] = t0;
+    } else {
+        t0 = $[1];
+    }
+    const [status, setStatus] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(t0);
+    const [isLoading, setIsLoading] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
+    let t1;
+    let t2;
+    if ($[2] === Symbol.for("react.memo_cache_sentinel")) {
+        t1 = ({
+            "AITrainingCard[useEffect()]": ()=>{
+                __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$axios$2f$lib$2f$axios$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].get(`${API_URL}/ai/status`).then({
+                    "AITrainingCard[useEffect() > (anonymous)()]": (response)=>setStatus(response.data)
+                }["AITrainingCard[useEffect() > (anonymous)()]"]).catch({
+                    "AITrainingCard[useEffect() > (anonymous)()]": (error)=>setStatus({
+                            trained: false,
+                            message: "Erro ao conectar com a IA."
+                        })
+                }["AITrainingCard[useEffect() > (anonymous)()]"]);
+            }
+        })["AITrainingCard[useEffect()]"];
+        t2 = [];
+        $[2] = t1;
+        $[3] = t2;
+    } else {
+        t1 = $[2];
+        t2 = $[3];
+    }
+    (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])(t1, t2);
+    let t3;
+    if ($[4] === Symbol.for("react.memo_cache_sentinel")) {
+        t3 = ({
+            "AITrainingCard[handleTrain]": ()=>{
+                setIsLoading(true);
+                setStatus({
+                    trained: false,
+                    message: "Treinando... Isso pode levar um momento."
+                });
+                __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$axios$2f$lib$2f$axios$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].post(`${API_URL}/ai/train`).then({
+                    "AITrainingCard[handleTrain > (anonymous)()]": (response_0)=>{
+                        setStatus({
+                            trained: true,
+                            message: response_0.data.message
+                        });
+                    }
+                }["AITrainingCard[handleTrain > (anonymous)()]"]).catch({
+                    "AITrainingCard[handleTrain > (anonymous)()]": (error_0)=>{
+                        const detail = error_0.response?.data?.detail || "Erro desconhecido durante o treinamento.";
+                        setStatus({
+                            trained: false,
+                            message: `Falha no Treinamento: ${detail}`
+                        });
+                    }
+                }["AITrainingCard[handleTrain > (anonymous)()]"]).finally({
+                    "AITrainingCard[handleTrain > (anonymous)()]": ()=>{
+                        setIsLoading(false);
+                    }
+                }["AITrainingCard[handleTrain > (anonymous)()]"]);
+            }
+        })["AITrainingCard[handleTrain]"];
+        $[4] = t3;
+    } else {
+        t3 = $[4];
+    }
+    const handleTrain = t3;
+    const statusColor = status.trained ? "text-green-400" : "text-yellow-400";
+    let t4;
+    let t5;
+    let t6;
+    if ($[5] === Symbol.for("react.memo_cache_sentinel")) {
+        t4 = /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+            className: "p-3 bg-fin-highlight/20 rounded-2xl",
+            children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                className: "text-3xl",
+                children: "🤖"
+            }, void 0, false, {
+                fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/budget/page.js",
+                lineNumber: 249,
+                columnNumber: 63
+            }, this)
+        }, void 0, false, {
+            fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/budget/page.js",
+            lineNumber: 249,
+            columnNumber: 10
+        }, this);
+        t5 = /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
+            className: "text-2xl font-bold text-fin-highlight mb-2",
+            children: "Categorização Inteligente"
+        }, void 0, false, {
+            fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/budget/page.js",
+            lineNumber: 250,
+            columnNumber: 10
+        }, this);
+        t6 = /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+            className: "text-white/80 mb-4 text-sm",
+            children: "Treine a IA para aprender com seu histórico. Quanto mais despesas você categorizar, mais inteligente ela ficará para preencher automaticamente no futuro."
+        }, void 0, false, {
+            fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/budget/page.js",
+            lineNumber: 251,
+            columnNumber: 10
+        }, this);
+        $[5] = t4;
+        $[6] = t5;
+        $[7] = t6;
+    } else {
+        t4 = $[5];
+        t5 = $[6];
+        t6 = $[7];
+    }
+    const t7 = isLoading ? "Treinando IA..." : "Treinar / Retreinar IA";
+    let t8;
+    if ($[8] !== isLoading || $[9] !== t7) {
+        t8 = /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+            onClick: handleTrain,
+            disabled: isLoading,
+            className: "px-6 py-3 bg-gradient-to-r from-fin-highlight to-fin-gold text-fin-dark font-bold rounded-xl shadow-lg hover:opacity-90 transition-all disabled:opacity-50 disabled:animate-pulse",
+            children: t7
+        }, void 0, false, {
+            fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/budget/page.js",
+            lineNumber: 263,
+            columnNumber: 10
+        }, this);
+        $[8] = isLoading;
+        $[9] = t7;
+        $[10] = t8;
+    } else {
+        t8 = $[10];
+    }
+    let t9;
+    if ($[11] === Symbol.for("react.memo_cache_sentinel")) {
+        t9 = /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+            className: "text-xs text-gray-400",
+            children: "Status:"
+        }, void 0, false, {
+            fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/budget/page.js",
+            lineNumber: 272,
+            columnNumber: 10
+        }, this);
+        $[11] = t9;
+    } else {
+        t9 = $[11];
+    }
+    const t10 = `font-semibold ${statusColor}`;
+    let t11;
+    if ($[12] !== status.message || $[13] !== t10) {
+        t11 = /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+            className: "text-left",
+            children: [
+                t9,
+                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                    className: t10,
+                    children: status.message
+                }, void 0, false, {
+                    fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/budget/page.js",
+                    lineNumber: 280,
+                    columnNumber: 42
+                }, this)
+            ]
+        }, void 0, true, {
+            fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/budget/page.js",
+            lineNumber: 280,
+            columnNumber: 11
+        }, this);
+        $[12] = status.message;
+        $[13] = t10;
+        $[14] = t11;
+    } else {
+        t11 = $[14];
+    }
+    let t12;
+    if ($[15] !== t11 || $[16] !== t8) {
+        t12 = /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+            className: "bg-gradient-to-br from-fin-dark/90 to-fin-card/50 p-6 rounded-2xl border border-fin-highlight/30 shadow-xl backdrop-blur-sm mt-10",
+            children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                className: "flex items-start gap-4",
+                children: [
+                    t4,
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                        children: [
+                            t5,
+                            t6,
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                className: "flex items-center gap-4",
+                                children: [
+                                    t8,
+                                    t11
+                                ]
+                            }, void 0, true, {
+                                fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/budget/page.js",
+                                lineNumber: 289,
+                                columnNumber: 215
+                            }, this)
+                        ]
+                    }, void 0, true, {
+                        fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/budget/page.js",
+                        lineNumber: 289,
+                        columnNumber: 202
+                    }, this)
+                ]
+            }, void 0, true, {
+                fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/budget/page.js",
+                lineNumber: 289,
+                columnNumber: 158
+            }, this)
+        }, void 0, false, {
+            fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/budget/page.js",
+            lineNumber: 289,
+            columnNumber: 11
+        }, this);
+        $[15] = t11;
+        $[16] = t8;
+        $[17] = t12;
+    } else {
+        t12 = $[17];
+    }
+    return t12;
+}
+_s(AITrainingCard, "+xC0AejdOIk7zsISIhb7OpvMWIc=");
+_c2 = AITrainingCard;
+function BudgetPage() {
+    _s1();
+    const $ = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$compiler$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["c"])(53);
+    if ($[0] !== "d0de1dd126b0c05277b1df1b1fb35a32f1ec61810c76d33db06baec6e29e2151") {
+        for(let $i = 0; $i < 53; $i += 1){
+            $[$i] = Symbol.for("react.memo_cache_sentinel");
+        }
+        $[0] = "d0de1dd126b0c05277b1df1b1fb35a32f1ec61810c76d33db06baec6e29e2151";
     }
     let t0;
     if ($[1] === Symbol.for("react.memo_cache_sentinel")) {
@@ -334,7 +565,7 @@ function BudgetPage() {
                     setOverBudgetGroups(alerts);
                 } catch (t3) {
                     const error = t3;
-                    console.error("Erro ao buscar an\xE1lise de or\xE7amento:", error);
+                    console.error("Erro ao buscar an\xE1lise:", error);
                 }
             }
         })["BudgetPage[fetchAnalysis]"];
@@ -382,7 +613,6 @@ function BudgetPage() {
         t5 = $[10];
     }
     const handlePercentageChange = t5;
-    const formatCurrency = _BudgetPageFormatCurrency;
     if (!analysisData) {
         let t6;
         if ($[11] === Symbol.for("react.memo_cache_sentinel")) {
@@ -391,7 +621,7 @@ function BudgetPage() {
                 children: "Carregando análise..."
             }, void 0, false, {
                 fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/budget/page.js",
-                lineNumber: 258,
+                lineNumber: 391,
                 columnNumber: 12
             }, this);
             $[11] = t6;
@@ -407,7 +637,7 @@ function BudgetPage() {
             children: "📊 Meu Orçamento Mensal"
         }, void 0, false, {
             fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/budget/page.js",
-            lineNumber: 267,
+            lineNumber: 400,
             columnNumber: 10
         }, this);
         $[12] = t6;
@@ -421,7 +651,7 @@ function BudgetPage() {
             onDateChange: setCurrentDate
         }, void 0, false, {
             fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/budget/page.js",
-            lineNumber: 274,
+            lineNumber: 407,
             columnNumber: 10
         }, this);
         $[13] = currentDate;
@@ -435,7 +665,7 @@ function BudgetPage() {
             overBudgetGroups: overBudgetGroups
         }, void 0, false, {
             fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/budget/page.js",
-            lineNumber: 282,
+            lineNumber: 415,
             columnNumber: 10
         }, this);
         $[15] = overBudgetGroups;
@@ -463,7 +693,7 @@ function BudgetPage() {
             ]
         }, void 0, true, {
             fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/budget/page.js",
-            lineNumber: 300,
+            lineNumber: 433,
             columnNumber: 11
         }, this);
         $[19] = t9;
@@ -486,7 +716,7 @@ function BudgetPage() {
             children: t11
         }, void 0, false, {
             fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/budget/page.js",
-            lineNumber: 316,
+            lineNumber: 449,
             columnNumber: 11
         }, this);
         $[23] = t11;
@@ -503,7 +733,7 @@ function BudgetPage() {
             ]
         }, void 0, true, {
             fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/budget/page.js",
-            lineNumber: 324,
+            lineNumber: 457,
             columnNumber: 11
         }, this);
         $[25] = t10;
@@ -519,7 +749,7 @@ function BudgetPage() {
             children: "Planejamento Total"
         }, void 0, false, {
             fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/budget/page.js",
-            lineNumber: 333,
+            lineNumber: 466,
             columnNumber: 11
         }, this);
         $[28] = t14;
@@ -537,7 +767,7 @@ function BudgetPage() {
             ]
         }, void 0, true, {
             fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/budget/page.js",
-            lineNumber: 341,
+            lineNumber: 474,
             columnNumber: 11
         }, this);
         $[29] = t15;
@@ -553,7 +783,7 @@ function BudgetPage() {
             children: "Ajuste para 100%"
         }, void 0, false, {
             fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/budget/page.js",
-            lineNumber: 350,
+            lineNumber: 483,
             columnNumber: 38
         }, this);
         $[32] = totalPercentage;
@@ -572,7 +802,7 @@ function BudgetPage() {
             ]
         }, void 0, true, {
             fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/budget/page.js",
-            lineNumber: 358,
+            lineNumber: 491,
             columnNumber: 11
         }, this);
         $[34] = t16;
@@ -584,14 +814,14 @@ function BudgetPage() {
     let t19;
     if ($[37] !== t13 || $[38] !== t18) {
         t19 = /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-            className: "bg-fin-card/80 p-6 rounded-2xl shadow-xl mb-10 flex justify-between items-center border border-white/10 backdrop-blur-md hover:scale-[1.01] transition-all",
+            className: "bg-fin-card/80 p-6 rounded-2xl shadow-xl mb-10 flex justify-between items-center border border-white/10 backdrop-blur-md",
             children: [
                 t13,
                 t18
             ]
         }, void 0, true, {
             fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/budget/page.js",
-            lineNumber: 367,
+            lineNumber: 500,
             columnNumber: 11
         }, this);
         $[37] = t13;
@@ -628,7 +858,7 @@ function BudgetPage() {
                                                 children: group_1.name
                                             }, void 0, false, {
                                                 fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/budget/page.js",
-                                                lineNumber: 389,
+                                                lineNumber: 522,
                                                 columnNumber: 409
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -639,7 +869,7 @@ function BudgetPage() {
                                                         children: "Meta:"
                                                     }, void 0, false, {
                                                         fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/budget/page.js",
-                                                        lineNumber: 389,
+                                                        lineNumber: 522,
                                                         columnNumber: 519
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -653,7 +883,7 @@ function BudgetPage() {
                                                         className: "w-16 bg-fin-dark/50 text-center border border-fin-gold/40 rounded-md text-fin-highlight font-bold focus:outline-none focus:border-fin-gold shadow-inner"
                                                     }, void 0, false, {
                                                         fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/budget/page.js",
-                                                        lineNumber: 389,
+                                                        lineNumber: 522,
                                                         columnNumber: 571
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -661,19 +891,19 @@ function BudgetPage() {
                                                         children: "%"
                                                     }, void 0, false, {
                                                         fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/budget/page.js",
-                                                        lineNumber: 391,
+                                                        lineNumber: 524,
                                                         columnNumber: 250
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/budget/page.js",
-                                                lineNumber: 389,
+                                                lineNumber: 522,
                                                 columnNumber: 473
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/budget/page.js",
-                                        lineNumber: 389,
+                                        lineNumber: 522,
                                         columnNumber: 404
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -684,7 +914,7 @@ function BudgetPage() {
                                                 children: "Realizado"
                                             }, void 0, false, {
                                                 fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/budget/page.js",
-                                                lineNumber: 391,
+                                                lineNumber: 524,
                                                 columnNumber: 335
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -692,19 +922,19 @@ function BudgetPage() {
                                                 children: formatCurrency(group_1.actual_spent)
                                             }, void 0, false, {
                                                 fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/budget/page.js",
-                                                lineNumber: 391,
+                                                lineNumber: 524,
                                                 columnNumber: 422
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/budget/page.js",
-                                        lineNumber: 391,
+                                        lineNumber: 524,
                                         columnNumber: 307
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/budget/page.js",
-                                lineNumber: 389,
+                                lineNumber: 522,
                                 columnNumber: 349
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -716,20 +946,19 @@ function BudgetPage() {
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                                 className: "text-gray-400",
                                                 children: [
-                                                    "Planejado:",
-                                                    " ",
+                                                    "Planejado: ",
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("strong", {
                                                         className: "text-fin-gold",
                                                         children: formatCurrency(group_1.planned_amount)
                                                     }, void 0, false, {
                                                         fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/budget/page.js",
-                                                        lineNumber: 391,
-                                                        columnNumber: 700
+                                                        lineNumber: 524,
+                                                        columnNumber: 696
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/budget/page.js",
-                                                lineNumber: 391,
+                                                lineNumber: 524,
                                                 columnNumber: 653
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -740,13 +969,13 @@ function BudgetPage() {
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/budget/page.js",
-                                                lineNumber: 391,
-                                                columnNumber: 790
+                                                lineNumber: 524,
+                                                columnNumber: 786
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/budget/page.js",
-                                        lineNumber: 391,
+                                        lineNumber: 524,
                                         columnNumber: 602
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -758,24 +987,24 @@ function BudgetPage() {
                                             }
                                         }, void 0, false, {
                                             fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/budget/page.js",
-                                            lineNumber: 391,
-                                            columnNumber: 1039
+                                            lineNumber: 524,
+                                            columnNumber: 1035
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/budget/page.js",
-                                        lineNumber: 391,
-                                        columnNumber: 934
+                                        lineNumber: 524,
+                                        columnNumber: 930
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/budget/page.js",
-                                lineNumber: 391,
+                                lineNumber: 524,
                                 columnNumber: 580
                             }, this)
                         ]
                     }, group_1.group_id, true, {
                         fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/budget/page.js",
-                        lineNumber: 389,
+                        lineNumber: 522,
                         columnNumber: 18
                     }, this);
                 }
@@ -799,7 +1028,7 @@ function BudgetPage() {
             children: t20
         }, void 0, false, {
             fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/budget/page.js",
-            lineNumber: 410,
+            lineNumber: 543,
             columnNumber: 11
         }, this);
         $[45] = t20;
@@ -808,41 +1037,48 @@ function BudgetPage() {
         t21 = $[46];
     }
     let t22;
-    if ($[47] !== t19 || $[48] !== t21 || $[49] !== t7 || $[50] !== t8) {
-        t22 = /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+    if ($[47] === Symbol.for("react.memo_cache_sentinel")) {
+        t22 = /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(AITrainingCard, {}, void 0, false, {
+            fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/budget/page.js",
+            lineNumber: 551,
+            columnNumber: 11
+        }, this);
+        $[47] = t22;
+    } else {
+        t22 = $[47];
+    }
+    let t23;
+    if ($[48] !== t19 || $[49] !== t21 || $[50] !== t7 || $[51] !== t8) {
+        t23 = /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
             className: "text-white",
             children: [
                 t6,
                 t7,
                 t8,
                 t19,
-                t21
+                t21,
+                t22
             ]
         }, void 0, true, {
             fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/budget/page.js",
-            lineNumber: 418,
+            lineNumber: 558,
             columnNumber: 11
         }, this);
-        $[47] = t19;
-        $[48] = t21;
-        $[49] = t7;
-        $[50] = t8;
-        $[51] = t22;
+        $[48] = t19;
+        $[49] = t21;
+        $[50] = t7;
+        $[51] = t8;
+        $[52] = t23;
     } else {
-        t22 = $[51];
+        t23 = $[52];
     }
-    return t22;
+    return t23;
 }
-_s(BudgetPage, "CNEzNYAm3J/JGUOEgTpKl1/lqmg=");
-_c2 = BudgetPage;
-function _BudgetPageFormatCurrency(value) {
-    return value.toLocaleString("pt-BR", {
-        style: "currency",
-        currency: "BRL"
-    });
-}
+_s1(BudgetPage, "CNEzNYAm3J/JGUOEgTpKl1/lqmg=");
+_c3 = BudgetPage;
+// Função auxiliar (precisa estar no escopo)
 function _BudgetPageHandlePercentageChangeAnonymous(error_0) {
-    return console.error("Erro ao atualizar porcentagem:", error_0);
+    return console.error("Erro ao atualizar:", error_0);
 }
 function _BudgetPageFetchAnalysisResponseDataAnalysisFilter(group_0) {
     return group_0.is_over_budget;
@@ -850,10 +1086,18 @@ function _BudgetPageFetchAnalysisResponseDataAnalysisFilter(group_0) {
 function _BudgetPageFetchAnalysisResponseDataAnalysisReduce(acc, group) {
     return acc + group.target_percentage;
 }
-var _c, _c1, _c2;
+const formatCurrency = (value)=>{
+    if (value === null || value === undefined) value = 0;
+    return value.toLocaleString('pt-BR', {
+        style: 'currency',
+        currency: 'BRL'
+    });
+};
+var _c, _c1, _c2, _c3;
 __turbopack_context__.k.register(_c, "AlertBanner");
 __turbopack_context__.k.register(_c1, "MonthSelector");
-__turbopack_context__.k.register(_c2, "BudgetPage");
+__turbopack_context__.k.register(_c2, "AITrainingCard");
+__turbopack_context__.k.register(_c3, "BudgetPage");
 if (typeof globalThis.$RefreshHelpers$ === 'object' && globalThis.$RefreshHelpers !== null) {
     __turbopack_context__.k.registerExports(__turbopack_context__.m, globalThis.$RefreshHelpers$);
 }

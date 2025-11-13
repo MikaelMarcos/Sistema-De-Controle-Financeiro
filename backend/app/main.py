@@ -6,8 +6,8 @@ from .models import BudgetGroup
 from .routers import (
     router_expenses, router_categories, router_income, 
     router_goals, router_budget, router_rules, router_portfolio,
-    router_ai
 )
+from .ai_router import router_ai
 
 app = FastAPI(
     title="API de Controle Financeiro Pessoal",
