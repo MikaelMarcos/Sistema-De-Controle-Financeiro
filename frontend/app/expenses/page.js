@@ -87,7 +87,7 @@ function CustomSelect({ label, value, onChange, options, placeholder, required =
   );
 }
 
-// --- FORMULÁRIO (ATUALIZADO COM LÓGICA DE SUGESTÃO DA IA) ---
+// --- FORMULÁRIO (Com seu botão personalizado) ---
 function ExpenseForm({ onExpenseAdded }) {
   const [description, setDescription] = useState('');
   const [amount, setAmount] = useState('');
@@ -119,32 +119,31 @@ function ExpenseForm({ onExpenseAdded }) {
     });
   }, []);
 
-  // --- 👇 LÓGICA DE SUGESTÃO AUTOMÁTICA (AGORA USA A IA) 👇 ---
   useEffect(() => {
     setSuggestionApplied(false);
-    if (debounceTimer.current) clearTimeout(debounceTimer.current);
-    if (description.trim() === '') return;
-
+    if (debounceTimer.current) {
+      clearTimeout(debounceTimer.current);
+    }
+    if (description.trim() === '') {
+      return;
+    }
     debounceTimer.current = setTimeout(() => {
-      // 👇 ROTA ATUALIZADA
-      axios.get(`${API_URL}/ai/suggest?description=${description}`) 
+      axios.get(`${API_URL}/ai/suggest?description=${description}`)
         .then(response => {
           const rule = response.data;
           setGroupId(rule.budget_group_id);
           setSubcategoryId(rule.category_id);
           setSuggestionApplied(true);
         })
-        .catch(error => {
-          // A IA não encontrou sugestão (ou não está treinada)
-          // console.log("Nenhuma sugestão da IA.");
-        });
-    }, 800); 
+        .catch(error => { /* Nenhuma sugestão */ });
+    }, 800);
 
     return () => {
-      if (debounceTimer.current) clearTimeout(debounceTimer.current);
+      if (debounceTimer.current) {
+        clearTimeout(debounceTimer.current);
+      }
     };
   }, [description]);
-  // ------------------------------------------
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -187,6 +186,7 @@ function ExpenseForm({ onExpenseAdded }) {
         <div className="p-3 bg-fin-gold/20 rounded-2xl"><span className="text-2xl">💰</span></div>
         <div>
           <h2 className="text-2xl font-bold text-white">Nova Transação</h2>
+          {/* 👇 LINHA CORRIGIDA 👇 */}
           <p className="text-fin-gold/70 text-sm">Registre despesas ou agendamentos</p>
         </div>
       </div>
@@ -245,13 +245,12 @@ function ExpenseForm({ onExpenseAdded }) {
           )}
         </div>
 
-        {/* 👇 Seu botão com gradiente avermelhado (MANTIDO) 👇 */}
         <button 
           type="submit" 
           disabled={isSubmitting}
           className="w-full bg-gradient-to-r from-rose-500 to-fin-red hover:from-rose-600 hover:to-red-700 disabled:opacity-50 text-white font-bold py-4 px-6 rounded-xl transition-all transform hover:scale-[1.02] shadow-lg flex items-center justify-center gap-2"
           style={{
-            boxShadow: '0 4px 20px rgba(244, 63, 94, 0.25)'
+            boxShadow: '0 4px 20px rgba(244, 63, 94, 0.25)' // sombra avermelhada
           }}
         >
           {isSubmitting ? (
@@ -273,7 +272,8 @@ function ExpenseForm({ onExpenseAdded }) {
 
 // --- LISTA DE DESPESAS (Corrigida) ---
 function ExpenseList({ expenses, setExpenses }) {
-  const [filter, setFilter] = useState('all'); 
+  const [filter, setFilter] = useState('all');
+
   const filteredExpenses = expenses.filter(expense => {
     if (filter === 'paid') return expense.paid;
     if (filter === 'pending') return !expense.paid;
@@ -285,14 +285,14 @@ function ExpenseList({ expenses, setExpenses }) {
     try {
       await axios.delete(`${API_URL}/expenses/${id}`);
       setExpenses(expenses.filter(e => e.id !== id));
-    } catch (error) { console.error("Erro:", error); alert("Erro ao excluir transação."); }
+    } catch (error) { console.error("Erro ao excluir:", error); alert("Erro ao excluir transação."); }
   };
 
   const handleToggleStatus = async (expense) => {
     try {
       const response = await axios.patch(`${API_URL}/expenses/${expense.id}/toggle-status`);
       setExpenses(prev => prev.map(e => e.id === expense.id ? response.data : e));
-    } catch (error) { console.error("Erro:", error); }
+    } catch (error) { console.error("Erro ao atualizar status:", error); }
   };
 
   const formatDate = (d) => new Date(d).toLocaleDateString('pt-BR', { timeZone: 'UTC' });

@@ -290,7 +290,7 @@ function CustomSelect({ label, value, onChange, options, placeholder, required =
         columnNumber: 5
     }, this);
 }
-// --- FORMULÁRIO (ATUALIZADO COM LÓGICA DE SUGESTÃO DA IA) ---
+// --- FORMULÁRIO (Com seu botão personalizado) ---
 function ExpenseForm({ onExpenseAdded }) {
     const [description, setDescription] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])('');
     const [amount, setAmount] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])('');
@@ -320,30 +320,30 @@ function ExpenseForm({ onExpenseAdded }) {
             if (metaGroup) setMetaGroupId(metaGroup.id);
         });
     }, []);
-    // --- 👇 LÓGICA DE SUGESTÃO AUTOMÁTICA (AGORA USA A IA) 👇 ---
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useEffect"])(()=>{
         setSuggestionApplied(false);
-        if (debounceTimer.current) clearTimeout(debounceTimer.current);
-        if (description.trim() === '') return;
+        if (debounceTimer.current) {
+            clearTimeout(debounceTimer.current);
+        }
+        if (description.trim() === '') {
+            return;
+        }
         debounceTimer.current = setTimeout(()=>{
-            // 👇 ROTA ATUALIZADA
             __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$axios$2f$lib$2f$axios$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].get(`${API_URL}/ai/suggest?description=${description}`).then((response)=>{
                 const rule = response.data;
                 setGroupId(rule.budget_group_id);
                 setSubcategoryId(rule.category_id);
                 setSuggestionApplied(true);
-            }).catch((error)=>{
-            // A IA não encontrou sugestão (ou não está treinada)
-            // console.log("Nenhuma sugestão da IA.");
-            });
+            }).catch((error)=>{});
         }, 800);
         return ()=>{
-            if (debounceTimer.current) clearTimeout(debounceTimer.current);
+            if (debounceTimer.current) {
+                clearTimeout(debounceTimer.current);
+            }
         };
     }, [
         description
     ]);
-    // ------------------------------------------
     const handleSubmit = async (e)=>{
         e.preventDefault();
         if (!description || !amount || !groupId) {
@@ -402,12 +402,12 @@ function ExpenseForm({ onExpenseAdded }) {
                             children: "💰"
                         }, void 0, false, {
                             fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/expenses/page.js",
-                            lineNumber: 187,
+                            lineNumber: 186,
                             columnNumber: 57
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/expenses/page.js",
-                        lineNumber: 187,
+                        lineNumber: 186,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -417,7 +417,7 @@ function ExpenseForm({ onExpenseAdded }) {
                                 children: "Nova Transação"
                             }, void 0, false, {
                                 fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/expenses/page.js",
-                                lineNumber: 189,
+                                lineNumber: 188,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -431,13 +431,13 @@ function ExpenseForm({ onExpenseAdded }) {
                         ]
                     }, void 0, true, {
                         fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/expenses/page.js",
-                        lineNumber: 188,
+                        lineNumber: 187,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/expenses/page.js",
-                lineNumber: 186,
+                lineNumber: 185,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("form", {
@@ -754,7 +754,7 @@ function ExpenseForm({ onExpenseAdded }) {
                         disabled: isSubmitting,
                         className: "w-full bg-gradient-to-r from-rose-500 to-fin-red hover:from-rose-600 hover:to-red-700 disabled:opacity-50 text-white font-bold py-4 px-6 rounded-xl transition-all transform hover:scale-[1.02] shadow-lg flex items-center justify-center gap-2",
                         style: {
-                            boxShadow: '0 4px 20px rgba(244, 63, 94, 0.25)'
+                            boxShadow: '0 4px 20px rgba(244, 63, 94, 0.25)' // sombra avermelhada
                         },
                         children: isSubmitting ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Fragment"], {
                             children: [
@@ -762,7 +762,7 @@ function ExpenseForm({ onExpenseAdded }) {
                                     className: "w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"
                                 }, void 0, false, {
                                     fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/expenses/page.js",
-                                    lineNumber: 259,
+                                    lineNumber: 258,
                                     columnNumber: 15
                                 }, this),
                                 "Processando..."
@@ -773,7 +773,7 @@ function ExpenseForm({ onExpenseAdded }) {
                                     children: paid ? '💾' : '📅'
                                 }, void 0, false, {
                                     fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/expenses/page.js",
-                                    lineNumber: 264,
+                                    lineNumber: 263,
                                     columnNumber: 15
                                 }, this),
                                 paid ? 'Registrar Pagamento' : 'Agendar Despesa'
@@ -781,7 +781,7 @@ function ExpenseForm({ onExpenseAdded }) {
                         }, void 0, true)
                     }, void 0, false, {
                         fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/expenses/page.js",
-                        lineNumber: 249,
+                        lineNumber: 248,
                         columnNumber: 9
                     }, this)
                 ]
@@ -793,7 +793,7 @@ function ExpenseForm({ onExpenseAdded }) {
         ]
     }, void 0, true, {
         fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/expenses/page.js",
-        lineNumber: 185,
+        lineNumber: 184,
         columnNumber: 5
     }, this);
 }
@@ -811,7 +811,7 @@ function ExpenseList({ expenses, setExpenses }) {
             await __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$axios$2f$lib$2f$axios$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].delete(`${API_URL}/expenses/${id}`);
             setExpenses(expenses.filter((e)=>e.id !== id));
         } catch (error) {
-            console.error("Erro:", error);
+            console.error("Erro ao excluir:", error);
             alert("Erro ao excluir transação.");
         }
     };
@@ -820,7 +820,7 @@ function ExpenseList({ expenses, setExpenses }) {
             const response = await __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$axios$2f$lib$2f$axios$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].patch(`${API_URL}/expenses/${expense.id}/toggle-status`);
             setExpenses((prev)=>prev.map((e)=>e.id === expense.id ? response.data : e));
         } catch (error) {
-            console.error("Erro:", error);
+            console.error("Erro ao atualizar status:", error);
         }
     };
     const formatDate = (d)=>new Date(d).toLocaleDateString('pt-BR', {

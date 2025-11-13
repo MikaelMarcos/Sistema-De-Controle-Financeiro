@@ -48,16 +48,11 @@ def train_ai_model(*, session: Session = Depends(get_session)):
         )
 
     # 2. Prepara os dados para o Scikit-learn
-    # X é o "input" (a descrição da despesa)
     X_train = [exp.description for exp in expenses]
-    # y_group é o "alvo" (o grupo que queremos prever)
     y_group = [exp.budget_group_id for exp in expenses]
-    # y_category é o "alvo 2" (a subcategoria que queremos prever)
     y_category = [exp.category_id for exp in expenses]
 
     # 3. Cria o "pipeline" do modelo
-    # TfidfVectorizer: Converte texto (ex: "Conta de Luz") em números
-    # MultinomialNB: O cérebro do classificador
     pipeline = Pipeline([
         ('vectorizer', TfidfVectorizer()),
         ('classifier', MultinomialNB())
@@ -110,7 +105,8 @@ def suggest_categorization(
     predicted_group_id = group_model.predict(description_vec)[0]
     predicted_category_id = category_model.predict(description_vec)[0]
 
+    # O [0] pega o primeiro (e único) resultado da previsão
     return {
-        "budget_group_id": predicted_group_id,
-        "category_id": predicted_category_id
+        "budget_group_id": int(predicted_group_id),
+        "category_id": int(predicted_category_id)
     }

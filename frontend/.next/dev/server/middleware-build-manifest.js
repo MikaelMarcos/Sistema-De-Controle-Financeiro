@@ -1,6 +1,31 @@
 globalThis.__BUILD_MANIFEST = {
   "pages": {
-    "/_app": []
+    "/_app": [
+      "static/chunks/19f28_next_dist_compiled_364e99bb._.js",
+      "static/chunks/19f28_next_dist_shared_lib_e9606f1c._.js",
+      "static/chunks/19f28_next_dist_client_804f93e9._.js",
+      "static/chunks/19f28_next_dist_e4aa9023._.js",
+      "static/chunks/19f28_next_app_1a741f39.js",
+      "static/chunks/[next]_entry_page-loader_ts_04eb2e10._.js",
+      "static/chunks/19f28_react-dom_bca95820._.js",
+      "static/chunks/19f28_fbf038b3._.js",
+      "static/chunks/[root-of-the-server]__706b0bd0._.js",
+      "static/chunks/Documents_ProjetosdeProgramacao_projeto-financeiro_frontend_pages__app_2da965e7._.js",
+      "static/chunks/358b3_ProjetosdeProgramacao_projeto-financeiro_frontend_pages__app_e80022a2._.js"
+    ],
+    "/_error": [
+      "static/chunks/19f28_next_dist_compiled_364e99bb._.js",
+      "static/chunks/19f28_next_dist_shared_lib_0f0784c4._.js",
+      "static/chunks/19f28_next_dist_client_804f93e9._.js",
+      "static/chunks/19f28_next_dist_d7cb9c3c._.js",
+      "static/chunks/19f28_next_error_57cb08e1.js",
+      "static/chunks/[next]_entry_page-loader_ts_0b919bec._.js",
+      "static/chunks/19f28_react-dom_bca95820._.js",
+      "static/chunks/19f28_fbf038b3._.js",
+      "static/chunks/[root-of-the-server]__d4e45548._.js",
+      "static/chunks/80b94_ProjetosdeProgramacao_projeto-financeiro_frontend_pages__error_2da965e7._.js",
+      "static/chunks/358b3_ProjetosdeProgramacao_projeto-financeiro_frontend_pages__error_2985b2a5._.js"
+    ]
   },
   "devFiles": [],
   "polyfillFiles": [

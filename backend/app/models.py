@@ -21,6 +21,21 @@ class Category(CategoryBase, table=True):
 class CategoryRead(CategoryBase):
     id: int
 
+# --- 👇 NOVO MODELO: Cartão de Crédito 👇 ---
+class CreditCardBase(SQLModel):
+    name: str = Field(index=True) # Ex: "Nubank", "Inter"
+    closing_day: int # Dia do fechamento (ex: 20)
+    due_day: int # Dia do vencimento (ex: 28)
+
+class CreditCard(CreditCardBase, table=True):
+    id: Optional[int] = Field(default=None, primary_key=True)
+    expenses: List["Expense"] = Relationship(back_populates="credit_card")
+
+class CreditCardCreate(CreditCardBase):
+    pass
+class CreditCardRead(CreditCardBase):
+    id: int
+
 # --- Modelos de Metas ---
 class GoalBase(SQLModel):
     name: str = Field(index=True)
@@ -35,12 +50,12 @@ class Goal(GoalBase, table=True):
     expenses: List["Expense"] = Relationship(back_populates="goal")
 class GoalRead(GoalBase):
     id: int
-    monthly_contribution: float = 0.0 # Campo calculado
+    monthly_contribution: float = 0.0
 class GoalAdjustment(SQLModel):
     amount: float = Field(gt=0)
     description: Optional[str] = None
 
-# --- Modelos de Despesa ---
+# --- Modelos de Despesa (ATUALIZADO) ---
 class ExpenseBase(SQLModel):
     description: str
     amount: float
@@ -49,6 +64,9 @@ class ExpenseBase(SQLModel):
     budget_group_id: int = Field(foreign_key="budgetgroup.id")
     category_id: Optional[int] = Field(default=None, foreign_key="category.id")
     goal_id: Optional[int] = Field(default=None, foreign_key="goal.id")
+    # 👇 NOVO CAMPO: Vincula a despesa a um cartão (opcional)
+    credit_card_id: Optional[int] = Field(default=None, foreign_key="creditcard.id")
+
 class ExpenseCreate(ExpenseBase):
     pass
 class Expense(ExpenseBase, table=True):
@@ -56,10 +74,19 @@ class Expense(ExpenseBase, table=True):
     budget_group: BudgetGroup = Relationship(back_populates="expenses")
     category: Optional[Category] = Relationship(back_populates="expenses")
     goal: Optional[Goal] = Relationship(back_populates="expenses")
+    # 👇 NOVA RELAÇÃO
+    credit_card: Optional[CreditCard] = Relationship(back_populates="expenses")
+
 class ExpenseRead(ExpenseBase):
     id: int
 
-# --- Modelos de Entrada ---
+class ExpenseReadWithDetails(ExpenseRead):
+    budget_group: BudgetGroup
+    category: Optional[CategoryRead] = None
+    goal: Optional[GoalRead] = None
+    credit_card: Optional[CreditCardRead] = None # 👈 ADICIONADO AQUI
+
+# --- Modelos de Entrada (sem alteração) ---
 class IncomeBase(SQLModel):
     description: str
     amount: float
@@ -72,7 +99,7 @@ class Income(IncomeBase, table=True):
 class IncomeRead(IncomeBase):
     id: int
 
-# --- Modelos de Regras de Transação ---
+# --- Modelos de Regras de Transação (sem alteração) ---
 class TransactionRule(SQLModel, table=True):
     id: Optional[int] = Field(default=None, primary_key=True)
     keyword: str = Field(index=True, unique=True)
@@ -82,52 +109,38 @@ class TransactionRuleRead(SQLModel):
     budget_group_id: int
     category_id: Optional[int] = None
 
-# --- 👇 NOVOS MODELOS DE INVESTIMENTO 👇 ---
-
-# Descreve o ativo (Ex: ITUB4, Bitcoin)
+# --- Modelos de Investimento (sem alteração) ---
 class Asset(SQLModel, table=True):
     id: Optional[int] = Field(default=None, primary_key=True)
-    ticker: str = Field(unique=True, index=True) # Ex: ITUB4, BTC, IFIX
+    ticker: str = Field(unique=True, index=True)
     name: str
-    asset_type: str # Ex: "Ação", "FII", "Cripto", "Renda Fixa"
-    
+    asset_type: str
     holdings: List["PortfolioHolding"] = Relationship(back_populates="asset")
-
-# Descreve quanto você tem desse ativo
-class PortfolioHolding(SQLModel, table=True):
-    id: Optional[int] = Field(default=None, primary_key=True)
-    asset_id: int = Field(foreign_key="asset.id")
-    quantity: float # Quantidade (ex: 100 ações, 0.5 BTC)
-    average_price: float # Seu preço médio de compra
-    
-    asset: Asset = Relationship(back_populates="holdings")
-
-# Modelos para a API (Criar/Ler)
 class AssetCreate(SQLModel):
     ticker: str
     name: str
     asset_type: str
 class AssetRead(AssetCreate):
     id: int
-
-class PortfolioHoldingCreate(SQLModel):
-    ticker: str # O usuário vai digitar o ticker
-    name: str
-    asset_type: str # Ex: "Ação"
+class PortfolioHolding(SQLModel, table=True):
+    id: Optional[int] = Field(default=None, primary_key=True)
+    asset_id: int = Field(foreign_key="asset.id")
     quantity: float
     average_price: float
-
+    asset: Asset = Relationship(back_populates="holdings")
+class PortfolioHoldingCreate(SQLModel):
+    ticker: str
+    name: str
+    asset_type: str
+    quantity: float
+    average_price: float
 class PortfolioHoldingRead(SQLModel):
     id: int
     quantity: float
     average_price: float
-    asset: AssetRead # Mostra o ativo aninhado
+    asset: AssetRead
 
-# --- Modelos de Leitura Combinados (Sem alteração) ---
-class ExpenseReadWithDetails(ExpenseRead):
-    budget_group: BudgetGroup
-    category: Optional[CategoryRead] = None
-    goal: Optional[GoalRead] = None
+# --- Modelos de Leitura Combinados (sem alteração) ---
 class CategoryReadWithExpenses(CategoryRead):
     expenses: List[ExpenseRead] = []
 class GoalReadWithExpenses(GoalRead):
