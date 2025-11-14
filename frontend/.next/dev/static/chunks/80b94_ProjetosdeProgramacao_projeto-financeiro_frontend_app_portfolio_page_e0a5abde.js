@@ -12,6 +12,9 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgr
 var __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$axios$2f$lib$2f$axios$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/node_modules/axios/lib/axios.js [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f40$headlessui$2f$react$2f$dist$2f$components$2f$listbox$2f$listbox$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/node_modules/@headlessui/react/dist/components/listbox/listbox.js [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f40$headlessui$2f$react$2f$dist$2f$components$2f$transition$2f$transition$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/node_modules/@headlessui/react/dist/components/transition/transition.js [app-client] (ecmascript)");
+// 👇 NOVAS IMPORTAÇÕES PARA O GRÁFICO
+var __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$react$2d$chartjs$2d$2$2f$dist$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/node_modules/react-chartjs-2/dist/index.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$chart$2e$js$2f$dist$2f$chart$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$locals$3e$__ = __turbopack_context__.i("[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/node_modules/chart.js/dist/chart.js [app-client] (ecmascript) <locals>");
 ;
 var _s = __turbopack_context__.k.signature(), _s1 = __turbopack_context__.k.signature(), _s2 = __turbopack_context__.k.signature();
 'use client';
@@ -19,14 +22,18 @@ var _s = __turbopack_context__.k.signature(), _s1 = __turbopack_context__.k.sign
 ;
 ;
 ;
-// --- Ícones ---
+;
+;
+// Registra os componentes necessários do Chart.js
+__TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$chart$2e$js$2f$dist$2f$chart$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$locals$3e$__["Chart"].register(__TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$chart$2e$js$2f$dist$2f$chart$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$locals$3e$__["ArcElement"], __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$chart$2e$js$2f$dist$2f$chart$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$locals$3e$__["Tooltip"], __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$chart$2e$js$2f$dist$2f$chart$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$locals$3e$__["Legend"]);
+// --- Ícones (sem alteração) ---
 const SelectorIcon = ()=>{
     const $ = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$compiler$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["c"])(2);
-    if ($[0] !== "d9f3caf74bddefab358f137e3d2ea2a2e914413b9918854baebb242a311bf1c4") {
+    if ($[0] !== "f9569af1f53366e8f22fe996dee91baba15448946748519b42d3def85dfe1398") {
         for(let $i = 0; $i < 2; $i += 1){
             $[$i] = Symbol.for("react.memo_cache_sentinel");
         }
-        $[0] = "d9f3caf74bddefab358f137e3d2ea2a2e914413b9918854baebb242a311bf1c4";
+        $[0] = "f9569af1f53366e8f22fe996dee91baba15448946748519b42d3def85dfe1398";
     }
     let t0;
     if ($[1] === Symbol.for("react.memo_cache_sentinel")) {
@@ -43,12 +50,12 @@ const SelectorIcon = ()=>{
                 d: "M8.25 15L12 18.75 15.75 15m-7.5-6L12 5.25 15.75 9"
             }, void 0, false, {
                 fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/portfolio/page.js",
-                lineNumber: 19,
+                lineNumber: 25,
                 columnNumber: 156
             }, ("TURBOPACK compile-time value", void 0))
         }, void 0, false, {
             fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/portfolio/page.js",
-            lineNumber: 19,
+            lineNumber: 25,
             columnNumber: 10
         }, ("TURBOPACK compile-time value", void 0));
         $[1] = t0;
@@ -60,11 +67,11 @@ const SelectorIcon = ()=>{
 _c = SelectorIcon;
 const CheckIcon = ()=>{
     const $ = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$compiler$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["c"])(2);
-    if ($[0] !== "d9f3caf74bddefab358f137e3d2ea2a2e914413b9918854baebb242a311bf1c4") {
+    if ($[0] !== "f9569af1f53366e8f22fe996dee91baba15448946748519b42d3def85dfe1398") {
         for(let $i = 0; $i < 2; $i += 1){
             $[$i] = Symbol.for("react.memo_cache_sentinel");
         }
-        $[0] = "d9f3caf74bddefab358f137e3d2ea2a2e914413b9918854baebb242a311bf1c4";
+        $[0] = "f9569af1f53366e8f22fe996dee91baba15448946748519b42d3def85dfe1398";
     }
     let t0;
     if ($[1] === Symbol.for("react.memo_cache_sentinel")) {
@@ -81,12 +88,12 @@ const CheckIcon = ()=>{
                 d: "M4.5 12.75l6 6 9-13.5"
             }, void 0, false, {
                 fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/portfolio/page.js",
-                lineNumber: 36,
+                lineNumber: 42,
                 columnNumber: 156
             }, ("TURBOPACK compile-time value", void 0))
         }, void 0, false, {
             fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/portfolio/page.js",
-            lineNumber: 36,
+            lineNumber: 42,
             columnNumber: 10
         }, ("TURBOPACK compile-time value", void 0));
         $[1] = t0;
@@ -97,29 +104,33 @@ const CheckIcon = ()=>{
 };
 _c1 = CheckIcon;
 const API_URL = 'http://localhost:8000';
-// --- Função Auxiliar de Formatação ---
-const formatCurrency = (value)=>{
-    if (value === null || value === undefined || typeof value !== 'number') value = 0;
-    return value.toLocaleString('pt-BR', {
+const formatCurrency = (v)=>(v ?? 0).toLocaleString('pt-BR', {
         style: 'currency',
         currency: 'BRL'
     });
-};
-// --- Componente de Seletor ---
+// --- Componente de Seletor (sem alteração) ---
 function CustomSelect(t0) {
-    const $ = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$compiler$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["c"])(28);
-    if ($[0] !== "d9f3caf74bddefab358f137e3d2ea2a2e914413b9918854baebb242a311bf1c4") {
-        for(let $i = 0; $i < 28; $i += 1){
+    const $ = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$compiler$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["c"])(30);
+    if ($[0] !== "f9569af1f53366e8f22fe996dee91baba15448946748519b42d3def85dfe1398") {
+        for(let $i = 0; $i < 30; $i += 1){
             $[$i] = Symbol.for("react.memo_cache_sentinel");
         }
-        $[0] = "d9f3caf74bddefab358f137e3d2ea2a2e914413b9918854baebb242a311bf1c4";
+        $[0] = "f9569af1f53366e8f22fe996dee91baba15448946748519b42d3def85dfe1398";
     }
     const { label, value, onChange, options, placeholder } = t0;
     let t1;
     if ($[1] !== options || $[2] !== value) {
-        t1 = options.find({
-            "CustomSelect[options.find()]": (option)=>option.id === value
-        }["CustomSelect[options.find()]"]) || null;
+        let t2;
+        if ($[4] !== value) {
+            t2 = ({
+                "CustomSelect[options.find()]": (o)=>o.id === value
+            })["CustomSelect[options.find()]"];
+            $[4] = value;
+            $[5] = t2;
+        } else {
+            t2 = $[5];
+        }
+        t1 = options.find(t2);
         $[1] = options;
         $[2] = value;
         $[3] = t1;
@@ -128,122 +139,122 @@ function CustomSelect(t0) {
     }
     const selectedOption = t1;
     let t2;
-    if ($[4] !== label) {
+    if ($[6] !== label) {
         t2 = label && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
             className: "block text-sm font-medium text-white/80 mb-2",
             children: label
         }, void 0, false, {
             fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/portfolio/page.js",
-            lineNumber: 84,
+            lineNumber: 93,
             columnNumber: 19
         }, this);
-        $[4] = label;
-        $[5] = t2;
+        $[6] = label;
+        $[7] = t2;
     } else {
-        t2 = $[5];
+        t2 = $[7];
     }
     let t3;
-    if ($[6] !== placeholder || $[7] !== selectedOption) {
+    if ($[8] !== placeholder || $[9] !== selectedOption) {
         t3 = selectedOption ? selectedOption.name : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
             className: "text-white/40",
             children: placeholder
         }, void 0, false, {
             fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/portfolio/page.js",
-            lineNumber: 92,
+            lineNumber: 101,
             columnNumber: 49
         }, this);
-        $[6] = placeholder;
-        $[7] = selectedOption;
-        $[8] = t3;
+        $[8] = placeholder;
+        $[9] = selectedOption;
+        $[10] = t3;
     } else {
-        t3 = $[8];
+        t3 = $[10];
     }
     let t4;
-    if ($[9] !== t3) {
+    if ($[11] !== t3) {
         t4 = /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
             className: "block truncate",
             children: t3
         }, void 0, false, {
             fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/portfolio/page.js",
-            lineNumber: 101,
+            lineNumber: 110,
             columnNumber: 10
         }, this);
-        $[9] = t3;
-        $[10] = t4;
+        $[11] = t3;
+        $[12] = t4;
     } else {
-        t4 = $[10];
+        t4 = $[12];
     }
     let t5;
-    if ($[11] === Symbol.for("react.memo_cache_sentinel")) {
+    if ($[13] === Symbol.for("react.memo_cache_sentinel")) {
         t5 = /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-            className: "pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2",
+            className: "absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none",
             children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(SelectorIcon, {}, void 0, false, {
                 fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/portfolio/page.js",
-                lineNumber: 109,
+                lineNumber: 118,
                 columnNumber: 98
             }, this)
         }, void 0, false, {
             fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/portfolio/page.js",
-            lineNumber: 109,
+            lineNumber: 118,
             columnNumber: 10
         }, this);
-        $[11] = t5;
+        $[13] = t5;
     } else {
-        t5 = $[11];
+        t5 = $[13];
     }
     let t6;
-    if ($[12] !== t4) {
+    if ($[14] !== t4) {
         t6 = /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f40$headlessui$2f$react$2f$dist$2f$components$2f$listbox$2f$listbox$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Listbox"].Button, {
-            className: "relative w-full p-4 pr-10 text-left bg-fin-dark/60 rounded-xl border-2 border-white/10 focus:border-fin-gold focus:ring-2 focus:ring-fin-gold/20 transition-all text-white",
+            className: "relative w-full p-4 pr-10 text-left bg-[#0d1b2a]/70 rounded-xl border border-white/10 focus:ring-2 focus:ring-fin-gold/30 hover:bg-[#1b263b]/80 transition text-white backdrop-blur-md",
             children: [
                 t4,
                 t5
             ]
         }, void 0, true, {
             fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/portfolio/page.js",
-            lineNumber: 116,
+            lineNumber: 125,
             columnNumber: 10
         }, this);
-        $[12] = t4;
-        $[13] = t6;
+        $[14] = t4;
+        $[15] = t6;
     } else {
-        t6 = $[13];
+        t6 = $[15];
     }
     let t7;
-    if ($[14] !== options) {
+    if ($[16] !== options) {
         t7 = options.map(_CustomSelectOptionsMap);
-        $[14] = options;
-        $[15] = t7;
+        $[16] = options;
+        $[17] = t7;
     } else {
-        t7 = $[15];
+        t7 = $[17];
     }
     let t8;
-    if ($[16] !== t7) {
+    if ($[18] !== t7) {
         t8 = /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f40$headlessui$2f$react$2f$dist$2f$components$2f$transition$2f$transition$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Transition"], {
             as: __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Fragment"],
             leave: "transition ease-in duration-100",
             leaveFrom: "opacity-100",
             leaveTo: "opacity-0",
             children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f40$headlessui$2f$react$2f$dist$2f$components$2f$listbox$2f$listbox$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Listbox"].Options, {
-                className: "absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-xl bg-fin-dark py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm border border-fin-gold/50",
+                className: "absolute z-20 mt-1 max-h-60 w-full overflow-auto rounded-xl bg-[#1b263b]/95 py-1 shadow-xl ring-1 ring-fin-gold/40 focus:outline-none sm:text-sm border border-fin-gold/20 backdrop-blur-md",
                 children: t7
             }, void 0, false, {
                 fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/portfolio/page.js",
-                lineNumber: 132,
+                lineNumber: 141,
                 columnNumber: 120
             }, this)
         }, void 0, false, {
             fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/portfolio/page.js",
-            lineNumber: 132,
+            lineNumber: 141,
             columnNumber: 10
         }, this);
-        $[16] = t7;
-        $[17] = t8;
+        $[18] = t7;
+        $[19] = t8;
     } else {
-        t8 = $[17];
+        t8 = $[19];
     }
     let t9;
-    if ($[18] !== t6 || $[19] !== t8) {
+    if ($[20] !== t6 || $[21] !== t8) {
         t9 = /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
             className: "relative",
             children: [
@@ -252,35 +263,35 @@ function CustomSelect(t0) {
             ]
         }, void 0, true, {
             fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/portfolio/page.js",
-            lineNumber: 140,
+            lineNumber: 149,
             columnNumber: 10
         }, this);
-        $[18] = t6;
-        $[19] = t8;
-        $[20] = t9;
+        $[20] = t6;
+        $[21] = t8;
+        $[22] = t9;
     } else {
-        t9 = $[20];
+        t9 = $[22];
     }
     let t10;
-    if ($[21] !== onChange || $[22] !== t9 || $[23] !== value) {
+    if ($[23] !== onChange || $[24] !== t9 || $[25] !== value) {
         t10 = /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f40$headlessui$2f$react$2f$dist$2f$components$2f$listbox$2f$listbox$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Listbox"], {
             value: value,
             onChange: onChange,
             children: t9
         }, void 0, false, {
             fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/portfolio/page.js",
-            lineNumber: 149,
+            lineNumber: 158,
             columnNumber: 11
         }, this);
-        $[21] = onChange;
-        $[22] = t9;
-        $[23] = value;
-        $[24] = t10;
+        $[23] = onChange;
+        $[24] = t9;
+        $[25] = value;
+        $[26] = t10;
     } else {
-        t10 = $[24];
+        t10 = $[26];
     }
     let t11;
-    if ($[25] !== t10 || $[26] !== t2) {
+    if ($[27] !== t10 || $[28] !== t2) {
         t11 = /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
             children: [
                 t2,
@@ -288,59 +299,333 @@ function CustomSelect(t0) {
             ]
         }, void 0, true, {
             fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/portfolio/page.js",
-            lineNumber: 159,
+            lineNumber: 168,
             columnNumber: 11
         }, this);
-        $[25] = t10;
-        $[26] = t2;
-        $[27] = t11;
+        $[27] = t10;
+        $[28] = t2;
+        $[29] = t11;
     } else {
-        t11 = $[27];
+        t11 = $[29];
     }
     return t11;
 }
 _c2 = CustomSelect;
-// --- Formulário para Adicionar Ativos ---
-function _CustomSelectOptionsMap(option_0) {
+// --- 👇 NOVO COMPONENTE: GRÁFICO DE ALOCAÇÃO 👇 ---
+function _CustomSelectOptionsMap(option) {
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f40$headlessui$2f$react$2f$dist$2f$components$2f$listbox$2f$listbox$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Listbox"].Option, {
+        value: option.id,
         className: _CustomSelectOptionsMapListboxOptionClassName,
-        value: option_0.id,
         children: (t0)=>{
             const { selected } = t0;
             return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Fragment"], {
                 children: [
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                        className: `block truncate ${selected ? "font-bold" : "font-normal"}`,
-                        children: option_0.name
+                        className: `block truncate ${selected ? "font-bold text-fin-gold" : "font-normal"}`,
+                        children: option.name
                     }, void 0, false, {
                         fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/portfolio/page.js",
-                        lineNumber: 175,
+                        lineNumber: 184,
                         columnNumber: 16
                     }, this),
-                    selected ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                    selected && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                         className: "absolute inset-y-0 left-0 flex items-center pl-3",
                         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(CheckIcon, {}, void 0, false, {
                             fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/portfolio/page.js",
-                            lineNumber: 175,
-                            columnNumber: 194
+                            lineNumber: 184,
+                            columnNumber: 207
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/portfolio/page.js",
-                        lineNumber: 175,
-                        columnNumber: 127
-                    }, this) : null
+                        lineNumber: 184,
+                        columnNumber: 140
+                    }, this)
                 ]
             }, void 0, true);
         }
-    }, option_0.id, false, {
+    }, option.id, false, {
         fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/portfolio/page.js",
-        lineNumber: 171,
+        lineNumber: 180,
         columnNumber: 10
     }, this);
 }
 function _CustomSelectOptionsMapListboxOptionClassName(t0) {
     const { active } = t0;
-    return `relative cursor-pointer select-none py-2 pl-10 pr-4 ${active ? "bg-fin-card/80 text-fin-gold" : "text-white"}`;
+    return `relative cursor-pointer select-none py-2 pl-10 pr-4 rounded-lg ${active ? "bg-fin-gold/20 text-fin-gold" : "text-white"}`;
+}
+function AssetAllocationCard(t0) {
+    const $ = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$compiler$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["c"])(31);
+    if ($[0] !== "f9569af1f53366e8f22fe996dee91baba15448946748519b42d3def85dfe1398") {
+        for(let $i = 0; $i < 31; $i += 1){
+            $[$i] = Symbol.for("react.memo_cache_sentinel");
+        }
+        $[0] = "f9569af1f53366e8f22fe996dee91baba15448946748519b42d3def85dfe1398";
+    }
+    const { monthlyInvestmentAmount } = t0;
+    let t1;
+    let t2;
+    let t3;
+    let t4;
+    let t5;
+    let t6;
+    let t7;
+    let t8;
+    let t9;
+    if ($[1] !== monthlyInvestmentAmount) {
+        const allocationProfile = {
+            labels: [
+                "Renda Fixa",
+                "A\xE7\xF5es",
+                "Internacional",
+                "FIIs",
+                "Criptomoedas"
+            ],
+            percentages: [
+                0.45,
+                0.3,
+                0.15,
+                0.05,
+                0.05
+            ]
+        };
+        const investmentValues = allocationProfile.percentages.map({
+            "AssetAllocationCard[allocationProfile.percentages.map()]": (perc)=>monthlyInvestmentAmount * perc
+        }["AssetAllocationCard[allocationProfile.percentages.map()]"]);
+        const chartData = {
+            labels: allocationProfile.labels.map({
+                "AssetAllocationCard[allocationProfile.labels.map()]": (label, i)=>`${label} (${(allocationProfile.percentages[i] * 100).toFixed(0)}%)`
+            }["AssetAllocationCard[allocationProfile.labels.map()]"]),
+            datasets: [
+                {
+                    data: investmentValues,
+                    backgroundColor: [
+                        "#025E73",
+                        "#024059",
+                        "#D9896C",
+                        "#8C5346",
+                        "#F2AB6D"
+                    ],
+                    borderColor: "#0a192f",
+                    borderWidth: 3,
+                    hoverOffset: 12
+                }
+            ]
+        };
+        let t10;
+        if ($[11] === Symbol.for("react.memo_cache_sentinel")) {
+            t10 = {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: "right",
+                        labels: {
+                            color: "#E2E8F0",
+                            font: {
+                                size: 14
+                            },
+                            boxWidth: 20
+                        }
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: _temp
+                        }
+                    }
+                }
+            };
+            $[11] = t10;
+        } else {
+            t10 = $[11];
+        }
+        const chartOptions = t10;
+        t6 = "bg-gradient-to-br from-[#1b263b] to-[#0d1b2a] p-8 rounded-3xl border border-fin-gold/10 shadow-xl backdrop-blur-md mb-10";
+        if ($[12] === Symbol.for("react.memo_cache_sentinel")) {
+            t7 = /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
+                className: "text-3xl font-semibold text-fin-gold mb-2 tracking-tight",
+                children: "Alocação do Aporte Mensal"
+            }, void 0, false, {
+                fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/portfolio/page.js",
+                lineNumber: 263,
+                columnNumber: 12
+            }, this);
+            t8 = /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                className: "text-white/70 mb-1",
+                children: "Valor total a investir este mês:"
+            }, void 0, false, {
+                fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/portfolio/page.js",
+                lineNumber: 264,
+                columnNumber: 12
+            }, this);
+            $[12] = t7;
+            $[13] = t8;
+        } else {
+            t7 = $[12];
+            t8 = $[13];
+        }
+        const t11 = formatCurrency(monthlyInvestmentAmount);
+        if ($[14] !== t11) {
+            t9 = /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                className: "text-4xl font-extrabold text-fin-highlight mb-6",
+                children: t11
+            }, void 0, false, {
+                fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/portfolio/page.js",
+                lineNumber: 273,
+                columnNumber: 12
+            }, this);
+            $[14] = t11;
+            $[15] = t9;
+        } else {
+            t9 = $[15];
+        }
+        t3 = "grid grid-cols-1 md:grid-cols-2 gap-8 items-center";
+        if ($[16] === Symbol.for("react.memo_cache_sentinel")) {
+            t4 = {
+                height: "300px"
+            };
+            $[16] = t4;
+        } else {
+            t4 = $[16];
+        }
+        t5 = /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+            className: "h-full relative",
+            children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$react$2d$chartjs$2d$2$2f$dist$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Pie"], {
+                data: chartData,
+                options: chartOptions
+            }, void 0, false, {
+                fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/portfolio/page.js",
+                lineNumber: 288,
+                columnNumber: 43
+            }, this)
+        }, void 0, false, {
+            fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/portfolio/page.js",
+            lineNumber: 288,
+            columnNumber: 10
+        }, this);
+        t1 = "space-y-3";
+        t2 = allocationProfile.labels.map({
+            "AssetAllocationCard[allocationProfile.labels.map()]": (label_1, i_0)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                    className: "flex justify-between items-center bg-fin-dark/50 p-3 rounded-lg border border-white/10",
+                    children: [
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                            className: "text-white/90",
+                            children: label_1
+                        }, void 0, false, {
+                            fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/portfolio/page.js",
+                            lineNumber: 291,
+                            columnNumber: 198
+                        }, this),
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                            className: "font-bold text-white",
+                            children: formatCurrency(investmentValues[i_0])
+                        }, void 0, false, {
+                            fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/portfolio/page.js",
+                            lineNumber: 291,
+                            columnNumber: 246
+                        }, this)
+                    ]
+                }, label_1, true, {
+                    fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/portfolio/page.js",
+                    lineNumber: 291,
+                    columnNumber: 80
+                }, this)
+        }["AssetAllocationCard[allocationProfile.labels.map()]"]);
+        $[1] = monthlyInvestmentAmount;
+        $[2] = t1;
+        $[3] = t2;
+        $[4] = t3;
+        $[5] = t4;
+        $[6] = t5;
+        $[7] = t6;
+        $[8] = t7;
+        $[9] = t8;
+        $[10] = t9;
+    } else {
+        t1 = $[2];
+        t2 = $[3];
+        t3 = $[4];
+        t4 = $[5];
+        t5 = $[6];
+        t6 = $[7];
+        t7 = $[8];
+        t8 = $[9];
+        t9 = $[10];
+    }
+    let t10;
+    if ($[17] !== t1 || $[18] !== t2) {
+        t10 = /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+            className: t1,
+            children: t2
+        }, void 0, false, {
+            fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/portfolio/page.js",
+            lineNumber: 316,
+            columnNumber: 11
+        }, this);
+        $[17] = t1;
+        $[18] = t2;
+        $[19] = t10;
+    } else {
+        t10 = $[19];
+    }
+    let t11;
+    if ($[20] !== t10 || $[21] !== t3 || $[22] !== t4 || $[23] !== t5) {
+        t11 = /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+            className: t3,
+            style: t4,
+            children: [
+                t5,
+                t10
+            ]
+        }, void 0, true, {
+            fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/portfolio/page.js",
+            lineNumber: 325,
+            columnNumber: 11
+        }, this);
+        $[20] = t10;
+        $[21] = t3;
+        $[22] = t4;
+        $[23] = t5;
+        $[24] = t11;
+    } else {
+        t11 = $[24];
+    }
+    let t12;
+    if ($[25] !== t11 || $[26] !== t6 || $[27] !== t7 || $[28] !== t8 || $[29] !== t9) {
+        t12 = /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+            className: t6,
+            children: [
+                t7,
+                t8,
+                t9,
+                t11
+            ]
+        }, void 0, true, {
+            fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/portfolio/page.js",
+            lineNumber: 336,
+            columnNumber: 11
+        }, this);
+        $[25] = t11;
+        $[26] = t6;
+        $[27] = t7;
+        $[28] = t8;
+        $[29] = t9;
+        $[30] = t12;
+    } else {
+        t12 = $[30];
+    }
+    return t12;
+}
+_c3 = AssetAllocationCard;
+// --- Formulário (sem alteração) ---
+function _temp(context) {
+    let label_0 = context.label || "";
+    if (label_0) {
+        label_0 = label_0 + ": ";
+    }
+    if (context.parsed !== null) {
+        label_0 = label_0 + formatCurrency(context.parsed);
+    }
+    return label_0;
 }
 function AddHoldingForm({ onHoldingAdded }) {
     _s();
@@ -349,8 +634,8 @@ function AddHoldingForm({ onHoldingAdded }) {
     const [assetType, setAssetType] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])('Ação');
     const [quantity, setQuantity] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])('');
     const [averagePrice, setAveragePrice] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])('');
-    const [isSubmitting, setIsSubmitting] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
     const [quote, setQuote] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(null);
+    const [isSubmitting, setIsSubmitting] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
     const [quoteLoading, setQuoteLoading] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
     const assetTypes = [
         {
@@ -370,31 +655,30 @@ function AddHoldingForm({ onHoldingAdded }) {
             name: 'Ação (EUA)'
         }
     ];
-    const fetchQuote = ()=>{
+    const fetchQuote = async ()=>{
         if (!ticker) return;
         setQuoteLoading(true);
-        setQuote(null);
-        __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$axios$2f$lib$2f$axios$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].get(`${API_URL}/portfolio/quote/${ticker}`).then((response)=>setQuote(response.data.price)).catch((error)=>{
-            console.error("Erro:", error);
+        try {
+            const { data } = await __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$axios$2f$lib$2f$axios$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].get(`${API_URL}/portfolio/quote/${ticker}`);
+            setQuote(data.price);
+        } catch  {
             setQuote('Não encontrado');
-        }).finally(()=>setQuoteLoading(false));
+        } finally{
+            setQuoteLoading(false);
+        }
     };
     const handleSubmit = async (e)=>{
         e.preventDefault();
-        if (!ticker || !name || !assetType || !quantity || !averagePrice) {
-            alert("Preencha todos os campos.");
-            return;
-        }
+        if (!ticker || !name || !assetType || !quantity || !averagePrice) return alert('Preencha todos os campos.');
         setIsSubmitting(true);
         try {
-            const holdingData = {
+            await __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$axios$2f$lib$2f$axios$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].post(`${API_URL}/portfolio/`, {
                 ticker: ticker.toUpperCase(),
                 name,
                 asset_type: assetType,
                 quantity: parseFloat(quantity),
                 average_price: parseFloat(averagePrice)
-            };
-            await __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$axios$2f$lib$2f$axios$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].post(`${API_URL}/portfolio/`, holdingData);
+            });
             setTicker('');
             setName('');
             setAssetType('Ação');
@@ -402,145 +686,142 @@ function AddHoldingForm({ onHoldingAdded }) {
             setAveragePrice('');
             setQuote(null);
             onHoldingAdded();
-        } catch (error_0) {
-            alert("Erro ao salvar ativo.");
-            console.error(error_0);
+        } catch  {
+            alert('Erro ao salvar ativo.');
         } finally{
             setIsSubmitting(false);
         }
     };
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-        className: "bg-gradient-to-br from-fin-card to-fin-dark/80 p-8 rounded-3xl shadow-2xl mb-8 border border-fin-gold/20 backdrop-blur-sm",
+        className: "bg-gradient-to-br from-[#1b263b] to-[#0d1b2a] p-8 rounded-3xl border border-fin-gold/10 shadow-xl backdrop-blur-md mb-10 transition-all",
         children: [
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
-                className: "text-2xl font-bold text-white mb-6",
-                children: "Adicionar Ativo ao Portfólio"
+                className: "text-3xl font-semibold text-fin-gold mb-6 tracking-tight",
+                children: "Adicionar Ativo 💼"
             }, void 0, false, {
                 fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/portfolio/page.js",
-                lineNumber: 248,
+                lineNumber: 424,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("form", {
                 onSubmit: handleSubmit,
-                className: "space-y-4",
+                className: "space-y-6",
                 children: [
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                        className: "grid grid-cols-1 md:grid-cols-3 gap-4",
+                        className: "grid grid-cols-1 md:grid-cols-3 gap-6",
                         children: [
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                 children: [
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
-                                        className: "block text-sm font-medium text-white/80 mb-2",
+                                        className: "block text-sm text-white/80 mb-2",
                                         children: "Ticker *"
                                     }, void 0, false, {
                                         fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/portfolio/page.js",
-                                        lineNumber: 253,
+                                        lineNumber: 428,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                         className: "flex gap-2",
                                         children: [
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
-                                                type: "text",
                                                 value: ticker,
                                                 onChange: (e_0)=>setTicker(e_0.target.value),
                                                 placeholder: "Ex: ITUB4",
-                                                className: "w-full p-4 bg-fin-dark/60 rounded-xl border-2 border-white/10 focus:border-fin-gold text-white uppercase"
+                                                className: "w-full p-4 bg-[#0d1b2a]/80 rounded-xl border border-white/10 focus:border-fin-gold text-white uppercase transition"
                                             }, void 0, false, {
                                                 fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/portfolio/page.js",
-                                                lineNumber: 255,
+                                                lineNumber: 430,
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
                                                 type: "button",
                                                 onClick: fetchQuote,
                                                 disabled: quoteLoading,
-                                                className: "p-4 bg-fin-dark/60 rounded-xl border-2 border-white/10 text-fin-gold hover:border-fin-gold transition",
-                                                children: quoteLoading ? '...' : 'Buscar'
+                                                className: "px-4 bg-gradient-to-r from-fin-gold to-yellow-400 text-fin-dark font-semibold rounded-xl shadow hover:opacity-90 transition",
+                                                children: quoteLoading ? '...' : '🔍'
                                             }, void 0, false, {
                                                 fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/portfolio/page.js",
-                                                lineNumber: 256,
+                                                lineNumber: 431,
                                                 columnNumber: 15
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/portfolio/page.js",
-                                        lineNumber: 254,
+                                        lineNumber: 429,
                                         columnNumber: 13
                                     }, this),
                                     quote && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                        className: "text-sm mt-2 text-fin-highlight",
+                                        className: "text-sm mt-2 text-fin-gold/80",
                                         children: [
                                             "Preço Atual: ",
                                             typeof quote === 'number' ? formatCurrency(quote) : quote
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/portfolio/page.js",
-                                        lineNumber: 260,
+                                        lineNumber: 435,
                                         columnNumber: 23
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/portfolio/page.js",
-                                lineNumber: 252,
+                                lineNumber: 427,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                 className: "md:col-span-2",
                                 children: [
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
-                                        className: "block text-sm font-medium text-white/80 mb-2",
-                                        children: "Nome do Ativo *"
+                                        className: "block text-sm text-white/80 mb-2",
+                                        children: "Nome *"
                                     }, void 0, false, {
                                         fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/portfolio/page.js",
-                                        lineNumber: 265,
+                                        lineNumber: 440,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
-                                        type: "text",
                                         value: name,
                                         onChange: (e_1)=>setName(e_1.target.value),
                                         placeholder: "Ex: Itaú Unibanco",
-                                        className: "w-full p-4 bg-fin-dark/60 rounded-xl border-2 border-white/10 focus:border-fin-gold text-white"
+                                        className: "w-full p-4 bg-[#0d1b2a]/80 rounded-xl border border-white/10 focus:border-fin-gold text-white transition"
                                     }, void 0, false, {
                                         fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/portfolio/page.js",
-                                        lineNumber: 266,
+                                        lineNumber: 441,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/portfolio/page.js",
-                                lineNumber: 264,
+                                lineNumber: 439,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/portfolio/page.js",
-                        lineNumber: 251,
+                        lineNumber: 426,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                        className: "grid grid-cols-1 md:grid-cols-3 gap-4",
+                        className: "grid grid-cols-1 md:grid-cols-3 gap-6",
                         children: [
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(CustomSelect, {
                                 label: "Tipo de Ativo *",
                                 value: assetType,
                                 onChange: setAssetType,
                                 options: assetTypes,
-                                placeholder: "Selecione o tipo"
+                                placeholder: "Selecione"
                             }, void 0, false, {
                                 fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/portfolio/page.js",
-                                lineNumber: 271,
+                                lineNumber: 445,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                 children: [
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
-                                        className: "block text-sm font-medium text-white/80 mb-2",
+                                        className: "block text-sm text-white/80 mb-2",
                                         children: "Quantidade *"
                                     }, void 0, false, {
                                         fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/portfolio/page.js",
-                                        lineNumber: 273,
+                                        lineNumber: 447,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -549,26 +830,26 @@ function AddHoldingForm({ onHoldingAdded }) {
                                         value: quantity,
                                         onChange: (e_2)=>setQuantity(e_2.target.value),
                                         placeholder: "Ex: 100",
-                                        className: "w-full p-4 bg-fin-dark/60 rounded-xl border-2 border-white/10 focus:border-fin-gold text-white"
+                                        className: "w-full p-4 bg-[#0d1b2a]/80 rounded-xl border border-white/10 focus:border-fin-gold text-white transition"
                                     }, void 0, false, {
                                         fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/portfolio/page.js",
-                                        lineNumber: 274,
+                                        lineNumber: 448,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/portfolio/page.js",
-                                lineNumber: 272,
+                                lineNumber: 446,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                 children: [
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
-                                        className: "block text-sm font-medium text-white/80 mb-2",
-                                        children: "Preço Médio de Compra *"
+                                        className: "block text-sm text-white/80 mb-2",
+                                        children: "Preço Médio *"
                                     }, void 0, false, {
                                         fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/portfolio/page.js",
-                                        lineNumber: 277,
+                                        lineNumber: 451,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -577,58 +858,58 @@ function AddHoldingForm({ onHoldingAdded }) {
                                         value: averagePrice,
                                         onChange: (e_3)=>setAveragePrice(e_3.target.value),
                                         placeholder: "Ex: 28.50",
-                                        className: "w-full p-4 bg-fin-dark/60 rounded-xl border-2 border-white/10 focus:border-fin-gold text-white"
+                                        className: "w-full p-4 bg-[#0d1b2a]/80 rounded-xl border border-white/10 focus:border-fin-gold text-white transition"
                                     }, void 0, false, {
                                         fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/portfolio/page.js",
-                                        lineNumber: 278,
+                                        lineNumber: 452,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/portfolio/page.js",
-                                lineNumber: 276,
+                                lineNumber: 450,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/portfolio/page.js",
-                        lineNumber: 270,
+                        lineNumber: 444,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
                         type: "submit",
                         disabled: isSubmitting,
-                        className: "w-full bg-gradient-to-r from-fin-highlight to-fin-gold hover:opacity-90 text-fin-dark font-bold py-4 rounded-xl transition shadow-lg",
+                        className: "w-full py-4 bg-gradient-to-r from-fin-gold to-yellow-400 hover:opacity-90 text-[#0d1b2a] font-bold rounded-xl shadow-xl transition-all transform hover:scale-[1.01]",
                         children: isSubmitting ? 'Salvando...' : '💾 Salvar Ativo'
                     }, void 0, false, {
                         fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/portfolio/page.js",
-                        lineNumber: 282,
+                        lineNumber: 455,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/portfolio/page.js",
-                lineNumber: 249,
+                lineNumber: 425,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/portfolio/page.js",
-        lineNumber: 247,
+        lineNumber: 423,
         columnNumber: 10
     }, this);
 }
-_s(AddHoldingForm, "uSCqxI6XhQpk9RMBE8wUizB7JEM=");
-_c3 = AddHoldingForm;
-// --- Componente para Mostrar o Portfólio ---
+_s(AddHoldingForm, "29SxhNcP549U9Uj4Km+scQy/4lk=");
+_c4 = AddHoldingForm;
+// --- Visualização (sem alteração) ---
 function PortfolioView(t0) {
     _s1();
-    const $ = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$compiler$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["c"])(71);
-    if ($[0] !== "d9f3caf74bddefab358f137e3d2ea2a2e914413b9918854baebb242a311bf1c4") {
-        for(let $i = 0; $i < 71; $i += 1){
+    const $ = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$compiler$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["c"])(67);
+    if ($[0] !== "f9569af1f53366e8f22fe996dee91baba15448946748519b42d3def85dfe1398") {
+        for(let $i = 0; $i < 67; $i += 1){
             $[$i] = Symbol.for("react.memo_cache_sentinel");
         }
-        $[0] = "d9f3caf74bddefab358f137e3d2ea2a2e914413b9918854baebb242a311bf1c4";
+        $[0] = "f9569af1f53366e8f22fe996dee91baba15448946748519b42d3def85dfe1398";
     }
     const { holdings, setHoldings } = t0;
     let t1;
@@ -643,375 +924,359 @@ function PortfolioView(t0) {
     let t2;
     if ($[2] !== holdings || $[3] !== marketPrices) {
         t2 = ({
-            "PortfolioView[fetchPricesSequentially]": async ()=>{
+            "PortfolioView[useEffect()]": ()=>{
                 if (holdings.length === 0) {
                     return;
                 }
-                setIsLoading(true);
-                const uniqueTickers = [
-                    ...new Set(holdings.map(_PortfolioViewFetchPricesSequentiallyHoldingsMap))
-                ];
-                const newPrices = {
-                    ...marketPrices
-                };
-                for (const ticker of uniqueTickers){
-                    ;
-                    try {
-                        const res = await __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$axios$2f$lib$2f$axios$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].get(`${API_URL}/portfolio/quote/${ticker}`);
-                        newPrices[ticker] = res.data.price;
-                        setMarketPrices({
-                            ...newPrices
-                        });
-                        await new Promise(_temp);
-                    } catch (t3) {
-                        console.error(`Falha ao buscar ${ticker}`);
-                        newPrices[ticker] = 0;
+                const fetchPricesSequentially = {
+                    "PortfolioView[useEffect() > fetchPricesSequentially]": async ()=>{
+                        setIsLoading(true);
+                        const newPrices = {
+                            ...marketPrices
+                        };
+                        const uniqueTickers = [
+                            ...new Set(holdings.map(_PortfolioViewUseEffectFetchPricesSequentiallyHoldingsMap))
+                        ];
+                        for (const ticker of uniqueTickers){
+                            if (newPrices[ticker]) {
+                                continue;
+                            }
+                            ;
+                            try {
+                                const res = await __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$axios$2f$lib$2f$axios$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].get(`${API_URL}/portfolio/quote/${ticker}`);
+                                newPrices[ticker] = res.data.price;
+                            } catch (t3) {
+                                newPrices[ticker] = 0;
+                            }
+                            setMarketPrices({
+                                ...newPrices
+                            });
+                            await new Promise(_temp2);
+                        }
+                        setIsLoading(false);
                     }
-                }
-                setIsLoading(false);
+                }["PortfolioView[useEffect() > fetchPricesSequentially]"];
+                fetchPricesSequentially();
             }
-        })["PortfolioView[fetchPricesSequentially]"];
+        })["PortfolioView[useEffect()]"];
         $[2] = holdings;
         $[3] = marketPrices;
         $[4] = t2;
     } else {
         t2 = $[4];
     }
-    const fetchPricesSequentially = t2;
     let t3;
-    if ($[5] !== setHoldings) {
-        t3 = ({
-            "PortfolioView[handleDelete]": async (holdingId)=>{
-                if (confirm("Remover este ativo do portf\xF3lio?")) {
-                    ;
-                    try {
-                        await __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$axios$2f$lib$2f$axios$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].delete(`${API_URL}/portfolio/${holdingId}`);
-                        setHoldings({
-                            "PortfolioView[handleDelete > setHoldings()]": (prev)=>prev.filter({
-                                    "PortfolioView[handleDelete > setHoldings() > prev.filter()]": (h_0)=>h_0.id !== holdingId
-                                }["PortfolioView[handleDelete > setHoldings() > prev.filter()]"])
-                        }["PortfolioView[handleDelete > setHoldings()]"]);
-                    } catch (t4) {
-                        alert("Erro ao deletar ativo.");
-                    }
-                }
-            }
-        })["PortfolioView[handleDelete]"];
-        $[5] = setHoldings;
+    if ($[5] !== holdings) {
+        t3 = [
+            holdings
+        ];
+        $[5] = holdings;
         $[6] = t3;
     } else {
         t3 = $[6];
     }
-    const handleDelete = t3;
+    (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])(t2, t3);
+    let t4;
+    if ($[7] !== setHoldings) {
+        t4 = ({
+            "PortfolioView[handleDelete]": async (id)=>{
+                if (!confirm("Remover ativo?")) {
+                    return;
+                }
+                try {
+                    await __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$axios$2f$lib$2f$axios$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].delete(`${API_URL}/portfolio/${id}`);
+                    setHoldings({
+                        "PortfolioView[handleDelete > setHoldings()]": (p)=>p.filter({
+                                "PortfolioView[handleDelete > setHoldings() > p.filter()]": (h_0)=>h_0.id !== id
+                            }["PortfolioView[handleDelete > setHoldings() > p.filter()]"])
+                    }["PortfolioView[handleDelete > setHoldings()]"]);
+                } catch  {
+                    alert("Erro ao deletar ativo.");
+                }
+            }
+        })["PortfolioView[handleDelete]"];
+        $[7] = setHoldings;
+        $[8] = t4;
+    } else {
+        t4 = $[8];
+    }
+    const handleDelete = t4;
+    let pct;
+    let profit;
     let t10;
     let t11;
-    let t4;
+    let t12;
     let t5;
     let t6;
     let t7;
     let t8;
     let t9;
-    let totalProfit;
-    let totalProfitPercent;
-    if ($[7] !== fetchPricesSequentially || $[8] !== holdings || $[9] !== isLoading || $[10] !== marketPrices) {
+    if ($[9] !== holdings || $[10] !== marketPrices) {
         let totalInvested = 0;
         let totalCurrent = 0;
         holdings.forEach({
             "PortfolioView[holdings.forEach()]": (h_1)=>{
-                const currentPrice = marketPrices[h_1.asset.ticker] || h_1.average_price;
+                const price = marketPrices[h_1.asset.ticker] || h_1.average_price;
                 totalInvested = totalInvested + h_1.quantity * h_1.average_price;
                 totalInvested;
-                totalCurrent = totalCurrent + h_1.quantity * currentPrice;
+                totalCurrent = totalCurrent + h_1.quantity * price;
                 totalCurrent;
             }
         }["PortfolioView[holdings.forEach()]"]);
-        totalProfit = totalCurrent - totalInvested;
-        totalProfitPercent = totalInvested > 0 ? totalProfit / totalInvested * 100 : 0;
-        t10 = "bg-gradient-to-br from-fin-card to-fin-dark/80 p-8 rounded-3xl border border-white/5 backdrop-blur-sm";
-        let t12;
+        profit = totalCurrent - totalInvested;
+        pct = totalInvested ? profit / totalInvested * 100 : 0;
+        t11 = "bg-[#0d1b2a]/80 p-8 rounded-3xl border border-white/10 backdrop-blur-lg shadow-xl";
         if ($[21] === Symbol.for("react.memo_cache_sentinel")) {
             t12 = /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
-                className: "text-2xl font-bold text-white",
-                children: "Meu Patrimônio"
+                className: "text-3xl font-semibold text-fin-gold mb-6",
+                children: "💰 Meu Portfólio"
             }, void 0, false, {
                 fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/portfolio/page.js",
-                lineNumber: 399,
+                lineNumber: 586,
                 columnNumber: 13
             }, this);
             $[21] = t12;
         } else {
             t12 = $[21];
         }
-        const t13 = isLoading ? "Atualizando..." : "\uD83D\uDD04 Atualizar Cota\xE7\xF5es";
-        if ($[22] !== fetchPricesSequentially || $[23] !== isLoading || $[24] !== t13) {
-            t11 = /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                className: "flex justify-between items-center mb-6",
-                children: [
-                    t12,
-                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
-                        onClick: fetchPricesSequentially,
-                        disabled: isLoading,
-                        className: "px-4 py-2 bg-fin-dark/70 text-fin-gold border border-fin-gold/50 rounded-xl hover:bg-fin-gold hover:text-fin-dark transition disabled:opacity-50 disabled:animate-pulse",
-                        children: t13
-                    }, void 0, false, {
-                        fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/portfolio/page.js",
-                        lineNumber: 406,
-                        columnNumber: 74
-                    }, this)
-                ]
-            }, void 0, true, {
-                fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/portfolio/page.js",
-                lineNumber: 406,
-                columnNumber: 13
-            }, this);
-            $[22] = fetchPricesSequentially;
-            $[23] = isLoading;
-            $[24] = t13;
-            $[25] = t11;
-        } else {
-            t11 = $[25];
-        }
-        t8 = "grid grid-cols-1 md:grid-cols-3 gap-6 mb-8";
-        let t14;
-        if ($[26] === Symbol.for("react.memo_cache_sentinel")) {
-            t14 = /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                className: "text-gray-400 text-sm mb-1",
+        t9 = "grid grid-cols-1 md:grid-cols-3 gap-6 mb-8";
+        let t13;
+        if ($[22] === Symbol.for("react.memo_cache_sentinel")) {
+            t13 = /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                className: "text-sm text-white/60 mb-1",
                 children: "Patrimônio Atual"
             }, void 0, false, {
                 fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/portfolio/page.js",
-                lineNumber: 417,
+                lineNumber: 594,
                 columnNumber: 13
             }, this);
-            $[26] = t14;
+            $[22] = t13;
         } else {
-            t14 = $[26];
+            t13 = $[22];
         }
-        t9 = /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-            className: "bg-fin-dark/50 p-6 rounded-2xl border border-white/5 text-center",
+        t10 = /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+            className: "bg-[#1b263b]/80 p-6 rounded-2xl text-center border border-white/10 shadow-inner",
             children: [
-                t14,
+                t13,
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                     className: "text-3xl font-bold text-white",
                     children: formatCurrency(totalCurrent)
                 }, void 0, false, {
                     fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/portfolio/page.js",
-                    lineNumber: 422,
-                    columnNumber: 97
+                    lineNumber: 599,
+                    columnNumber: 113
                 }, this)
             ]
         }, void 0, true, {
             fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/portfolio/page.js",
-            lineNumber: 422,
-            columnNumber: 10
+            lineNumber: 599,
+            columnNumber: 11
         }, this);
-        t6 = "bg-fin-dark/50 p-6 rounded-2xl border border-white/5 text-center";
-        if ($[27] === Symbol.for("react.memo_cache_sentinel")) {
-            t7 = /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                className: "text-gray-400 text-sm mb-1",
+        t7 = "bg-[#1b263b]/80 p-6 rounded-2xl text-center border border-white/10";
+        if ($[23] === Symbol.for("react.memo_cache_sentinel")) {
+            t8 = /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                className: "text-sm text-white/60 mb-1",
                 children: "Total Investido"
             }, void 0, false, {
                 fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/portfolio/page.js",
-                lineNumber: 425,
+                lineNumber: 602,
                 columnNumber: 12
             }, this);
-            $[27] = t7;
+            $[23] = t8;
         } else {
-            t7 = $[27];
+            t8 = $[23];
         }
-        t4 = "text-3xl font-bold text-gray-300";
-        t5 = formatCurrency(totalInvested);
-        $[7] = fetchPricesSequentially;
-        $[8] = holdings;
-        $[9] = isLoading;
+        t5 = "text-3xl font-bold text-gray-300";
+        t6 = formatCurrency(totalInvested);
+        $[9] = holdings;
         $[10] = marketPrices;
-        $[11] = t10;
-        $[12] = t11;
-        $[13] = t4;
-        $[14] = t5;
-        $[15] = t6;
-        $[16] = t7;
-        $[17] = t8;
-        $[18] = t9;
-        $[19] = totalProfit;
-        $[20] = totalProfitPercent;
+        $[11] = pct;
+        $[12] = profit;
+        $[13] = t10;
+        $[14] = t11;
+        $[15] = t12;
+        $[16] = t5;
+        $[17] = t6;
+        $[18] = t7;
+        $[19] = t8;
+        $[20] = t9;
     } else {
-        t10 = $[11];
-        t11 = $[12];
-        t4 = $[13];
-        t5 = $[14];
-        t6 = $[15];
-        t7 = $[16];
-        t8 = $[17];
-        t9 = $[18];
-        totalProfit = $[19];
-        totalProfitPercent = $[20];
-    }
-    let t12;
-    if ($[28] !== t4 || $[29] !== t5) {
-        t12 = /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-            className: t4,
-            children: t5
-        }, void 0, false, {
-            fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/portfolio/page.js",
-            lineNumber: 460,
-            columnNumber: 11
-        }, this);
-        $[28] = t4;
-        $[29] = t5;
-        $[30] = t12;
-    } else {
-        t12 = $[30];
+        pct = $[11];
+        profit = $[12];
+        t10 = $[13];
+        t11 = $[14];
+        t12 = $[15];
+        t5 = $[16];
+        t6 = $[17];
+        t7 = $[18];
+        t8 = $[19];
+        t9 = $[20];
     }
     let t13;
-    if ($[31] !== t12 || $[32] !== t6 || $[33] !== t7) {
+    if ($[24] !== t5 || $[25] !== t6) {
         t13 = /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-            className: t6,
+            className: t5,
+            children: t6
+        }, void 0, false, {
+            fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/portfolio/page.js",
+            lineNumber: 635,
+            columnNumber: 11
+        }, this);
+        $[24] = t5;
+        $[25] = t6;
+        $[26] = t13;
+    } else {
+        t13 = $[26];
+    }
+    let t14;
+    if ($[27] !== t13 || $[28] !== t7 || $[29] !== t8) {
+        t14 = /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+            className: t7,
             children: [
-                t7,
-                t12
+                t8,
+                t13
             ]
         }, void 0, true, {
             fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/portfolio/page.js",
-            lineNumber: 469,
+            lineNumber: 644,
             columnNumber: 11
         }, this);
-        $[31] = t12;
-        $[32] = t6;
-        $[33] = t7;
-        $[34] = t13;
+        $[27] = t13;
+        $[28] = t7;
+        $[29] = t8;
+        $[30] = t14;
     } else {
-        t13 = $[34];
+        t14 = $[30];
     }
-    const t14 = `p-6 rounded-2xl border ${totalProfit >= 0 ? "bg-green-500/10 border-green-500/20" : "bg-red-500/10 border-red-500/20"}`;
-    const t15 = `text-sm mb-1 ${totalProfit >= 0 ? "text-green-400" : "text-fin-red"}`;
-    let t16;
-    if ($[35] !== t15) {
-        t16 = /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-            className: t15,
+    const t15 = `p-6 rounded-2xl text-center ${profit >= 0 ? "bg-green-600/20 border-green-500/30" : "bg-red-600/20 border-red-500/30"} border`;
+    const t16 = `text-sm ${profit >= 0 ? "text-green-400" : "text-red-400"}`;
+    let t17;
+    if ($[31] !== t16) {
+        t17 = /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+            className: t16,
             children: "Lucro/Prejuízo"
         }, void 0, false, {
             fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/portfolio/page.js",
-            lineNumber: 481,
+            lineNumber: 656,
             columnNumber: 11
         }, this);
-        $[35] = t15;
-        $[36] = t16;
+        $[31] = t16;
+        $[32] = t17;
     } else {
-        t16 = $[36];
+        t17 = $[32];
     }
-    const t17 = `text-3xl font-bold ${totalProfit >= 0 ? "text-green-400" : "text-fin-red"}`;
-    let t18;
-    if ($[37] !== totalProfit) {
-        t18 = formatCurrency(totalProfit);
-        $[37] = totalProfit;
-        $[38] = t18;
-    } else {
-        t18 = $[38];
-    }
+    const t18 = `text-3xl font-bold ${profit >= 0 ? "text-green-400" : "text-red-400"}`;
     let t19;
-    if ($[39] !== totalProfitPercent) {
-        t19 = totalProfitPercent.toFixed(1);
-        $[39] = totalProfitPercent;
-        $[40] = t19;
+    if ($[33] !== profit) {
+        t19 = formatCurrency(profit);
+        $[33] = profit;
+        $[34] = t19;
     } else {
-        t19 = $[40];
+        t19 = $[34];
     }
     let t20;
-    if ($[41] !== t17 || $[42] !== t18 || $[43] !== t19) {
-        t20 = /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-            className: t17,
+    if ($[35] !== pct) {
+        t20 = pct.toFixed(1);
+        $[35] = pct;
+        $[36] = t20;
+    } else {
+        t20 = $[36];
+    }
+    let t21;
+    if ($[37] !== t18 || $[38] !== t19 || $[39] !== t20) {
+        t21 = /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+            className: t18,
             children: [
-                t18,
-                " (",
                 t19,
+                " (",
+                t20,
                 "%)"
             ]
         }, void 0, true, {
             fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/portfolio/page.js",
-            lineNumber: 506,
+            lineNumber: 681,
             columnNumber: 11
         }, this);
-        $[41] = t17;
-        $[42] = t18;
-        $[43] = t19;
-        $[44] = t20;
+        $[37] = t18;
+        $[38] = t19;
+        $[39] = t20;
+        $[40] = t21;
     } else {
-        t20 = $[44];
-    }
-    let t21;
-    if ($[45] !== t14 || $[46] !== t16 || $[47] !== t20) {
-        t21 = /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-            className: t14,
-            children: [
-                t16,
-                t20
-            ]
-        }, void 0, true, {
-            fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/portfolio/page.js",
-            lineNumber: 516,
-            columnNumber: 11
-        }, this);
-        $[45] = t14;
-        $[46] = t16;
-        $[47] = t20;
-        $[48] = t21;
-    } else {
-        t21 = $[48];
+        t21 = $[40];
     }
     let t22;
-    if ($[49] !== t13 || $[50] !== t21 || $[51] !== t8 || $[52] !== t9) {
+    if ($[41] !== t15 || $[42] !== t17 || $[43] !== t21) {
         t22 = /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-            className: t8,
+            className: t15,
             children: [
-                t9,
-                t13,
+                t17,
                 t21
             ]
         }, void 0, true, {
             fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/portfolio/page.js",
-            lineNumber: 526,
+            lineNumber: 691,
             columnNumber: 11
         }, this);
-        $[49] = t13;
-        $[50] = t21;
-        $[51] = t8;
-        $[52] = t9;
-        $[53] = t22;
+        $[41] = t15;
+        $[42] = t17;
+        $[43] = t21;
+        $[44] = t22;
     } else {
-        t22 = $[53];
+        t22 = $[44];
     }
     let t23;
-    if ($[54] !== isLoading) {
-        t23 = isLoading && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-            className: "text-center text-fin-gold animate-pulse mb-4",
-            children: "Atualizando cotações... (15s por ativo)"
-        }, void 0, false, {
+    if ($[45] !== t10 || $[46] !== t14 || $[47] !== t22 || $[48] !== t9) {
+        t23 = /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+            className: t9,
+            children: [
+                t10,
+                t14,
+                t22
+            ]
+        }, void 0, true, {
             fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/portfolio/page.js",
-            lineNumber: 537,
-            columnNumber: 24
+            lineNumber: 701,
+            columnNumber: 11
         }, this);
-        $[54] = isLoading;
-        $[55] = t23;
+        $[45] = t10;
+        $[46] = t14;
+        $[47] = t22;
+        $[48] = t9;
+        $[49] = t23;
     } else {
-        t23 = $[55];
+        t23 = $[49];
     }
     let t24;
-    if ($[56] !== handleDelete || $[57] !== holdings || $[58] !== marketPrices) {
-        let t25;
-        if ($[60] !== handleDelete || $[61] !== marketPrices) {
-            t25 = ({
+    if ($[50] !== isLoading) {
+        t24 = isLoading && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+            className: "text-center text-fin-gold animate-pulse mb-4",
+            children: "🔄 Atualizando cotações (delay de 15s por ativo)..."
+        }, void 0, false, {
+            fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/portfolio/page.js",
+            lineNumber: 712,
+            columnNumber: 24
+        }, this);
+        $[50] = isLoading;
+        $[51] = t24;
+    } else {
+        t24 = $[51];
+    }
+    let t25;
+    if ($[52] !== handleDelete || $[53] !== holdings || $[54] !== marketPrices) {
+        let t26;
+        if ($[56] !== handleDelete || $[57] !== marketPrices) {
+            t26 = ({
                 "PortfolioView[holdings.map()]": (h_2)=>{
-                    const currentPrice_0 = marketPrices[h_2.asset.ticker] || 0;
+                    const cp = marketPrices[h_2.asset.ticker] || 0;
                     const invested = h_2.quantity * h_2.average_price;
-                    const currentVal = h_2.quantity * currentPrice_0;
-                    const profit = currentVal - invested;
-                    const profitPercent = invested > 0 ? profit / invested * 100 : 0;
-                    const isPriceFound = marketPrices[h_2.asset.ticker] !== undefined;
+                    const curr = h_2.quantity * cp;
+                    const p_0 = curr - invested;
+                    const pPct = invested ? p_0 / invested * 100 : 0;
                     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                        className: "bg-fin-dark/50 p-5 rounded-2xl border border-white/10",
+                        className: "bg-[#1b263b]/70 p-5 rounded-2xl border border-white/10 hover:border-fin-gold/30 transition-all shadow-lg",
                         children: [
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                className: "flex justify-between items-center mb-4",
+                                className: "flex justify-between items-center mb-3",
                                 children: [
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                         children: [
@@ -1020,8 +1285,8 @@ function PortfolioView(t0) {
                                                 children: h_2.asset.ticker
                                             }, void 0, false, {
                                                 fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/portfolio/page.js",
-                                                lineNumber: 555,
-                                                columnNumber: 163
+                                                lineNumber: 729,
+                                                columnNumber: 214
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                                                 className: "text-sm text-gray-400",
@@ -1033,338 +1298,322 @@ function PortfolioView(t0) {
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/portfolio/page.js",
-                                                lineNumber: 555,
-                                                columnNumber: 231
+                                                lineNumber: 729,
+                                                columnNumber: 282
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/portfolio/page.js",
-                                        lineNumber: 555,
-                                        columnNumber: 158
+                                        lineNumber: 729,
+                                        columnNumber: 209
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
                                         onClick: {
                                             "PortfolioView[holdings.map() > <button>.onClick]": ()=>handleDelete(h_2.id)
                                         }["PortfolioView[holdings.map() > <button>.onClick]"],
-                                        className: "p-2 text-fin-red/50 hover:text-fin-red hover:bg-fin-red/10 rounded-full",
+                                        className: "text-red-400 hover:text-red-300 transition",
                                         children: "🗑️"
                                     }, void 0, false, {
                                         fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/portfolio/page.js",
-                                        lineNumber: 555,
-                                        columnNumber: 319
+                                        lineNumber: 729,
+                                        columnNumber: 370
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/portfolio/page.js",
-                                lineNumber: 555,
-                                columnNumber: 102
+                                lineNumber: 729,
+                                columnNumber: 153
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                 className: "grid grid-cols-2 md:grid-cols-4 gap-4 text-center",
                                 children: [
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                         children: [
-                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                                                 className: "text-xs text-gray-400",
-                                                children: "Posição Atual"
+                                                children: "Valor Atual"
                                             }, void 0, false, {
                                                 fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/portfolio/page.js",
-                                                lineNumber: 557,
-                                                columnNumber: 244
+                                                lineNumber: 731,
+                                                columnNumber: 215
                                             }, this),
-                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                                                 className: "text-lg font-semibold text-white",
-                                                children: formatCurrency(currentVal)
+                                                children: formatCurrency(curr)
                                             }, void 0, false, {
                                                 fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/portfolio/page.js",
-                                                lineNumber: 557,
-                                                columnNumber: 302
+                                                lineNumber: 731,
+                                                columnNumber: 267
                                             }, this),
-                                            isPriceFound && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                className: `text-sm ${profit >= 0 ? "text-green-400" : "text-fin-red"}`,
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                                className: `text-sm ${p_0 >= 0 ? "text-green-400" : "text-red-400"}`,
                                                 children: [
-                                                    profitPercent.toFixed(1),
+                                                    pPct.toFixed(1),
                                                     "%"
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/portfolio/page.js",
-                                                lineNumber: 557,
-                                                columnNumber: 403
+                                                lineNumber: 731,
+                                                columnNumber: 341
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/portfolio/page.js",
-                                        lineNumber: 557,
-                                        columnNumber: 239
+                                        lineNumber: 731,
+                                        columnNumber: 210
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                         children: [
-                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                                                 className: "text-xs text-gray-400",
                                                 children: "Preço Atual"
                                             }, void 0, false, {
                                                 fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/portfolio/page.js",
-                                                lineNumber: 557,
-                                                columnNumber: 526
+                                                lineNumber: 731,
+                                                columnNumber: 447
                                             }, this),
-                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                                                 className: "text-lg font-semibold text-white",
-                                                children: isPriceFound ? formatCurrency(currentPrice_0) : "..."
+                                                children: cp ? formatCurrency(cp) : "---"
                                             }, void 0, false, {
                                                 fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/portfolio/page.js",
-                                                lineNumber: 557,
-                                                columnNumber: 582
+                                                lineNumber: 731,
+                                                columnNumber: 499
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/portfolio/page.js",
-                                        lineNumber: 557,
-                                        columnNumber: 521
+                                        lineNumber: 731,
+                                        columnNumber: 442
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                         children: [
-                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                                                 className: "text-xs text-gray-400",
                                                 children: "Quantidade"
                                             }, void 0, false, {
                                                 fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/portfolio/page.js",
-                                                lineNumber: 557,
-                                                columnNumber: 704
+                                                lineNumber: 731,
+                                                columnNumber: 595
                                             }, this),
-                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                                                 className: "text-lg font-semibold text-white",
                                                 children: h_2.quantity
                                             }, void 0, false, {
                                                 fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/portfolio/page.js",
-                                                lineNumber: 557,
-                                                columnNumber: 759
+                                                lineNumber: 731,
+                                                columnNumber: 646
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/portfolio/page.js",
-                                        lineNumber: 557,
-                                        columnNumber: 699
+                                        lineNumber: 731,
+                                        columnNumber: 590
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                         children: [
-                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                                                 className: "text-xs text-gray-400",
                                                 children: "Preço Médio"
                                             }, void 0, false, {
                                                 fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/portfolio/page.js",
-                                                lineNumber: 557,
-                                                columnNumber: 840
+                                                lineNumber: 731,
+                                                columnNumber: 723
                                             }, this),
-                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                                                 className: "text-lg font-semibold text-white",
                                                 children: formatCurrency(h_2.average_price)
                                             }, void 0, false, {
                                                 fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/portfolio/page.js",
-                                                lineNumber: 557,
-                                                columnNumber: 896
+                                                lineNumber: 731,
+                                                columnNumber: 775
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/portfolio/page.js",
-                                        lineNumber: 557,
-                                        columnNumber: 835
+                                        lineNumber: 731,
+                                        columnNumber: 718
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/portfolio/page.js",
-                                lineNumber: 557,
-                                columnNumber: 172
+                                lineNumber: 731,
+                                columnNumber: 143
                             }, this)
                         ]
                     }, h_2.id, true, {
                         fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/portfolio/page.js",
-                        lineNumber: 555,
+                        lineNumber: 729,
                         columnNumber: 18
                     }, this);
                 }
             })["PortfolioView[holdings.map()]"];
-            $[60] = handleDelete;
-            $[61] = marketPrices;
-            $[62] = t25;
+            $[56] = handleDelete;
+            $[57] = marketPrices;
+            $[58] = t26;
         } else {
-            t25 = $[62];
+            t26 = $[58];
         }
-        t24 = holdings.map(t25);
-        $[56] = handleDelete;
-        $[57] = holdings;
-        $[58] = marketPrices;
-        $[59] = t24;
+        t25 = holdings.map(t26);
+        $[52] = handleDelete;
+        $[53] = holdings;
+        $[54] = marketPrices;
+        $[55] = t25;
     } else {
-        t24 = $[59];
-    }
-    let t25;
-    if ($[63] !== t24) {
-        t25 = /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-            className: "space-y-4",
-            children: t24
-        }, void 0, false, {
-            fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/portfolio/page.js",
-            lineNumber: 576,
-            columnNumber: 11
-        }, this);
-        $[63] = t24;
-        $[64] = t25;
-    } else {
-        t25 = $[64];
+        t25 = $[55];
     }
     let t26;
-    if ($[65] !== t10 || $[66] !== t11 || $[67] !== t22 || $[68] !== t23 || $[69] !== t25) {
+    if ($[59] !== t25) {
         t26 = /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-            className: t10,
+            className: "space-y-4",
+            children: t25
+        }, void 0, false, {
+            fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/portfolio/page.js",
+            lineNumber: 750,
+            columnNumber: 11
+        }, this);
+        $[59] = t25;
+        $[60] = t26;
+    } else {
+        t26 = $[60];
+    }
+    let t27;
+    if ($[61] !== t11 || $[62] !== t12 || $[63] !== t23 || $[64] !== t24 || $[65] !== t26) {
+        t27 = /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+            className: t11,
             children: [
-                t11,
-                t22,
+                t12,
                 t23,
-                t25
+                t24,
+                t26
             ]
         }, void 0, true, {
             fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/portfolio/page.js",
-            lineNumber: 584,
+            lineNumber: 758,
             columnNumber: 11
         }, this);
-        $[65] = t10;
-        $[66] = t11;
-        $[67] = t22;
-        $[68] = t23;
-        $[69] = t25;
-        $[70] = t26;
+        $[61] = t11;
+        $[62] = t12;
+        $[63] = t23;
+        $[64] = t24;
+        $[65] = t26;
+        $[66] = t27;
     } else {
-        t26 = $[70];
+        t27 = $[66];
     }
-    return t26;
+    return t27;
 }
-_s1(PortfolioView, "knWvLCl0uKX86vCo2EzbuJ2fUDU=");
-_c4 = PortfolioView;
-// --- Componente Principal da Página ---
-function _temp(resolve) {
+_s1(PortfolioView, "dQ5y9wyD6LjbENGOHHqHtuw3LQ8=");
+_c5 = PortfolioView;
+// --- Página principal ---
+function _temp2(resolve) {
     return setTimeout(resolve, 15000);
 }
-function _PortfolioViewFetchPricesSequentiallyHoldingsMap(h) {
+function _PortfolioViewUseEffectFetchPricesSequentiallyHoldingsMap(h) {
     return h.asset.ticker;
 }
 function PortfolioPage() {
     _s2();
-    const $ = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$compiler$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["c"])(9);
-    if ($[0] !== "d9f3caf74bddefab358f137e3d2ea2a2e914413b9918854baebb242a311bf1c4") {
-        for(let $i = 0; $i < 9; $i += 1){
-            $[$i] = Symbol.for("react.memo_cache_sentinel");
-        }
-        $[0] = "d9f3caf74bddefab358f137e3d2ea2a2e914413b9918854baebb242a311bf1c4";
-    }
-    let t0;
-    if ($[1] === Symbol.for("react.memo_cache_sentinel")) {
-        t0 = [];
-        $[1] = t0;
-    } else {
-        t0 = $[1];
-    }
-    const [holdings, setHoldings] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(t0);
+    const [holdings, setHoldings] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])([]);
     const [isLoading, setIsLoading] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(true);
-    let t1;
-    if ($[2] === Symbol.for("react.memo_cache_sentinel")) {
-        t1 = ({
-            "PortfolioPage[fetchHoldings]": ()=>{
-                setIsLoading(true);
-                __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$axios$2f$lib$2f$axios$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].get(`${API_URL}/portfolio/`).then({
-                    "PortfolioPage[fetchHoldings > (anonymous)()]": (res)=>setHoldings(res.data)
-                }["PortfolioPage[fetchHoldings > (anonymous)()]"]).catch(_PortfolioPageFetchHoldingsAnonymous).finally({
-                    "PortfolioPage[fetchHoldings > (anonymous)()]": ()=>setIsLoading(false)
-                }["PortfolioPage[fetchHoldings > (anonymous)()]"]);
-            }
-        })["PortfolioPage[fetchHoldings]"];
-        $[2] = t1;
-    } else {
-        t1 = $[2];
-    }
-    const fetchHoldings = t1;
-    let t2;
-    let t3;
-    if ($[3] === Symbol.for("react.memo_cache_sentinel")) {
-        t2 = ({
-            "PortfolioPage[useEffect()]": ()=>{
-                fetchHoldings();
-            }
-        })["PortfolioPage[useEffect()]"];
-        t3 = [];
-        $[3] = t2;
-        $[4] = t3;
-    } else {
-        t2 = $[3];
-        t3 = $[4];
-    }
-    (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])(t2, t3);
-    let t4;
-    if ($[5] === Symbol.for("react.memo_cache_sentinel")) {
-        t4 = /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(AddHoldingForm, {
-            onHoldingAdded: fetchHoldings
-        }, void 0, false, {
+    const [monthlyInvestment, setMonthlyInvestment] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(0); // 👈 NOVO ESTADO
+    const fetchHoldings = async ()=>{
+        setIsLoading(true);
+        try {
+            const { data } = await __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$axios$2f$lib$2f$axios$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].get(`${API_URL}/portfolio/`);
+            setHoldings(data);
+        } catch (e) {
+            console.error('Erro ao buscar portfólio:', e);
+        } finally{
+            setIsLoading(false);
+        }
+    };
+    // 👇 ATUALIZADO useEffect
+    (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
+        "PortfolioPage.useEffect": ()=>{
+            // 1. Busca os ativos
+            fetchHoldings();
+            // 2. Busca os dados do orçamento para o gráfico
+            const fetchBudgetData = {
+                "PortfolioPage.useEffect.fetchBudgetData": async ()=>{
+                    const date = new Date();
+                    const month = date.getMonth() + 1;
+                    const year = date.getFullYear();
+                    try {
+                        const res = await __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$axios$2f$lib$2f$axios$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].get(`${API_URL}/budget/analysis?month=${month}&year=${year}`);
+                        const analysis = res.data.analysis;
+                        // Encontra o grupo "Investimentos"
+                        const investmentGroup = analysis.find({
+                            "PortfolioPage.useEffect.fetchBudgetData.investmentGroup": (g)=>g.name.toLowerCase().includes('investimentos')
+                        }["PortfolioPage.useEffect.fetchBudgetData.investmentGroup"]);
+                        if (investmentGroup) {
+                            setMonthlyInvestment(investmentGroup.planned_amount);
+                        }
+                    } catch (e_0) {
+                        console.error("Erro ao buscar dados do orçamento:", e_0);
+                    }
+                }
+            }["PortfolioPage.useEffect.fetchBudgetData"];
+            fetchBudgetData();
+        }
+    }["PortfolioPage.useEffect"], []); // Roda apenas uma vez ao carregar a página
+    return(// Usei o seu fundo da página
+    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+        className: "min-h-screen bg-gradient-to-b from-[#0a192f] to-[#000814] py-12 px-4 md:px-8",
+        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+            className: "max-w-6xl mx-auto space-y-10",
+            children: [
+                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(AssetAllocationCard, {
+                    monthlyInvestmentAmount: monthlyInvestment
+                }, void 0, false, {
+                    fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/portfolio/page.js",
+                    lineNumber: 828,
+                    columnNumber: 9
+                }, this),
+                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(AddHoldingForm, {
+                    onHoldingAdded: fetchHoldings
+                }, void 0, false, {
+                    fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/portfolio/page.js",
+                    lineNumber: 830,
+                    columnNumber: 9
+                }, this),
+                isLoading ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                    className: "text-center text-white/60 py-12",
+                    children: "Carregando portfólio..."
+                }, void 0, false, {
+                    fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/portfolio/page.js",
+                    lineNumber: 831,
+                    columnNumber: 22
+                }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(PortfolioView, {
+                    holdings: holdings,
+                    setHoldings: setHoldings
+                }, void 0, false, {
+                    fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/portfolio/page.js",
+                    lineNumber: 831,
+                    columnNumber: 103
+                }, this)
+            ]
+        }, void 0, true, {
             fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/portfolio/page.js",
-            lineNumber: 656,
-            columnNumber: 10
-        }, this);
-        $[5] = t4;
-    } else {
-        t4 = $[5];
-    }
-    let t5;
-    if ($[6] !== holdings || $[7] !== isLoading) {
-        t5 = /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-            className: "min-h-screen",
-            children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                className: "max-w-6xl mx-auto",
-                children: [
-                    t4,
-                    isLoading ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                        className: "text-center text-white/60 py-12",
-                        children: "Carregando portfólio..."
-                    }, void 0, false, {
-                        fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/portfolio/page.js",
-                        lineNumber: 663,
-                        columnNumber: 92
-                    }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(PortfolioView, {
-                        holdings: holdings,
-                        setHoldings: setHoldings
-                    }, void 0, false, {
-                        fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/portfolio/page.js",
-                        lineNumber: 663,
-                        columnNumber: 173
-                    }, this)
-                ]
-            }, void 0, true, {
-                fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/portfolio/page.js",
-                lineNumber: 663,
-                columnNumber: 40
-            }, this)
-        }, void 0, false, {
-            fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/portfolio/page.js",
-            lineNumber: 663,
-            columnNumber: 10
-        }, this);
-        $[6] = holdings;
-        $[7] = isLoading;
-        $[8] = t5;
-    } else {
-        t5 = $[8];
-    }
-    return t5;
+            lineNumber: 825,
+            columnNumber: 7
+        }, this)
+    }, void 0, false, {
+        fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/portfolio/page.js",
+        lineNumber: 824,
+        columnNumber: 5
+    }, this));
 }
-_s2(PortfolioPage, "w+kZJkX2FP0rTj7DWg9Nsu/cM0A=");
-_c5 = PortfolioPage;
-function _PortfolioPageFetchHoldingsAnonymous(e) {
-    return console.error("Erro ao buscar portf\xF3lio:", e);
-}
-var _c, _c1, _c2, _c3, _c4, _c5;
+_s2(PortfolioPage, "DbMOzbkrlbO3MB+GAmDgdDPsaD0=");
+_c6 = PortfolioPage;
+var _c, _c1, _c2, _c3, _c4, _c5, _c6;
 __turbopack_context__.k.register(_c, "SelectorIcon");
 __turbopack_context__.k.register(_c1, "CheckIcon");
 __turbopack_context__.k.register(_c2, "CustomSelect");
-__turbopack_context__.k.register(_c3, "AddHoldingForm");
-__turbopack_context__.k.register(_c4, "PortfolioView");
-__turbopack_context__.k.register(_c5, "PortfolioPage");
+__turbopack_context__.k.register(_c3, "AssetAllocationCard");
+__turbopack_context__.k.register(_c4, "AddHoldingForm");
+__turbopack_context__.k.register(_c5, "PortfolioView");
+__turbopack_context__.k.register(_c6, "PortfolioPage");
 if (typeof globalThis.$RefreshHelpers$ === 'object' && globalThis.$RefreshHelpers !== null) {
     __turbopack_context__.k.registerExports(__turbopack_context__.m, globalThis.$RefreshHelpers$);
 }

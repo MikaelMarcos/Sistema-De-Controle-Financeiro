@@ -6,3 +6,9 @@ alpha-vantage
 scikit-learn
 joblib
 python-dateutil
+pandas
+openpyxl
+fpdf2
+matplotlib
+passlib[bcrypt]
+python-jose[cryptography]

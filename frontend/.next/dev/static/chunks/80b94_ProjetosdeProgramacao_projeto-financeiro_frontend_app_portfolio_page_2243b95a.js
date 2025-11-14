@@ -4,7 +4,8 @@
   "static/chunks/19f28_axios_lib_b2a1da8b._.js",
   "static/chunks/19f28_@headlessui_react_dist_9345afac._.js",
   "static/chunks/19f28_@floating-ui_react_dist_783f6d87._.js",
-  "static/chunks/19f28_0a86fdb7._.js",
+  "static/chunks/19f28_chart_js_dist_ccdd4a43._.js",
+  "static/chunks/19f28_33977767._.js",
   "static/chunks/80b94_ProjetosdeProgramacao_projeto-financeiro_frontend_app_portfolio_page_e0a5abde.js"
 ],
     source: "dynamic"
