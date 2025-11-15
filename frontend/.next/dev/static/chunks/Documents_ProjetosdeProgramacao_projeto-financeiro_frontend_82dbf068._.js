@@ -14,7 +14,7 @@ var _s = __turbopack_context__.k.signature();
 'use client';
 ;
 ;
-const API_URL = 'http://localhost:8000';
+const API_URL = 'https://api-financeiro-vbsl.onrender.com';
 // --- Seletor de Mês (sem alteração) ---
 function MonthSelector(t0) {
     const $ = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$compiler$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["c"])(20);

@@ -101,7 +101,7 @@ const DeleteIcon = ()=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$proj
         lineNumber: 11,
         columnNumber: 26
     }, ("TURBOPACK compile-time value", void 0));
-const API_URL = 'http://localhost:8000';
+const API_URL = 'https://api-financeiro-vbsl.onrender.com';
 const formatCurrency = (value)=>{
     if (value === null || value === undefined) value = 0;
     return value.toLocaleString('pt-BR', {

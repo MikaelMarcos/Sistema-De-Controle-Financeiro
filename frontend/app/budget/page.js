@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import AuthGuard from '@/components/AuthGuard'; // Importa o Guardião
 
-const API_URL = 'http://localhost:8000';
+const API_URL = 'https://api-financeiro-vbsl.onrender.com';
 const formatCurrency = (v) => (v ?? 0).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
 
 // --- Componente: Banner de Alerta (sem alteração) ---

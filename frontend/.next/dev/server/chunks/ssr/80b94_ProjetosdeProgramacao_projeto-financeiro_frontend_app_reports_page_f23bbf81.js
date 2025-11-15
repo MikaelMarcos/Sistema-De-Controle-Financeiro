@@ -13,7 +13,7 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgr
 ;
 ;
 ;
-const API_URL = 'http://localhost:8000';
+const API_URL = 'https://api-financeiro-vbsl.onrender.com';
 // --- Seletor de Mês Corrigido ---
 function MonthSelector({ currentDate, onDateChange }) {
     const handlePreviousMonth = ()=>{

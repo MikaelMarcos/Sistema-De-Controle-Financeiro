@@ -16,7 +16,7 @@ const CheckIcon = () => (
   </svg>
 );
 
-const API_URL = 'http://localhost:8000';
+const API_URL = 'https://api-financeiro-vbsl.onrender.com';
 
 // --- Seletor de Mês (Copiado do Dashboard) ---
 function MonthSelector({ currentDate, onDateChange }) {

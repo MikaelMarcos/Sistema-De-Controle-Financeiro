@@ -11,7 +11,7 @@ import { useAuth } from '@/context/AuthContext';
 
 Chart.register(ArcElement, Tooltip, Legend);
 
-const API_URL = 'http://localhost:8000';
+const API_URL = 'https://api-financeiro-vbsl.onrender.com';
 const formatCurrency = (v) => (v ?? 0).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
 
 // --- Sistema de Cores para Progresso ---

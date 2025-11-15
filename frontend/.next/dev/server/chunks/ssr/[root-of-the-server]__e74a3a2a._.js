@@ -156,7 +156,7 @@ const CheckIcon = ()=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$proje
         lineNumber: 15,
         columnNumber: 25
     }, ("TURBOPACK compile-time value", void 0));
-const API_URL = 'http://localhost:8000';
+const API_URL = 'https://api-financeiro-vbsl.onrender.com';
 const formatCurrency = (v)=>(v ?? 0).toLocaleString('pt-BR', {
         style: 'currency',
         currency: 'BRL'

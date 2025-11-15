@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 
-const API_URL = 'http://localhost:8000';
+const API_URL = 'https://api-financeiro-vbsl.onrender.com';
 
 // --- Seletor de Mês Corrigido ---
 function MonthSelector({ currentDate, onDateChange }) {

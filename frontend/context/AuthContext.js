@@ -3,7 +3,7 @@ import { createContext, useContext, useState, useEffect } from 'react';
 import axios from 'axios';
 import { useRouter, usePathname } from 'next/navigation';
 
-const API_URL = 'http://localhost:8000';
+const API_URL = 'https://api-financeiro-vbsl.onrender.com';
 
 const AuthContext = createContext(null);
 

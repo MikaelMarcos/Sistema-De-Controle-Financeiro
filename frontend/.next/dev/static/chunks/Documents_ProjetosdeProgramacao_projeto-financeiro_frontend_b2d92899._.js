@@ -172,7 +172,7 @@ const DeleteIcon = ()=>{
     return t0;
 };
 _c3 = DeleteIcon;
-const API_URL = 'http://localhost:8000';
+const API_URL = 'https://api-financeiro-vbsl.onrender.com';
 const formatCurrency = (value)=>{
     if (value === null || value === undefined) value = 0;
     return value.toLocaleString('pt-BR', {

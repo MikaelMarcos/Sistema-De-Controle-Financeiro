@@ -16,7 +16,7 @@ var _s = __turbopack_context__.k.signature(), _s1 = __turbopack_context__.k.sign
 ;
 ;
 ;
-const API_URL = 'http://localhost:8000';
+const API_URL = 'https://api-financeiro-vbsl.onrender.com';
 const formatCurrency = (v)=>(v ?? 0).toLocaleString('pt-BR', {
         style: 'currency',
         currency: 'BRL'
