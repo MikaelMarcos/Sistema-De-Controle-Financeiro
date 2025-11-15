@@ -2,20 +2,19 @@
 
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import AuthGuard from '@/components/AuthGuard'; // Importa o Guardião
 
 const API_URL = 'http://localhost:8000';
+const formatCurrency = (v) => (v ?? 0).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
 
-// --- Componente: Banner de Alerta (O mesmo de antes) ---
+// --- Componente: Banner de Alerta (sem alteração) ---
 function AlertBanner({ overBudgetGroups }) {
   if (overBudgetGroups.length === 0) return null;
   return (
     <div className="bg-gradient-to-r from-red-900/40 to-red-700/30 border-l-4 border-fin-red p-5 mb-8 rounded-xl shadow-lg backdrop-blur-md">
-      {/* ... (código do banner idêntico) ... */}
       <div className="flex items-start gap-3">
         <div className="flex-shrink-0">
-          <svg className="h-7 w-7 text-fin-red" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 9v2m0 4h.01M4.93 19h14.14a2 2 0 001.73-3L13.73 4a2 2 0 00-3.46 0L3.2 16a2 2 0 001.73 3z" />
-          </svg>
+          <svg className="h-7 w-7 text-fin-red" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 9v2m0 4h.01M4.93 19h14.14a2 2 0 001.73-3L13.73 4a2 2 0 00-3.46 0L3.2 16a2 2 0 001.73 3z" /></svg>
         </div>
         <div>
           <h3 className="text-lg font-bold text-fin-red mb-1">⚠️ Atenção ao Orçamento!</h3>
@@ -33,14 +32,10 @@ function AlertBanner({ overBudgetGroups }) {
   );
 }
 
-// --- Seletor de Mês (O mesmo de antes) ---
+// --- Seletor de Mês (sem alteração) ---
 function MonthSelector({ currentDate, onDateChange }) {
-  const handlePreviousMonth = () => {
-    const newDate = new Date(currentDate); newDate.setMonth(newDate.getMonth() - 1); onDateChange(newDate);
-  };
-  const handleNextMonth = () => {
-    const newDate = new Date(currentDate); newDate.setMonth(newDate.getMonth() + 1); onDateChange(newDate);
-  };
+  const handlePreviousMonth = () => { const newDate = new Date(currentDate); newDate.setMonth(newDate.getMonth() - 1); onDateChange(newDate); };
+  const handleNextMonth = () => { const newDate = new Date(currentDate); newDate.setMonth(newDate.getMonth() + 1); onDateChange(newDate); };
   const formattedDate = currentDate.toLocaleString('pt-BR', { month: 'long', year: 'numeric' }).replace(/^\w/, (c) => c.toUpperCase());
   return (
     <div className="flex justify-between items-center mb-8 bg-fin-card/30 p-4 rounded-2xl border border-white/5 backdrop-blur-sm shadow-inner">
@@ -51,65 +46,61 @@ function MonthSelector({ currentDate, onDateChange }) {
   );
 }
 
-// --- 👇 NOVO COMPONENTE: Card de Treinamento da IA 👇 ---
-function AITrainingCard() {
-  const [status, setStatus] = useState({ trained: false, message: 'Verificando status...' });
-  const [isLoading, setIsLoading] = useState(false);
+// --- 👇 NOVO COMPONENTE: Gerenciador de Grupos 👇 ---
+function BudgetGroupManager({ groups, onGroupAdded }) {
+  const [newGroupName, setNewGroupName] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  // 1. Verifica o status da IA ao carregar
-  useEffect(() => {
-    axios.get(`${API_URL}/ai/status`)
-      .then(response => setStatus(response.data))
-      .catch(error => setStatus({ trained: false, message: "Erro ao conectar com a IA." }));
-  }, []);
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (!newGroupName.trim()) return;
+    setIsSubmitting(true);
 
-  // 2. Função para treinar
-  const handleTrain = () => {
-    setIsLoading(true);
-    setStatus({ trained: false, message: "Treinando... Isso pode levar um momento." });
-    
-    axios.post(`${API_URL}/ai/train`)
-      .then(response => {
-        setStatus({ trained: true, message: response.data.message });
-      })
-      .catch(error => {
-        // Exibe a mensagem de erro do backend (ex: "Dados insuficientes")
-        const detail = error.response?.data?.detail || "Erro desconhecido durante o treinamento.";
-        setStatus({ trained: false, message: `Falha no Treinamento: ${detail}` });
-      })
-      .finally(() => {
-        setIsLoading(false);
-      });
+    try {
+      await axios.post(`${API_URL}/budget/`, { name: newGroupName });
+      setNewGroupName('');
+      onGroupAdded(); // Avisa a página principal para recarregar tudo
+    } catch (error) {
+      console.error("Erro ao criar grupo:", error);
+      alert(error.response?.data?.detail || "Erro ao criar grupo.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
-  const statusColor = status.trained ? "text-green-400" : "text-yellow-400";
-
   return (
-    <div className="bg-gradient-to-br from-fin-dark/90 to-fin-card/50 p-6 rounded-2xl border border-fin-highlight/30 shadow-xl backdrop-blur-sm mt-10">
-      <div className="flex items-start gap-4">
-        <div className="p-3 bg-fin-highlight/20 rounded-2xl">
-          <span className="text-3xl">🤖</span>
-        </div>
-        <div>
-          <h2 className="text-2xl font-bold text-fin-highlight mb-2">Categorização Inteligente</h2>
-          <p className="text-white/80 mb-4 text-sm">
-            Treine a IA para aprender com seu histórico. Quanto mais despesas você categorizar, 
-            mais inteligente ela ficará para preencher automaticamente no futuro.
-          </p>
-          <div className="flex items-center gap-4">
-            <button
-              onClick={handleTrain}
-              disabled={isLoading}
-              className="px-6 py-3 bg-gradient-to-r from-fin-highlight to-fin-gold text-fin-dark font-bold rounded-xl shadow-lg hover:opacity-90 transition-all disabled:opacity-50 disabled:animate-pulse"
-            >
-              {isLoading ? "Treinando IA..." : "Treinar / Retreinar IA"}
-            </button>
-            <div className="text-left">
-              <span className="text-xs text-gray-400">Status:</span>
-              <p className={`font-semibold ${statusColor}`}>{status.message}</p>
-            </div>
-          </div>
-        </div>
+    <div className="bg-fin-dark/50 p-6 rounded-2xl shadow-lg mb-8 border border-white/10 backdrop-blur-sm">
+      <h3 className="text-xl font-bold text-white mb-4">Gerenciar Grupos de Orçamento</h3>
+      <p className="text-sm text-gray-400 mb-4">Cadastre aqui os seus 6 grupos principais (Custo Fixo, Prazeres, etc.)</p>
+      
+      <form onSubmit={handleSubmit} className="flex gap-4 mb-6">
+        <input
+          type="text"
+          value={newGroupName}
+          onChange={(e) => setNewGroupName(e.target.value)}
+          placeholder="Nome do novo grupo (ex: Custo Fixo)"
+          className="flex-1 w-full p-3 bg-fin-dark/60 rounded-xl border-2 border-white/10 focus:border-fin-gold text-white"
+        />
+        <button
+          type="submit"
+          disabled={isSubmitting}
+          className="px-6 py-3 bg-fin-gold text-fin-dark font-bold rounded-xl shadow-lg hover:opacity-90 transition-all disabled:opacity-50"
+        >
+          {isSubmitting ? "..." : "Adicionar"}
+        </button>
+      </form>
+
+      <h4 className="text-lg font-semibold text-white mb-3">Grupos Atuais ({groups.length})</h4>
+      <div className="flex flex-wrap gap-2">
+        {groups.length === 0 ? (
+          <span className="text-sm text-gray-500 italic">Nenhum grupo cadastrado ainda.</span>
+        ) : (
+          groups.map(group => (
+            <span key={group.id} className="py-2 px-4 bg-fin-card/80 text-white rounded-full text-sm font-medium border border-fin-card">
+              {group.name}
+            </span>
+          ))
+        )}
       </div>
     </div>
   );
@@ -117,51 +108,76 @@ function AITrainingCard() {
 
 
 // --- Componente Principal da Página ---
-export default function BudgetPage() {
-  const [currentDate, setCurrentDate] = useState(new Date());
+function BudgetPage() {
+  const [currentDate, setCurrentDate] = useState(null); // Inicia como null
   const [analysisData, setAnalysisData] = useState(null);
   const [totalPercentage, setTotalPercentage] = useState(0);
   const [overBudgetGroups, setOverBudgetGroups] = useState([]);
+  const [budgetGroups, setBudgetGroups] = useState([]); // 👈 NOVO: Estado para os grupos
 
-  const fetchAnalysis = async () => {
-    // ... (código idêntico ao anterior)
-    const month = currentDate.getMonth() + 1;
-    const year = currentDate.getFullYear();
+  // Função para buscar TODOS os dados da página
+  const fetchPageData = async (date) => {
+    if (!date) return;
+    const month = date.getMonth() + 1;
+    const year = date.getFullYear();
     try {
-      const response = await axios.get(`${API_URL}/budget/analysis?month=${month}&year=${year}`);
-      setAnalysisData(response.data);
-      const totalPerc = response.data.analysis.reduce((acc, group) => acc + group.target_percentage, 0);
+      // Busca a análise E a lista de grupos
+      const [analysisRes, groupsRes] = await Promise.all([
+        axios.get(`${API_URL}/budget/analysis?month=${month}&year=${year}`),
+        axios.get(`${API_URL}/budget/`)
+      ]);
+      
+      const analysis = analysisRes.data;
+      setAnalysisData(analysis);
+      setBudgetGroups(groupsRes.data); // 👈 Salva a lista de grupos
+
+      const totalPerc = analysis.analysis.reduce((acc, group) => acc + group.target_percentage, 0);
       setTotalPercentage(totalPerc);
-      const alerts = response.data.analysis.filter((group) => group.is_over_budget);
+
+      const alerts = analysis.analysis.filter((group) => group.is_over_budget);
       setOverBudgetGroups(alerts);
+
     } catch (error) {
-      console.error('Erro ao buscar análise:', error);
+      console.error('Erro ao buscar dados:', error);
     }
   };
-
+  
+  // Define a data inicial apenas no cliente
   useEffect(() => {
-    fetchAnalysis();
+    setCurrentDate(new Date());
+  }, []);
+
+  // Busca os dados quando a data mudar
+  useEffect(() => {
+    fetchPageData(currentDate);
   }, [currentDate]);
 
   const handlePercentageChange = (groupId, newValue) => {
-    // ... (código idêntico ao anterior)
     axios.put(`${API_URL}/budget/${groupId}?target_percentage=${newValue}`)
-      .then(() => fetchAnalysis())
+      .then(() => fetchPageData(currentDate)) // Recarrega tudo
       .catch((error) => console.error('Erro ao atualizar:', error));
   };
-
-  if (!analysisData)
+  
+  // Skeleton loading
+  if (!analysisData || !currentDate) {
     return (
       <div className="text-white flex justify-center items-center h-64 animate-pulse">
-        Carregando análise...
+        Carregando...
       </div>
     );
+  }
 
   return (
     <div className="text-white">
       <h1 className="text-4xl font-bold mb-8 text-center text-fin-gold tracking-wide drop-shadow-md">
         📊 Meu Orçamento Mensal
       </h1>
+      
+      {/* 👇 NOVO CARD INSERIDO AQUI 👇 */}
+      <BudgetGroupManager 
+        groups={budgetGroups} 
+        onGroupAdded={() => fetchPageData(currentDate)} // Recarrega ao adicionar
+      />
 
       <MonthSelector currentDate={currentDate} onDateChange={setCurrentDate} />
 
@@ -169,7 +185,6 @@ export default function BudgetPage() {
 
       {/* Resumo do Mês */}
       <div className="bg-fin-card/80 p-6 rounded-2xl shadow-xl mb-10 flex justify-between items-center border border-white/10 backdrop-blur-md">
-        {/* ... (código idêntico ao anterior) ... */}
         <div>
           <h2 className="text-gray-300 text-sm mb-1 font-medium">
             Renda em {currentDate.toLocaleString('pt-BR', { month: 'long' })}
@@ -185,10 +200,9 @@ export default function BudgetPage() {
         </div>
       </div>
 
-      {/* Lista Comparativa */}
+      {/* Lista Comparativa (Planejado vs. Realizado) */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {analysisData.analysis.map((group) => {
-          // ... (código idêntico ao anterior) ...
           let spendPercentage = 0;
           if (group.planned_amount > 0) {
             spendPercentage = (group.actual_spent / group.planned_amount) * 100;
@@ -232,15 +246,15 @@ export default function BudgetPage() {
           );
         })}
       </div>
-
-      {/* 👇 O NOVO CARD DE TREINAMENTO É INSERIDO AQUI 👇 */}
-      <AITrainingCard />
     </div>
   );
 }
 
-// Função auxiliar (precisa estar no escopo)
-const formatCurrency = (value) => {
-  if (value === null || value === undefined) value = 0;
-  return value.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
-};
+// Wrapper final com o AuthGuard
+export default function BudgetPageWrapper() {
+  return (
+    <AuthGuard>
+      <BudgetPage />
+    </AuthGuard>
+  );
+}

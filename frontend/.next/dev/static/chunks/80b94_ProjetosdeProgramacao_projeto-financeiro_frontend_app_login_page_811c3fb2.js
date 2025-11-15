@@ -16,20 +16,20 @@ var _s = __turbopack_context__.k.signature();
 ;
 ;
 ;
-// O formulário de login real
 function LoginForm() {
     _s();
-    const $ = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$compiler$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["c"])(40);
-    if ($[0] !== "440d5ad6c684288420180773421ada5b23ad9574d00528d585892eadff49947b") {
-        for(let $i = 0; $i < 40; $i += 1){
+    const $ = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$compiler$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["c"])(43);
+    if ($[0] !== "06f6ae28e06bc577026f60ec2bb1891576468257951040e033f792174ca22d2d") {
+        for(let $i = 0; $i < 43; $i += 1){
             $[$i] = Symbol.for("react.memo_cache_sentinel");
         }
-        $[0] = "440d5ad6c684288420180773421ada5b23ad9574d00528d585892eadff49947b";
+        $[0] = "06f6ae28e06bc577026f60ec2bb1891576468257951040e033f792174ca22d2d";
     }
     const [email, setEmail] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])("");
     const [password, setPassword] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])("");
     const [isRegistering, setIsRegistering] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
     const [error, setError] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])("");
+    const [success, setSuccess] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])("");
     const { login, register } = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$context$2f$AuthContext$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useAuth"])();
     let t0;
     if ($[1] !== email || $[2] !== isRegistering || $[3] !== login || $[4] !== password || $[5] !== register) {
@@ -37,16 +37,23 @@ function LoginForm() {
             "LoginForm[handleSubmit]": async (e)=>{
                 e.preventDefault();
                 setError("");
+                setSuccess("");
                 ;
                 try {
                     if (isRegistering) {
                         await register(email, password);
+                        setSuccess("Conta criada com sucesso! Por favor, fa\xE7a o login.");
+                        setIsRegistering(false);
                     } else {
                         await login(email, password);
                     }
                 } catch (t1) {
                     const err = t1;
-                    setError(err.response?.data?.detail || "Email ou senha inv\xE1lidos.");
+                    if (err.response && err.response.data && err.response.data.detail) {
+                        setError(err.response.data.detail);
+                    } else {
+                        setError("Ocorreu um erro. Tente novamente.");
+                    }
                 }
             }
         })["LoginForm[handleSubmit]"];
@@ -71,13 +78,13 @@ function LoginForm() {
                     children: "anceiro"
                 }, void 0, false, {
                     fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/login/page.js",
-                    lineNumber: 55,
+                    lineNumber: 61,
                     columnNumber: 76
                 }, this)
             ]
         }, void 0, true, {
             fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/login/page.js",
-            lineNumber: 55,
+            lineNumber: 61,
             columnNumber: 10
         }, this);
         $[7] = t1;
@@ -92,7 +99,7 @@ function LoginForm() {
             children: t2
         }, void 0, false, {
             fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/login/page.js",
-            lineNumber: 63,
+            lineNumber: 69,
             columnNumber: 10
         }, this);
         $[8] = t2;
@@ -107,7 +114,7 @@ function LoginForm() {
             children: "Email"
         }, void 0, false, {
             fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/login/page.js",
-            lineNumber: 71,
+            lineNumber: 77,
             columnNumber: 10
         }, this);
         $[10] = t4;
@@ -136,13 +143,13 @@ function LoginForm() {
                     className: "w-full p-4 bg-fin-dark/60 rounded-xl border-2 border-white/10 focus:border-fin-gold text-white"
                 }, void 0, false, {
                     fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/login/page.js",
-                    lineNumber: 87,
+                    lineNumber: 93,
                     columnNumber: 19
                 }, this)
             ]
         }, void 0, true, {
             fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/login/page.js",
-            lineNumber: 87,
+            lineNumber: 93,
             columnNumber: 10
         }, this);
         $[12] = email;
@@ -157,7 +164,7 @@ function LoginForm() {
             children: "Senha"
         }, void 0, false, {
             fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/login/page.js",
-            lineNumber: 95,
+            lineNumber: 101,
             columnNumber: 10
         }, this);
         $[14] = t7;
@@ -186,13 +193,13 @@ function LoginForm() {
                     className: "w-full p-4 bg-fin-dark/60 rounded-xl border-2 border-white/10 focus:border-fin-gold text-white"
                 }, void 0, false, {
                     fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/login/page.js",
-                    lineNumber: 111,
+                    lineNumber: 117,
                     columnNumber: 19
                 }, this)
             ]
         }, void 0, true, {
             fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/login/page.js",
-            lineNumber: 111,
+            lineNumber: 117,
             columnNumber: 10
         }, this);
         $[16] = password;
@@ -207,7 +214,7 @@ function LoginForm() {
             children: error
         }, void 0, false, {
             fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/login/page.js",
-            lineNumber: 119,
+            lineNumber: 125,
             columnNumber: 20
         }, this);
         $[18] = error;
@@ -215,128 +222,149 @@ function LoginForm() {
     } else {
         t10 = $[19];
     }
-    const t11 = isRegistering ? "Registrar e Entrar" : "Entrar";
-    let t12;
-    if ($[20] !== t11) {
-        t12 = /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
-            type: "submit",
-            className: "w-full bg-gradient-to-r from-fin-highlight to-fin-gold hover:opacity-90 text-fin-dark font-bold py-3 px-4 rounded-xl transition-all shadow-lg",
-            children: t11
+    let t11;
+    if ($[20] !== success) {
+        t11 = success && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+            className: "text-sm text-green-400 bg-green-500/10 p-3 rounded-lg",
+            children: success
         }, void 0, false, {
             fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/login/page.js",
-            lineNumber: 128,
+            lineNumber: 133,
+            columnNumber: 22
+        }, this);
+        $[20] = success;
+        $[21] = t11;
+    } else {
+        t11 = $[21];
+    }
+    const t12 = isRegistering ? "Registrar" : "Entrar";
+    let t13;
+    if ($[22] !== t12) {
+        t13 = /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+            type: "submit",
+            className: "w-full bg-gradient-to-r from-fin-highlight to-fin-gold hover:opacity-90 text-fin-dark font-bold py-3 px-4 rounded-xl transition-all shadow-lg",
+            children: t12
+        }, void 0, false, {
+            fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/login/page.js",
+            lineNumber: 142,
             columnNumber: 11
         }, this);
-        $[20] = t11;
-        $[21] = t12;
+        $[22] = t12;
+        $[23] = t13;
     } else {
-        t12 = $[21];
+        t13 = $[23];
     }
-    let t13;
-    if ($[22] !== handleSubmit || $[23] !== t10 || $[24] !== t12 || $[25] !== t6 || $[26] !== t9) {
-        t13 = /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("form", {
+    let t14;
+    if ($[24] !== handleSubmit || $[25] !== t10 || $[26] !== t11 || $[27] !== t13 || $[28] !== t6 || $[29] !== t9) {
+        t14 = /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("form", {
             onSubmit: handleSubmit,
             className: "space-y-6",
             children: [
                 t6,
                 t9,
                 t10,
-                t12
+                t11,
+                t13
             ]
         }, void 0, true, {
             fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/login/page.js",
-            lineNumber: 136,
+            lineNumber: 150,
             columnNumber: 11
         }, this);
-        $[22] = handleSubmit;
-        $[23] = t10;
-        $[24] = t12;
-        $[25] = t6;
-        $[26] = t9;
+        $[24] = handleSubmit;
+        $[25] = t10;
+        $[26] = t11;
         $[27] = t13;
+        $[28] = t6;
+        $[29] = t9;
+        $[30] = t14;
     } else {
-        t13 = $[27];
+        t14 = $[30];
     }
-    const t14 = isRegistering ? "J\xE1 tem uma conta?" : "N\xE3o tem uma conta?";
-    let t15;
-    if ($[28] !== isRegistering) {
-        t15 = ({
-            "LoginForm[<button>.onClick]": ()=>setIsRegistering(!isRegistering)
+    const t15 = isRegistering ? "J\xE1 tem uma conta?" : "N\xE3o tem uma conta?";
+    let t16;
+    if ($[31] !== isRegistering) {
+        t16 = ({
+            "LoginForm[<button>.onClick]": ()=>{
+                setIsRegistering(!isRegistering);
+                setError("");
+                setSuccess("");
+            }
         })["LoginForm[<button>.onClick]"];
-        $[28] = isRegistering;
-        $[29] = t15;
+        $[31] = isRegistering;
+        $[32] = t16;
     } else {
-        t15 = $[29];
+        t16 = $[32];
     }
-    const t16 = isRegistering ? "Fa\xE7a o login" : "Registre-se";
-    let t17;
-    if ($[30] !== t15 || $[31] !== t16) {
-        t17 = /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
-            onClick: t15,
+    const t17 = isRegistering ? "Fa\xE7a o login" : "Registre-se";
+    let t18;
+    if ($[33] !== t16 || $[34] !== t17) {
+        t18 = /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+            onClick: t16,
             className: "font-medium text-fin-gold hover:underline ml-1",
-            children: t16
+            children: t17
         }, void 0, false, {
             fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/login/page.js",
-            lineNumber: 160,
+            lineNumber: 179,
             columnNumber: 11
         }, this);
-        $[30] = t15;
-        $[31] = t16;
-        $[32] = t17;
-    } else {
-        t17 = $[32];
-    }
-    let t18;
-    if ($[33] !== t14 || $[34] !== t17) {
-        t18 = /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-            className: "text-center text-sm text-gray-400 mt-6",
-            children: [
-                t14,
-                t17
-            ]
-        }, void 0, true, {
-            fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/login/page.js",
-            lineNumber: 169,
-            columnNumber: 11
-        }, this);
-        $[33] = t14;
+        $[33] = t16;
         $[34] = t17;
         $[35] = t18;
     } else {
         t18 = $[35];
     }
     let t19;
-    if ($[36] !== t13 || $[37] !== t18 || $[38] !== t3) {
-        t19 = /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+    if ($[36] !== t15 || $[37] !== t18) {
+        t19 = /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+            className: "text-center text-sm text-gray-400 mt-6",
+            children: [
+                t15,
+                t18
+            ]
+        }, void 0, true, {
+            fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/login/page.js",
+            lineNumber: 188,
+            columnNumber: 11
+        }, this);
+        $[36] = t15;
+        $[37] = t18;
+        $[38] = t19;
+    } else {
+        t19 = $[38];
+    }
+    let t20;
+    if ($[39] !== t14 || $[40] !== t19 || $[41] !== t3) {
+        t20 = /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
             className: "min-h-screen flex items-center justify-center bg-gradient-to-br from-fin-dark via-fin-card to-fin-dark p-4",
             children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                 className: "w-full max-w-md bg-fin-dark/80 p-8 rounded-2xl shadow-2xl border border-fin-gold/20 backdrop-blur-md",
                 children: [
                     t1,
                     t3,
-                    t13,
-                    t18
+                    t14,
+                    t19
                 ]
             }, void 0, true, {
                 fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/login/page.js",
-                lineNumber: 178,
+                lineNumber: 197,
                 columnNumber: 135
             }, this)
         }, void 0, false, {
             fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/login/page.js",
-            lineNumber: 178,
+            lineNumber: 197,
             columnNumber: 11
         }, this);
-        $[36] = t13;
-        $[37] = t18;
-        $[38] = t3;
-        $[39] = t19;
+        $[39] = t14;
+        $[40] = t19;
+        $[41] = t3;
+        $[42] = t20;
     } else {
-        t19 = $[39];
+        t20 = $[42];
     }
-    return t19;
+    return t20;
 }
-_s(LoginForm, "3C9FVV5VeNRmMUngc9y8K3PBxNI=", false, function() {
+_s(LoginForm, "leCGnMUQr6gskMlrTBFU1f5+P6o=", false, function() {
     return [
         __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$context$2f$AuthContext$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useAuth"]
     ];
@@ -344,23 +372,23 @@ _s(LoginForm, "3C9FVV5VeNRmMUngc9y8K3PBxNI=", false, function() {
 _c = LoginForm;
 function LoginPage() {
     const $ = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$compiler$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["c"])(2);
-    if ($[0] !== "440d5ad6c684288420180773421ada5b23ad9574d00528d585892eadff49947b") {
+    if ($[0] !== "06f6ae28e06bc577026f60ec2bb1891576468257951040e033f792174ca22d2d") {
         for(let $i = 0; $i < 2; $i += 1){
             $[$i] = Symbol.for("react.memo_cache_sentinel");
         }
-        $[0] = "440d5ad6c684288420180773421ada5b23ad9574d00528d585892eadff49947b";
+        $[0] = "06f6ae28e06bc577026f60ec2bb1891576468257951040e033f792174ca22d2d";
     }
     let t0;
     if ($[1] === Symbol.for("react.memo_cache_sentinel")) {
         t0 = /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$context$2f$AuthContext$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["AuthProvider"], {
             children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(LoginForm, {}, void 0, false, {
                 fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/login/page.js",
-                lineNumber: 200,
+                lineNumber: 217,
                 columnNumber: 24
             }, this)
         }, void 0, false, {
             fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/login/page.js",
-            lineNumber: 200,
+            lineNumber: 217,
             columnNumber: 10
         }, this);
         $[1] = t0;

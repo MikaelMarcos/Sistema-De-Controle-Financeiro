@@ -13,10 +13,10 @@ from .models import (
     Category, CategoryCreate, CategoryRead,
     Income, IncomeCreate, IncomeRead,
     Goal, GoalCreate, GoalRead, GoalReadWithExpenses, GoalAdjustment,
-    BudgetGroup, TransactionRule, TransactionRuleRead,
+    BudgetGroup, BudgetGroupCreate,  TransactionRule, TransactionRuleRead,
     Asset, AssetCreate, AssetRead,
     PortfolioHolding, PortfolioHoldingCreate, PortfolioHoldingRead,
-    CreditCard, CreditCardCreate, CreditCardRead, PayFaturaRequest
+    CreditCard, CreditCardCreate, CreditCardRead, PayFaturaRequest, 
 )
 from .auth import get_current_user
 
@@ -77,9 +77,18 @@ def create_budget_group(
     *, 
     session: Session = Depends(get_session), 
     user: User = Depends(get_current_user),
-    group_name: str
+    group: BudgetGroupCreate # 👈 MUDANÇA AQUI
 ):
-    db_group = BudgetGroup(name=group_name, user_id=user.id)
+    """Cria um novo grupo de orçamento para o usuário."""
+    # Verifica se já existe um grupo com esse nome para este usuário
+    existing = session.exec(select(BudgetGroup).where(
+        BudgetGroup.name == group.name,
+        BudgetGroup.user_id == user.id
+    )).first()
+    if existing:
+        raise HTTPException(status_code=400, detail="Você já possui um grupo com este nome.")
+
+    db_group = BudgetGroup(name=group.name, user_id=user.id, target_percentage=0)
     session.add(db_group); session.commit(); session.refresh(db_group)
     return db_group
 

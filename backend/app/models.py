@@ -30,6 +30,9 @@ class BudgetGroup(SQLModel, table=True):
     user: User = Relationship(back_populates="budget_groups")
     expenses: List["Expense"] = Relationship(back_populates="budget_group")
 
+class BudgetGroupCreate(SQLModel):
+    name: str
+
 # --- Modelos de Categoria ---
 class CategoryBase(SQLModel):
     name: str = Field(index=True, unique=True)

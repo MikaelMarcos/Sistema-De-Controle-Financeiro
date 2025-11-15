@@ -47,24 +47,26 @@ var _s = __turbopack_context__.k.signature(), _s1 = __turbopack_context__.k.sign
 ;
 ;
 ;
-const API_URL = 'http://localhost:8000'; // Sua URL do backend
+const API_URL = 'http://localhost:8000';
 const AuthContext = /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["createContext"])(null);
 const AuthProvider = (t0)=>{
     _s();
-    const $ = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$compiler$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["c"])(19);
-    if ($[0] !== "d9484b89ebfda8849612e324ceaed24e7354f6fbdc6f7dee59c5a9ccd2c4deac") {
-        for(let $i = 0; $i < 19; $i += 1){
+    const $ = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$compiler$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["c"])(17);
+    if ($[0] !== "2f010492a9ccd46760f5d578655ca211e3d0f5062a6071f73a4c30c891f54283") {
+        for(let $i = 0; $i < 17; $i += 1){
             $[$i] = Symbol.for("react.memo_cache_sentinel");
         }
-        $[0] = "d9484b89ebfda8849612e324ceaed24e7354f6fbdc6f7dee59c5a9ccd2c4deac";
+        $[0] = "2f010492a9ccd46760f5d578655ca211e3d0f5062a6071f73a4c30c891f54283";
     }
     const { children } = t0;
     const [user, setUser] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(null);
     const [loading, setLoading] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(true);
     const router = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRouter"])();
+    const pathname = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["usePathname"])();
     __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$axios$2f$lib$2f$axios$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].interceptors.request.use(_temp, _temp2);
     let t1;
-    if ($[1] !== router) {
+    let t2;
+    if ($[1] !== pathname || $[2] !== router) {
         t1 = ()=>{
             const token_0 = localStorage.getItem("token");
             if (token_0) {
@@ -72,28 +74,33 @@ const AuthProvider = (t0)=>{
                     setUser(response.data);
                 }).catch(()=>{
                     localStorage.removeItem("token");
-                    router.push("/login");
+                    setUser(null);
+                    if (pathname !== "/login") {
+                        router.push("/login");
+                    }
                 }).finally(()=>setLoading(false));
             } else {
                 setLoading(false);
-                router.push("/login");
+                if (pathname !== "/login") {
+                    router.push("/login");
+                }
             }
         };
-        $[1] = router;
-        $[2] = t1;
+        t2 = [
+            pathname,
+            router
+        ];
+        $[1] = pathname;
+        $[2] = router;
+        $[3] = t1;
+        $[4] = t2;
     } else {
-        t1 = $[2];
-    }
-    let t2;
-    if ($[3] === Symbol.for("react.memo_cache_sentinel")) {
-        t2 = [];
-        $[3] = t2;
-    } else {
-        t2 = $[3];
+        t1 = $[3];
+        t2 = $[4];
     }
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])(t1, t2);
     let t3;
-    if ($[4] !== router) {
+    if ($[5] !== router) {
         t3 = async (email, password)=>{
             const formData = new URLSearchParams();
             formData.append("username", email);
@@ -110,91 +117,77 @@ const AuthProvider = (t0)=>{
             setUser(userResponse.data);
             router.push("/");
         };
-        $[4] = router;
-        $[5] = t3;
+        $[5] = router;
+        $[6] = t3;
     } else {
-        t3 = $[5];
+        t3 = $[6];
     }
     const login = t3;
+    const register = _temp3;
     let t4;
-    if ($[6] !== login) {
-        t4 = async (email_0, password_0)=>{
-            await __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$axios$2f$lib$2f$axios$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].post(`${API_URL}/auth/register`, {
-                email: email_0,
-                password: password_0
-            });
-            await login(email_0, password_0);
-        };
-        $[6] = login;
-        $[7] = t4;
-    } else {
-        t4 = $[7];
-    }
-    const register = t4;
-    let t5;
-    if ($[8] !== router) {
-        t5 = ()=>{
+    if ($[7] !== router) {
+        t4 = ()=>{
             setUser(null);
             localStorage.removeItem("token");
             delete __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$axios$2f$lib$2f$axios$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].defaults.headers.common["Authorization"];
             router.push("/login");
         };
-        $[8] = router;
-        $[9] = t5;
+        $[7] = router;
+        $[8] = t4;
     } else {
-        t5 = $[9];
+        t4 = $[8];
     }
-    const logout = t5;
-    let t6;
-    if ($[10] !== loading || $[11] !== login || $[12] !== logout || $[13] !== register || $[14] !== user) {
-        t6 = {
+    const logout = t4;
+    let t5;
+    if ($[9] !== loading || $[10] !== login || $[11] !== logout || $[12] !== user) {
+        t5 = {
             user,
             loading,
             login,
             register,
             logout
         };
-        $[10] = loading;
-        $[11] = login;
-        $[12] = logout;
-        $[13] = register;
-        $[14] = user;
-        $[15] = t6;
+        $[9] = loading;
+        $[10] = login;
+        $[11] = logout;
+        $[12] = user;
+        $[13] = t5;
     } else {
-        t6 = $[15];
+        t5 = $[13];
     }
-    let t7;
-    if ($[16] !== children || $[17] !== t6) {
-        t7 = /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(AuthContext.Provider, {
-            value: t6,
+    let t6;
+    if ($[14] !== children || $[15] !== t5) {
+        t6 = /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(AuthContext.Provider, {
+            value: t5,
             children: children
         }, void 0, false, {
             fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/context/AuthContext.js",
-            lineNumber: 129,
+            lineNumber: 117,
             columnNumber: 10
         }, ("TURBOPACK compile-time value", void 0));
-        $[16] = children;
-        $[17] = t6;
-        $[18] = t7;
+        $[14] = children;
+        $[15] = t5;
+        $[16] = t6;
     } else {
-        t7 = $[18];
+        t6 = $[16];
     }
-    return t7;
+    return t6;
 };
-_s(AuthProvider, "J17Kp8z+0ojgAqGoY5o3BCjwWms=", false, function() {
+_s(AuthProvider, "Lw2fuEr4xcgRqlOGqjYy367azX4=", false, function() {
     return [
-        __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRouter"]
+        __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRouter"],
+        __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["usePathname"]
     ];
 });
 _c = AuthProvider;
 const useAuth = ()=>{
     _s1();
     const $ = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$compiler$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["c"])(1);
-    if ($[0] !== "d9484b89ebfda8849612e324ceaed24e7354f6fbdc6f7dee59c5a9ccd2c4deac") {
+    if ($[0] !== "2f010492a9ccd46760f5d578655ca211e3d0f5062a6071f73a4c30c891f54283") {
         for(let $i = 0; $i < 1; $i += 1){
             $[$i] = Symbol.for("react.memo_cache_sentinel");
         }
-        $[0] = "d9484b89ebfda8849612e324ceaed24e7354f6fbdc6f7dee59c5a9ccd2c4deac";
+        $[0] = "2f010492a9ccd46760f5d578655ca211e3d0f5062a6071f73a4c30c891f54283";
     }
     return (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useContext"])(AuthContext);
 };
@@ -208,6 +201,12 @@ function _temp(config) {
 }
 function _temp2(error) {
     return Promise.reject(error);
+}
+async function _temp3(email_0, password_0) {
+    await __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$axios$2f$lib$2f$axios$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"].post(`${API_URL}/auth/register`, {
+        email: email_0,
+        password: password_0
+    });
 }
 var _c;
 __turbopack_context__.k.register(_c, "AuthProvider");

@@ -152,12 +152,13 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgr
 ;
 ;
 ;
-const API_URL = 'http://localhost:8000'; // Sua URL do backend
+const API_URL = 'http://localhost:8000';
 const AuthContext = /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["createContext"])(null);
 const AuthProvider = ({ children })=>{
     const [user, setUser] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(null);
     const [loading, setLoading] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(true);
     const router = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useRouter"])();
+    const pathname = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["usePathname"])();
     // Interceptor do Axios: injeta o token em CADA requisição
     __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$axios$2f$lib$2f$axios$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].interceptors.request.use((config)=>{
         const token = localStorage.getItem('token');
@@ -173,17 +174,24 @@ const AuthProvider = ({ children })=>{
             __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$axios$2f$lib$2f$axios$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].get(`${API_URL}/auth/me`).then((response)=>{
                 setUser(response.data);
             }).catch(()=>{
-                // Token inválido
+                // Token inválido ou expirado
                 localStorage.removeItem('token');
-                router.push('/login');
+                setUser(null);
+                if (pathname !== '/login') {
+                    router.push('/login');
+                }
             }).finally(()=>setLoading(false));
         } else {
             setLoading(false);
-            router.push('/login');
+            if (pathname !== '/login') {
+                router.push('/login');
+            }
         }
-    }, []);
+    }, [
+        pathname,
+        router
+    ]);
     const login = async (email, password)=>{
-        // O backend de token espera 'username' e 'password'
         const formData = new URLSearchParams();
         formData.append('username', email);
         formData.append('password', password);
@@ -194,20 +202,18 @@ const AuthProvider = ({ children })=>{
         });
         const { access_token } = response.data;
         localStorage.setItem('token', access_token);
-        // Define o header padrão para futuras requisições
         __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$axios$2f$lib$2f$axios$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].defaults.headers.common['Authorization'] = `Bearer ${access_token}`;
-        // Busca os dados do usuário
         const userResponse = await __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$axios$2f$lib$2f$axios$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].get(`${API_URL}/auth/me`);
         setUser(userResponse.data);
         router.push('/'); // Redireciona para o Dashboard
     };
+    // 👇 CORREÇÃO AQUI: 'register' agora só registra e não faz login
     const register = async (email, password)=>{
         await __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$axios$2f$lib$2f$axios$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"].post(`${API_URL}/auth/register`, {
             email,
             password
         });
-        // Após registrar, força o login
-        await login(email, password);
+    // Não faz login, apenas retorna sucesso. O usuário fará o login em seguida.
     };
     const logout = ()=>{
         setUser(null);
@@ -226,7 +232,7 @@ const AuthProvider = ({ children })=>{
         children: children
     }, void 0, false, {
         fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/context/AuthContext.js",
-        lineNumber: 84,
+        lineNumber: 86,
         columnNumber: 5
     }, ("TURBOPACK compile-time value", void 0));
 };

@@ -103,14 +103,17 @@ __turbopack_context__.s([
 var __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/node_modules/next/dist/compiled/react/jsx-dev-runtime.js [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$styled$2d$jsx$2f$style$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/node_modules/styled-jsx/style.js [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$compiler$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/node_modules/next/dist/compiled/react/compiler-runtime.js [app-client] (ecmascript)");
-var __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$components$2f$AuthGuard$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/components/AuthGuard.js [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/node_modules/next/dist/compiled/react/index.js [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$axios$2f$lib$2f$axios$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/node_modules/axios/lib/axios.js [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$react$2d$chartjs$2d$2$2f$dist$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/node_modules/react-chartjs-2/dist/index.js [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$chart$2e$js$2f$dist$2f$chart$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$locals$3e$__ = __turbopack_context__.i("[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/node_modules/chart.js/dist/chart.js [app-client] (ecmascript) <locals>");
+// Importa os componentes de autenticação
+var __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$components$2f$AuthGuard$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/components/AuthGuard.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$context$2f$AuthContext$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/context/AuthContext.js [app-client] (ecmascript)");
 ;
 var _s = __turbopack_context__.k.signature();
 'use client';
+;
 ;
 ;
 ;
@@ -150,11 +153,11 @@ const getTextColor = (percentage)=>{
 // --- Seletor de Mês ---
 function MonthSelector(t0) {
     const $ = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$compiler$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["c"])(29);
-    if ($[0] !== "1a92dd7c7640e70af727d3afa11185120f00d061679eb15bbf96f527b3961f1d") {
+    if ($[0] !== "44936f933a21a8c48d34bf7e94991677441758c2e22b45859dc2a5c37ddabb92") {
         for(let $i = 0; $i < 29; $i += 1){
             $[$i] = Symbol.for("react.memo_cache_sentinel");
         }
-        $[0] = "1a92dd7c7640e70af727d3afa11185120f00d061679eb15bbf96f527b3961f1d";
+        $[0] = "44936f933a21a8c48d34bf7e94991677441758c2e22b45859dc2a5c37ddabb92";
     }
     const { currentDate, onDateChange } = t0;
     let t1;
@@ -239,12 +242,12 @@ function MonthSelector(t0) {
                 d: "M15.75 19.5L8.25 12l7.5-7.5"
             }, void 0, false, {
                 fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/page.js",
-                lineNumber: 112,
+                lineNumber: 115,
                 columnNumber: 140
             }, this)
         }, void 0, false, {
             fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/page.js",
-            lineNumber: 112,
+            lineNumber: 115,
             columnNumber: 10
         }, this);
         $[14] = t7;
@@ -259,7 +262,7 @@ function MonthSelector(t0) {
             children: t7
         }, void 0, false, {
             fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/page.js",
-            lineNumber: 119,
+            lineNumber: 122,
             columnNumber: 10
         }, this);
         $[15] = handlePreviousMonth;
@@ -274,7 +277,7 @@ function MonthSelector(t0) {
             children: formattedDate
         }, void 0, false, {
             fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/page.js",
-            lineNumber: 127,
+            lineNumber: 130,
             columnNumber: 10
         }, this);
         $[17] = formattedDate;
@@ -289,7 +292,7 @@ function MonthSelector(t0) {
             children: "Controle Financeiro Mensal"
         }, void 0, false, {
             fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/page.js",
-            lineNumber: 135,
+            lineNumber: 138,
             columnNumber: 11
         }, this);
         $[19] = t10;
@@ -306,7 +309,7 @@ function MonthSelector(t0) {
             ]
         }, void 0, true, {
             fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/page.js",
-            lineNumber: 142,
+            lineNumber: 145,
             columnNumber: 11
         }, this);
         $[20] = t9;
@@ -329,12 +332,12 @@ function MonthSelector(t0) {
                 d: "M8.25 4.5l7.5 7.5-7.5 7.5"
             }, void 0, false, {
                 fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/page.js",
-                lineNumber: 150,
+                lineNumber: 153,
                 columnNumber: 141
             }, this)
         }, void 0, false, {
             fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/page.js",
-            lineNumber: 150,
+            lineNumber: 153,
             columnNumber: 11
         }, this);
         $[22] = t12;
@@ -349,7 +352,7 @@ function MonthSelector(t0) {
             children: t12
         }, void 0, false, {
             fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/page.js",
-            lineNumber: 157,
+            lineNumber: 160,
             columnNumber: 11
         }, this);
         $[23] = handleNextMonth;
@@ -368,7 +371,7 @@ function MonthSelector(t0) {
             ]
         }, void 0, true, {
             fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/page.js",
-            lineNumber: 165,
+            lineNumber: 168,
             columnNumber: 11
         }, this);
         $[25] = t11;
@@ -387,11 +390,11 @@ function _MonthSelectorAnonymous(c) {
 }
 function SummaryCard(t0) {
     const $ = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$compiler$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["c"])(30);
-    if ($[0] !== "1a92dd7c7640e70af727d3afa11185120f00d061679eb15bbf96f527b3961f1d") {
+    if ($[0] !== "44936f933a21a8c48d34bf7e94991677441758c2e22b45859dc2a5c37ddabb92") {
         for(let $i = 0; $i < 30; $i += 1){
             $[$i] = Symbol.for("react.memo_cache_sentinel");
         }
-        $[0] = "1a92dd7c7640e70af727d3afa11185120f00d061679eb15bbf96f527b3961f1d";
+        $[0] = "44936f933a21a8c48d34bf7e94991677441758c2e22b45859dc2a5c37ddabb92";
     }
     const { title, amount, type } = t0;
     let t1;
@@ -516,7 +519,7 @@ function SummaryCard(t0) {
             children: title
         }, void 0, false, {
             fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/page.js",
-            lineNumber: 310,
+            lineNumber: 313,
             columnNumber: 10
         }, this);
         $[12] = title;
@@ -532,7 +535,7 @@ function SummaryCard(t0) {
             children: t7
         }, void 0, false, {
             fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/page.js",
-            lineNumber: 319,
+            lineNumber: 322,
             columnNumber: 10
         }, this);
         $[14] = t7;
@@ -550,7 +553,7 @@ function SummaryCard(t0) {
             ]
         }, void 0, true, {
             fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/page.js",
-            lineNumber: 327,
+            lineNumber: 330,
             columnNumber: 10
         }, this);
         $[16] = t6;
@@ -567,7 +570,7 @@ function SummaryCard(t0) {
             children: formattedAmount
         }, void 0, false, {
             fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/page.js",
-            lineNumber: 337,
+            lineNumber: 340,
             columnNumber: 11
         }, this);
         $[19] = formattedAmount;
@@ -583,7 +586,7 @@ function SummaryCard(t0) {
             children: amount >= 0 ? "Positivo" : "Negativo"
         }, void 0, false, {
             fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/page.js",
-            lineNumber: 346,
+            lineNumber: 349,
             columnNumber: 33
         }, this);
         $[22] = amount;
@@ -603,7 +606,7 @@ function SummaryCard(t0) {
             ]
         }, void 0, true, {
             fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/page.js",
-            lineNumber: 355,
+            lineNumber: 358,
             columnNumber: 11
         }, this);
         $[25] = t11;
@@ -620,11 +623,11 @@ _c1 = SummaryCard;
 // --- Lista de Despesas ---
 function ExpenseList(t0) {
     const $ = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$compiler$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["c"])(13);
-    if ($[0] !== "1a92dd7c7640e70af727d3afa11185120f00d061679eb15bbf96f527b3961f1d") {
+    if ($[0] !== "44936f933a21a8c48d34bf7e94991677441758c2e22b45859dc2a5c37ddabb92") {
         for(let $i = 0; $i < 13; $i += 1){
             $[$i] = Symbol.for("react.memo_cache_sentinel");
         }
-        $[0] = "1a92dd7c7640e70af727d3afa11185120f00d061679eb15bbf96f527b3961f1d";
+        $[0] = "44936f933a21a8c48d34bf7e94991677441758c2e22b45859dc2a5c37ddabb92";
     }
     const { expenses, onExpenseDeleted } = t0;
     let t1;
@@ -656,13 +659,13 @@ function ExpenseList(t0) {
                     children: "Caixa"
                 }, void 0, false, {
                     fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/page.js",
-                    lineNumber: 400,
+                    lineNumber: 403,
                     columnNumber: 77
                 }, this)
             ]
         }, void 0, true, {
             fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/page.js",
-            lineNumber: 400,
+            lineNumber: 403,
             columnNumber: 10
         }, this);
         $[3] = t2;
@@ -685,13 +688,13 @@ function ExpenseList(t0) {
                     ]
                 }, void 0, true, {
                     fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/page.js",
-                    lineNumber: 408,
+                    lineNumber: 411,
                     columnNumber: 70
                 }, this)
             ]
         }, void 0, true, {
             fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/page.js",
-            lineNumber: 408,
+            lineNumber: 411,
             columnNumber: 10
         }, this);
         $[4] = expenses.length;
@@ -710,7 +713,7 @@ function ExpenseList(t0) {
                     children: "📝"
                 }, void 0, false, {
                     fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/page.js",
-                    lineNumber: 417,
+                    lineNumber: 420,
                     columnNumber: 68
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -718,13 +721,13 @@ function ExpenseList(t0) {
                     children: "Nenhuma despesa em caixa neste mês."
                 }, void 0, false, {
                     fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/page.js",
-                    lineNumber: 417,
+                    lineNumber: 420,
                     columnNumber: 107
                 }, this)
             ]
         }, void 0, true, {
             fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/page.js",
-            lineNumber: 417,
+            lineNumber: 420,
             columnNumber: 34
         }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
             className: "space-y-3 max-h-96 overflow-y-auto",
@@ -742,12 +745,12 @@ function ExpenseList(t0) {
                                             children: "💸"
                                         }, void 0, false, {
                                             fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/page.js",
-                                            lineNumber: 418,
+                                            lineNumber: 421,
                                             columnNumber: 299
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/page.js",
-                                        lineNumber: 418,
+                                        lineNumber: 421,
                                         columnNumber: 213
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -757,7 +760,7 @@ function ExpenseList(t0) {
                                                 children: formatDate(expense.date)
                                             }, void 0, false, {
                                                 fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/page.js",
-                                                lineNumber: 418,
+                                                lineNumber: 421,
                                                 columnNumber: 351
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -765,7 +768,7 @@ function ExpenseList(t0) {
                                                 children: expense.description
                                             }, void 0, false, {
                                                 fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/page.js",
-                                                lineNumber: 418,
+                                                lineNumber: 421,
                                                 columnNumber: 424
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -775,26 +778,26 @@ function ExpenseList(t0) {
                                                         className: "w-1 h-1 bg-fin-gold rounded-full"
                                                     }, void 0, false, {
                                                         fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/page.js",
-                                                        lineNumber: 418,
+                                                        lineNumber: 421,
                                                         columnNumber: 566
                                                     }, this),
                                                     expense.budget_group?.name || "Sem categoria"
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/page.js",
-                                                lineNumber: 418,
+                                                lineNumber: 421,
                                                 columnNumber: 499
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/page.js",
-                                        lineNumber: 418,
+                                        lineNumber: 421,
                                         columnNumber: 346
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/page.js",
-                                lineNumber: 418,
+                                lineNumber: 421,
                                 columnNumber: 168
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -808,7 +811,7 @@ function ExpenseList(t0) {
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/page.js",
-                                        lineNumber: 418,
+                                        lineNumber: 421,
                                         columnNumber: 726
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -829,35 +832,35 @@ function ExpenseList(t0) {
                                                 d: "m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0"
                                             }, void 0, false, {
                                                 fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/page.js",
-                                                lineNumber: 420,
+                                                lineNumber: 423,
                                                 columnNumber: 286
                                             }, this)
                                         }, void 0, false, {
                                             fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/page.js",
-                                            lineNumber: 420,
+                                            lineNumber: 423,
                                             columnNumber: 154
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/page.js",
-                                        lineNumber: 418,
+                                        lineNumber: 421,
                                         columnNumber: 816
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/page.js",
-                                lineNumber: 418,
+                                lineNumber: 421,
                                 columnNumber: 685
                             }, this)
                         ]
                     }, expense.id, true, {
                         fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/page.js",
-                        lineNumber: 418,
+                        lineNumber: 421,
                         columnNumber: 51
                     }, this)
             }["ExpenseList[expenses.map()]"])
         }, void 0, false, {
             fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/page.js",
-            lineNumber: 417,
+            lineNumber: 420,
             columnNumber: 195
         }, this);
         $[7] = expenses;
@@ -876,7 +879,7 @@ function ExpenseList(t0) {
             ]
         }, void 0, true, {
             fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/page.js",
-            lineNumber: 430,
+            lineNumber: 433,
             columnNumber: 10
         }, this);
         $[10] = t4;
@@ -896,11 +899,11 @@ function _ExpenseListFormatDate(d) {
 }
 function DashboardGoals(t0) {
     const $ = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$compiler$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["c"])(19);
-    if ($[0] !== "1a92dd7c7640e70af727d3afa11185120f00d061679eb15bbf96f527b3961f1d") {
+    if ($[0] !== "44936f933a21a8c48d34bf7e94991677441758c2e22b45859dc2a5c37ddabb92") {
         for(let $i = 0; $i < 19; $i += 1){
             $[$i] = Symbol.for("react.memo_cache_sentinel");
         }
-        $[0] = "1a92dd7c7640e70af727d3afa11185120f00d061679eb15bbf96f527b3961f1d";
+        $[0] = "44936f933a21a8c48d34bf7e94991677441758c2e22b45859dc2a5c37ddabb92";
     }
     const { goals } = t0;
     let t1;
@@ -924,7 +927,7 @@ function DashboardGoals(t0) {
                                 children: "🎯"
                             }, void 0, false, {
                                 fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/page.js",
-                                lineNumber: 470,
+                                lineNumber: 473,
                                 columnNumber: 210
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
@@ -932,7 +935,7 @@ function DashboardGoals(t0) {
                                 children: "Sem metas ativas"
                             }, void 0, false, {
                                 fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/page.js",
-                                lineNumber: 470,
+                                lineNumber: 473,
                                 columnNumber: 249
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -940,7 +943,7 @@ function DashboardGoals(t0) {
                                 children: "Crie sua primeira meta"
                             }, void 0, false, {
                                 fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/page.js",
-                                lineNumber: 470,
+                                lineNumber: 473,
                                 columnNumber: 324
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("a", {
@@ -949,13 +952,13 @@ function DashboardGoals(t0) {
                                 children: "Criar Meta"
                             }, void 0, false, {
                                 fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/page.js",
-                                lineNumber: 470,
+                                lineNumber: 473,
                                 columnNumber: 387
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/page.js",
-                        lineNumber: 470,
+                        lineNumber: 473,
                         columnNumber: 16
                     }, this);
                     $[7] = t6;
@@ -976,12 +979,12 @@ function DashboardGoals(t0) {
                         children: "Progresso das Metas"
                     }, void 0, false, {
                         fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/page.js",
-                        lineNumber: 482,
+                        lineNumber: 485,
                         columnNumber: 83
                     }, this)
                 }, void 0, false, {
                     fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/page.js",
-                    lineNumber: 482,
+                    lineNumber: 485,
                     columnNumber: 14
                 }, this);
                 $[8] = t6;
@@ -1002,13 +1005,13 @@ function DashboardGoals(t0) {
                         ]
                     }, void 0, true, {
                         fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/page.js",
-                        lineNumber: 487,
+                        lineNumber: 490,
                         columnNumber: 72
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/page.js",
-                lineNumber: 487,
+                lineNumber: 490,
                 columnNumber: 12
             }, this);
             const t7 = /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
@@ -1020,7 +1023,7 @@ function DashboardGoals(t0) {
                 ]
             }, void 0, true, {
                 fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/page.js",
-                lineNumber: 488,
+                lineNumber: 491,
                 columnNumber: 18
             }, this);
             let t8;
@@ -1030,7 +1033,7 @@ function DashboardGoals(t0) {
                             goal: goal_2
                         }, goal_2.id, false, {
                             fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/page.js",
-                            lineNumber: 492,
+                            lineNumber: 495,
                             columnNumber: 58
                         }, this)
                 })["DashboardGoals[activeGoals.map()]"];
@@ -1048,7 +1051,7 @@ function DashboardGoals(t0) {
                     ]
                 }, void 0, true, {
                     fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/page.js",
-                    lineNumber: 500,
+                    lineNumber: 503,
                     columnNumber: 14
                 }, this);
                 $[10] = t7;
@@ -1069,14 +1072,14 @@ function DashboardGoals(t0) {
                         ]
                     }, void 0, true, {
                         fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/page.js",
-                        lineNumber: 507,
+                        lineNumber: 510,
                         columnNumber: 68
                     }, this),
                     completedGoals.slice(0, 2).map(_DashboardGoalsAnonymous)
                 ]
             }, void 0, true, {
                 fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/page.js",
-                lineNumber: 507,
+                lineNumber: 510,
                 columnNumber: 41
             }, this);
         }
@@ -1104,7 +1107,7 @@ function DashboardGoals(t0) {
             children: "Ver Todas as Metas →"
         }, void 0, false, {
             fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/page.js",
-            lineNumber: 527,
+            lineNumber: 530,
             columnNumber: 10
         }, this);
         $[13] = t6;
@@ -1123,7 +1126,7 @@ function DashboardGoals(t0) {
             ]
         }, void 0, true, {
             fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/page.js",
-            lineNumber: 534,
+            lineNumber: 537,
             columnNumber: 10
         }, this);
         $[14] = t1;
@@ -1150,7 +1153,7 @@ function _DashboardGoalsAnonymous(goal_3) {
                         children: goal_3.name
                     }, void 0, false, {
                         fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/page.js",
-                        lineNumber: 548,
+                        lineNumber: 551,
                         columnNumber: 190
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -1158,13 +1161,13 @@ function _DashboardGoalsAnonymous(goal_3) {
                         children: "🎉 100%"
                     }, void 0, false, {
                         fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/page.js",
-                        lineNumber: 548,
+                        lineNumber: 551,
                         columnNumber: 259
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/page.js",
-                lineNumber: 548,
+                lineNumber: 551,
                 columnNumber: 139
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1175,13 +1178,13 @@ function _DashboardGoalsAnonymous(goal_3) {
                 ]
             }, void 0, true, {
                 fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/page.js",
-                lineNumber: 548,
+                lineNumber: 551,
                 columnNumber: 322
             }, this)
         ]
     }, goal_3.id, true, {
         fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/page.js",
-        lineNumber: 548,
+        lineNumber: 551,
         columnNumber: 10
     }, this);
 }
@@ -1203,7 +1206,7 @@ function _DashboardGoalsDashboardGoalCard(t0) {
                         children: goal_1.name
                     }, void 0, false, {
                         fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/page.js",
-                        lineNumber: 559,
+                        lineNumber: 562,
                         columnNumber: 245
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -1214,13 +1217,13 @@ function _DashboardGoalsDashboardGoalCard(t0) {
                         ]
                     }, void 0, true, {
                         fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/page.js",
-                        lineNumber: 559,
+                        lineNumber: 562,
                         columnNumber: 329
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/page.js",
-                lineNumber: 559,
+                lineNumber: 562,
                 columnNumber: 190
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1234,17 +1237,17 @@ function _DashboardGoalsDashboardGoalCard(t0) {
                         className: "absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent animate-pulse-slow"
                     }, void 0, false, {
                         fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/page.js",
-                        lineNumber: 561,
+                        lineNumber: 564,
                         columnNumber: 10
                     }, this)
                 }, void 0, false, {
                     fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/page.js",
-                    lineNumber: 559,
+                    lineNumber: 562,
                     columnNumber: 568
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/page.js",
-                lineNumber: 559,
+                lineNumber: 562,
                 columnNumber: 424
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1255,7 +1258,7 @@ function _DashboardGoalsDashboardGoalCard(t0) {
                         children: isCompleted ? "\uD83C\uDF89 Conclu\xEDdo!" : "Em andamento"
                     }, void 0, false, {
                         fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/page.js",
-                        lineNumber: 561,
+                        lineNumber: 564,
                         columnNumber: 198
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -1267,19 +1270,19 @@ function _DashboardGoalsDashboardGoalCard(t0) {
                         ]
                     }, void 0, true, {
                         fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/page.js",
-                        lineNumber: 561,
+                        lineNumber: 564,
                         columnNumber: 298
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/page.js",
-                lineNumber: 561,
+                lineNumber: 564,
                 columnNumber: 139
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/page.js",
-        lineNumber: 559,
+        lineNumber: 562,
         columnNumber: 10
     }, this);
 }
@@ -1291,11 +1294,11 @@ function _DashboardGoalsGoalsFilter(goal) {
 }
 function ExpensePieChart(t0) {
     const $ = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$compiler$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["c"])(87);
-    if ($[0] !== "1a92dd7c7640e70af727d3afa11185120f00d061679eb15bbf96f527b3961f1d") {
+    if ($[0] !== "44936f933a21a8c48d34bf7e94991677441758c2e22b45859dc2a5c37ddabb92") {
         for(let $i = 0; $i < 87; $i += 1){
             $[$i] = Symbol.for("react.memo_cache_sentinel");
         }
-        $[0] = "1a92dd7c7640e70af727d3afa11185120f00d061679eb15bbf96f527b3961f1d";
+        $[0] = "44936f933a21a8c48d34bf7e94991677441758c2e22b45859dc2a5c37ddabb92";
     }
     const { expenses } = t0;
     let categorySpending;
@@ -1504,7 +1507,7 @@ function ExpensePieChart(t0) {
                                     children: "📊"
                                 }, void 0, false, {
                                     fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/page.js",
-                                    lineNumber: 756,
+                                    lineNumber: 759,
                                     columnNumber: 228
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
@@ -1512,7 +1515,7 @@ function ExpensePieChart(t0) {
                                     children: "Gastos por Categoria"
                                 }, void 0, false, {
                                     fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/page.js",
-                                    lineNumber: 756,
+                                    lineNumber: 759,
                                     columnNumber: 267
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1520,7 +1523,7 @@ function ExpensePieChart(t0) {
                                     children: "Sem gastos para exibir"
                                 }, void 0, false, {
                                     fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/page.js",
-                                    lineNumber: 756,
+                                    lineNumber: 759,
                                     columnNumber: 342
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1528,18 +1531,18 @@ function ExpensePieChart(t0) {
                                     children: "Registre despesas para ver a distribuição"
                                 }, void 0, false, {
                                     fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/page.js",
-                                    lineNumber: 756,
+                                    lineNumber: 759,
                                     columnNumber: 405
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/page.js",
-                            lineNumber: 756,
+                            lineNumber: 759,
                             columnNumber: 199
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/page.js",
-                        lineNumber: 756,
+                        lineNumber: 759,
                         columnNumber: 17
                     }, this);
                     $[31] = t24;
@@ -1560,14 +1563,14 @@ function ExpensePieChart(t0) {
                             children: "📊"
                         }, void 0, false, {
                             fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/page.js",
-                            lineNumber: 767,
+                            lineNumber: 770,
                             columnNumber: 84
                         }, this),
                         "Distribuição de Gastos"
                     ]
                 }, void 0, true, {
                     fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/page.js",
-                    lineNumber: 767,
+                    lineNumber: 770,
                     columnNumber: 15
                 }, this);
                 $[32] = t24;
@@ -1589,13 +1592,13 @@ function ExpensePieChart(t0) {
                             ]
                         }, void 0, true, {
                             fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/page.js",
-                            lineNumber: 774,
+                            lineNumber: 777,
                             columnNumber: 76
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/page.js",
-                    lineNumber: 774,
+                    lineNumber: 777,
                     columnNumber: 15
                 }, this);
                 $[33] = labels.length;
@@ -1621,7 +1624,7 @@ function ExpensePieChart(t0) {
                     children: "Total Gasto"
                 }, void 0, false, {
                     fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/page.js",
-                    lineNumber: 793,
+                    lineNumber: 796,
                     columnNumber: 15
                 }, this);
                 $[37] = t27;
@@ -1638,7 +1641,7 @@ function ExpensePieChart(t0) {
                     ]
                 }, void 0, true, {
                     fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/page.js",
-                    lineNumber: 800,
+                    lineNumber: 803,
                     columnNumber: 15
                 }, this);
                 $[38] = labels.length;
@@ -1654,7 +1657,7 @@ function ExpensePieChart(t0) {
                         children: formatCurrency(total)
                     }, void 0, false, {
                         fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/page.js",
-                        lineNumber: 806,
+                        lineNumber: 809,
                         columnNumber: 48
                     }, this),
                     t27,
@@ -1662,7 +1665,7 @@ function ExpensePieChart(t0) {
                 ]
             }, void 0, true, {
                 fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/page.js",
-                lineNumber: 806,
+                lineNumber: 809,
                 columnNumber: 19
             }, this);
             let t30;
@@ -1672,7 +1675,7 @@ function ExpensePieChart(t0) {
                     children: t29
                 }, void 0, false, {
                     fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/page.js",
-                    lineNumber: 809,
+                    lineNumber: 812,
                     columnNumber: 15
                 }, this);
                 $[40] = t29;
@@ -1689,14 +1692,14 @@ function ExpensePieChart(t0) {
                         options: chartOptions
                     }, void 0, false, {
                         fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/page.js",
-                        lineNumber: 815,
+                        lineNumber: 818,
                         columnNumber: 65
                     }, this),
                     t30
                 ]
             }, void 0, true, {
                 fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/page.js",
-                lineNumber: 815,
+                lineNumber: 818,
                 columnNumber: 13
             }, this);
             t8 = "lg:col-span-1 space-y-4";
@@ -1707,7 +1710,7 @@ function ExpensePieChart(t0) {
                     children: "📈 Maior Gasto"
                 }, void 0, false, {
                     fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/page.js",
-                    lineNumber: 819,
+                    lineNumber: 822,
                     columnNumber: 15
                 }, this);
                 $[42] = t31;
@@ -1725,7 +1728,7 @@ function ExpensePieChart(t0) {
                     ]
                 }, void 0, true, {
                     fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/page.js",
-                    lineNumber: 827,
+                    lineNumber: 830,
                     columnNumber: 15
                 }, this);
                 $[43] = t32;
@@ -1743,7 +1746,7 @@ function ExpensePieChart(t0) {
                         children: topCategory.category
                     }, void 0, false, {
                         fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/page.js",
-                        lineNumber: 833,
+                        lineNumber: 836,
                         columnNumber: 122
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1751,14 +1754,14 @@ function ExpensePieChart(t0) {
                         children: formatCurrency(topCategory.amount)
                     }, void 0, false, {
                         fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/page.js",
-                        lineNumber: 833,
+                        lineNumber: 836,
                         columnNumber: 234
                     }, this),
                     t33
                 ]
             }, void 0, true, {
                 fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/page.js",
-                lineNumber: 833,
+                lineNumber: 836,
                 columnNumber: 12
             }, this);
             t6 = "bg-gradient-to-br from-fin-dark/80 to-fin-card/60 p-4 rounded-xl border border-white/10";
@@ -1768,7 +1771,7 @@ function ExpensePieChart(t0) {
                     children: "📋 Resumo"
                 }, void 0, false, {
                     fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/page.js",
-                    lineNumber: 836,
+                    lineNumber: 839,
                     columnNumber: 14
                 }, this);
                 $[45] = t7;
@@ -1783,7 +1786,7 @@ function ExpensePieChart(t0) {
                     children: "Total:"
                 }, void 0, false, {
                     fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/page.js",
-                    lineNumber: 844,
+                    lineNumber: 847,
                     columnNumber: 14
                 }, this);
                 $[46] = t4;
@@ -1842,7 +1845,7 @@ function ExpensePieChart(t0) {
             children: t2
         }, void 0, false, {
             fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/page.js",
-            lineNumber: 896,
+            lineNumber: 899,
             columnNumber: 11
         }, this);
         $[47] = t1;
@@ -1861,7 +1864,7 @@ function ExpensePieChart(t0) {
             ]
         }, void 0, true, {
             fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/page.js",
-            lineNumber: 905,
+            lineNumber: 908,
             columnNumber: 11
         }, this);
         $[50] = t15;
@@ -1878,7 +1881,7 @@ function ExpensePieChart(t0) {
             children: "Categorias:"
         }, void 0, false, {
             fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/page.js",
-            lineNumber: 915,
+            lineNumber: 918,
             columnNumber: 11
         }, this);
         $[54] = t17;
@@ -1896,13 +1899,13 @@ function ExpensePieChart(t0) {
                     children: labels.length
                 }, void 0, false, {
                     fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/page.js",
-                    lineNumber: 922,
+                    lineNumber: 925,
                     columnNumber: 54
                 }, this)
             ]
         }, void 0, true, {
             fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/page.js",
-            lineNumber: 922,
+            lineNumber: 925,
             columnNumber: 11
         }, this);
         $[55] = labels.length;
@@ -1917,7 +1920,7 @@ function ExpensePieChart(t0) {
             children: "Transações:"
         }, void 0, false, {
             fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/page.js",
-            lineNumber: 930,
+            lineNumber: 933,
             columnNumber: 11
         }, this);
         $[57] = t19;
@@ -1935,13 +1938,13 @@ function ExpensePieChart(t0) {
                     children: expenses.length
                 }, void 0, false, {
                     fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/page.js",
-                    lineNumber: 937,
+                    lineNumber: 940,
                     columnNumber: 54
                 }, this)
             ]
         }, void 0, true, {
             fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/page.js",
-            lineNumber: 937,
+            lineNumber: 940,
             columnNumber: 11
         }, this);
         $[58] = expenses.length;
@@ -1960,7 +1963,7 @@ function ExpensePieChart(t0) {
             ]
         }, void 0, true, {
             fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/page.js",
-            lineNumber: 945,
+            lineNumber: 948,
             columnNumber: 11
         }, this);
         $[60] = t16;
@@ -1981,7 +1984,7 @@ function ExpensePieChart(t0) {
             ]
         }, void 0, true, {
             fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/page.js",
-            lineNumber: 956,
+            lineNumber: 959,
             columnNumber: 11
         }, this);
         $[65] = t21;
@@ -2001,7 +2004,7 @@ function ExpensePieChart(t0) {
             ]
         }, void 0, true, {
             fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/page.js",
-            lineNumber: 966,
+            lineNumber: 969,
             columnNumber: 11
         }, this);
         $[69] = t22;
@@ -2021,7 +2024,7 @@ function ExpensePieChart(t0) {
             ]
         }, void 0, true, {
             fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/page.js",
-            lineNumber: 976,
+            lineNumber: 979,
             columnNumber: 11
         }, this);
         $[73] = t10;
@@ -2048,7 +2051,7 @@ function ExpensePieChart(t0) {
                                     }
                                 }, void 0, false, {
                                     fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/page.js",
-                                    lineNumber: 987,
+                                    lineNumber: 990,
                                     columnNumber: 127
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -2057,7 +2060,7 @@ function ExpensePieChart(t0) {
                                     children: label_0
                                 }, void 0, false, {
                                     fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/page.js",
-                                    lineNumber: 989,
+                                    lineNumber: 992,
                                     columnNumber: 18
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -2068,24 +2071,24 @@ function ExpensePieChart(t0) {
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/page.js",
-                                    lineNumber: 989,
+                                    lineNumber: 992,
                                     columnNumber: 91
                                 }, this)
                             ]
                         }, label_0, true, {
                             fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/page.js",
-                            lineNumber: 987,
+                            lineNumber: 990,
                             columnNumber: 64
                         }, this)
                 }["ExpensePieChart[labels.map()]"])
             }, void 0, false, {
                 fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/page.js",
-                lineNumber: 986,
+                lineNumber: 989,
                 columnNumber: 43
             }, this)
         }, void 0, false, {
             fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/page.js",
-            lineNumber: 986,
+            lineNumber: 989,
             columnNumber: 11
         }, this);
         $[77] = categorySpending;
@@ -2107,7 +2110,7 @@ function ExpensePieChart(t0) {
             ]
         }, void 0, true, {
             fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/page.js",
-            lineNumber: 1001,
+            lineNumber: 1004,
             columnNumber: 11
         }, this);
         $[82] = t12;
@@ -2121,7 +2124,7 @@ function ExpensePieChart(t0) {
     return t26;
 }
 _c4 = ExpensePieChart;
-// --- Componente Principal (CORRIGIDO) ---
+// --- Componente Principal (CORRIGIDO PARA O BUG DE HIDRATAÇÃO) ---
 function _ExpensePieChartAnonymous(max, t0) {
     const [cat, amount] = t0;
     return amount > max.amount ? {
@@ -2152,11 +2155,11 @@ function _ExpensePieChartExpensesReduce(acc, expense) {
 function Home() {
     _s();
     const $ = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$compiler$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["c"])(51);
-    if ($[0] !== "1a92dd7c7640e70af727d3afa11185120f00d061679eb15bbf96f527b3961f1d") {
+    if ($[0] !== "44936f933a21a8c48d34bf7e94991677441758c2e22b45859dc2a5c37ddabb92") {
         for(let $i = 0; $i < 51; $i += 1){
             $[$i] = Symbol.for("react.memo_cache_sentinel");
         }
-        $[0] = "1a92dd7c7640e70af727d3afa11185120f00d061679eb15bbf96f527b3961f1d";
+        $[0] = "44936f933a21a8c48d34bf7e94991677441758c2e22b45859dc2a5c37ddabb92";
     }
     let t0;
     if ($[1] === Symbol.for("react.memo_cache_sentinel")) {
@@ -2272,7 +2275,7 @@ function Home() {
                 className: "h-20 bg-fin-card/50 rounded-2xl mb-8"
             }, void 0, false, {
                 fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/page.js",
-                lineNumber: 1152,
+                lineNumber: 1155,
                 columnNumber: 12
             }, this);
             $[11] = t7;
@@ -2288,7 +2291,7 @@ function Home() {
                 ].map(_HomeAnonymous)
             }, void 0, false, {
                 fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/page.js",
-                lineNumber: 1159,
+                lineNumber: 1162,
                 columnNumber: 12
             }, this);
             $[12] = t8;
@@ -2304,20 +2307,20 @@ function Home() {
                         className: "lg:col-span-2 h-96 bg-fin-card/50 rounded-2xl"
                     }, void 0, false, {
                         fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/page.js",
-                        lineNumber: 1166,
+                        lineNumber: 1169,
                         columnNumber: 67
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                         className: "lg:col-span-1 h-96 bg-fin-card/50 rounded-2xl"
                     }, void 0, false, {
                         fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/page.js",
-                        lineNumber: 1166,
+                        lineNumber: 1169,
                         columnNumber: 132
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/page.js",
-                lineNumber: 1166,
+                lineNumber: 1169,
                 columnNumber: 12
             }, this);
             $[13] = t9;
@@ -2339,17 +2342,17 @@ function Home() {
                         ]
                     }, void 0, true, {
                         fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/page.js",
-                        lineNumber: 1173,
+                        lineNumber: 1176,
                         columnNumber: 145
                     }, this)
                 }, void 0, false, {
                     fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/page.js",
-                    lineNumber: 1173,
+                    lineNumber: 1176,
                     columnNumber: 100
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/page.js",
-                lineNumber: 1173,
+                lineNumber: 1176,
                 columnNumber: 13
             }, this);
             $[14] = t8;
@@ -2366,7 +2369,7 @@ function Home() {
             onDateChange: setCurrentDate
         }, void 0, false, {
             fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/page.js",
-            lineNumber: 1183,
+            lineNumber: 1186,
             columnNumber: 10
         }, this);
         $[16] = currentDate;
@@ -2382,7 +2385,7 @@ function Home() {
             type: "income"
         }, void 0, false, {
             fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/page.js",
-            lineNumber: 1191,
+            lineNumber: 1194,
             columnNumber: 10
         }, this);
         $[18] = totalIncome;
@@ -2398,7 +2401,7 @@ function Home() {
             type: "expense"
         }, void 0, false, {
             fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/page.js",
-            lineNumber: 1199,
+            lineNumber: 1202,
             columnNumber: 10
         }, this);
         $[20] = totalCashExpenses;
@@ -2414,7 +2417,7 @@ function Home() {
             type: "balance"
         }, void 0, false, {
             fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/page.js",
-            lineNumber: 1207,
+            lineNumber: 1210,
             columnNumber: 11
         }, this);
         $[22] = balance;
@@ -2430,7 +2433,7 @@ function Home() {
             type: "credit"
         }, void 0, false, {
             fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/page.js",
-            lineNumber: 1215,
+            lineNumber: 1218,
             columnNumber: 11
         }, this);
         $[24] = totalCreditExpenses;
@@ -2450,7 +2453,7 @@ function Home() {
             ]
         }, void 0, true, {
             fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/page.js",
-            lineNumber: 1223,
+            lineNumber: 1226,
             columnNumber: 11
         }, this);
         $[26] = t10;
@@ -2477,7 +2480,7 @@ function Home() {
             onExpenseDeleted: t13
         }, void 0, false, {
             fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/page.js",
-            lineNumber: 1243,
+            lineNumber: 1246,
             columnNumber: 11
         }, this);
         $[32] = cashExpenses;
@@ -2491,7 +2494,7 @@ function Home() {
             expenses: allExpenses
         }, void 0, false, {
             fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/page.js",
-            lineNumber: 1251,
+            lineNumber: 1254,
             columnNumber: 11
         }, this);
         $[34] = allExpenses;
@@ -2509,7 +2512,7 @@ function Home() {
             ]
         }, void 0, true, {
             fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/page.js",
-            lineNumber: 1259,
+            lineNumber: 1262,
             columnNumber: 11
         }, this);
         $[36] = t14;
@@ -2526,12 +2529,12 @@ function Home() {
                 goals: goals
             }, void 0, false, {
                 fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/page.js",
-                lineNumber: 1268,
+                lineNumber: 1271,
                 columnNumber: 42
             }, this)
         }, void 0, false, {
             fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/page.js",
-            lineNumber: 1268,
+            lineNumber: 1271,
             columnNumber: 11
         }, this);
         $[39] = goals;
@@ -2549,7 +2552,7 @@ function Home() {
             ]
         }, void 0, true, {
             fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/page.js",
-            lineNumber: 1276,
+            lineNumber: 1279,
             columnNumber: 11
         }, this);
         $[41] = t16;
@@ -2569,7 +2572,7 @@ function Home() {
             ]
         }, void 0, true, {
             fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/page.js",
-            lineNumber: 1285,
+            lineNumber: 1288,
             columnNumber: 11
         }, this);
         $[44] = t12;
@@ -2599,7 +2602,7 @@ function Home() {
             ]
         }, void 0, true, {
             fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/page.js",
-            lineNumber: 1302,
+            lineNumber: 1305,
             columnNumber: 11
         }, this);
         $[49] = t19;
@@ -2616,7 +2619,7 @@ function _HomeAnonymous(_, i_0) {
         className: "h-32 bg-fin-card/50 rounded-2xl"
     }, i_0, false, {
         fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/page.js",
-        lineNumber: 1311,
+        lineNumber: 1314,
         columnNumber: 10
     }, this);
 }

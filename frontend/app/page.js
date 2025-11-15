@@ -1,9 +1,13 @@
 'use client'; 
-import AuthGuard from '@/components/AuthGuard'
+
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Pie } from 'react-chartjs-2';
 import { Chart, ArcElement, Tooltip, Legend } from 'chart.js';
+
+// Importa os componentes de autenticação
+import AuthGuard from '@/components/AuthGuard';
+import { useAuth } from '@/context/AuthContext';
 
 Chart.register(ArcElement, Tooltip, Legend);
 
@@ -363,7 +367,7 @@ function ExpensePieChart({ expenses }) {
   );
 }
 
-// --- Componente Principal (CORRIGIDO) ---
+// --- Componente Principal (CORRIGIDO PARA O BUG DE HIDRATAÇÃO) ---
 export default function Home() {
   const [allExpenses, setAllExpenses] = useState([]);
   const [cashExpenses, setCashExpenses] = useState([]);
@@ -376,15 +380,12 @@ export default function Home() {
   // 👇 CORREÇÃO: Inicializa o estado como 'null'
   const [currentDate, setCurrentDate] = useState(null);
   const [lastUpdate, setLastUpdate] = useState(null);
-  // const [isClient, setIsClient] = useState(false); // Não é mais necessário
-
-useEffect(() => {
-    // 👇 ADICIONE ESTAS LINHAS DE COMENTÁRIO 👇
-    // eslint-disable-next-line react-hooks/set-state-in-effect
+  
+  // 👇 CORREÇÃO: Define a data inicial apenas no cliente
+  useEffect(() => {
     setCurrentDate(new Date());
-    // eslint-disable-next-line react-hooks/set-state-in-effect
     setLastUpdate(new Date());
-  }, []); // O array vazio está correto
+  }, []);
 
   useEffect(() => {
     // 👇 CORREÇÃO: Espera 'currentDate' ser definido

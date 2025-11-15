@@ -2,25 +2,37 @@
 import { useState } from 'react';
 import { AuthProvider, useAuth } from '@/context/AuthContext';
 
-// O formulário de login real
 function LoginForm() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isRegistering, setIsRegistering] = useState(false);
   const [error, setError] = useState('');
+  const [success, setSuccess] = useState(''); // Para mensagem de sucesso
   const { login, register } = useAuth();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
+    setSuccess('');
+
     try {
       if (isRegistering) {
+        // --- ETAPA DE REGISTRO ---
         await register(email, password);
+        setSuccess("Conta criada com sucesso! Por favor, faça o login.");
+        setIsRegistering(false); // Volta para a tela de login
       } else {
+        // --- ETAPA DE LOGIN ---
         await login(email, password);
+        // O login já redireciona se for bem-sucedido
       }
     } catch (err) {
-      setError(err.response?.data?.detail || 'Email ou senha inválidos.');
+      // Pega a mensagem de erro específica do backend
+      if (err.response && err.response.data && err.response.data.detail) {
+        setError(err.response.data.detail);
+      } else {
+        setError('Ocorreu um erro. Tente novamente.');
+      }
     }
   };
 
@@ -56,22 +68,32 @@ function LoginForm() {
             />
           </div>
 
+          {/* Mensagem de Erro (Ex: "Usuário já existe") */}
           {error && (
             <p className="text-sm text-fin-red bg-fin-red/10 p-3 rounded-lg">{error}</p>
+          )}
+
+          {/* Mensagem de Sucesso (Ex: "Conta criada!") */}
+          {success && (
+            <p className="text-sm text-green-400 bg-green-500/10 p-3 rounded-lg">{success}</p>
           )}
 
           <button 
             type="submit" 
             className="w-full bg-gradient-to-r from-fin-highlight to-fin-gold hover:opacity-90 text-fin-dark font-bold py-3 px-4 rounded-xl transition-all shadow-lg"
           >
-            {isRegistering ? 'Registrar e Entrar' : 'Entrar'}
+            {isRegistering ? 'Registrar' : 'Entrar'}
           </button>
         </form>
 
         <p className="text-center text-sm text-gray-400 mt-6">
           {isRegistering ? "Já tem uma conta?" : "Não tem uma conta?"}
           <button 
-            onClick={() => setIsRegistering(!isRegistering)}
+            onClick={() => {
+              setIsRegistering(!isRegistering);
+              setError('');
+              setSuccess('');
+            }}
             className="font-medium text-fin-gold hover:underline ml-1"
           >
             {isRegistering ? 'Faça o login' : 'Registre-se'}
@@ -82,7 +104,6 @@ function LoginForm() {
   );
 }
 
-// O wrapper da página de login
 export default function LoginPage() {
   return (
     <AuthProvider>

@@ -14,11 +14,10 @@ ALGORITHM = "HS256"
 ACCESS_TOKEN_EXPIRE_MINUTES = 60 * 24 * 7 # 7 dias
 
 # --- Contexto de Senha ---
-# Usaremos 'bcrypt' para criptografar
-pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
+# 👇 MUDANÇA CRÍTICA: Trocamos 'bcrypt' por 'argon2'
+pwd_context = CryptContext(schemes=["argon2"], deprecated="auto")
 
 # --- Esquema OAuth2 ---
-# Diz ao FastAPI qual rota (URL) o frontend usará para fazer login
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/auth/token")
 
 # --- Funções de Segurança ---
@@ -48,8 +47,6 @@ async def get_current_user(
 ):
     """
     A Dependência de Segurança.
-    Esta função será chamada em CADA rota protegida.
-    Ela decodifica o token, encontra o usuário no banco e o retorna.
     """
     credentials_exception = HTTPException(
         status_code=status.HTTP_401_UNAUTHORIZED,
@@ -58,7 +55,6 @@ async def get_current_user(
     )
     try:
         payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
-        # O 'sub' (subject) do nosso token será o email do usuário
         email: str = payload.get("sub")
         if email is None:
             raise credentials_exception

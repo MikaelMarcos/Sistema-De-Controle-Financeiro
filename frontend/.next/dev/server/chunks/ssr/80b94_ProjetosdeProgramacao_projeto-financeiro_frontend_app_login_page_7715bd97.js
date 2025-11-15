@@ -13,24 +13,35 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgr
 ;
 ;
 ;
-// O formulário de login real
 function LoginForm() {
     const [email, setEmail] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])('');
     const [password, setPassword] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])('');
     const [isRegistering, setIsRegistering] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(false);
     const [error, setError] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])('');
+    const [success, setSuccess] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(''); // Para mensagem de sucesso
     const { login, register } = (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$context$2f$AuthContext$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useAuth"])();
     const handleSubmit = async (e)=>{
         e.preventDefault();
         setError('');
+        setSuccess('');
         try {
             if (isRegistering) {
+                // --- ETAPA DE REGISTRO ---
                 await register(email, password);
+                setSuccess("Conta criada com sucesso! Por favor, faça o login.");
+                setIsRegistering(false); // Volta para a tela de login
             } else {
+                // --- ETAPA DE LOGIN ---
                 await login(email, password);
+            // O login já redireciona se for bem-sucedido
             }
         } catch (err) {
-            setError(err.response?.data?.detail || 'Email ou senha inválidos.');
+            // Pega a mensagem de erro específica do backend
+            if (err.response && err.response.data && err.response.data.detail) {
+                setError(err.response.data.detail);
+            } else {
+                setError('Ocorreu um erro. Tente novamente.');
+            }
         }
     };
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -47,13 +58,13 @@ function LoginForm() {
                             children: "anceiro"
                         }, void 0, false, {
                             fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/login/page.js",
-                            lineNumber: 31,
+                            lineNumber: 43,
                             columnNumber: 14
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/login/page.js",
-                    lineNumber: 30,
+                    lineNumber: 42,
                     columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -61,7 +72,7 @@ function LoginForm() {
                     children: isRegistering ? "Crie sua conta para começar" : "Bem-vindo de volta!"
                 }, void 0, false, {
                     fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/login/page.js",
-                    lineNumber: 33,
+                    lineNumber: 45,
                     columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("form", {
@@ -75,7 +86,7 @@ function LoginForm() {
                                     children: "Email"
                                 }, void 0, false, {
                                     fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/login/page.js",
-                                    lineNumber: 39,
+                                    lineNumber: 51,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -86,13 +97,13 @@ function LoginForm() {
                                     className: "w-full p-4 bg-fin-dark/60 rounded-xl border-2 border-white/10 focus:border-fin-gold text-white"
                                 }, void 0, false, {
                                     fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/login/page.js",
-                                    lineNumber: 40,
+                                    lineNumber: 52,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/login/page.js",
-                            lineNumber: 38,
+                            lineNumber: 50,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -102,7 +113,7 @@ function LoginForm() {
                                     children: "Senha"
                                 }, void 0, false, {
                                     fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/login/page.js",
-                                    lineNumber: 49,
+                                    lineNumber: 61,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -113,13 +124,13 @@ function LoginForm() {
                                     className: "w-full p-4 bg-fin-dark/60 rounded-xl border-2 border-white/10 focus:border-fin-gold text-white"
                                 }, void 0, false, {
                                     fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/login/page.js",
-                                    lineNumber: 50,
+                                    lineNumber: 62,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/login/page.js",
-                            lineNumber: 48,
+                            lineNumber: 60,
                             columnNumber: 11
                         }, this),
                         error && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -127,22 +138,30 @@ function LoginForm() {
                             children: error
                         }, void 0, false, {
                             fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/login/page.js",
-                            lineNumber: 60,
+                            lineNumber: 73,
+                            columnNumber: 13
+                        }, this),
+                        success && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                            className: "text-sm text-green-400 bg-green-500/10 p-3 rounded-lg",
+                            children: success
+                        }, void 0, false, {
+                            fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/login/page.js",
+                            lineNumber: 78,
                             columnNumber: 13
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
                             type: "submit",
                             className: "w-full bg-gradient-to-r from-fin-highlight to-fin-gold hover:opacity-90 text-fin-dark font-bold py-3 px-4 rounded-xl transition-all shadow-lg",
-                            children: isRegistering ? 'Registrar e Entrar' : 'Entrar'
+                            children: isRegistering ? 'Registrar' : 'Entrar'
                         }, void 0, false, {
                             fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/login/page.js",
-                            lineNumber: 63,
+                            lineNumber: 81,
                             columnNumber: 11
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/login/page.js",
-                    lineNumber: 37,
+                    lineNumber: 49,
                     columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -150,29 +169,33 @@ function LoginForm() {
                     children: [
                         isRegistering ? "Já tem uma conta?" : "Não tem uma conta?",
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
-                            onClick: ()=>setIsRegistering(!isRegistering),
+                            onClick: ()=>{
+                                setIsRegistering(!isRegistering);
+                                setError('');
+                                setSuccess('');
+                            },
                             className: "font-medium text-fin-gold hover:underline ml-1",
                             children: isRegistering ? 'Faça o login' : 'Registre-se'
                         }, void 0, false, {
                             fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/login/page.js",
-                            lineNumber: 73,
+                            lineNumber: 91,
                             columnNumber: 11
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/login/page.js",
-                    lineNumber: 71,
+                    lineNumber: 89,
                     columnNumber: 9
                 }, this)
             ]
         }, void 0, true, {
             fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/login/page.js",
-            lineNumber: 29,
+            lineNumber: 41,
             columnNumber: 7
         }, this)
     }, void 0, false, {
         fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/login/page.js",
-        lineNumber: 28,
+        lineNumber: 40,
         columnNumber: 5
     }, this);
 }
@@ -180,12 +203,12 @@ function LoginPage() {
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$context$2f$AuthContext$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["AuthProvider"], {
         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$Documents$2f$ProjetosdeProgramacao$2f$projeto$2d$financeiro$2f$frontend$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(LoginForm, {}, void 0, false, {
             fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/login/page.js",
-            lineNumber: 89,
+            lineNumber: 110,
             columnNumber: 7
         }, this)
     }, void 0, false, {
         fileName: "[project]/Documents/ProjetosdeProgramacao/projeto-financeiro/frontend/app/login/page.js",
-        lineNumber: 88,
+        lineNumber: 109,
         columnNumber: 5
     }, this);
 }

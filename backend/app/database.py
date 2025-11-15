@@ -1,21 +1,28 @@
 from sqlmodel import create_engine, SQLModel, Session
+import os
 
-# 1. Define o caminho do banco de dados SQLite
-DATABASE_URL = "sqlite:///./financeiro.db"
+# 1. Tenta pegar a URL do banco das variáveis de ambiente (Nuvem)
+# Se não encontrar, usa o SQLite local como fallback (Desenvolvimento)
+DATABASE_URL = os.getenv('postgresql://neondb_owner:npg_g4e1QSyFlEzc@ep-shiny-mountain-ac4a3oyr-pooler.sa-east-1.aws.neon.tech/neondb?sslmode=require&channel_binding=require', "sqlite:///./financeiro.db")
 
-# 2. Cria a "engine" de conexão
-# connect_args é necessário para o SQLite
-engine = create_engine(DATABASE_URL, echo=True, connect_args={"check_same_thread": False})
+# 2. Correção necessária para o SQLAlchemy:
+# Alguns provedores (como o Render/Neon) fornecem a URL começando com "postgres://"
+# Mas o SQLAlchemy exige que seja "postgresql://"
+if DATABASE_URL and DATABASE_URL.startswith("postgres://"):
+    DATABASE_URL = DATABASE_URL.replace("postgres://", "postgresql://", 1)
 
-# 3. Função para criar as tabelas no banco
+# 3. Configurações específicas
+# check_same_thread é necessário APENAS para SQLite
+connect_args = {"check_same_thread": False} if "sqlite" in DATABASE_URL else {}
+
+# 4. Cria a engine de conexão
+engine = create_engine(DATABASE_URL, echo=True, connect_args=connect_args)
+
 def create_db_and_tables():
-    # SQLModel.metadata.create_all() vai criar as tabelas
-    # com base em todos os modelos que importarmos antes de chamá-la
+    """Cria as tabelas no banco de dados."""
     SQLModel.metadata.create_all(engine)
 
-# 4. Função "dependência" para o FastAPI
-# Isso garante que tenhamos uma sessão de banco de dados
-# por requisição e que ela seja fechada ao final.
 def get_session():
+    """Dependência para obter a sessão do banco."""
     with Session(engine) as session:
         yield session

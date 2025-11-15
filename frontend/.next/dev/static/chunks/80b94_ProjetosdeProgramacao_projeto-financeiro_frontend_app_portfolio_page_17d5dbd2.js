@@ -1,0 +1,11 @@
+(globalThis.TURBOPACK_CHUNK_LISTS || (globalThis.TURBOPACK_CHUNK_LISTS = [])).push({
+    script: typeof document === "object" ? document.currentScript : undefined,
+    chunks: [
+  "static/chunks/19f28_@headlessui_react_dist_9345afac._.js",
+  "static/chunks/19f28_@floating-ui_react_dist_783f6d87._.js",
+  "static/chunks/19f28_chart_js_dist_ccdd4a43._.js",
+  "static/chunks/19f28_ab9af06f._.js",
+  "static/chunks/80b94_ProjetosdeProgramacao_projeto-financeiro_frontend_app_portfolio_page_e0a5abde.js"
+],
+    source: "dynamic"
+});
