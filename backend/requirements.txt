@@ -11,3 +11,9 @@ alpha-vantage
 python-dotenv
 python-dateutil
 scikit-learn
+pandas
+numpy
+openpyxl
+joblib
+fpdf2
+watchfiles
