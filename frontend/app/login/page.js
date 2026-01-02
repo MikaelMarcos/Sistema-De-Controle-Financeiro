@@ -26,13 +26,23 @@ function LoginForm() {
         await login(email, password);
       }
     } catch (err) {
-      if (err.response && err.response.data && err.response.data.detail) {
-        setError(err.response.data.detail);
+      console.error("Erro no login/registro:", err);
+      if (err.response) {
+        // O servidor respondeu com um erro (4xx, 5xx)
+        if (err.response.data && err.response.data.detail) {
+          setError(err.response.data.detail);
+        } else {
+          setError(`Erro do servidor: ${err.response.status}`);
+        }
+      } else if (err.request) {
+        // A requisição foi feita mas não houve resposta (Erro de rede)
+        setError('Erro de conexão: Não foi possível contatar o servidor. Verifique sua internet ou a URL da API.');
       } else {
-        setError('Ocorreu um erro. Tente novamente.');
+        // Outro erro
+        setError(`Erro: ${err.message}`);
       }
     } finally {
-      setIsLoading(false); // Desativa animação (se falhar, pois o sucesso redireciona)
+      setIsLoading(false); 
     }
   };
 

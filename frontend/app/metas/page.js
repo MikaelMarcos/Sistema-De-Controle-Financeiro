@@ -323,19 +323,12 @@ export default function MetasPage() {
     fetchGoals(); // Recarrega para garantir que o aporte mensal seja recalculado
   };
 
+  const totalAccumulated = goals.reduce((sum, goal) => sum + (goal.current_amount || 0), 0);
+
   return (
     <AuthGuard>
       <div className="max-w-6xl mx-auto px-4 md:px-6 py-4 md:py-6">
-        {editingGoal && (
-          <EditGoalModal
-            goal={editingGoal}
-            onClose={() => setEditingGoal(null)}
-            onGoalUpdated={handleGoalUpdated}
-          />
-        )}
-        <GoalCreateForm onGoalAdded={handleGoalAdded} />
         
-        <h2 className="text-xl md:text-2xl lg:text-3xl font-bold mb-4 md:mb-6 text-white">Minhas Metas</h2>
         {isLoading ? (
           <div className="text-center text-white/60 py-8 md:py-12">Carregando metas...</div>
         ) : goals.length === 0 ? (
@@ -344,7 +337,7 @@ export default function MetasPage() {
             Nenhuma meta criada ainda. Comece a planejar seu futuro!
           </div>
         ) : (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 mb-8">
             {goals.map(goal => (
               <GoalCard 
                 key={goal.id} 
@@ -353,6 +346,25 @@ export default function MetasPage() {
                 onDeleteClick={() => handleGoalDeleted(goal.id)}
               />
             ))}
+          </div>
+        )}
+
+        {/* Card de Total Acumulado (Compacto e no Rodapé) */}
+        {goals.length > 0 && (
+          <div className="bg-gradient-to-r from-emerald-600/10 to-teal-600/10 border border-emerald-500/10 p-4 rounded-2xl flex items-center justify-between backdrop-blur-sm shadow-lg max-w-2xl mx-auto">
+            <div className="flex items-center gap-3">
+              <div className="p-2 bg-emerald-500/10 rounded-xl border border-emerald-500/20">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+              </div>
+              <div>
+                <h2 className="text-sm font-bold text-white">Patrimônio em Metas</h2>
+              </div>
+            </div>
+            <div className="text-lg font-bold text-emerald-300 tracking-tight">
+              {formatCurrency(totalAccumulated)}
+            </div>
           </div>
         )}
       </div>
