@@ -9,3 +9,4 @@ python-multipart
 requests
 alpha-vantage
 python-dotenv
+python-dateutil
