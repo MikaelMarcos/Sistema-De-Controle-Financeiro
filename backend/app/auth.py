@@ -28,11 +28,19 @@ def verify_password(plain_password, hashed_password):
     """Verifica se a senha em texto puro bate com a senha criptografada."""
     return pwd_context.verify(plain_password, hashed_password)
 
-def get_password_hash(password):
+def get_password_hash(password: str) -> str:
     """Gera o hash de uma senha."""
-    # O bcrypt tem um limite de 72 caracteres. 
-    # Se a senha for maior, pegamos apenas os primeiros 72 para evitar o erro 500.
-    return pwd_context.hash(password[:72])
+    # 1. Converte a senha para bytes (UTF-8)
+    password_bytes = password.encode('utf-8')
+    
+    # 2. Verifica se excede 71 bytes (deixamos 1 de margem de segurança)
+    if len(password_bytes) > 71:
+        # 3. Corta nos bytes exatos
+        password_bytes = password_bytes[:71]
+        # 4. Converte de volta para string, ignorando caracteres quebrados no final do corte
+        password = password_bytes.decode('utf-8', 'ignore')
+        
+    return pwd_context.hash(password)
 
 def create_access_token(data: dict, expires_delta: Optional[timedelta] = None):
     """Cria um novo Token JWT."""
