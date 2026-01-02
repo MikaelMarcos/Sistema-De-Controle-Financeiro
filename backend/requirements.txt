@@ -10,3 +10,4 @@ requests
 alpha-vantage
 python-dotenv
 python-dateutil
+scikit-learn
