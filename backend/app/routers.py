@@ -6,6 +6,7 @@ from sqlalchemy.orm import joinedload
 from datetime import datetime, date
 from dateutil.relativedelta import relativedelta
 from alpha_vantage.timeseries import TimeSeries
+from decimal import Decimal
 
 from .database import get_session
 from .models import (
@@ -33,18 +34,18 @@ router_portfolio = APIRouter(prefix="/portfolio", tags=["Portfolio"])
 router_cards = APIRouter(prefix="/cards", tags=["Credit Cards"])
 
 # --- Funções Auxiliares ---
-def _calculate_monthly_contribution(goal: Goal) -> float:
+def _calculate_monthly_contribution(goal: Goal) -> Decimal:
     if not goal.deadline or goal.deadline.date() <= date.today():
-        return 0.0
+        return Decimal(0.0)
     amount_needed = goal.target_amount - goal.current_amount
     if amount_needed <= 0:
-        return 0.0
+        return Decimal(0.0)
     today = date.today()
     deadline_date = goal.deadline.date()
     months_remaining = (deadline_date.year - today.year) * 12 + (deadline_date.month - today.month)
     if months_remaining <= 0:
         months_remaining = 1
-    return amount_needed / months_remaining
+    return amount_needed / Decimal(months_remaining)
 
 def analyze_budget_for_user(session: Session, user: User, month: int, year: int):
     income_stmt = select(func.sum(Income.amount)).where(
@@ -53,7 +54,7 @@ def analyze_budget_for_user(session: Session, user: User, month: int, year: int)
         extract('year', Income.date) == year,
         Income.received == True
     )
-    total_income = session.exec(income_stmt).one() or 0.0
+    total_income = session.exec(income_stmt).one() or Decimal(0.0)
     
     # Chama a função de leitura que agora garante a criação dos grupos padrão
     # Mas como estamos dentro do mesmo arquivo, vamos fazer a lógica direta ou chamar a rota?
@@ -80,8 +81,8 @@ def analyze_budget_for_user(session: Session, user: User, month: int, year: int)
             extract('month', Expense.date) == month,
             extract('year', Expense.date) == year
         )
-        actual_spent = session.exec(expense_stmt).one() or 0.0
-        planned_amount = (total_income * (group.target_percentage / 100.0))
+        actual_spent = session.exec(expense_stmt).one() or Decimal(0.0)
+        planned_amount = (total_income * (Decimal(group.target_percentage) / Decimal(100.0)))
         
         analysis.append({
             "group_id": group.id, 

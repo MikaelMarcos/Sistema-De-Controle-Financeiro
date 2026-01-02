@@ -1,6 +1,7 @@
-from sqlmodel import SQLModel, Field, Relationship
 from typing import Optional, List
 from datetime import datetime
+from decimal import Decimal
+from sqlalchemy import Column, Numeric
 
 # --- Modelo de Usuário ---
 class UserBase(SQLModel):
@@ -64,14 +65,14 @@ class CreditCardRead(CreditCardBase):
 
 # --- 👇 CLASSE QUE FALTAVA 👇 ---
 class PayFaturaRequest(SQLModel):
-    amount: float # O valor exato que você pagou
-    budget_group_id: int # O grupo onde esse PAGAMENTO será categorizado
+    amount: Decimal
+    budget_group_id: int
 
 # --- Modelos de Metas ---
 class GoalBase(SQLModel):
     name: str = Field(index=True)
-    target_amount: float
-    current_amount: float = Field(default=0.0)
+    target_amount: Decimal = Field(sa_column=Column(Numeric(15, 2)))
+    current_amount: Decimal = Field(default=0.0, sa_column=Column(Numeric(15, 2)))
     deadline: Optional[datetime] = Field(default=None)
     notes: Optional[str] = None
 class GoalCreate(GoalBase):
@@ -83,15 +84,15 @@ class Goal(GoalBase, table=True):
     expenses: List["Expense"] = Relationship(back_populates="goal")
 class GoalRead(GoalBase):
     id: int
-    monthly_contribution: float = 0.0
+    monthly_contribution: Decimal = 0.0
 class GoalAdjustment(SQLModel):
-    amount: float = Field(gt=0)
+    amount: Decimal = Field(gt=0, sa_column=Column(Numeric(15, 2)))
     description: Optional[str] = None
 
 # --- Modelos de Despesa ---
 class ExpenseBase(SQLModel):
     description: str
-    amount: float
+    amount: Decimal = Field(sa_column=Column(Numeric(15, 2)))
     date: datetime = Field(default_factory=datetime.utcnow)
     paid: bool = Field(default=True)
     budget_group_id: int = Field(foreign_key="budgetgroup.id")
@@ -102,7 +103,7 @@ class ExpenseBase(SQLModel):
     installments_total: int = Field(default=1)
 class ExpenseCreate(SQLModel):
     description: str
-    total_amount: float
+    total_amount: Decimal
     date: datetime = Field(default_factory=datetime.utcnow)
     paid: bool = Field(default=True)
     budget_group_id: int
@@ -129,7 +130,7 @@ class ExpenseReadWithDetails(ExpenseRead):
 # --- Modelos de Entrada ---
 class IncomeBase(SQLModel):
     description: str
-    amount: float
+    amount: Decimal = Field(sa_column=Column(Numeric(15, 2)))
     date: datetime = Field(default_factory=datetime.utcnow)
     received: bool = Field(default=True)
 class IncomeCreate(IncomeBase):
@@ -167,15 +168,15 @@ class AssetRead(AssetCreate):
 class PortfolioHolding(SQLModel, table=True):
     id: Optional[int] = Field(default=None, primary_key=True)
     asset_id: int = Field(foreign_key="asset.id")
-    quantity: float
-    average_price: float
+    quantity: Decimal = Field(sa_column=Column(Numeric(15, 6)))
+    average_price: Decimal = Field(sa_column=Column(Numeric(15, 2)))
     user_id: int = Field(foreign_key="user.id")
     user: User = Relationship(back_populates="portfolio_holdings")
     asset: Asset = Relationship(back_populates="holdings")
 class PortfolioHoldingCreate(SQLModel):
-    ticker: str; name: str; asset_type: str; quantity: float; average_price: float
+    ticker: str; name: str; asset_type: str; quantity: Decimal; average_price: Decimal
 class PortfolioHoldingRead(SQLModel):
-    id: int; quantity: float; average_price: float; asset: AssetRead
+    id: int; quantity: Decimal; average_price: Decimal; asset: AssetRead
 
 # --- Modelos de Leitura Combinados ---
 class CategoryReadWithExpenses(CategoryRead):

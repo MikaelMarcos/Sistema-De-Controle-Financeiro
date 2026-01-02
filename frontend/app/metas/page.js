@@ -328,7 +328,16 @@ export default function MetasPage() {
   return (
     <AuthGuard>
       <div className="max-w-6xl mx-auto px-4 md:px-6 py-4 md:py-6">
+        {editingGoal && (
+          <EditGoalModal
+            goal={editingGoal}
+            onClose={() => setEditingGoal(null)}
+            onGoalUpdated={handleGoalUpdated}
+          />
+        )}
+        <GoalCreateForm onGoalAdded={handleGoalAdded} />
         
+        <h2 className="text-xl md:text-2xl lg:text-3xl font-bold mb-4 md:mb-6 text-white">Minhas Metas</h2>
         {isLoading ? (
           <div className="text-center text-white/60 py-8 md:py-12">Carregando metas...</div>
         ) : goals.length === 0 ? (
