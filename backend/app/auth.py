@@ -30,7 +30,9 @@ def verify_password(plain_password, hashed_password):
 
 def get_password_hash(password):
     """Gera o hash de uma senha."""
-    return pwd_context.hash(password)
+    # O bcrypt tem um limite de 72 caracteres. 
+    # Se a senha for maior, pegamos apenas os primeiros 72 para evitar o erro 500.
+    return pwd_context.hash(password[:72])
 
 def create_access_token(data: dict, expires_delta: Optional[timedelta] = None):
     """Cria um novo Token JWT."""
