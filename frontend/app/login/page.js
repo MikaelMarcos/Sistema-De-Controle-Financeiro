@@ -1,137 +1,138 @@
 'use client';
 import { useState } from 'react';
 import { AuthProvider, useAuth } from '@/context/AuthContext';
+import { User, Users, ArrowLeft } from 'lucide-react';
 
 function LoginForm() {
-  const [email, setEmail] = useState('');
+  const [selectedProfile, setSelectedProfile] = useState(null); // 'mika' or 'guest'
   const [password, setPassword] = useState('');
-  const [isRegistering, setIsRegistering] = useState(false);
   const [error, setError] = useState('');
-  const [success, setSuccess] = useState('');
-  const [isLoading, setIsLoading] = useState(false); // Estado local de loading para animação
-  const { login, register } = useAuth();
+  const [isLoading, setIsLoading] = useState(false);
+  const { login } = useAuth();
 
-  const handleSubmit = async (e) => {
+  const handleProfileSelect = (profile) => {
+    setSelectedProfile(profile);
+    setError('');
+    setPassword('');
+  };
+
+  const handleLogin = async (e) => {
     e.preventDefault();
     setError('');
-    setSuccess('');
-    setIsLoading(true); // Ativa animação
+    setIsLoading(true);
+
+    let email = '';
+    if (selectedProfile === 'mika') email = 'mika@rafa.com';
+    if (selectedProfile === 'guest') email = 'convidado@sistema.com';
 
     try {
-      if (isRegistering) {
-        await register(email, password);
-        setSuccess("Conta criada com sucesso! Por favor, faça o login.");
-        setIsRegistering(false);
-      } else {
-        await login(email, password);
-      }
+      await login(email, password);
     } catch (err) {
-      console.error("Erro no login/registro:", err);
+      console.error("Erro no login:", err);
       if (err.response) {
-        // O servidor respondeu com um erro (4xx, 5xx)
-        if (err.response.data && err.response.data.detail) {
-          setError(err.response.data.detail);
-        } else {
-          setError(`Erro do servidor: ${err.response.status}`);
-        }
-      } else if (err.request) {
-        // A requisição foi feita mas não houve resposta (Erro de rede)
-        setError('Erro de conexão: Não foi possível contatar o servidor. Verifique sua internet ou a URL da API.');
+        setError(err.response.data.detail || 'Senha incorreta');
       } else {
-        // Outro erro
-        setError(`Erro: ${err.message}`);
+        setError('Erro de conexão. Tente novamente.');
       }
     } finally {
-      setIsLoading(false); 
+      setIsLoading(false);
     }
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-fin-dark via-[#051e2b] to-fin-dark p-4">
-      {/* Card com animação de entrada suave (fade-in e slide-up) */}
-      <div className="w-full max-w-md bg-fin-dark/60 p-8 rounded-3xl shadow-2xl border border-white/5 backdrop-blur-xl transition-all duration-500 transform hover:shadow-fin-gold/10">
+    <div className="min-h-screen flex items-center justify-center bg-fin-dark p-4">
+      <div className="w-full max-w-4xl text-center">
         
-        <div className="text-center mb-8">
-          <h1 className="text-4xl font-bold text-white mb-2 tracking-tight">
-            Fin<span className="text-fin-gold">anceiro</span>
-          </h1>
-          <p className="text-gray-400 text-sm">
-            {isRegistering ? "Crie sua conta para começar" : "Bem-vindo de volta!"}
-          </p>
-        </div>
-
-        <form onSubmit={handleSubmit} className="space-y-6">
-          <div className="space-y-2">
-            <label className="block text-xs font-medium text-fin-gold uppercase tracking-wider ml-1">Email</label>
-            <input 
-              type="email" 
-              value={email} 
-              onChange={(e) => setEmail(e.target.value)}
-              required
-              className="w-full p-4 bg-[#0a192f]/80 rounded-xl border border-white/10 focus:border-fin-gold focus:ring-2 focus:ring-fin-gold/20 transition-all text-white placeholder-gray-600 outline-none"
-              placeholder="seu@email.com"
-            />
-          </div>
-          <div className="space-y-2">
-            <label className="block text-xs font-medium text-fin-gold uppercase tracking-wider ml-1">Senha</label>
-            <input 
-              type="password" 
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-              className="w-full p-4 bg-[#0a192f]/80 rounded-xl border border-white/10 focus:border-fin-gold focus:ring-2 focus:ring-fin-gold/20 transition-all text-white placeholder-gray-600 outline-none"
-              placeholder="••••••••"
-            />
-          </div>
-
-          {error && (
-            <div className="p-4 bg-red-500/10 border border-red-500/20 rounded-xl text-red-400 text-sm text-center animate-pulse">
-              {error}
-            </div>
-          )}
-
-          {success && (
-            <div className="p-4 bg-green-500/10 border border-green-500/20 rounded-xl text-green-400 text-sm text-center">
-              {success}
-            </div>
-          )}
-
-          {/* 👇 BOTÃO COM EFEITOS DE CLIQUE 👇 */}
-          <button 
-            type="submit" 
-            disabled={isLoading}
-            className="w-full bg-gradient-to-r from-fin-highlight to-fin-gold hover:from-yellow-400 hover:to-orange-400 text-fin-dark font-bold py-4 px-4 rounded-xl shadow-lg shadow-fin-gold/10 
-            transform transition-all duration-200 
-            hover:scale-[1.02] hover:shadow-fin-gold/30 
-            active:scale-95 active:shadow-none 
-            disabled:opacity-70 disabled:cursor-not-allowed disabled:scale-100"
-          >
-            {isLoading ? (
-              <div className="flex items-center justify-center gap-2">
-                <div className="w-5 h-5 border-2 border-fin-dark border-t-transparent rounded-full animate-spin"></div>
-                <span>Processando...</span>
+        {/* VIEW 1: SELEÇÃO DE PERFIL */}
+        {!selectedProfile && (
+          <div className="animate-fade-in-down">
+            <h1 className="text-4xl md:text-5xl font-bold text-white mb-12 tracking-tight">
+              Quem está acessando?
+            </h1>
+            
+            <div className="flex flex-col md:flex-row items-center justify-center gap-8 md:gap-16">
+              
+              {/* PERFIL MIKA E RAFA */}
+              <div 
+                onClick={() => handleProfileSelect('mika')}
+                className="group cursor-pointer flex flex-col items-center gap-4 transition-transform duration-300 hover:scale-105"
+              >
+                <div className="w-32 h-32 md:w-40 md:h-40 rounded-md bg-gradient-to-br from-fin-highlight to-fin-gold flex items-center justify-center shadow-lg group-hover:shadow-fin-gold/40 group-hover:ring-4 ring-white transition-all overflow-hidden relative">
+                   {/* Avatar Placeholder */}
+                   <Users size={64} className="text-fin-dark" />
+                </div>
+                <span className="text-xl text-gray-400 group-hover:text-white transition-colors">
+                  Mika e Rafa
+                </span>
               </div>
-            ) : (
-              isRegistering ? 'Criar Conta' : 'Entrar no Sistema'
-            )}
-          </button>
-        </form>
 
-        <div className="mt-8 text-center">
-          <p className="text-sm text-gray-400">
-            {isRegistering ? "Já tem acesso?" : "Ainda não tem conta?"}
-            <button 
-              onClick={() => {
-                setIsRegistering(!isRegistering);
-                setError('');
-                setSuccess('');
-              }}
-              className="font-bold text-fin-gold hover:text-white hover:underline ml-2 transition-colors"
-            >
-              {isRegistering ? 'Fazer Login' : 'Criar agora'}
-            </button>
-          </p>
-        </div>
+              {/* PERFIL CONVIDADO */}
+              <div 
+                onClick={() => handleProfileSelect('guest')}
+                className="group cursor-pointer flex flex-col items-center gap-4 transition-transform duration-300 hover:scale-105"
+              >
+                <div className="w-32 h-32 md:w-40 md:h-40 rounded-md bg-gray-700 flex items-center justify-center shadow-lg group-hover:shadow-white/20 group-hover:ring-4 ring-white transition-all">
+                  <User size={64} className="text-gray-400" />
+                </div>
+                <span className="text-xl text-gray-400 group-hover:text-white transition-colors">
+                  Convidado
+                </span>
+              </div>
+
+            </div>
+          </div>
+        )}
+
+        {/* VIEW 2: INPUT DE SENHA */}
+        {selectedProfile && (
+          <div className="animate-fade-in-up max-w-md mx-auto bg-fin-dark/50 p-8 rounded-2xl backdrop-blur-sm border border-white/5">
+            <div className="flex flex-col items-center mb-8">
+              <div className={`w-20 h-20 rounded-md flex items-center justify-center mb-4 shadow-lg ${selectedProfile === 'mika' ? 'bg-gradient-to-br from-fin-highlight to-fin-gold' : 'bg-gray-700'}`}>
+                {selectedProfile === 'mika' ? <Users size={32} className="text-fin-dark"/> : <User size={32} className="text-gray-400"/>}
+              </div>
+              <h2 className="text-xl text-gray-300">
+                Olá, <span className="font-bold text-white">{selectedProfile === 'mika' ? 'Mika e Rafa' : 'Convidado'}</span>
+              </h2>
+            </div>
+
+            <form onSubmit={handleLogin} className="space-y-6">
+              <div className="relative">
+                <input 
+                  type="password" 
+                  autoFocus
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  className="w-full p-4 bg-[#0a192f] rounded-lg border border-white/10 focus:border-white/40 focus:ring-0 transition-all text-white placeholder-gray-600 outline-none text-center tracking-widest text-lg"
+                  placeholder="Senha"
+                />
+              </div>
+
+              {error && (
+                <div className="text-red-400 text-sm animate-pulse">
+                  {error}
+                </div>
+              )}
+
+              <div className="flex gap-4">
+                <button 
+                  type="button"
+                  onClick={() => setSelectedProfile(null)}
+                  className="flex-1 py-3 border border-gray-600 text-gray-400 hover:border-white hover:text-white rounded-lg transition-colors font-semibold uppercase tracking-wide text-sm"
+                >
+                  Voltar
+                </button>
+                <button 
+                  type="submit" 
+                  disabled={isLoading}
+                  className="flex-1 py-3 bg-white text-black hover:bg-red-600 hover:text-white rounded-lg transition-all font-bold uppercase tracking-wide text-sm disabled:opacity-50"
+                >
+                  {isLoading ? 'Entrando...' : 'Acessar'}
+                </button>
+              </div>
+            </form>
+          </div>
+        )}
+
       </div>
     </div>
   );
