@@ -12,15 +12,49 @@ const EditIcon = () => <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewB
 const DeleteIcon = () => <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-4 h-4"><path strokeLinecap="round" strokeLinejoin="round" d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0" /></svg>;
 
 // --- Seletor de Mês ---
+// --- Seletor de Mês (Estilo Pill) ---
 function MonthSelector({ currentDate, onDateChange }) {
-  const handlePreviousMonth = () => { const newDate = new Date(currentDate); newDate.setMonth(newDate.getMonth() - 1); onDateChange(newDate); };
-  const handleNextMonth = () => { const newDate = new Date(currentDate); newDate.setMonth(newDate.getMonth() + 1); onDateChange(newDate); };
-  const formattedDate = currentDate.toLocaleString('pt-BR', { month: 'long', year: 'numeric' }).replace(/^\w/, (c) => c.toUpperCase());
+  const handlePreviousMonth = () => { 
+    const newDate = new Date(currentDate); 
+    newDate.setMonth(newDate.getMonth() - 1); 
+    onDateChange(newDate); 
+  };
+  
+  const handleNextMonth = () => { 
+    const newDate = new Date(currentDate); 
+    newDate.setMonth(newDate.getMonth() + 1); 
+    onDateChange(newDate); 
+  };
+  
+  const formattedDate = `${currentDate.toLocaleString('pt-BR', { month: 'long' })} ${currentDate.getFullYear()}`.replace(/^\w/, (c) => c.toUpperCase());
+
   return (
-    <div className="flex justify-between items-center mb-8 bg-fin-card/30 p-4 rounded-2xl border border-white/5 backdrop-blur-sm shadow-inner">
-      <button onClick={handlePreviousMonth} className="px-3 py-2 text-fin-gold border border-fin-gold/40 rounded-lg hover:bg-fin-gold hover:text-black transition-all">&lt; Anterior</button>
-      <h2 className="text-2xl font-light text-white tracking-wide">{formattedDate}</h2>
-      <button onClick={handleNextMonth} className="px-3 py-2 text-fin-gold border border-fin-gold/40 rounded-lg hover:bg-fin-gold hover:text-black transition-all">Próximo &gt;</button>
+    <div className="flex justify-center mb-8 animate-fade-in-down">
+      <div className="glass p-1.5 rounded-full inline-flex items-center gap-4 shadow-glass">
+        <button 
+          onClick={handlePreviousMonth} 
+          className="w-10 h-10 rounded-full flex items-center justify-center text-gray-400 hover:text-white hover:bg-white/10 transition-all duration-300"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor" className="w-5 h-5">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
+          </svg>
+        </button>
+        
+        <div className="text-center px-4 w-48">
+          <h2 className="text-lg font-bold text-white tracking-wide capitalize">
+            {formattedDate}
+          </h2>
+        </div>
+        
+        <button 
+          onClick={handleNextMonth} 
+          className="w-10 h-10 rounded-full flex items-center justify-center text-gray-400 hover:text-white hover:bg-white/10 transition-all duration-300"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor" className="w-5 h-5">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+          </svg>
+        </button>
+      </div>
     </div>
   );
 }
@@ -83,87 +117,185 @@ function EditIncomeModal({ income, onClose, onIncomeUpdated }) {
   );
 }
 
-// --- Formulário de Criação ---
+// --- Componente de Card de Entrada (Design Premium) ---
+function IncomeCard({ income, onDelete }) {
+  const formatDate = (d) => new Date(d).toLocaleDateString('pt-BR', { timeZone: 'UTC', day: '2-digit', month: '2-digit' });
+
+  return (
+    <div className="group relative overflow-hidden bg-fin-dark/40 p-5 rounded-2xl border border-white/5 hover:border-green-500/30 transition-all duration-300 hover:shadow-lg hover:shadow-green-900/10">
+      <div className="absolute inset-0 bg-gradient-to-r from-green-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+      
+      <div className="relative z-10 flex justify-between items-center">
+        <div className="flex items-center gap-4">
+          <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-green-900/40 to-emerald-900/20 border border-green-500/20 flex items-center justify-center shadow-inner group-hover:scale-110 transition-transform duration-300">
+            <span className="text-xl">💰</span>
+          </div>
+          <div>
+            <div className="flex items-center gap-2 mb-1">
+              <span className="text-[10px] font-bold text-green-400 bg-green-400/10 px-2 py-0.5 rounded-full border border-green-400/10">{formatDate(income.date)}</span>
+              {income.is_fixed && (
+                <span className="text-[10px] font-bold text-blue-400 bg-blue-400/10 px-2 py-0.5 rounded-full border border-blue-400/10">Fixa</span>
+              )}
+            </div>
+            <h3 className="font-bold text-white group-hover:text-green-300 transition-colors">{income.description}</h3>
+          </div>
+        </div>
+
+        <div className="flex items-center gap-4">
+          <span className="text-lg font-bold text-green-400">{formatCurrency(income.amount)}</span>
+          <button 
+            onClick={() => onDelete(income.id)}
+            className="w-8 h-8 flex items-center justify-center rounded-lg text-gray-500 hover:text-red-400 hover:bg-red-400/10 transition-all opacity-0 group-hover:opacity-100"
+            title="Excluir"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-4 h-4">
+              <path strokeLinecap="round" strokeLinejoin="round" d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0" />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// --- Lista de Entradas ---
+function IncomeList({ incomes, onDeleteIncome }) {
+  const handleDelete = (id) => {
+    if (confirm('Tem certeza que deseja excluir esta entrada?')) {
+      axios.delete(`${API_URL}/income/${id}`)
+        .then(() => onDeleteIncome())
+        .catch(err => console.error("Erro ao deletar:", err));
+    }
+  };
+
+  const totalAmount = incomes.reduce((acc, inc) => acc + Number(inc.amount), 0);
+
+  return (
+    <div className="glass rounded-3xl p-6 md:p-8 animate-fade-in-down h-full flex flex-col">
+      <div className="flex justify-between items-center mb-6">
+        <div>
+          <h2 className="text-2xl font-bold text-white">Histórico</h2>
+          <p className="text-sm text-gray-400">Registros do mês atual</p>
+        </div>
+        <div className="text-right">
+          <p className="text-xs text-gray-400 font-bold uppercase tracking-wider">Total Recebido</p>
+          <p className="text-2xl font-bold text-green-400 drop-shadow-sm">{formatCurrency(totalAmount)}</p>
+        </div>
+      </div>
+
+      {incomes.length === 0 ? (
+        <div className="flex-1 flex flex-col items-center justify-center text-center py-12 border border-white/5 rounded-2xl border-dashed">
+          <div className="text-5xl mb-4 opacity-30 grayscale">💰</div>
+          <p className="text-gray-400 font-light text-lg">Nenhuma entrada ainda.</p>
+          <p className="text-sm text-gray-500">Adicione seu salário ou renda extra.</p>
+        </div>
+      ) : (
+        <div className="space-y-3 overflow-y-auto pr-2 custom-scrollbar flex-1 max-h-[500px]">
+          {incomes.map(income => (
+            <IncomeCard key={income.id} income={income} onDelete={handleDelete} />
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
+
+// --- Formulário de Nova Entrada ---
 function IncomeForm({ onIncomeAdded }) {
   const [description, setDescription] = useState('');
   const [amount, setAmount] = useState('');
-  const [date, setDate] = useState('');
-  const [received, setReceived] = useState(true);
-  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [date, setDate] = useState(new Date().toISOString().split('T')[0]);
+  const [isFixed, setIsFixed] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!description || !amount) {
-      alert("Preencha os campos obrigatórios.");
-      return;
-    }
-    setIsSubmitting(true);
+    if (!description || !amount) return alert("Preencha descrição e valor!");
+    
+    setLoading(true);
     try {
-      const newIncome = {
+      await axios.post(`${API_URL}/income/`, {
         description,
         amount: parseFloat(amount),
-        date: date ? new Date(date).toISOString() : new Date().toISOString(),
-        received: received
-      };
-      await axios.post(`${API_URL}/income/`, newIncome);
-      setDescription(''); setAmount(''); setDate(''); setReceived(true);
+        date: new Date(date).toISOString(),
+        is_fixed: isFixed
+      });
+      setDescription('');
+      setAmount('');
+      setIsFixed(false);
       onIncomeAdded();
     } catch (error) {
-      console.error("Erro:", error);
-      alert("Erro ao cadastrar entrada.");
+      console.error("Erro ao adicionar entrada:", error);
+      alert("Erro ao salvar entrada.");
     } finally {
-      setIsSubmitting(false);
+      setLoading(false);
     }
   };
 
   return (
-    <div className="bg-gradient-to-br from-fin-card to-fin-dark/80 p-8 rounded-3xl shadow-2xl mb-8 border border-fin-gold/20 backdrop-blur-sm">
-      <div className="flex items-center gap-3 mb-8">
-        <div className="p-3 bg-green-500/20 rounded-2xl"><span className="text-2xl">💸</span></div>
-        <div>
-          <h2 className="text-2xl font-bold text-white">Nova Receita</h2>
-          <p className="text-fin-gold/70 text-sm">Registre ganhos ou agende recebimentos</p>
-        </div>
+    <div className="glass rounded-3xl p-6 md:p-8 animate-fade-in-down" style={{ animationDelay: '0.1s' }}>
+      <div className="mb-6">
+        <h2 className="text-2xl font-bold text-white flex items-center gap-2">
+          <span className="bg-gradient-to-br from-green-400 to-emerald-600 w-8 h-8 rounded-lg flex items-center justify-center text-fin-dark text-lg shadow-lg">＋</span>
+          Nova Entrada
+        </h2>
+        <p className="text-sm text-gray-400 mt-1">Registre seus ganhos</p>
       </div>
-      
-      <form onSubmit={handleSubmit} className="space-y-6">
-        <div className="space-y-4">
-          <h3 className="text-lg font-semibold text-fin-gold border-b border-fin-gold/30 pb-2">Detalhes da Receita</h3>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div>
-              <label className="block text-sm font-medium text-white/80 mb-2">Descrição *</label>
-              <input type="text" value={description} onChange={(e) => setDescription(e.target.value)} placeholder="Ex: Salário, Freelance..." className="w-full p-4 bg-fin-dark/60 rounded-xl border-2 border-white/10 focus:border-fin-gold focus:ring-2 focus:ring-fin-gold/20 transition-all text-white placeholder-white/40"/>
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-white/80 mb-2">Valor *</label>
-              <div className="relative">
-                <span className="absolute left-4 top-1/2 transform -translate-y-1/2 text-green-400 font-bold">R$</span>
-                <input type="number" step="0.01" value={amount} onChange={(e) => setAmount(e.target.value)} placeholder="0,00" className="w-full p-4 pl-12 bg-fin-dark/60 rounded-xl border-2 border-white/10 focus:border-green-400 focus:ring-2 focus:ring-green-400/20 transition-all text-white"/>
-              </div>
-            </div>
-          </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div>
-              <label className="block text-sm font-medium text-white/80 mb-2">Data Prevista</label>
-              <input type="date" value={date} onChange={(e) => setDate(e.target.value)} className="w-full p-4 bg-fin-dark/60 rounded-xl border-2 border-white/10 focus:border-fin-gold transition-all text-white"/>
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-white/80 mb-2">Status</label>
-              <div className={`w-full p-4 rounded-xl border-2 transition-all cursor-pointer ${received ? 'bg-green-500/20 border-green-500/50 text-green-400' : 'bg-yellow-500/20 border-yellow-500/50 text-yellow-400'}`} onClick={() => setReceived(!received)}>
-                <div className="flex items-center justify-between">
-                  <span className="font-bold">{received ? '✅ RECEBIDO' : '⏳ A RECEBER'}</span>
-                  <div className={`w-3 h-3 rounded-full ${received ? 'bg-green-400' : 'bg-yellow-400'}`}></div>
-                </div>
-              </div>
-            </div>
+      <form onSubmit={handleSubmit} className="space-y-5">
+        <div>
+          <label className="block text-xs font-bold text-gray-400 uppercase tracking-wider mb-2 ml-1">Descrição</label>
+          <input 
+            type="text" 
+            placeholder="Ex: Salário, Freela..." 
+            className="w-full bg-fin-dark/50 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-green-500/50 focus:border-green-500/50 transition-all"
+            value={description}
+            onChange={e => setDescription(e.target.value)}
+          />
+        </div>
+
+        <div className="grid grid-cols-2 gap-4">
+          <div>
+            <label className="block text-xs font-bold text-gray-400 uppercase tracking-wider mb-2 ml-1">Valor (R$)</label>
+            <input 
+              type="number" 
+              step="0.01" 
+              placeholder="0,00" 
+              className="w-full bg-fin-dark/50 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-green-500/50 focus:border-green-500/50 transition-all font-mono"
+              value={amount}
+              onChange={e => setAmount(e.target.value)}
+            />
+          </div>
+          <div>
+            <label className="block text-xs font-bold text-gray-400 uppercase tracking-wider mb-2 ml-1">Data</label>
+            <input 
+              type="date" 
+              className="w-full bg-fin-dark/50 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-green-500/50 focus:border-green-500/50 transition-all [color-scheme:dark]"
+              value={date}
+              onChange={e => setDate(e.target.value)}
+            />
           </div>
         </div>
 
-        <button type="submit" disabled={isSubmitting} className="w-full bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 disabled:opacity-50 text-white font-bold py-4 px-6 rounded-xl transition-all transform hover:scale-[1.02] shadow-lg flex items-center justify-center gap-2">
-          {isSubmitting ? 'Processando...' : (
-            <><span>{received ? '💰' : '📅'}</span> {received ? 'Registrar Entrada' : 'Agendar Recebimento'}</>
+        <div className="flex items-center gap-3 bg-fin-dark/30 p-3 rounded-xl border border-white/5 cursor-pointer hover:bg-fin-dark/50 transition-colors" onClick={() => setIsFixed(!isFixed)}>
+          <div className={`w-5 h-5 rounded-md border flex items-center justify-center transition-all ${isFixed ? 'bg-green-500 border-green-500' : 'border-gray-500'}`}>
+            {isFixed && <svg className="w-3.5 h-3.5 text-fin-dark" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}><path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" /></svg>}
+          </div>
+          <span className="text-sm text-gray-300 font-medium">Entrada Fixa (Mensal)</span>
+        </div>
+
+        <button 
+          type="submit" 
+          disabled={loading}
+          className="w-full bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-400 hover:to-emerald-500 text-white font-bold py-3.5 px-6 rounded-xl shadow-lg shadow-green-900/20 transform hover:-translate-y-0.5 transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+        >
+          {loading ? (
+            <>
+              <svg className="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle><path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>
+              Salvando...
+            </>
+          ) : (
+            'Adicionar Receita'
           )}
         </button>
       </form>

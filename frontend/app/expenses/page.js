@@ -15,23 +15,49 @@ const EditIcon = () => <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewB
 const DeleteIcon = () => <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-4 h-4"><path strokeLinecap="round" strokeLinejoin="round" d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0" /></svg>;
 
 // --- Seletor de Mês ---
+// --- Seletor de Mês (Estilo Pill) ---
 function MonthSelector({ currentDate, onDateChange }) {
-  const handlePreviousMonth = () => { const newDate = new Date(currentDate); newDate.setMonth(newDate.getMonth() - 1); onDateChange(newDate); };
-  const handleNextMonth = () => { const newDate = new Date(currentDate); newDate.setMonth(newDate.getMonth() + 1); onDateChange(newDate); };
+  const handlePreviousMonth = () => { 
+    const newDate = new Date(currentDate); 
+    newDate.setMonth(newDate.getMonth() - 1); 
+    onDateChange(newDate); 
+  };
+  
+  const handleNextMonth = () => { 
+    const newDate = new Date(currentDate); 
+    newDate.setMonth(newDate.getMonth() + 1); 
+    onDateChange(newDate); 
+  };
+  
   const formattedDate = `${currentDate.toLocaleString('pt-BR', { month: 'long' })} ${currentDate.getFullYear()}`.replace(/^\w/, (c) => c.toUpperCase());
 
   return (
-    <div className="flex justify-between items-center mb-8 p-4 bg-gradient-to-r from-fin-dark/80 to-fin-card/80 backdrop-blur-lg rounded-2xl border border-white/10 shadow-xl">
-      <button onClick={handlePreviousMonth} className="p-3 text-fin-gold hover:bg-fin-gold/10 rounded-xl transition-all duration-300 hover:scale-105 border border-fin-gold/20">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-5 h-5"><path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" /></svg>
-      </button>
-      <div className="text-center">
-        <h2 className="text-2xl font-bold text-white tracking-wide">{formattedDate}</h2>
-        <p className="text-xs text-gray-400 mt-1">Extrato Mensal</p>
+    <div className="flex justify-center mb-8 animate-fade-in-down">
+      <div className="glass p-1.5 rounded-full inline-flex items-center gap-4 shadow-glass">
+        <button 
+          onClick={handlePreviousMonth} 
+          className="w-10 h-10 rounded-full flex items-center justify-center text-gray-400 hover:text-white hover:bg-white/10 transition-all duration-300"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor" className="w-5 h-5">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
+          </svg>
+        </button>
+        
+        <div className="text-center px-4 w-48">
+          <h2 className="text-lg font-bold text-white tracking-wide capitalize">
+            {formattedDate}
+          </h2>
+        </div>
+        
+        <button 
+          onClick={handleNextMonth} 
+          className="w-10 h-10 rounded-full flex items-center justify-center text-gray-400 hover:text-white hover:bg-white/10 transition-all duration-300"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor" className="w-5 h-5">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+          </svg>
+        </button>
       </div>
-      <button onClick={handleNextMonth} className="p-3 text-fin-gold hover:bg-fin-gold/10 rounded-xl transition-all duration-300 hover:scale-105 border border-fin-gold/20">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-5 h-5"><path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" /></svg>
-      </button>
     </div>
   );
 }
@@ -160,7 +186,7 @@ function EditExpenseModal({ expense, onClose, onUpdated }) {
   );
 }
 
-// --- FORMULÁRIO DE CRIAÇÃO ---
+// --- FORMULÁRIO DE CRIAÇÃO (Design Glass) ---
 function ExpenseForm({ onExpenseAdded }) {
   const [description, setDescription] = useState('');
   const [amount, setAmount] = useState('');
@@ -222,7 +248,7 @@ function ExpenseForm({ onExpenseAdded }) {
                setSubcategoryId(rule.category_id);
                setSuggestionApplied(true);
              } catch (trainError) {
-               console.warn("IA: Auto-trebamento falhou (provavelmente dados insuficientes).", trainError);
+               console.warn("IA: Auto-trebamento falhou.", trainError);
              }
           }
         });
@@ -291,64 +317,77 @@ function ExpenseForm({ onExpenseAdded }) {
   };
   
   return (
-    <div className="bg-gradient-to-br from-fin-card to-fin-dark/80 p-6 md:p-8 rounded-3xl shadow-2xl mb-8 border border-fin-gold/20 backdrop-blur-sm">
+    <div className="glass rounded-3xl p-6 md:p-8 animate-fade-in-down mb-8" style={{ animationDelay: '0.1s' }}>
       <div className="flex items-center gap-3 mb-8">
-        <div className="p-3 bg-fin-gold/20 rounded-2xl"><span className="text-2xl">💰</span></div>
+        <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-fin-gold to-orange-500 flex items-center justify-center text-fin-dark text-2xl shadow-lg transform -rotate-6">
+          <span>💸</span>
+        </div>
         <div>
           <h2 className="text-2xl font-bold text-white">Nova Transação</h2>
-          <p className="text-fin-gold/70 text-sm">Registre despesas ou agendamentos</p>
+          <p className="text-gray-400 text-sm">Registre despesas ou agendamentos</p>
         </div>
       </div>
       
       <form onSubmit={handleSubmit} className="space-y-6">
         <div className="space-y-4">
-          <h3 className="text-lg font-semibold text-fin-gold border-b border-fin-gold/30 pb-2">Informações Básicas</h3>
+          <h3 className="text-xs font-bold text-fin-gold uppercase tracking-widest border-b border-fin-gold/30 pb-2 mb-4">Informações Básicas</h3>
+          
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
-              <label className="block text-sm font-medium text-white/80 mb-2">Descrição *</label>
-              <input type="text" value={description} onChange={(e) => setDescription(e.target.value)} placeholder="Ex: Conta de Luz..." className="w-full p-4 bg-fin-dark/60 rounded-xl border-2 border-white/10 focus:border-fin-gold text-white"/>
+              <label className="block text-xs font-bold text-gray-400 uppercase tracking-wider mb-2 ml-1">Descrição *</label>
+              <input type="text" value={description} onChange={(e) => setDescription(e.target.value)} placeholder="Ex: Conta de Luz..." className="w-full bg-fin-dark/50 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-fin-gold/50 focus:border-fin-gold/50 transition-all"/>
             </div>
             <div>
-              <label className="block text-sm font-medium text-white/80 mb-2">Valor Total *</label>
-              <div className="relative"><span className="absolute left-4 top-1/2 transform -translate-y-1/2 text-fin-gold font-bold">R$</span><input type="number" step="0.01" value={amount} onChange={(e) => setAmount(e.target.value)} placeholder="0,00" className="w-full p-4 pl-12 bg-fin-dark/60 rounded-xl border-2 border-white/10 focus:border-fin-gold text-white"/></div>
+              <label className="block text-xs font-bold text-gray-400 uppercase tracking-wider mb-2 ml-1">Valor Total *</label>
+              <div className="relative">
+                <span className="absolute left-4 top-1/2 transform -translate-y-1/2 text-fin-gold font-bold">R$</span>
+                <input type="number" step="0.01" value={amount} onChange={(e) => setAmount(e.target.value)} placeholder="0,00" className="w-full bg-fin-dark/50 border border-white/10 rounded-xl pl-12 pr-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-fin-gold/50 focus:border-fin-gold/50 transition-all font-mono"/>
+              </div>
             </div>
           </div>
+
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            <div><label className="block text-sm font-medium text-white/80 mb-2">Data</label><input type="date" value={date} onChange={(e) => setDate(e.target.value)} className="w-full p-4 bg-fin-dark/60 rounded-xl border-2 border-white/10 focus:border-fin-gold text-white"/></div>
+            <div>
+              <label className="block text-xs font-bold text-gray-400 uppercase tracking-wider mb-2 ml-1">Data</label>
+              <input type="date" value={date} onChange={(e) => setDate(e.target.value)} className="w-full bg-fin-dark/50 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-fin-gold/50 transition-all [color-scheme:dark]"/>
+            </div>
             <div className="relative">
               <CustomSelect label="Grupo *" required value={groupId} onChange={setGroupId} options={budgetGroups} placeholder="Selecione um grupo" textClass="font-semibold"/>
-              {suggestionApplied && <span className="absolute -top-2 -right-2 text-xs bg-fin-highlight text-fin-dark font-bold px-2 py-0.5 rounded-full animate-pulse">💡</span>}
+              {suggestionApplied && <span className="absolute -top-2 -right-2 text-xs bg-fin-highlight text-fin-dark font-bold px-2 py-0.5 rounded-full animate-pulse shadow-lg">💡 IA</span>}
             </div>
             <div>
               <label className="block text-sm font-medium text-white/80 mb-2">Status</label>
-              <div className={`w-full p-4 rounded-xl border-2 transition-all ${creditCardId ? 'bg-gray-700/50 border-gray-600 text-gray-500 cursor-not-allowed' : (paid ? 'bg-green-500/20 border-green-500/50 text-green-400 cursor-pointer' : 'bg-yellow-500/20 border-yellow-500/50 text-yellow-400 cursor-pointer')}`} onClick={() => !creditCardId && setPaid(!paid)}>
-                <div className="flex items-center justify-between"><span className="font-bold">{paid ? '✅ PAGO' : '⏳ PENDENTE'}</span><div className={`w-3 h-3 rounded-full ${paid ? 'bg-green-400' : 'bg-yellow-400'}`}></div></div>
+              <div className={`w-full p-4 rounded-xl border transition-all cursor-pointer ${creditCardId ? 'bg-gray-700/50 border-gray-600 text-gray-500 cursor-not-allowed opacity-50' : (paid ? 'bg-green-500/20 border-green-500/50 text-green-400 hover:bg-green-500/30' : 'bg-yellow-500/20 border-yellow-500/50 text-yellow-400 hover:bg-yellow-500/30')}`} onClick={() => !creditCardId && setPaid(!paid)}>
+                <div className="flex items-center justify-between"><span className="font-bold text-sm tracking-wide">{paid ? '✅ PAGO' : '⏳ PENDENTE'}</span><div className={`w-3 h-3 rounded-full shadow-lg ${paid ? 'bg-green-400' : 'bg-yellow-400'}`}></div></div>
               </div>
             </div>
           </div>
         </div>
 
-        <div className="space-y-4">
-          <h3 className="text-lg font-semibold text-fin-gold border-b border-fin-gold/30 pb-2">Detalhes (Opcional)</h3>
+        <div className="space-y-4 pt-4">
+          <h3 className="text-xs font-bold text-fin-gold uppercase tracking-widest border-b border-fin-gold/30 pb-2 mb-4">Detalhes (Opcional)</h3>
+          
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div className="relative">
               <CustomSelect label="Subcategoria" value={subcategoryId} onChange={handleSubcategoryChange} options={subcategories} placeholder="Selecionar existente"/>
-              {suggestionApplied && <span className="absolute -top-2 -right-2 text-xs bg-fin-highlight text-fin-dark font-bold px-2 py-0.5 rounded-full animate-pulse">💡</span>}
+              {suggestionApplied && <span className="absolute -top-2 -right-2 text-xs bg-fin-highlight text-fin-dark font-bold px-2 py-0.5 rounded-full animate-pulse shadow-lg">💡 IA</span>}
             </div>
             <div>
-              <label className="block text-sm font-medium text-white/80 mb-2">Nova Subcategoria</label>
-              <input type="text" value={newSubcategoryName} onChange={handleNewSubcategoryChange} placeholder="Criar nova..." className="w-full p-4 bg-fin-dark/60 rounded-xl border-2 border-white/10 focus:border-fin-gold text-white"/>
+              <label className="block text-xs font-bold text-gray-400 uppercase tracking-wider mb-2 ml-1">Nova Subcategoria</label>
+              <input type="text" value={newSubcategoryName} onChange={handleNewSubcategoryName} placeholder="Criar nova..." className="w-full bg-fin-dark/50 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-fin-gold/50 transition-all"/>
             </div>
           </div>
+          
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <CustomSelect label="Cartão de Crédito (Opcional)" value={creditCardId} onChange={setCreditCardId} options={creditCards} placeholder="Foi no crédito?" textClass="text-fin-terra"/>
+            <CustomSelect label="Cartão de Crédito" value={creditCardId} onChange={setCreditCardId} options={creditCards} placeholder="Foi no crédito?" textClass="text-fin-terra font-bold"/>
             {creditCardId && (
               <div>
-                <label className="block text-sm font-medium text-white/80 mb-2">Nº de Parcelas</label>
-                <input type="number" min="1" value={installments} onChange={(e) => setInstallments(Number(e.target.value) || 1)} className="w-full p-4 bg-fin-dark/60 rounded-xl border-2 border-white/10 focus:border-fin-gold text-white"/>
+                <label className="block text-xs font-bold text-gray-400 uppercase tracking-wider mb-2 ml-1">Nº de Parcelas</label>
+                <input type="number" min="1" value={installments} onChange={(e) => setInstallments(Number(e.target.value) || 1)} className="w-full bg-fin-dark/50 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-fin-gold/50 transition-all"/>
               </div>
             )}
           </div>
+          
           {parseInt(groupId) === metaGroupId && (
             <CustomSelect label="Vincular à Meta" value={selectedGoalId} onChange={setSelectedGoalId} options={goals} placeholder="Selecionar meta..." textClass="text-fin-highlight"/>
           )}
@@ -357,18 +396,17 @@ function ExpenseForm({ onExpenseAdded }) {
         <button 
           type="submit" 
           disabled={isSubmitting}
-          className="w-full bg-red-600 hover:bg-red-700 disabled:opacity-50 text-white font-bold py-4 px-6 rounded-xl transition-all transform hover:scale-[1.02] shadow-lg flex items-center justify-center gap-2"
-          style={{ boxShadow: '0 4px 20px rgba(220, 38, 38, 0.4)' }}
+          className="w-full bg-gradient-to-r from-fin-red to-rose-600 hover:from-rose-500 hover:to-rose-700 disabled:opacity-50 text-white font-bold py-4 px-6 rounded-xl transition-all transform hover:-translate-y-1 shadow-lg shadow-rose-900/20 flex items-center justify-center gap-3 mt-4"
         >
           {isSubmitting ? (
             <>
               <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
-              Processando...
+              <span>Processando...</span>
             </>
           ) : (
             <>
-              <span>{paid ? '💾' : '📅'}</span>
-              {paid ? 'Registrar Pagamento' : 'Agendar Despesa'}
+              <span className="text-xl">{paid ? '💾' : '📅'}</span>
+              <span>{paid ? 'Registrar Pagamento' : 'Agendar Despesa'}</span>
             </>
           )}
         </button>
@@ -378,6 +416,7 @@ function ExpenseForm({ onExpenseAdded }) {
 }
 
 // --- LISTA DE DESPESAS ---
+// --- LISTA DE DESPESAS (Design Glass) ---
 function ExpenseList({ expenses, setExpenses, onEditClick }) {
   const [filter, setFilter] = useState('all'); 
 
@@ -389,68 +428,104 @@ function ExpenseList({ expenses, setExpenses, onEditClick }) {
 
   const handleDelete = async (id) => { if (!confirm("Excluir?")) return; try { await axios.delete(`${API_URL}/expenses/${id}`); setExpenses(expenses.filter(e => e.id !== id)); } catch (error) { console.error("Erro:", error); alert("Erro ao excluir."); } };
   const handleToggleStatus = async (expense) => { try { const response = await axios.patch(`${API_URL}/expenses/${expense.id}/toggle-status`); setExpenses(prev => prev.map(e => e.id === expense.id ? response.data : e)); } catch (error) { console.error("Erro:", error); } };
-  const formatDate = (d) => new Date(d).toLocaleDateString('pt-BR', { timeZone: 'UTC' });
+  const formatDate = (d) => new Date(d).toLocaleDateString('pt-BR', { timeZone: 'UTC', day: '2-digit', month: '2-digit' });
   const totalAmount = filteredExpenses.reduce((sum, expense) => sum + Number(expense.amount), 0);
   const paidAmount = filteredExpenses.filter(e => e.paid).reduce((sum, expense) => sum + Number(expense.amount), 0);
   const pendingAmount = filteredExpenses.filter(e => !e.paid).reduce((sum, expense) => sum + Number(expense.amount), 0);
 
   return (
-    <div className="bg-gradient-to-br from-fin-card to-fin-dark/80 p-6 md:p-8 rounded-3xl border border-white/5 backdrop-blur-sm">
+    <div className="glass rounded-3xl p-6 md:p-8 animate-fade-in-down" style={{ animationDelay: '0.2s' }}>
       <div className="flex flex-col lg:flex-row lg:items-center justify-between mb-8 gap-4">
         <div className="flex items-center gap-3">
           <div className="p-3 bg-blue-500/20 rounded-2xl"><span className="text-2xl">📊</span></div>
           <div>
             <h2 className="text-xl md:text-2xl font-bold text-white">Extrato do Mês</h2>
-            <p className="text-white/60 text-xs md:text-sm">Transações registradas e agendadas</p>
+            <p className="text-gray-400 text-xs md:text-sm">Transações registradas e agendadas</p>
           </div>
         </div>
-        <div className="flex gap-2 bg-fin-dark/60 p-1 rounded-xl overflow-x-auto">
+        
+        <div className="flex gap-2 bg-fin-dark/40 p-1.5 rounded-2xl border border-white/5 overflow-x-auto">
           {[
             { key: 'all', label: 'Todos', emoji: '📋' },
             { key: 'paid', label: 'Pagas', emoji: '✅' },
             { key: 'pending', label: 'Pendentes', emoji: '⏳' }
-          ].map(({ key, label, emoji }) => (<button key={key} onClick={() => setFilter(key)} className={`px-4 py-2 rounded-lg transition-all flex items-center gap-2 whitespace-nowrap ${ filter === key ? 'bg-fin-gold text-fin-dark font-bold' : 'text-white/70 hover:text-white' }`}><span>{emoji}</span>{label}</button>))}
+          ].map(({ key, label, emoji }) => (
+            <button 
+              key={key} 
+              onClick={() => setFilter(key)} 
+              className={`px-4 py-2 rounded-xl transition-all flex items-center gap-2 whitespace-nowrap text-sm font-bold ${ filter === key ? 'bg-white text-fin-dark shadow-lg' : 'text-gray-400 hover:text-white hover:bg-white/5' }`}
+            >
+              <span>{emoji}</span>{label}
+            </button>
+          ))}
         </div>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-        <div className="bg-fin-dark/40 p-4 rounded-xl border border-white/5"><div className="text-white/60 text-sm">Total no Mês</div><div className="text-2xl font-bold text-white">{formatCurrency(totalAmount)}</div></div>
-        <div className="bg-green-500/10 p-4 rounded-xl border border-green-500/20"><div className="text-green-400 text-sm">Pagas</div><div className="text-2xl font-bold text-green-400">{formatCurrency(paidAmount)}</div></div>
-        <div className="bg-yellow-500/10 p-4 rounded-xl border border-yellow-500/20"><div className="text-yellow-400 text-sm">Pendentes</div><div className="text-2xl font-bold text-yellow-400">{formatCurrency(pendingAmount)}</div></div>
+
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+        <div className="bg-fin-dark/40 p-5 rounded-2xl border border-white/5 shadow-inner">
+          <div className="text-gray-400 text-xs font-bold uppercase tracking-wider mb-1">Total no Mês</div>
+          <div className="text-2xl font-bold text-white">{formatCurrency(totalAmount)}</div>
+        </div>
+        <div className="bg-green-900/10 p-5 rounded-2xl border border-green-500/10 shadow-inner">
+          <div className="text-green-400 text-xs font-bold uppercase tracking-wider mb-1">Total Pago</div>
+          <div className="text-2xl font-bold text-green-400">{formatCurrency(paidAmount)}</div>
+        </div>
+        <div className="bg-yellow-900/10 p-5 rounded-2xl border border-yellow-500/10 shadow-inner">
+          <div className="text-yellow-400 text-xs font-bold uppercase tracking-wider mb-1">Pendente</div>
+          <div className="text-2xl font-bold text-yellow-400">{formatCurrency(pendingAmount)}</div>
+        </div>
       </div>
       
       {filteredExpenses.length === 0 ? (
-        <div className="text-center py-12 text-white/40"><div className="text-6xl mb-4">📭</div><p>Nenhuma transação encontrada para este mês</p></div>
+        <div className="text-center py-16 bg-white/5 rounded-3xl border border-white/5 border-dashed">
+          <div className="text-6xl mb-4 opacity-50 grayscale">📭</div>
+          <p className="text-gray-300 font-medium">Nenhuma transação encontrada</p>
+          <p className="text-sm text-gray-500 mt-1">Nenhum registro corresponde aos filtros.</p>
+        </div>
       ) : (
         <div className="space-y-3">
           {filteredExpenses.map(expense => (
-            <div key={expense.id} className={`flex flex-col md:flex-row md:justify-between md:items-center p-5 rounded-2xl border-2 ${ expense.paid ? 'bg-fin-dark/30 border-white/5' : 'bg-yellow-500/10 border-yellow-500/20'}`}>
+            <div key={expense.id} className={`group flex flex-col md:flex-row md:justify-between md:items-center p-5 rounded-2xl border transition-all duration-300 ${ expense.paid ? 'bg-fin-dark/30 border-white/5 hover:border-green-500/30 hover:bg-fin-dark/50' : 'bg-yellow-500/5 border-yellow-500/10 hover:border-yellow-500/30 hover:bg-yellow-500/10'}`}>
               <div className="flex items-start gap-4 flex-1 mb-4 md:mb-0">
-                <div className={`p-3 rounded-xl ${expense.paid ? 'bg-green-500/20' : 'bg-yellow-500/20'}`}><span className="text-lg">{expense.paid ? '✅' : '⏳'}</span></div>
+                <div className={`w-12 h-12 rounded-2xl flex items-center justify-center text-xl shadow-lg ${expense.paid ? 'bg-gradient-to-br from-green-500/20 to-emerald-600/10 text-green-400' : 'bg-gradient-to-br from-yellow-500/20 to-orange-600/10 text-yellow-400'}`}>
+                  {expense.paid ? '✓' : '!'}
+                </div>
                 <div className="flex-1">
-                  <div className="flex items-center gap-3 mb-2 flex-wrap">
-                    <span className={`text-xs font-bold px-3 py-1 rounded-full ${expense.paid ? 'text-green-400 bg-green-400/10' : 'text-yellow-400 bg-yellow-400/10'}`}>{formatDate(expense.date)}</span>
-                    {!expense.paid && (<span className="text-xs text-yellow-400 font-bold uppercase tracking-wider bg-yellow-400/10 px-2 py-1 rounded">Pendente</span>)}
-                    {expense.credit_card && (<span className="text-xs text-fin-terra font-bold uppercase tracking-wider bg-fin-terra/10 px-2 py-1 rounded">💳 {expense.credit_card.name}</span>)}
-                    {expense.installments_total > 1 && (<span className="text-xs text-blue-300 font-bold bg-blue-900/30 px-2 py-1 rounded">({expense.installment_current}/{expense.installments_total})</span>)}
+                  <div className="flex items-center gap-2 mb-1 flex-wrap">
+                    <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full border ${expense.paid ? 'text-green-400 bg-green-400/10 border-green-400/10' : 'text-yellow-400 bg-yellow-400/10 border-yellow-400/10'}`}>{formatDate(expense.date)}</span>
+                    {!expense.paid && (<span className="text-[10px] text-yellow-400 font-bold uppercase tracking-wider bg-yellow-400/10 px-2 py-0.5 rounded-full border border-yellow-400/10">Pendente</span>)}
+                    {expense.credit_card && (<span className="text-[10px] text-fin-terra font-bold uppercase tracking-wider bg-fin-terra/10 px-2 py-0.5 rounded-full border border-fin-terra/10 flex items-center gap-1">💳 {expense.credit_card.name}</span>)}
+                    {expense.installments_total > 1 && (<span className="text-[10px] text-blue-300 font-bold bg-blue-900/30 px-2 py-0.5 rounded-full border border-blue-500/20">Parc. {expense.installment_current}/{expense.installments_total}</span>)}
                   </div>
-                  <div className="font-semibold text-white text-lg mb-1">{expense.description}</div>
-                  <div className="text-sm text-white/60">
-                    <span className="text-fin-gold/80">{expense.budget_group?.name}</span>
-                    {expense.category && ` • ${expense.category.name}`}
+                  <div className="font-bold text-white text-base group-hover:text-fin-highlight transition-colors">{expense.description}</div>
+                  <div className="text-xs text-gray-400 mt-0.5 flex items-center gap-1">
+                    <span className="text-fin-gold/80 font-medium">{expense.budget_group?.name}</span>
+                    {expense.category && <span className="text-gray-600">•</span>}
+                    {expense.category && <span>{expense.category.name}</span>}
                   </div>
                 </div>
               </div>
-              <div className="flex items-center justify-between w-full md:w-auto md:justify-end gap-3 border-t md:border-t-0 border-white/5 pt-3 md:pt-0">
-                <span className={`text-xl font-bold ${expense.paid ? 'text-fin-red' : 'text-white/70'}`}>{formatCurrency(expense.amount)}</span>
-                <div className="flex gap-1">
-                  <button onClick={() => handleToggleStatus(expense)} className={`p-3 rounded-xl ${expense.paid ? 'text-gray-500 hover:text-yellow-400' : 'text-green-400 hover:bg-green-400/20'}`} title={expense.paid ? "Pendente" : "Pago"}>{expense.paid ? '↩️' : '✅'}</button>
+
+              <div className="flex items-center justify-between w-full md:w-auto md:justify-end gap-5 border-t md:border-t-0 border-white/5 pt-4 md:pt-0 pl-0 md:pl-4">
+                <span className={`text-xl font-bold whitespace-nowrap ${expense.paid ? 'text-fin-red' : 'text-gray-400'}`}>{formatCurrency(expense.amount)}</span>
+                
+                <div className="flex gap-2 opacity-100 md:opacity-0 group-hover:opacity-100 transition-opacity">
+                  <button 
+                    onClick={() => handleToggleStatus(expense)} 
+                    className={`w-9 h-9 flex items-center justify-center rounded-xl transition-all ${expense.paid ? 'text-gray-500 hover:text-yellow-400 hover:bg-yellow-400/10' : 'text-green-400 hover:bg-green-400/10'}`} 
+                    title={expense.paid ? "Marcar como Pendente" : "Marcar como Pago"}
+                  >
+                    {expense.paid ? 
+                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-5 h-5"><path strokeLinecap="round" strokeLinejoin="round" d="M9 15L3 9m0 0l6-6M3 9h12a6 6 0 010 12h-3" /></svg> : 
+                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-5 h-5"><path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>
+                    }
+                  </button>
                   
-                  {/* 👇 BOTÃO DE EDITAR ADICIONADO 👇 */}
-                  <button onClick={() => onEditClick(expense)} className="p-3 rounded-xl text-blue-400 hover:bg-blue-400/10" title="Editar">
+                  <button onClick={() => onEditClick(expense)} className="w-9 h-9 flex items-center justify-center rounded-xl text-blue-400 hover:bg-blue-400/10 hover:shadow-lg hover:shadow-blue-500/10 transition-all" title="Editar">
                     <EditIcon />
                   </button>
 
-                  <button onClick={() => handleDelete(expense.id)} className="p-3 rounded-xl text-fin-red/50 hover:text-fin-red" title="Excluir">
+                  <button onClick={() => handleDelete(expense.id)} className="w-9 h-9 flex items-center justify-center rounded-xl text-gray-600 hover:text-red-400 hover:bg-red-400/10 hover:shadow-lg hover:shadow-red-500/10 transition-all" title="Excluir">
                     <DeleteIcon />
                   </button>
                 </div>

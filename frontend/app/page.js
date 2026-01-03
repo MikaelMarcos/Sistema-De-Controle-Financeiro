@@ -40,6 +40,7 @@ const getTextColor = (percentage) => {
 };
 
 // --- Seletor de Mês ---
+// --- Seletor de Mês (Estilo Pill) ---
 function MonthSelector({ currentDate, onDateChange }) {
   const handlePreviousMonth = () => { 
     const newDate = new Date(currentDate); 
@@ -56,31 +57,32 @@ function MonthSelector({ currentDate, onDateChange }) {
   const formattedDate = `${currentDate.toLocaleString('pt-BR', { month: 'long' })} ${currentDate.getFullYear()}`.replace(/^\w/, (c) => c.toUpperCase());
 
   return (
-    <div className="flex justify-between items-center mb-8 p-4 bg-gradient-to-r from-fin-dark/80 to-fin-card/80 backdrop-blur-lg rounded-2xl border border-white/10 shadow-xl">
-      <button 
-        onClick={handlePreviousMonth} 
-        className="p-3 text-fin-gold hover:bg-fin-gold/10 rounded-xl transition-all duration-300 hover:scale-105 border border-fin-gold/20"
-      >
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-5 h-5">
-          <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
-        </svg>
-      </button>
-      
-      <div className="text-center">
-        <h2 className="text-2xl font-bold text-white tracking-wide">
-          {formattedDate}
-        </h2>
-        <p className="text-xs text-gray-400 mt-1">Controle Financeiro Mensal</p>
+    <div className="flex justify-center mb-8">
+      <div className="glass p-1.5 rounded-full inline-flex items-center gap-4 shadow-glass">
+        <button 
+          onClick={handlePreviousMonth} 
+          className="w-10 h-10 rounded-full flex items-center justify-center text-gray-400 hover:text-white hover:bg-white/10 transition-all duration-300"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor" className="w-5 h-5">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
+          </svg>
+        </button>
+        
+        <div className="text-center px-4 w-48">
+          <h2 className="text-lg font-bold text-white tracking-wide capitalize">
+            {formattedDate}
+          </h2>
+        </div>
+        
+        <button 
+          onClick={handleNextMonth} 
+          className="w-10 h-10 rounded-full flex items-center justify-center text-gray-400 hover:text-white hover:bg-white/10 transition-all duration-300"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor" className="w-5 h-5">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+          </svg>
+        </button>
       </div>
-      
-      <button 
-        onClick={handleNextMonth} 
-        className="p-3 text-fin-gold hover:bg-fin-gold/10 rounded-xl transition-all duration-300 hover:scale-105 border border-fin-gold/20"
-      >
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-5 h-5">
-          <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
-        </svg>
-      </button>
     </div>
   );
 }
@@ -90,21 +92,21 @@ function SummaryCard({ title, amount, type }) {
   const formattedAmount = formatCurrency(amount);
   
   const getCardStyles = () => {
-    const baseStyles = "p-6 rounded-2xl shadow-lg backdrop-blur-sm border transition-all duration-300 border-opacity-20 ";
+    const baseStyles = "relative overflow-hidden p-6 rounded-3xl backdrop-blur-md border transition-all duration-500 group hover:-translate-y-1 hover:shadow-2xl ";
     switch(type) {
-      case 'income': return baseStyles + "bg-gradient-to-br from-green-500/10 to-emerald-600/10 border-green-500";
-      case 'expense': return baseStyles + "bg-gradient-to-br from-red-500/10 to-pink-600/10 border-red-500";
-      case 'balance': return amount >= 0 ? baseStyles + "bg-gradient-to-br from-blue-500/10 to-cyan-600/10 border-blue-500" : baseStyles + "bg-gradient-to-br from-red-500/10 to-orange-600/10 border-red-500";
-      case 'credit': return baseStyles + "bg-gradient-to-br from-purple-500/10 to-indigo-600/10 border-purple-500";
+      case 'income': return baseStyles + "bg-gradient-to-br from-green-900/40 to-emerald-900/20 border-green-500/30 shadow-[0_8px_30px_rgba(16,185,129,0.15)]";
+      case 'expense': return baseStyles + "bg-gradient-to-br from-red-900/40 to-rose-900/20 border-red-500/30 shadow-[0_8px_30px_rgba(239,68,68,0.15)]";
+      case 'balance': return amount >= 0 ? baseStyles + "bg-gradient-to-br from-blue-900/40 to-cyan-900/20 border-blue-500/30 shadow-[0_8px_30px_rgba(59,130,246,0.15)]" : baseStyles + "bg-gradient-to-br from-orange-900/40 to-red-900/20 border-orange-500/30";
+      case 'credit': return baseStyles + "bg-gradient-to-br from-purple-900/40 to-indigo-900/20 border-purple-500/30 shadow-[0_8px_30px_rgba(139,92,246,0.15)]";
       default: return baseStyles + "bg-fin-card/80 border-white";
     }
   };
   const getTextColor = () => {
     switch(type) {
-      case 'income': return "text-green-400";
-      case 'expense': return "text-red-400";
-      case 'balance': return amount >= 0 ? "text-cyan-400" : "text-orange-400";
-      case 'credit': return "text-purple-400";
+      case 'income': return "text-green-400 group-hover:text-green-300";
+      case 'expense': return "text-red-400 group-hover:text-red-300";
+      case 'balance': return amount >= 0 ? "text-cyan-400 group-hover:text-cyan-300" : "text-orange-400";
+      case 'credit': return "text-purple-400 group-hover:text-purple-300";
       default: return "text-white";
     }
   };
@@ -112,7 +114,7 @@ function SummaryCard({ title, amount, type }) {
     switch(type) {
       case 'income': return "💰";
       case 'expense': return "💸";
-      case 'balance': return amount >= 0 ? "📈" : "📉";
+      case 'balance': return amount >= 0 ? "⚖️" : "📉";
       case 'credit': return "💳";
       default: return "📊";
     }
@@ -120,49 +122,78 @@ function SummaryCard({ title, amount, type }) {
 
   return (
     <div className={getCardStyles()}>
-      <div className="flex items-center justify-between mb-3">
-        <h2 className="text-sm font-semibold text-gray-300 uppercase tracking-wider">{title}</h2>
-        <span className="text-lg">{getIcon()}</span>
+      <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity transform group-hover:scale-110 duration-500 text-6xl pointer-events-none">
+        {getIcon()}
       </div>
-      <p className={`text-2xl font-bold ${getTextColor()}`}>{formattedAmount}</p>
-      {type === 'balance' && (<div className={`mt-2 text-xs font-medium ${amount >= 0 ? 'text-cyan-400' : 'text-orange-400'}`}>{amount >= 0 ? 'Positivo' : 'Negativo'}</div>)}
+      <div className="relative z-10">
+        <div className="flex items-center justify-between mb-2">
+          <h2 className="text-xs font-bold text-gray-400 uppercase tracking-widest">{title}</h2>
+          <div className="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center text-lg">{getIcon()}</div>
+        </div>
+        <p className={`text-3xl font-bold tracking-tight transition-colors duration-300 ${getTextColor()}`}>{formattedAmount}</p>
+        
+        {type === 'balance' && (
+          <div className={`mt-3 inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider ${amount >= 0 ? 'bg-cyan-500/10 text-cyan-400 border border-cyan-500/20' : 'bg-orange-500/10 text-orange-400 border border-orange-500/20'}`}>
+            <span className={`w-1.5 h-1.5 rounded-full ${amount >= 0 ? 'bg-cyan-400 animate-pulse' : 'bg-orange-400'}`}></span>
+            {amount >= 0 ? 'Positivo' : 'Negativo'}
+          </div>
+        )}
+      </div>
     </div>
   );
 }
 
 // --- Lista de Despesas ---
+// --- Lista de Despesas (Design Glass) ---
 function ExpenseList({ expenses, onExpenseDeleted }) {
   const handleDelete = (id) => { 
     if (confirm("Tem certeza que deseja excluir esta despesa?")) {
       axios.delete(`${API_URL}/expenses/${id}`).then(() => onExpenseDeleted()); 
     }
   };
-  const formatDate = (d) => new Date(d).toLocaleDateString('pt-BR', { timeZone: 'UTC' });
+  const formatDate = (d) => new Date(d).toLocaleDateString('pt-BR', { timeZone: 'UTC', day: '2-digit', month: '2-digit' });
 
   return (
-    <div className="bg-gradient-to-br from-fin-card/60 to-fin-dark/60 p-6 rounded-2xl border border-white/10 shadow-xl backdrop-blur-sm">
-      <div className="flex items-center justify-between mb-6">
-        <h2 className="text-xl font-bold text-white">Últimas Movimentações <span className="text-xs bg-fin-terra/20 text-fin-terra px-2 py-1 rounded-full ml-2">Caixa</span></h2>
-        <div className="text-xs text-gray-400 bg-black/30 px-3 py-1 rounded-full">{expenses.length} {expenses.length === 1 ? 'item' : 'itens'}</div>
+    <div className="glass rounded-3xl p-6 md:p-8 animate-fade-in-down">
+      <div className="flex items-center justify-between mb-8">
+        <div>
+          <h2 className="text-xl font-bold text-white">Últimas do Caixa</h2>
+          <p className="text-xs text-gray-400 mt-1">Transações recentes em dinheiro</p>
+        </div>
+        <div className="bg-fin-card/50 border border-white/5 rounded-full px-3 py-1">
+          <span className="text-xs font-medium text-fin-gray-300">{expenses.length} registros</span>
+        </div>
       </div>
+      
       {expenses.length === 0 ? (
-        <div className="text-center py-8"><div className="text-4xl mb-2">📝</div><p className="text-gray-400 font-light">Nenhuma despesa em caixa neste mês.</p></div>
+        <div className="text-center py-12 bg-white/5 rounded-2xl border border-white/5 border-dashed">
+          <div className="text-5xl mb-3 opacity-50">📝</div>
+          <p className="text-gray-400 font-light">Nenhuma despesa em caixa.</p>
+        </div>
       ) : (
-        <div className="space-y-3 max-h-96 overflow-y-auto">
+        <div className="space-y-3 max-h-[400px] overflow-y-auto pr-2 custom-scrollbar">
           {expenses.map(expense => (
-            <div key={expense.id} className="flex justify-between items-center bg-black/20 p-4 rounded-xl border border-white/5">
+            <div key={expense.id} className="group flex justify-between items-center bg-fin-dark/40 hover:bg-fin-card/60 p-4 rounded-2xl border border-white/5 hover:border-fin-highlight/20 transition-all duration-300">
               <div className="flex items-center space-x-4">
-                <div className="w-10 h-10 bg-fin-gold/20 rounded-lg flex items-center justify-center"><span className="text-fin-gold">💸</span></div>
+                <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-fin-card to-fin-dark border border-white/10 flex items-center justify-center shadow-lg group-hover:scale-105 transition-transform duration-300">
+                  <span className="text-xl">💸</span>
+                </div>
                 <div>
-                  <span className="text-xs text-gray-400">{formatDate(expense.date)}</span>
-                  <span className="font-medium text-white block">{expense.description}</span>
-                  <span className="text-sm text-fin-gold/80 flex items-center gap-1"><span className="w-1 h-1 bg-fin-gold rounded-full"></span>{expense.budget_group?.name || 'Sem categoria'}</span>
+                  <div className="flex items-center gap-2 mb-1">
+                    <span className="text-[10px] font-bold text-gray-400 bg-white/5 px-2 py-0.5 rounded-full">{formatDate(expense.date)}</span>
+                    <span className="text-[10px] font-bold text-fin-highlight/80 bg-fin-highlight/10 px-2 py-0.5 rounded-full">{expense.budget_group?.name || 'Geral'}</span>
+                  </div>
+                  <span className="font-semibold text-white block group-hover:text-fin-highlight transition-colors">{expense.description}</span>
                 </div>
               </div>
-              <div className="flex items-center gap-3">
-                <span className="font-bold text-red-400 text-lg">- {formatCurrency(expense.amount)}</span>
-                <button onClick={() => handleDelete(expense.id)} className="p-2 text-red-400 hover:bg-red-400/10 rounded-lg transition-all duration-300">
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-4 h-4"><path strokeLinecap="round" strokeLinejoin="round" d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0" /></svg>
+              <div className="flex items-center gap-4">
+                <span className="font-bold text-fin-red/90 text-lg group-hover:text-fin-red transition-colors">- {formatCurrency(expense.amount)}</span>
+                <button 
+                  onClick={() => handleDelete(expense.id)} 
+                  className="w-8 h-8 flex items-center justify-center rounded-xl text-gray-500 hover:text-fin-red hover:bg-fin-red/10 transition-all opacity-0 group-hover:opacity-100"
+                  title="Excluir"
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-4 h-4"><path strokeLinecap="round" strokeLinejoin="round" d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0" /></svg>
                 </button>
               </div>
             </div>
@@ -173,18 +204,18 @@ function ExpenseList({ expenses, onExpenseDeleted }) {
   );
 }
 
-// --- Card de Meta ---
+// --- Card de Meta (Design Premium) ---
 function DashboardGoals({ goals }) {
   const completedGoals = goals.filter(goal => (goal.current_amount / goal.target_amount) * 100 >= 100);
   const activeGoals = goals.filter(goal => (goal.current_amount / goal.target_amount) * 100 < 100).slice(0, 3);
 
   if (goals.length === 0) {
     return (
-      <div className="bg-gradient-to-br from-fin-card/60 to-fin-dark/60 p-6 rounded-2xl border border-white/10 shadow-xl backdrop-blur-sm h-full flex flex-col items-center justify-center text-center">
-        <div className="text-4xl mb-3">🎯</div>
-        <h3 className="text-lg font-semibold text-white mb-2">Sem metas ativas</h3>
-        <p className="text-gray-400 text-sm">Crie sua primeira meta</p>
-        <a href="/metas" className="inline-block mt-4 bg-gradient-to-r from-fin-highlight to-fin-gold text-white font-medium py-2 px-4 rounded-lg transition-all duration-300 hover:shadow-lg">Criar Meta</a>
+      <div className="glass rounded-3xl p-8 h-full flex flex-col items-center justify-center text-center animate-fade-in-down">
+        <div className="text-5xl mb-4 opacity-80">🎯</div>
+        <h3 className="text-lg font-bold text-white mb-2">Comece a Planejar</h3>
+        <p className="text-gray-400 text-sm mb-6">Defina metas para conquistar seus sonhos.</p>
+        <a href="/metas" className="bg-fin-highlight hover:bg-sky-300 text-fin-dark font-bold py-3 px-6 rounded-xl transition-all shadow-lg hover:shadow-sky-500/20 transform hover:-translate-y-1">Criar Primeira Meta</a>
       </div>
     );
   }
@@ -197,27 +228,57 @@ function DashboardGoals({ goals }) {
     const isCompleted = percentage >= 100;
 
     return (
-      <div className="bg-gradient-to-br from-fin-dark/70 to-fin-card/50 p-5 rounded-2xl border border-white/10 hover:border-fin-gold/30 transition-all duration-300 group cursor-pointer">
-        <div className="flex justify-between items-start mb-3"><h3 className="font-bold text-lg text-white truncate flex-1 pr-2">{goal.name}</h3><span className={`text-xl font-bold ${textColor} whitespace-nowrap`}>{percentage}%</span></div>
-        <div className="w-full bg-black/40 backdrop-blur-sm rounded-full h-2.5 p-0.5 border border-white/10 mb-3 shadow-inner relative overflow-hidden"><div className={`h-full rounded-full transition-all duration-1000 ease-out bg-gradient-to-r ${progressColor} relative overflow-hidden`} style={{ width: `${Math.min(percentage, 100)}%` }}><div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent animate-pulse-slow"></div></div></div>
-        <div className="flex justify-between items-center text-xs"><span className="text-gray-400">{isCompleted ? '🎉 Concluído!' : 'Em andamento'}</span><span className="text-fin-gold font-medium">{formatCurrency(goal.current_amount)} / {formatCurrency(goal.target_amount)}</span></div>
+      <div className="relative bg-fin-dark/40 p-5 rounded-2xl border border-white/5 hover:border-fin-highlight/30 transition-all duration-300 group cursor-pointer overflow-hidden">
+        {/* Glow de fundo */}
+        <div className="absolute inset-0 bg-gradient-to-r from-fin-highlight/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+        
+        <div className="relative z-10">
+          <div className="flex justify-between items-start mb-3">
+            <h3 className="font-bold text-sm md:text-base text-gray-200 group-hover:text-white truncate flex-1 pr-2">{goal.name}</h3>
+            <span className={`text-lg font-bold ${textColor} whitespace-nowrap`}>{percentage}%</span>
+          </div>
+          
+          <div className="w-full bg-black/50 backdrop-blur-sm rounded-full h-2 p-0.5 border border-white/5 mb-3 shadow-inner relative overflow-hidden">
+            <div className={`h-full rounded-full transition-all duration-1000 ease-out bg-gradient-to-r ${progressColor} relative`} style={{ width: `${Math.min(percentage, 100)}%` }}>
+               <div className="absolute inset-0 bg-white/20 animate-pulse"></div>
+            </div>
+          </div>
+          
+          <div className="flex justify-between items-center text-[10px] uppercase font-bold tracking-wider">
+             <span className="text-gray-500 group-hover:text-gray-400 transition-colors">{isCompleted ? '🎉 Concluído!' : 'Em progresso'}</span>
+             <span className="text-fin-highlight">{formatCurrency(goal.current_amount)}</span>
+          </div>
+        </div>
       </div>
     );
   };
 
   return (
-    <div className="bg-gradient-to-br from-fin-card/60 to-fin-dark/60 p-6 rounded-2xl border border-white/10 shadow-xl backdrop-blur-sm h-full">
-      <div className="flex justify-between items-center mb-6"><h2 className="text-xl font-bold text-white flex items-center gap-2"><span className="bg-gradient-to-r from-fin-gold to-fin-highlight bg-clip-text text-transparent">Progresso das Metas</span></h2><div className="text-xs text-gray-400 bg-black/30 px-3 py-1 rounded-full border border-white/10">{completedGoals.length}/{goals.length} concluídas</div></div>
-      <div className="space-y-3 mb-6"><h3 className="text-sm font-semibold text-gray-300 uppercase tracking-wider mb-2">Metas Ativas ({activeGoals.length})</h3>{activeGoals.map(goal => (<DashboardGoalCard key={goal.id} goal={goal} />))}</div>
+    <div className="glass rounded-3xl p-6 md:p-8 h-full animate-fade-in-down" style={{ animationDelay: '0.1s' }}>
+      <div className="flex justify-between items-center mb-6">
+        <h2 className="text-xl font-bold text-white flex items-center gap-2">
+          🎯 Metas Ativas
+        </h2>
+        <a href="/metas" className="text-xs font-bold text-fin-highlight hover:text-white transition-colors uppercase tracking-wider">Ver todas →</a>
+      </div>
+      
+      <div className="space-y-4 mb-6">
+        {activeGoals.map(goal => (<DashboardGoalCard key={goal.id} goal={goal} />))}
+      </div>
+      
       {completedGoals.length > 0 && (
-        <div className="space-y-3"><h3 className="text-sm font-semibold text-gray-300 uppercase tracking-wider mb-2">Concluídas ({completedGoals.length})</h3>{completedGoals.slice(0, 2).map(goal => (<div key={goal.id} className="bg-gradient-to-br from-green-500/10 to-emerald-600/10 p-4 rounded-xl border border-green-500/20"><div className="flex justify-between items-center"><span className="font-medium text-white text-sm">{goal.name}</span><span className="text-green-400 font-bold">🎉 100%</span></div><div className="text-xs text-gray-400 mt-1">Valor alcançado: {formatCurrency(goal.target_amount)}</div></div>))}</div>
+        <div className="mt-4 pt-4 border-t border-white/10">
+           <div className="flex items-center gap-2 text-sm text-green-400 font-bold bg-green-400/10 p-3 rounded-xl border border-green-400/20">
+             <span>🏆</span>
+             <span>{completedGoals.length} {completedGoals.length === 1 ? 'meta concluída' : 'metas concluídas'}!</span>
+           </div>
+        </div>
       )}
-      <a href="/metas" className="block w-full mt-4 text-center bg-fin-dark/50 hover:bg-fin-dark/70 text-fin-gold font-medium py-2 px-4 rounded-lg border border-fin-gold/20 transition-all duration-300 hover:border-fin-gold/40">Ver Todas as Metas →</a>
     </div>
   );
 }
 
-// --- Gráfico de Pizza ---
+// --- Gráfico de Pizza (Design Glass) ---
 function ExpensePieChart({ expenses }) {
   const categorySpending = expenses.reduce((acc, expense) => {
     const categoryName = expense.category?.name || 'Sem Categoria';
@@ -234,133 +295,85 @@ function ExpensePieChart({ expenses }) {
     '#06B6D4', '#84CC16', '#F97316', '#6366F1', '#EC4899',
     '#14B8A6', '#F43F5E', '#0EA5E9', '#22C55E', '#EAB308'
   ];
-  const borderColors = ['#024059'];
-  const hoverColors = soberColors.map(color => color);
+  const borderColors = ['rgba(30, 41, 59, 0.8)'];
 
   const chartData = {
     labels: labels,
-    datasets: [
-      {
+    datasets: [{
         data: dataValues,
         backgroundColor: soberColors.slice(0, labels.length),
         borderColor: borderColors,
         borderWidth: 2,
-        hoverBackgroundColor: hoverColors.slice(0, labels.length),
-        hoverBorderColor: '#FFFFFF',
-        hoverBorderWidth: 3,
-        spacing: 0, 
-        hoverOffset: 15,
-      },
-    ],
+        hoverOffset: 20,
+        borderRadius: 4
+    }],
   };
 
   const chartOptions = {
     responsive: true,
     maintainAspectRatio: false,
-    layout: { padding: 15 },
+    layout: { padding: 20 },
     plugins: {
       legend: {
         position: 'right',
-        labels: {
-          color: '#E2E8F0',
-          font: { size: 11, weight: '500', family: "'Inter', sans-serif" },
-          boxWidth: 14, boxHeight: 14, padding: 12,
-          usePointStyle: true, pointStyle: 'circle',
-        },
-        onHover: function(event) { event.native.target.style.cursor = 'pointer'; },
-        onLeave: function(event) { event.native.target.style.cursor = 'default'; },
+        labels: { color: '#94A3B8', font: { size: 10, weight: '600', family: "'Inter', sans-serif" }, usePointStyle: true, boxWidth: 8, padding: 15 },
       },
       tooltip: {
         backgroundColor: 'rgba(15, 23, 42, 0.95)',
-        titleColor: '#F1F5F9', bodyColor: '#CBD5E1',
-        titleFont: { size: 12, weight: '600' },
-        bodyFont: { size: 11, weight: '500' },
-        borderColor: '#334155', borderWidth: 1, cornerRadius: 8, padding: 12,
-        displayColors: true, usePointStyle: true, boxPadding: 4,
+        titleColor: '#F8FAFC', bodyColor: '#E2E8F0', borderColor: 'rgba(255,255,255,0.1)', borderWidth: 1, padding: 12, cornerRadius: 12,
         callbacks: {
           label: function (context) {
-            const label = context.label || '';
             const value = context.parsed;
             const percentage = total > 0 ? ((value / total) * 100).toFixed(1) : 0;
-            return `${label}: ${formatCurrency(value)} (${percentage}%)`;
-          },
-          title: function (context) { return context[0].label; }
-        },
+            return ` ${formatCurrency(value)} (${percentage}%)`;
+          }
+        }
       },
     },
-    interaction: { intersect: false, mode: 'index' },
-    animation: { animateScale: true, animateRotate: true, duration: 800, easing: 'easeOutCubic' },
-    elements: { arc: { borderJoinStyle: 'bevel' } }
+    elements: { arc: { borderJoinStyle: 'round' } }
   };
-
-  const topCategory = Object.entries(categorySpending).reduce((max, [cat, amount]) =>
-    amount > max.amount ? { category: cat, amount } : max,
-    { category: '', amount: 0 }
-  );
 
   if (expenses.length === 0) {
     return (
-      <div className="bg-gradient-to-br from-fin-card/60 to-fin-dark/60 p-6 rounded-2xl border border-white/10 shadow-xl backdrop-blur-sm h-full flex flex-col items-center justify-center">
-        <div className="text-center">
-          <div className="text-6xl mb-4">📊</div>
-          <h2 className="text-xl font-bold text-white mb-2">Gastos por Categoria</h2>
-          <p className="text-gray-400 text-lg">Sem gastos para exibir</p>
-          <p className="text-sm text-gray-500 mt-1">Registre despesas para ver a distribuição</p>
-        </div>
+      <div className="glass rounded-3xl p-8 flex flex-col items-center justify-center h-full text-center">
+        <div className="text-5xl mb-4 opacity-50">📊</div>
+        <h2 className="text-lg font-bold text-white mb-2">Sem dados de gastos</h2>
+        <p className="text-gray-400 text-sm">Registre suas despesas para ver a distribuição.</p>
       </div>
     );
   }
 
   return (
-    <div className="bg-gradient-to-br from-fin-card/60 to-fin-dark/60 p-6 rounded-2xl border border-white/10 shadow-xl backdrop-blur-sm">
+    <div className="glass rounded-3xl p-6 md:p-8 animate-fade-in-down" style={{ animationDelay: '0.2s' }}>
       <div className="flex justify-between items-center mb-6">
-        <h2 className="text-xl font-bold text-white flex items-center gap-3">
-          <span className="bg-gradient-to-r from-fin-gold to-fin-highlight p-2 rounded-xl">📊</span>
-          Distribuição de Gastos
-        </h2>
-        <div className="text-xs text-gray-400 bg-black/30 px-3 py-2 rounded-full border border-white/10">
-          {labels.length} {labels.length === 1 ? 'categoria' : 'categorias'}
-        </div>
+        <h2 className="text-xl font-bold text-white">Gastos por Categoria</h2>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 items-center">
-        <div className="lg:col-span-2 relative" style={{ height: '300px' }}>
+        <div className="lg:col-span-2 relative h-[300px]">
           <Pie data={chartData} options={chartOptions} />
+          {/* Centro do Gráfico */}
           <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-            <div className="text-center">
-              <div className="text-2xl font-bold text-white mb-1">{formatCurrency(total)}</div>
-              <div className="text-xs text-gray-400 font-medium">Total Gasto</div>
-              <div className="text-xs text-fin-gold mt-1">{labels.length} categorias</div>
-            </div>
+             <div className="text-center bg-fin-dark/80 backdrop-blur-md p-4 rounded-full border border-white/5 shadow-2xl">
+               <div className="text-xs text-gray-400 uppercase tracking-widest mb-1">Total</div>
+               <div className="text-lg font-bold text-white">{formatCurrency(total)}</div>
+             </div>
           </div>
         </div>
-        <div className="lg:col-span-1 space-y-4">
-          <div className="bg-gradient-to-br from-fin-dark/80 to-fin-card/60 p-4 rounded-xl border border-white/10">
-            <h3 className="text-sm font-semibold text-gray-300 mb-3">📈 Maior Gasto</h3>
-            <div className="text-lg font-bold text-white truncate" title={topCategory.category}>{topCategory.category}</div>
-            <div className="text-fin-gold font-semibold text-sm">{formatCurrency(topCategory.amount)}</div>
-            <div className="text-xs text-gray-400 mt-1">{total > 0 ? ((topCategory.amount / total) * 100).toFixed(1) : 0}% do total</div>
-          </div>
-          <div className="bg-gradient-to-br from-fin-dark/80 to-fin-card/60 p-4 rounded-xl border border-white/10">
-            <h3 className="text-sm font-semibold text-gray-300 mb-3">📋 Resumo</h3>
-            <div className="space-y-2 text-sm">
-              <div className="flex justify-between"><span className="text-gray-400">Total:</span><span className="text-white font-medium">{formatCurrency(total)}</span></div>
-              <div className="flex justify-between"><span className="text-gray-400">Categorias:</span><span className="text-fin-gold font-medium">{labels.length}</span></div>
-              <div className="flex justify-between"><span className="text-gray-400">Transações:</span><span className="text-white font-medium">{expenses.length}</span></div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div className="lg:hidden mt-6">
-        <div className="grid grid-cols-2 gap-2 max-h-32 overflow-y-auto">
-          {labels.map((label, index) => (
-            <div key={label} className="flex items-center gap-2 text-xs">
-              <div className="w-3 h-3 rounded-full flex-shrink-0" style={{ backgroundColor: soberColors[index] }}></div>
-              <span className="text-gray-300 truncate" title={label}>{label}</span>
-              <span className="text-fin-gold font-medium ml-auto">{total > 0 ? ((categorySpending[label] / total) * 100).toFixed(0) : 0}%</span>
-            </div>
-          ))}
+        
+        <div className="lg:col-span-1 space-y-3 max-h-[300px] overflow-y-auto custom-scrollbar pr-2">
+           {labels.map((label, index) => (
+             <div key={label} className="flex items-center justify-between p-3 rounded-xl bg-white/5 hover:bg-white/10 transition-colors border border-white/5">
+                <div className="flex items-center gap-3">
+                   <div className="w-3 h-3 rounded-full shadow-[0_0_8px_currentColor]" style={{ color: soberColors[index], backgroundColor: soberColors[index] }}></div>
+                   <span className="text-sm font-medium text-gray-300 truncate max-w-[100px]" title={label}>{label}</span>
+                </div>
+                <div className="text-right">
+                   <div className="text-sm font-bold text-white">{formatCurrency(categorySpending[label])}</div>
+                   <div className="text-[10px] text-gray-400 font-bold">{((categorySpending[label] / total) * 100).toFixed(0)}%</div>
+                </div>
+             </div>
+           ))}
         </div>
       </div>
     </div>

@@ -6,10 +6,23 @@
 
 body {
   color: rgb(var(--foreground-rgb));
-  background: linear-gradient(135deg, #012a3b, #024059, #025E73);
+  background: #0F172A; /* Fallback */
+  background-image: 
+    radial-gradient(at 0% 0%, rgba(56, 189, 248, 0.1) 0px, transparent 50%),
+    radial-gradient(at 100% 0%, rgba(245, 158, 11, 0.1) 0px, transparent 50%),
+    radial-gradient(at 100% 100%, rgba(244, 63, 94, 0.1) 0px, transparent 50%),
+    radial-gradient(at 0% 100%, rgba(16, 185, 129, 0.1) 0px, transparent 50%);
   background-attachment: fixed;
   min-height: 100vh;
   overflow-x: hidden;
+}
+
+.glass {
+  background: rgba(30, 41, 59, 0.4);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
 }
 
 /* Animação suave nos elementos que aparecem */
