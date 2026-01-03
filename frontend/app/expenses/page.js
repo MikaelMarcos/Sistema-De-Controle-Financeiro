@@ -6,6 +6,7 @@ import { Listbox, Transition } from '@headlessui/react';
 import AuthGuard from '@/components/AuthGuard';
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
+const formatCurrency = (v) => Number(v ?? 0).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
 
 // --- Ícones ---
 const SelectorIcon = () => <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5 text-gray-400"><path strokeLinecap="round" strokeLinejoin="round" d="M8.25 15L12 18.75 15.75 15m-7.5-6L12 5.25 15.75 9" /></svg>;
@@ -389,9 +390,9 @@ function ExpenseList({ expenses, setExpenses, onEditClick }) {
   const handleDelete = async (id) => { if (!confirm("Excluir?")) return; try { await axios.delete(`${API_URL}/expenses/${id}`); setExpenses(expenses.filter(e => e.id !== id)); } catch (error) { console.error("Erro:", error); alert("Erro ao excluir."); } };
   const handleToggleStatus = async (expense) => { try { const response = await axios.patch(`${API_URL}/expenses/${expense.id}/toggle-status`); setExpenses(prev => prev.map(e => e.id === expense.id ? response.data : e)); } catch (error) { console.error("Erro:", error); } };
   const formatDate = (d) => new Date(d).toLocaleDateString('pt-BR', { timeZone: 'UTC' });
-  const totalAmount = filteredExpenses.reduce((sum, expense) => sum + expense.amount, 0);
-  const paidAmount = filteredExpenses.filter(e => e.paid).reduce((sum, expense) => sum + expense.amount, 0);
-  const pendingAmount = filteredExpenses.filter(e => !e.paid).reduce((sum, expense) => sum + expense.amount, 0);
+  const totalAmount = filteredExpenses.reduce((sum, expense) => sum + Number(expense.amount), 0);
+  const paidAmount = filteredExpenses.filter(e => e.paid).reduce((sum, expense) => sum + Number(expense.amount), 0);
+  const pendingAmount = filteredExpenses.filter(e => !e.paid).reduce((sum, expense) => sum + Number(expense.amount), 0);
 
   return (
     <div className="bg-gradient-to-br from-fin-card to-fin-dark/80 p-6 md:p-8 rounded-3xl border border-white/5 backdrop-blur-sm">
@@ -412,9 +413,9 @@ function ExpenseList({ expenses, setExpenses, onEditClick }) {
         </div>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-        <div className="bg-fin-dark/40 p-4 rounded-xl border border-white/5"><div className="text-white/60 text-sm">Total no Mês</div><div className="text-2xl font-bold text-white">R$ {totalAmount.toFixed(2)}</div></div>
-        <div className="bg-green-500/10 p-4 rounded-xl border border-green-500/20"><div className="text-green-400 text-sm">Pagas</div><div className="text-2xl font-bold text-green-400">R$ {paidAmount.toFixed(2)}</div></div>
-        <div className="bg-yellow-500/10 p-4 rounded-xl border border-yellow-500/20"><div className="text-yellow-400 text-sm">Pendentes</div><div className="text-2xl font-bold text-yellow-400">R$ {pendingAmount.toFixed(2)}</div></div>
+        <div className="bg-fin-dark/40 p-4 rounded-xl border border-white/5"><div className="text-white/60 text-sm">Total no Mês</div><div className="text-2xl font-bold text-white">{formatCurrency(totalAmount)}</div></div>
+        <div className="bg-green-500/10 p-4 rounded-xl border border-green-500/20"><div className="text-green-400 text-sm">Pagas</div><div className="text-2xl font-bold text-green-400">{formatCurrency(paidAmount)}</div></div>
+        <div className="bg-yellow-500/10 p-4 rounded-xl border border-yellow-500/20"><div className="text-yellow-400 text-sm">Pendentes</div><div className="text-2xl font-bold text-yellow-400">{formatCurrency(pendingAmount)}</div></div>
       </div>
       
       {filteredExpenses.length === 0 ? (
@@ -440,7 +441,7 @@ function ExpenseList({ expenses, setExpenses, onEditClick }) {
                 </div>
               </div>
               <div className="flex items-center justify-between w-full md:w-auto md:justify-end gap-3 border-t md:border-t-0 border-white/5 pt-3 md:pt-0">
-                <span className={`text-xl font-bold ${expense.paid ? 'text-fin-red' : 'text-white/70'}`}>R$ {expense.amount.toFixed(2)}</span>
+                <span className={`text-xl font-bold ${expense.paid ? 'text-fin-red' : 'text-white/70'}`}>{formatCurrency(expense.amount)}</span>
                 <div className="flex gap-1">
                   <button onClick={() => handleToggleStatus(expense)} className={`p-3 rounded-xl ${expense.paid ? 'text-gray-500 hover:text-yellow-400' : 'text-green-400 hover:bg-green-400/20'}`} title={expense.paid ? "Pendente" : "Pago"}>{expense.paid ? '↩️' : '✅'}</button>
                   

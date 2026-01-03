@@ -12,7 +12,7 @@ import { useAuth } from '@/context/AuthContext';
 Chart.register(ArcElement, Tooltip, Legend);
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
-const formatCurrency = (v) => (v ?? 0).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+const formatCurrency = (v) => Number(v ?? 0).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
 
 // --- Sistema de Cores para Progresso ---
 const getProgressColor = (percentage) => {
@@ -221,7 +221,7 @@ function DashboardGoals({ goals }) {
 function ExpensePieChart({ expenses }) {
   const categorySpending = expenses.reduce((acc, expense) => {
     const categoryName = expense.category?.name || 'Sem Categoria';
-    acc[categoryName] = (acc[categoryName] || 0) + expense.amount;
+    acc[categoryName] = (acc[categoryName] || 0) + Number(expense.amount);
     return acc;
   }, {});
 
@@ -412,9 +412,9 @@ export default function Home() {
         setCashExpenses(cashOnlyExpenses);
         setGoals(goalsRes.data);
 
-        const totalInc = receivedIncomes.reduce((acc, i) => acc + i.amount, 0);
-        const totalCashExp = cashOnlyExpenses.reduce((acc, e) => acc + e.amount, 0);
-        const totalCreditExp = creditOnlyExpenses.reduce((acc, e) => acc + e.amount, 0);
+        const totalInc = receivedIncomes.reduce((acc, i) => acc + Number(i.amount), 0);
+        const totalCashExp = cashOnlyExpenses.reduce((acc, e) => acc + Number(e.amount), 0);
+        const totalCreditExp = creditOnlyExpenses.reduce((acc, e) => acc + Number(e.amount), 0);
         
         setTotalIncome(totalInc);
         setTotalCashExpenses(totalCashExp);
