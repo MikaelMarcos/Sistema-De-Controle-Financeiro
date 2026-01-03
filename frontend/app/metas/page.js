@@ -15,7 +15,8 @@ const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
 
 const formatCurrency = (value) => {
   if (value === null || value === undefined) value = 0;
-  return value.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+  const numValue = Number(value); // Garante que é número
+  return numValue.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
 };
 
 // --- Função de Cor Gradual ---
@@ -323,7 +324,7 @@ export default function MetasPage() {
     fetchGoals(); // Recarrega para garantir que o aporte mensal seja recalculado
   };
 
-  const totalAccumulated = goals.reduce((sum, goal) => sum + (goal.current_amount || 0), 0);
+  const totalAccumulated = goals.reduce((sum, goal) => sum + Number(goal.current_amount || 0), 0);
 
   return (
     <AuthGuard>
