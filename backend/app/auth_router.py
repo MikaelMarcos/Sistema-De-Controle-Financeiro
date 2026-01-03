@@ -51,10 +51,17 @@ def login_for_access_token(
     
     user = session.exec(select(User).where(User.email == form_data.username)).first()
     
-    if not user or not verify_password(form_data.password, user.hashed_password):
-        raise HTTPException(
+    if not user:
+         raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND, # Ou 401 se preferir não revelar
+            detail="Usuário não encontrado.",
+            headers={"WWW-Authenticate": "Bearer"},
+        )
+        
+    if not verify_password(form_data.password, user.hashed_password):
+         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
-            detail="Email ou senha incorretos",
+            detail="Senha incorreta", # Mensagem específica pedida
             headers={"WWW-Authenticate": "Bearer"},
         )
         

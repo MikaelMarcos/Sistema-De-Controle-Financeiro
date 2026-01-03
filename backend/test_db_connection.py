@@ -1,8 +1,8 @@
 from sqlmodel import create_engine, Session, text
 import sys
 
-# A string de conexão fornecida
-DATABASE_URL = "postgresql://postgres:mikaelomaislindo@db.lhzmhyitpdhmvzvlaanh.supabase.co:5432/postgres?sslmode=require"
+# A string de conexão fornecida (Pooler URL)
+DATABASE_URL = "postgresql://postgres.lhzmhyitpdhmvzvlaanh:mikaelomaislindo@aws-1-sa-east-1.pooler.supabase.com:6543/postgres?sslmode=require"
 
 try:
     print(f"Tentando conectar em: {DATABASE_URL.split('@')[1]}...") # Esconde a senha no log visual
