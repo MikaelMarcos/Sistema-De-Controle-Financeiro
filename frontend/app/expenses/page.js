@@ -71,7 +71,7 @@ function CustomSelect({ label, value, onChange, options, placeholder, required =
       <Listbox value={value} onChange={onChange}>
         {({ open }) => (
           <div className="relative">
-            <Listbox.Button className={`relative w-full p-4 pr-10 text-left bg-fin-dark/60 rounded-xl border-2 transition-all text-white ${textClass} ${open ? 'border-fin-gold focus:ring-2 focus:ring-fin-gold/20' : 'border-white/10 focus:border-fin-gold focus:ring-2 focus:ring-fin-gold/20'}`} style={label.includes("Grupo") ? {background: 'linear-gradient(to right, rgba(59, 130, 246, 0.1), rgba(168, 85, 247, 0.1))', borderColor: 'rgba(59, 130, 246, 0.3)'} : {}}>
+            <Listbox.Button className={`relative w-full p-4 pr-10 text-left bg-fin-dark/60 rounded-xl border-2 transition-all text-white ${textClass} ${open ? 'border-fin-gold focus:ring-2 focus:ring-fin-gold/20' : 'border-white/10 focus:border-fin-gold focus:ring-2 focus:ring-fin-gold/20'}`} style={(label && label.includes("Grupo")) ? {background: 'linear-gradient(to right, rgba(59, 130, 246, 0.1), rgba(168, 85, 247, 0.1))', borderColor: 'rgba(59, 130, 246, 0.3)'} : {}}>
               <span className="block truncate">{selectedOption ? selectedOption.name : <span className="text-white/40">{placeholder}</span>}</span>
               <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2"><SelectorIcon /></span>
             </Listbox.Button>
@@ -428,7 +428,12 @@ function ExpenseList({ expenses, setExpenses, onEditClick }) {
 
   const handleDelete = async (id) => { if (!confirm("Excluir?")) return; try { await axios.delete(`${API_URL}/expenses/${id}`); setExpenses(expenses.filter(e => e.id !== id)); } catch (error) { console.error("Erro:", error); alert("Erro ao excluir."); } };
   const handleToggleStatus = async (expense) => { try { const response = await axios.patch(`${API_URL}/expenses/${expense.id}/toggle-status`); setExpenses(prev => prev.map(e => e.id === expense.id ? response.data : e)); } catch (error) { console.error("Erro:", error); } };
-  const formatDate = (d) => new Date(d).toLocaleDateString('pt-BR', { timeZone: 'UTC', day: '2-digit', month: '2-digit' });
+  const formatDate = (d) => {
+    if (!d) return '-';
+    const date = new Date(d);
+    if (isNaN(date.getTime())) return '-';
+    return date.toLocaleDateString('pt-BR', { timeZone: 'UTC', day: '2-digit', month: '2-digit' });
+  };
   const totalAmount = filteredExpenses.reduce((sum, expense) => sum + Number(expense.amount), 0);
   const paidAmount = filteredExpenses.filter(e => e.paid).reduce((sum, expense) => sum + Number(expense.amount), 0);
   const pendingAmount = filteredExpenses.filter(e => !e.paid).reduce((sum, expense) => sum + Number(expense.amount), 0);

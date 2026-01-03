@@ -119,7 +119,12 @@ function EditIncomeModal({ income, onClose, onIncomeUpdated }) {
 
 // --- Componente de Card de Entrada (Design Premium) ---
 function IncomeCard({ income, onEdit, onDelete }) {
-  const formatDate = (d) => new Date(d).toLocaleDateString('pt-BR', { timeZone: 'UTC', day: '2-digit', month: '2-digit' });
+  const formatDate = (d) => {
+    if (!d) return '-';
+    const date = new Date(d);
+    if (isNaN(date.getTime())) return '-';
+    return date.toLocaleDateString('pt-BR', { timeZone: 'UTC', day: '2-digit', month: '2-digit' });
+  };
 
   return (
     <div className="group relative overflow-hidden bg-fin-dark/40 p-5 rounded-2xl border border-white/5 hover:border-green-500/30 transition-all duration-300 hover:shadow-lg hover:shadow-green-900/10">
@@ -187,7 +192,20 @@ function IncomeList({ incomes, setIncomes, onEditClick }) {
     } catch (err) { console.error("Erro ao deletar:", err); }
   };
 
-  const totalAmount = filteredIncomes.reduce((acc, inc) => acc + Number(inc.amount), 0);
+  const handleToggleStatus = async (income) => {
+    try {
+      const response = await axios.patch(`${API_URL}/income/${income.id}/toggle-status`);
+      setIncomes(prev => prev.map(inc => inc.id === income.id ? response.data : inc));
+    } catch (error) { console.error("Erro:", error); }
+  };
+
+  const formatDate = (d) => {
+    if (!d) return '-';
+    const date = new Date(d);
+    if (isNaN(date.getTime())) return '-';
+    return date.toLocaleDateString('pt-BR', { timeZone: 'UTC' });
+  };
+  const totalAmount = filteredIncomes.reduce((sum, inc) => sum + Number(inc.amount), 0);
 
   return (
     <div className="glass rounded-3xl p-6 md:p-8 animate-fade-in-down h-full flex flex-col">
