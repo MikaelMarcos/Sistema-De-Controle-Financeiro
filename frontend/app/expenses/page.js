@@ -374,7 +374,7 @@ function ExpenseForm({ onExpenseAdded }) {
             </div>
             <div>
               <label className="block text-xs font-bold text-gray-400 uppercase tracking-wider mb-2 ml-1">Nova Subcategoria</label>
-              <input type="text" value={newSubcategoryName} onChange={handleNewSubcategoryName} placeholder="Criar nova..." className="w-full bg-fin-dark/50 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-fin-gold/50 transition-all"/>
+              <input type="text" value={newSubcategoryName} onChange={handleNewSubcategoryChange} placeholder="Criar nova..." className="w-full bg-fin-dark/50 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-fin-gold/50 transition-all"/>
             </div>
           </div>
           
