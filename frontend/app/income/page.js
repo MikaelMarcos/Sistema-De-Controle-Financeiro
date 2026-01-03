@@ -118,7 +118,7 @@ function EditIncomeModal({ income, onClose, onIncomeUpdated }) {
 }
 
 // --- Componente de Card de Entrada (Design Premium) ---
-function IncomeCard({ income, onDelete }) {
+function IncomeCard({ income, onEdit, onDelete }) {
   const formatDate = (d) => new Date(d).toLocaleDateString('pt-BR', { timeZone: 'UTC', day: '2-digit', month: '2-digit' });
 
   return (
@@ -132,7 +132,9 @@ function IncomeCard({ income, onDelete }) {
           </div>
           <div>
             <div className="flex items-center gap-2 mb-1">
-              <span className="text-[10px] font-bold text-green-400 bg-green-400/10 px-2 py-0.5 rounded-full border border-green-400/10">{formatDate(income.date)}</span>
+              <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full border ${income.received ? 'text-green-400 bg-green-400/10 border-green-400/10' : 'text-yellow-400 bg-yellow-400/10 border-yellow-400/10'}`}>
+                {formatDate(income.date)}
+              </span>
               {income.is_fixed && (
                 <span className="text-[10px] font-bold text-blue-400 bg-blue-400/10 px-2 py-0.5 rounded-full border border-blue-400/10">Fixa</span>
               )}
@@ -142,16 +144,25 @@ function IncomeCard({ income, onDelete }) {
         </div>
 
         <div className="flex items-center gap-4">
-          <span className="text-lg font-bold text-green-400">{formatCurrency(income.amount)}</span>
-          <button 
-            onClick={() => onDelete(income.id)}
-            className="w-8 h-8 flex items-center justify-center rounded-lg text-gray-500 hover:text-red-400 hover:bg-red-400/10 transition-all opacity-0 group-hover:opacity-100"
-            title="Excluir"
-          >
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-4 h-4">
-              <path strokeLinecap="round" strokeLinejoin="round" d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0" />
-            </svg>
-          </button>
+          <span className={`text-lg font-bold ${income.received ? 'text-green-400' : 'text-yellow-400'}`}>
+             {formatCurrency(income.amount)}
+          </span>
+          <div className="flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+             <button 
+                onClick={() => onEdit(income)}
+                className="w-8 h-8 flex items-center justify-center rounded-lg text-gray-500 hover:text-blue-400 hover:bg-blue-400/10 transition-all"
+                title="Editar"
+              >
+                <EditIcon />
+              </button>
+              <button 
+                onClick={() => onDelete(income.id)}
+                className="w-8 h-8 flex items-center justify-center rounded-lg text-gray-500 hover:text-red-400 hover:bg-red-400/10 transition-all"
+                title="Excluir"
+              >
+                <DeleteIcon />
+              </button>
+          </div>
         </div>
       </div>
     </div>
@@ -159,40 +170,60 @@ function IncomeCard({ income, onDelete }) {
 }
 
 // --- Lista de Entradas ---
-function IncomeList({ incomes, onDeleteIncome }) {
-  const handleDelete = (id) => {
-    if (confirm('Tem certeza que deseja excluir esta entrada?')) {
-      axios.delete(`${API_URL}/income/${id}`)
-        .then(() => onDeleteIncome())
-        .catch(err => console.error("Erro ao deletar:", err));
-    }
+function IncomeList({ incomes, setIncomes, onEditClick }) {
+  const [filter, setFilter] = useState('all');
+
+  const filteredIncomes = incomes.filter(income => {
+    if (filter === 'received') return income.received;
+    if (filter === 'pending') return !income.received;
+    return true;
+  });
+
+  const handleDelete = async (id) => {
+    if (!confirm('Tem certeza que deseja excluir esta entrada?')) return;
+    try {
+        await axios.delete(`${API_URL}/income/${id}`);
+        setIncomes(prev => prev.filter(inc => inc.id !== id));
+    } catch (err) { console.error("Erro ao deletar:", err); }
   };
 
-  const totalAmount = incomes.reduce((acc, inc) => acc + Number(inc.amount), 0);
+  const totalAmount = filteredIncomes.reduce((acc, inc) => acc + Number(inc.amount), 0);
 
   return (
     <div className="glass rounded-3xl p-6 md:p-8 animate-fade-in-down h-full flex flex-col">
-      <div className="flex justify-between items-center mb-6">
+      <div className="flex flex-col lg:flex-row lg:items-center justify-between mb-8 gap-4">
         <div>
           <h2 className="text-2xl font-bold text-white">Histórico</h2>
           <p className="text-sm text-gray-400">Registros do mês atual</p>
         </div>
+        
+        <div className="flex gap-2 bg-fin-dark/60 p-1 rounded-xl">
+           {[
+             { key: 'all', label: 'Todas', emoji: '📋' },
+             { key: 'received', label: 'Recebidas', emoji: '✅' },
+             { key: 'pending', label: 'A Receber', emoji: '⏳' }
+           ].map(({ key, label, emoji }) => (
+             <button key={key} onClick={() => setFilter(key)} className={`px-4 py-2 rounded-lg transition-all flex items-center gap-2 text-sm font-bold ${filter === key ? 'bg-green-500 text-fin-dark shadow-lg' : 'text-gray-400 hover:text-white'}`}>
+               <span>{emoji}</span> {label}
+             </button>
+           ))}
+        </div>
+
         <div className="text-right">
-          <p className="text-xs text-gray-400 font-bold uppercase tracking-wider">Total Recebido</p>
+          <p className="text-xs text-gray-400 font-bold uppercase tracking-wider">Total Filtrado</p>
           <p className="text-2xl font-bold text-green-400 drop-shadow-sm">{formatCurrency(totalAmount)}</p>
         </div>
       </div>
 
-      {incomes.length === 0 ? (
+      {filteredIncomes.length === 0 ? (
         <div className="flex-1 flex flex-col items-center justify-center text-center py-12 border border-white/5 rounded-2xl border-dashed">
           <div className="text-5xl mb-4 opacity-30 grayscale">💰</div>
-          <p className="text-gray-400 font-light text-lg">Nenhuma entrada ainda.</p>
-          <p className="text-sm text-gray-500">Adicione seu salário ou renda extra.</p>
+          <p className="text-gray-400 font-light text-lg">Nenhuma entrada encontrada.</p>
         </div>
       ) : (
         <div className="space-y-3 overflow-y-auto pr-2 custom-scrollbar flex-1 max-h-[500px]">
-          {incomes.map(income => (
-            <IncomeCard key={income.id} income={income} onDelete={handleDelete} />
+          {filteredIncomes.map(income => (
+            <IncomeCard key={income.id} income={income} onEdit={onEditClick} onDelete={handleDelete} />
           ))}
         </div>
       )}
@@ -304,99 +335,7 @@ function IncomeForm({ onIncomeAdded }) {
 }
 
 // --- Lista de Receitas ---
-function IncomeList({ incomes, setIncomes, onEditClick }) {
-  const [filter, setFilter] = useState('all');
 
-  const filteredIncomes = incomes.filter(income => {
-    if (filter === 'received') return income.received;
-    if (filter === 'pending') return !income.received;
-    return true;
-  });
-
-  const handleDelete = async (id) => {
-    if (!confirm("Excluir esta receita?")) return;
-    try {
-      await axios.delete(`${API_URL}/income/${id}`);
-      setIncomes(incomes.filter(inc => inc.id !== id));
-    } catch (error) { console.error("Erro:", error); }
-  };
-
-  const handleToggleStatus = async (income) => {
-    try {
-      const response = await axios.patch(`${API_URL}/income/${income.id}/toggle-status`);
-      setIncomes(prev => prev.map(inc => inc.id === income.id ? response.data : inc));
-    } catch (error) { console.error("Erro:", error); }
-  };
-
-  const formatDate = (d) => new Date(d).toLocaleDateString('pt-BR', { timeZone: 'UTC' });
-  const totalAmount = filteredIncomes.reduce((sum, inc) => sum + Number(inc.amount), 0);
-
-  return (
-    <div className="bg-gradient-to-br from-fin-card to-fin-dark/80 p-8 rounded-3xl border border-white/5 backdrop-blur-sm">
-      <div className="flex flex-col lg:flex-row lg:items-center justify-between mb-8 gap-4">
-        <div className="flex items-center gap-3">
-          <div className="p-3 bg-green-500/20 rounded-2xl"><span className="text-2xl">📈</span></div>
-          <div><h2 className="text-2xl font-bold text-white">Histórico de Receitas</h2><p className="text-white/60 text-sm">Ganhos registrados e previstos</p></div>
-        </div>
-        <div className="flex gap-2 bg-fin-dark/60 p-1 rounded-xl overflow-x-auto">
-          {[
-            { key: 'all', label: 'Todas', emoji: '📋' },
-            { key: 'received', label: 'Recebidas', emoji: '✅' },
-            { key: 'pending', label: 'A Receber', emoji: '⏳' }
-          ].map(({ key, label, emoji }) => (
-            <button key={key} onClick={() => setFilter(key)} className={`px-4 py-2 rounded-lg transition-all flex items-center gap-2 whitespace-nowrap ${filter === key ? 'bg-green-500 text-fin-dark font-bold' : 'text-white/70 hover:text-white'}`}>
-              <span>{emoji}</span>{label}
-            </button>
-          ))}
-        </div>
-      </div>
-
-      <div className="bg-green-500/10 p-4 rounded-xl border border-green-500/20 mb-6 text-center">
-        <div className="text-green-400 text-sm mb-1">Total no Mês</div>
-        <div className="text-3xl font-bold text-green-400">{formatCurrency(totalAmount)}</div>
-      </div>
-
-      {filteredIncomes.length === 0 ? (
-        <div className="text-center py-12 text-white/40"><div className="text-6xl mb-4">📭</div><p>Nenhuma receita encontrada</p></div>
-      ) : (
-        <div className="space-y-3">
-          {filteredIncomes.map(income => (
-            <div key={income.id} className={`flex flex-col md:flex-row md:justify-between md:items-center p-5 rounded-2xl border-2 transition-all ${income.received ? 'bg-fin-dark/30 border-white/5' : 'bg-yellow-500/10 border-yellow-500/20'}`}>
-              <div className="flex-1 mb-4 md:mb-0">
-                <div className="flex items-center gap-3 mb-2">
-                  <span className={`text-xs font-bold px-3 py-1 rounded-full ${income.received ? 'text-green-400 bg-green-400/10' : 'text-yellow-400 bg-yellow-400/10'}`}>{formatDate(income.date)}</span>
-                  {!income.received && <span className="text-xs text-yellow-400 font-bold uppercase tracking-wider bg-yellow-400/10 px-2 py-1 rounded">A Receber</span>}
-                </div>
-                <div className="font-semibold text-white text-lg">{income.description}</div>
-              </div>
-              
-              <div className="flex items-center justify-between w-full md:w-auto gap-4 border-t md:border-t-0 border-white/5 pt-3 md:pt-0">
-                <span className={`font-bold text-xl ${income.received ? 'text-green-400' : 'text-white/70'}`}>+ {formatCurrency(income.amount)}</span>
-                
-                <div className="flex gap-1">
-                    {/* Botão de Toggle Status */}
-                    <button onClick={() => handleToggleStatus(income)} className={`p-2 rounded-lg transition-all ${income.received ? 'text-gray-500 hover:text-yellow-400 bg-fin-dark/50' : 'text-green-400 bg-green-400/20 hover:bg-green-400/30'}`} title={income.received ? "Marcar como A Receber" : "Confirmar Recebimento"}>
-                    {income.received ? '↩️' : '💰'}
-                    </button>
-                    
-                    {/* 👇 BOTÃO DE EDITAR (NOVO) 👇 */}
-                    <button onClick={() => onEditClick(income)} className="p-2 rounded-lg text-blue-400 hover:bg-blue-400/10 transition-all" title="Editar">
-                        <EditIcon />
-                    </button>
-
-                    {/* Botão de Deletar */}
-                    <button onClick={() => handleDelete(income.id)} className="p-2 rounded-lg text-red-400 hover:bg-red-400/10 transition-all" title="Excluir">
-                        <DeleteIcon />
-                    </button>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-      )}
-    </div>
-  );
-}
 
 // --- Componente Principal ---
 function IncomePage() {
