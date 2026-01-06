@@ -50,10 +50,11 @@ export const AuthProvider = ({ children }) => {
     }
   }, [pathname, router]);
 
-  const login = async (email, password) => {
+  const login = async (email, password, rememberMe = false) => {
     const formData = new URLSearchParams();
     formData.append('username', email);
     formData.append('password', password);
+    formData.append('remember_me', rememberMe);
 
     const response = await axios.post(`${API_URL}/auth/token`, formData, {
       headers: { 'Content-Type': 'application/x-www-form-urlencoded' },

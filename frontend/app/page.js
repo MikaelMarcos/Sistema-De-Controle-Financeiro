@@ -464,41 +464,43 @@ export default function Home() {
   }
 
   return (
-    <div className="min-h-screen">
-      <div className="container mx-auto px-4 py-8">
-        <MonthSelector currentDate={currentDate} onDateChange={setCurrentDate} />
-        
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-          <SummaryCard title="Receita (Caixa)" amount={totalIncome} type="income" />
-          <SummaryCard title="Despesas (Caixa)" amount={totalCashExpenses} type="expense" />
-          <SummaryCard title="Balanço de Caixa" amount={balance} type="balance" />
-          <SummaryCard title="Faturas Abertas" amount={totalCreditExpenses} type="credit" />
+    <AuthGuard>
+      <div className="min-h-screen">
+        <div className="container mx-auto px-4 py-8">
+          <MonthSelector currentDate={currentDate} onDateChange={setCurrentDate} />
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+            <SummaryCard title="Receita (Caixa)" amount={totalIncome} type="income" />
+            <SummaryCard title="Despesas (Caixa)" amount={totalCashExpenses} type="expense" />
+            <SummaryCard title="Balanço de Caixa" amount={balance} type="balance" />
+            <SummaryCard title="Faturas Abertas" amount={totalCreditExpenses} type="credit" />
+          </div>
+          
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <div className="lg:col-span-2 space-y-8">
+              <ExpenseList 
+                expenses={cashExpenses} 
+                onExpenseDeleted={() => setLastUpdate(new Date())} 
+              />
+              {/* O gráfico agora recebe TODAS as despesas (incluindo cartão) */}
+              <ExpensePieChart expenses={allExpenses} />
+            </div>
+            <div className="lg:col-span-1">
+              <DashboardGoals goals={goals} />
+            </div>
+          </div>
         </div>
         
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          <div className="lg:col-span-2 space-y-8">
-            <ExpenseList 
-              expenses={cashExpenses} 
-              onExpenseDeleted={() => setLastUpdate(new Date())} 
-            />
-            {/* O gráfico agora recebe TODAS as despesas (incluindo cartão) */}
-            <ExpensePieChart expenses={allExpenses} />
-          </div>
-          <div className="lg:col-span-1">
-            <DashboardGoals goals={goals} />
-          </div>
-        </div>
+        <style jsx>{`
+          @keyframes pulse-slow {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.4; }
+          }
+          .animate-pulse-slow {
+            animation: pulse-slow 3s ease-in-out infinite;
+          }
+        `}</style>
       </div>
-      
-      <style jsx>{`
-        @keyframes pulse-slow {
-          0%, 100% { opacity: 1; }
-          50% { opacity: 0.4; }
-        }
-        .animate-pulse-slow {
-          animation: pulse-slow 3s ease-in-out infinite;
-        }
-      `}</style>
-    </div>
+    </AuthGuard>
   );
 }

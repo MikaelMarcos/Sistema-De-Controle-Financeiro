@@ -35,7 +35,7 @@ function Header() {
             <a href="/income" className={getLinkClass('/income')}>Entradas</a>
             <a href="/expenses" className={getLinkClass('/expenses')}>Despesas</a>
             <a href="/budget" className={getLinkClass('/budget')}>Orçamento</a>
-            <a href="/cards" className={getLinkClass('/cards')}>Cartões</a>
+            <a href="/cards" className={getLinkClass('/cards')}>Contas</a>
             <a href="/portfolio" className={getLinkClass('/portfolio')}>Invest.</a>
             <a href="/reports" className={getLinkClass('/reports')}>Relatórios</a>
             <a href="/metas" className={getLinkClass('/metas')}>Metas</a>
@@ -49,7 +49,7 @@ function Header() {
             <a href="/income" className={getLinkClass('/income')}>Entradas</a>
             <a href="/expenses" className={getLinkClass('/expenses')}>Despesas</a>
             <a href="/budget" className={getLinkClass('/budget')}>Orçamento</a>
-            <a href="/cards" className={getLinkClass('/cards')}>Cartões</a>
+            <a href="/cards" className={getLinkClass('/cards')}>Contas</a>
             <a href="/portfolio" className={getLinkClass('/portfolio')}>Investimentos</a>
             <a href="/reports" className={getLinkClass('/reports')}>Relatórios</a>
             <a href="/metas" className={getLinkClass('/metas')}>Metas</a>

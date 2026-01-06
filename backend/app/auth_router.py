@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Depends, HTTPException, status
+from fastapi import APIRouter, Depends, HTTPException, status, Form
 from fastapi.security import OAuth2PasswordRequestForm
 from sqlmodel import Session, select
 from .database import get_session
@@ -7,8 +7,12 @@ from .auth import (
     get_password_hash, 
     verify_password, 
     create_access_token,
-    get_current_user
+    create_access_token,
+    get_current_user,
+    ACCESS_TOKEN_EXPIRE_MINUTES,
+    LONG_ACCESS_TOKEN_EXPIRE_MINUTES,
 )
+from datetime import timedelta
 
 router_auth = APIRouter(prefix="/auth", tags=["Authentication"])
 
@@ -45,7 +49,8 @@ def register_user(
 def login_for_access_token(
     *,
     session: Session = Depends(get_session),
-    form_data: OAuth2PasswordRequestForm = Depends()
+    form_data: OAuth2PasswordRequestForm = Depends(),
+    remember_me: bool = Form(False)
 ):
     """Gira o login (email vai no campo 'username') e retorna um token."""
     
@@ -65,7 +70,10 @@ def login_for_access_token(
             headers={"WWW-Authenticate": "Bearer"},
         )
         
-    access_token = create_access_token(data={"sub": user.email})
+    access_token_expires = timedelta(minutes=LONG_ACCESS_TOKEN_EXPIRE_MINUTES if remember_me else ACCESS_TOKEN_EXPIRE_MINUTES)
+    access_token = create_access_token(
+        data={"sub": user.email}, expires_delta=access_token_expires
+    )
     return {"access_token": access_token, "token_type": "bearer"}
 
 @router_auth.get("/me", response_model=User)

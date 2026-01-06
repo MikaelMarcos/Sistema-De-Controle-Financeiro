@@ -2,6 +2,7 @@
 
 import { useState, useEffect, Fragment } from 'react';
 import axios from 'axios';
+import { useRouter } from 'next/navigation';
 import { Listbox, Transition } from '@headlessui/react';
 import AuthGuard from '@/components/AuthGuard';
 
@@ -40,7 +41,7 @@ function CustomSelect({ label, value, onChange, options, placeholder, required =
   );
 }
 
-// --- Formulário de Criação de Cartão ---
+// --- Formulário de Criação de Conta/Cartão ---
 function CardForm({ onCardAdded }) {
   const [name, setName] = useState('');
   const [closingDay, setClosingDay] = useState('');
@@ -63,7 +64,7 @@ function CardForm({ onCardAdded }) {
       setName(''); setClosingDay(''); setDueDay('');
       onCardAdded();
     } catch (error) {
-      console.error("Erro ao criar cartão:", error);
+      console.error("Erro ao criar conta:", error);
     } finally {
       setIsSubmitting(false);
     }
@@ -71,215 +72,178 @@ function CardForm({ onCardAdded }) {
 
   return (
     <div className="bg-gradient-to-br from-fin-card to-fin-dark/80 p-8 rounded-3xl shadow-2xl mb-8 border border-fin-gold/20 backdrop-blur-sm">
-      <h2 className="text-2xl font-bold text-white mb-6">Adicionar Novo Cartão</h2>
+      <h2 className="text-2xl font-bold text-white mb-6">Adicionar Nova Conta</h2>
       <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-4 gap-4">
-        <input type="text" value={name} onChange={(e) => setName(e.target.value)} placeholder="Nome (Ex: Nubank)" className="md:col-span-2 w-full p-4 bg-fin-dark/60 rounded-xl border-2 border-white/10 focus:border-fin-gold text-white"/>
+        <input type="text" value={name} onChange={(e) => setName(e.target.value)} placeholder="Nome (Ex: Nubank, Enel, Claro)" className="md:col-span-2 w-full p-4 bg-fin-dark/60 rounded-xl border-2 border-white/10 focus:border-fin-gold text-white"/>
         <input type="number" value={closingDay} onChange={(e) => setClosingDay(e.target.value)} placeholder="Dia do Fechamento" className="w-full p-4 bg-fin-dark/60 rounded-xl border-2 border-white/10 focus:border-fin-gold text-white"/>
         <input type="number" value={dueDay} onChange={(e) => setDueDay(e.target.value)} placeholder="Dia do Vencimento" className="w-full p-4 bg-fin-dark/60 rounded-xl border-2 border-white/10 focus:border-fin-gold text-white"/>
         <button type="submit" disabled={isSubmitting} className="md:col-span-4 w-full bg-gradient-to-r from-fin-gold to-fin-terra hover:opacity-90 text-fin-dark font-bold py-3 px-4 rounded-xl transition-all shadow-lg">
-          {isSubmitting ? "Salvando..." : "Salvar Cartão"}
+          {isSubmitting ? "Salvando..." : "Salvar Conta"}
         </button>
       </form>
     </div>
   );
 }
 
-// --- Modal: Pagar Fatura ---
-function PayFaturaModal({ card, groups, onClose, onFaturaPaid, initialAmount }) {
-  const [amount, setAmount] = useState(initialAmount || '');
-  const [budgetGroupId, setBudgetGroupId] = useState(null);
-  const [isSubmitting, setIsSubmitting] = useState(false);
-
-  // Seleciona o primeiro grupo automaticamente se existir
-  useEffect(() => {
-      if (groups && groups.length > 0) {
-          setBudgetGroupId(groups[0].id);
-      }
-  }, [groups]);
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    if (!amount || !budgetGroupId) {
-      alert("Informe o valor e o grupo de orçamento.");
-      return;
-    }
-    setIsSubmitting(true);
-    try {
-      await axios.post(`${API_URL}/cards/${card.id}/pay`, {
-        amount: parseFloat(amount),
-        budget_group_id: parseInt(budgetGroupId)
-      });
-      onFaturaPaid();
-      onClose();
-    } catch (error) {
-      alert(error.response?.data?.detail || "Erro ao pagar fatura.");
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
-
-  return (
-    <div className="fixed inset-0 bg-black bg-opacity-75 flex justify-center items-center z-50" onClick={onClose}>
-      <div className="bg-fin-dark/90 backdrop-blur-md p-8 rounded-2xl shadow-xl w-full max-w-lg border border-fin-gold/30" onClick={e => e.stopPropagation()}>
-        <div className="flex justify-between items-center mb-6">
-          <h2 className="text-2xl font-bold text-fin-gold">Pagar {card.name}</h2>
-          <button onClick={onClose} className="text-gray-400 hover:text-white text-3xl">&times;</button>
-        </div>
-        <form onSubmit={handleSubmit} className="space-y-6">
-          <div>
-            <label className="block text-sm font-medium text-white/80 mb-2">Valor da Fatura *</label>
-            <div className="relative">
-              <span className="absolute left-4 top-1/2 transform -translate-y-1/2 text-fin-gold font-bold">R$</span>
-              <input type="number" step="0.01" value={amount} onChange={(e) => setAmount(e.target.value)} className="w-full p-4 pl-12 bg-fin-dark/60 rounded-xl border-2 border-white/10 focus:border-fin-gold text-white"/>
-            </div>
-          </div>
-          <CustomSelect
-            label="Categorizar Pagamento em: *"
-            value={budgetGroupId}
-            onChange={setBudgetGroupId}
-            options={groups}
-            placeholder="Selecione um Grupo"
-            textClass="font-semibold"
-          />
-          <button type="submit" disabled={isSubmitting} className="w-full bg-gradient-to-r from-green-500 to-emerald-600 hover:opacity-90 text-white font-bold py-3 px-4 rounded-xl transition-all shadow-lg">
-            {isSubmitting ? "Processando..." : "Confirmar Pagamento"}
-          </button>
-        </form>
-      </div>
-    </div>
-  );
-}
-
-// --- Lista de Cartões (Com Visual "Pago") ---
-function CardList({ cards, setCards, budgetGroups, onFaturaPaid, expenses }) {
-  const [payingCard, setPayingCard] = useState(null);
-  const [amountToPay, setAmountToPay] = useState(0);
+// --- Lista de Contas (Com Visual "Pago" e Lógica de Pagamento) ---
+function CardList({ cards, setCards, expenses }) {
+  const router = useRouter();
 
   const handleDelete = async (id) => {
-    if (confirm("Tem certeza? Isso irá desvincular este cartão de todas as despesas.")) {
+    if (confirm("Tem certeza? Isso irá desvincular esta conta de todas as despesas.")) {
       try {
         await axios.delete(`${API_URL}/cards/${id}`);
         setCards(prev => prev.filter(c => c.id !== id));
-      } catch (error) { console.error("Erro ao deletar cartão:", error); }
+      } catch (error) { console.error("Erro ao deletar conta:", error); }
     }
   };
 
-  const openPayModal = (card, totalAmount) => {
-      setAmountToPay(totalAmount);
-      setPayingCard(card);
+  const currentMonthDate = new Date();
+  const monthName = currentMonthDate.toLocaleString('pt-BR', { month: 'long' });
+  const year = currentMonthDate.getFullYear();
+  const formattedPeriod = `${monthName.charAt(0).toUpperCase() + monthName.slice(1)}/${year}`;
+
+  const handlePay = (card) => {
+      // Redireciona para a tela de despesas com parâmetros
+      const description = `${card.name} - ${formattedPeriod}`;
+      router.push(`/expenses?mode=new&description=${encodeURIComponent(description)}&creditCardId=${card.id}`);
   };
 
   return (
-    <>
-      {payingCard && (
-        <PayFaturaModal
-          card={payingCard}
-          groups={budgetGroups}
-          onClose={() => setPayingCard(null)}
-          onFaturaPaid={onFaturaPaid}
-          initialAmount={amountToPay}
-        />
-      )}
-    
-      <div className="bg-fin-card/30 p-8 rounded-3xl border border-white/5">
-        <h2 className="text-2xl font-bold text-white mb-6">Meus Cartões</h2>
-        {cards.length === 0 ? (
-          <p className="text-white/60">Nenhum cartão cadastrado.</p>
-        ) : (
-          <div className="space-y-4">
-            {cards.map(card => {
-                // Filtra as despesas não pagas deste cartão para calcular a fatura
-                const cardExpenses = expenses.filter(e => e.credit_card_id === card.id && !e.paid);
-                const totalInvoice = cardExpenses.reduce((sum, e) => sum + e.amount, 0);
-                const isPaid = totalInvoice === 0;
+    <div className="bg-fin-card/30 p-8 rounded-3xl border border-white/5">
+      <h2 className="text-2xl font-bold text-white mb-6">Minhas Contas</h2>
+      {cards.length === 0 ? (
+        <p className="text-white/60">Nenhuma conta cadastrada.</p>
+      ) : (
+        <div className="space-y-4">
+          {cards.map(card => {
+              // Verifica se já existe um pagamento para esta conta no mês atual
+              // Para "Contas" (Utilities), procuramos uma despesa PAGA vinculada a este "Cartão" no mês atual
+              // OU se for cartão de crédito, procuramos se a fatura foi zerada (como antes)
+              
+              // Lógica Híbrida:
+              // 1. Verifica despesas PAGAS vinculadas a este "Card ID" neste mês. Se houver, pagou a conta de luz/internet.
+              // 2. Se não houver despesa paga direta, verifica se tem fatura em aberto (lógica antiga de cartão).
+              
+              const currentMonth = currentMonthDate.getMonth() + 1;
+              const currentYear = currentMonthDate.getFullYear();
 
-                return (
-                  <div 
-                    key={card.id} 
-                    className={`flex flex-col md:flex-row justify-between items-center p-5 rounded-2xl border transition-all duration-300
-                        ${isPaid 
-                            ? 'bg-green-900/20 border-green-500/50 shadow-[0_0_15px_rgba(34,197,94,0.1)]' // Estilo "Pago" (Verde)
-                            : 'bg-fin-dark/50 border-white/10' // Estilo Padrão
-                        }
-                    `}
-                  >
-                    <div className="flex-1 mb-4 md:mb-0">
-                      <div className="flex items-center gap-3">
-                          <span className="text-2xl">💳</span>
-                          <div>
-                            <span className={`text-xl font-semibold ${isPaid ? 'text-green-400' : 'text-white'}`}>
-                                {card.name}
-                            </span>
-                            <span className="block text-sm text-gray-400 mt-1">
-                                Fecha dia {card.closing_day} | Vence dia {card.due_day}
-                            </span>
-                          </div>
-                      </div>
-                      <div className="mt-2 text-sm">
-                          {isPaid ? (
-                              <span className="text-green-400 font-bold flex items-center gap-1">
-                                  ✅ Fatura Paga / Sem gastos
-                              </span>
-                          ) : (
-                              <span className="text-white/70">
-                                  Fatura atual: <strong className="text-white">{totalInvoice.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</strong>
-                              </span>
-                          )}
-                      </div>
-                    </div>
+              const paidDirectly = expenses.some(e => 
+                  e.credit_card_id === card.id && 
+                  e.paid === true &&
+                  new Date(e.date).getMonth() + 1 === currentMonth &&
+                  new Date(e.date).getFullYear() === currentYear
+              );
 
+              const cardPendingExpenses = expenses.filter(e => e.credit_card_id === card.id && !e.paid);
+              const invoiceAmount = cardPendingExpenses.reduce((sum, e) => sum + e.amount, 0);
+
+              // Consideramos "Pago" se:
+              // - Tem uma despesa paga vinculada (pagou a conta de luz)
+              // - OU se não tem fatura pendente (cartão zerado) E não tem gastos no mês (opcional, mas vamos manter simples)
+              // Para facilitar: Se invoiceAmount > 0, precisa pagar fatura. Se invoiceAmount == 0, checamos se já pagou "a conta" (paidDirectly).
+              
+              let status = 'pending'; // pending, paid, invoice_open
+              let statusMessage = '';
+              let actionButton = true;
+
+              if (invoiceAmount > 0) {
+                  status = 'invoice_open';
+                  statusMessage = `Fatura Atual: ${invoiceAmount.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}`;
+              } else if (paidDirectly) {
+                  status = 'paid';
+                  statusMessage = `Pago em ${formattedPeriod}`;
+                  actionButton = false;
+              } else {
+                  // Sem dívida e sem pagamento registrado. Pode ser um cartão sem uso ou uma conta esperando pagamento.
+                  // Vamos assumir "Em dia" ou "Aguardando Vencimento"
+                  status = 'pending';
+                  statusMessage = "Aguardando pagamento/uso";
+              }
+
+              const isPaid = status === 'paid';
+
+              return (
+                <div 
+                  key={card.id} 
+                  className={`flex flex-col md:flex-row justify-between items-center p-5 rounded-2xl border transition-all duration-300
+                      ${isPaid 
+                          ? 'bg-green-900/20 border-green-500/50 shadow-[0_0_15px_rgba(34,197,94,0.1)]' 
+                          : 'bg-fin-dark/50 border-white/10' 
+                      }
+                  `}
+                >
+                  <div className="flex-1 mb-4 md:mb-0">
                     <div className="flex items-center gap-3">
-                      {/* 👇 BOTÃO DE AÇÃO CONDICIONAL 👇 */}
-                      {!isPaid && (
-                          <button 
-                            onClick={() => openPayModal(card, totalInvoice)}
-                            className="px-6 py-3 rounded-xl bg-fin-gold hover:bg-yellow-500 text-fin-dark font-bold shadow-lg transition-all transform hover:scale-105" 
-                          >
-                            Marcar como pago
-                          </button>
-                      )}
-                      
-                      {isPaid && (
-                          <div className="px-4 py-2 rounded-xl bg-green-500/20 text-green-400 font-bold border border-green-500/30">
-                              Pago
-                          </div>
-                      )}
-
-                      <button 
-                        onClick={() => handleDelete(card.id)} 
-                        className="p-3 rounded-xl text-fin-red/50 hover:text-fin-red hover:bg-fin-red/10 transition-all"
-                        title="Excluir Cartão"
-                      >
-                        🗑️
-                      </button>
+                        <span className="text-2xl">🧾</span>
+                        <div>
+                          <span className={`text-xl font-semibold ${isPaid ? 'text-green-400' : 'text-white'}`}>
+                              {card.name}
+                          </span>
+                          <span className="block text-sm text-gray-400 mt-1">
+                              Fecha dia {card.closing_day} | Vence dia {card.due_day}
+                          </span>
+                        </div>
+                    </div>
+                    <div className="mt-2 text-sm">
+                        {isPaid ? (
+                            <span className="text-green-400 font-bold flex items-center gap-1">
+                                ✅ {statusMessage}
+                            </span>
+                        ) : (
+                            <span className="text-white/70">
+                                <strong className="text-white">{statusMessage}</strong>
+                            </span>
+                        )}
                     </div>
                   </div>
-                );
-            })}
-          </div>
-        )}
-      </div>
-    </>
+
+                  <div className="flex items-center gap-3">
+                    {actionButton && (
+                        <button 
+                          onClick={() => handlePay(card)}
+                          className="px-6 py-3 rounded-xl bg-fin-gold hover:bg-yellow-500 text-fin-dark font-bold shadow-lg transition-all transform hover:scale-105" 
+                        >
+                          Pagar
+                        </button>
+                    )}
+                    
+                    {isPaid && (
+                        <div className="px-4 py-2 rounded-xl bg-green-500/20 text-green-400 font-bold border border-green-500/30">
+                            Pago
+                        </div>
+                    )}
+
+                    <button 
+                      onClick={() => handleDelete(card.id)} 
+                      className="p-3 rounded-xl text-fin-red/50 hover:text-fin-red hover:bg-fin-red/10 transition-all"
+                      title="Excluir Conta"
+                    >
+                      🗑️
+                    </button>
+                  </div>
+                </div>
+              );
+          })}
+        </div>
+      )}
+    </div>
   );
 }
 
 // --- Componente Principal ---
 export default function CardsPage() {
   const [cards, setCards] = useState([]);
-  const [expenses, setExpenses] = useState([]); // Adicionado estado de despesas
-  const [budgetGroups, setBudgetGroups] = useState([]);
+  const [expenses, setExpenses] = useState([]); 
   
   const fetchPageData = () => {
-    // Agora busca Cartões, Despesas (para calcular a fatura) e Grupos
     Promise.all([
       axios.get(`${API_URL}/cards/`),
-      axios.get(`${API_URL}/expenses/`), // Pega todas as despesas
-      axios.get(`${API_URL}/budget/`)
+      axios.get(`${API_URL}/expenses/`),
     ])
-    .then(([cardsRes, expensesRes, groupsRes]) => {
+    .then(([cardsRes, expensesRes]) => {
       setCards(cardsRes.data);
       setExpenses(expensesRes.data);
-      setBudgetGroups(groupsRes.data);
     })
     .catch(e => console.error("Erro ao buscar dados:", e));
   };
@@ -296,8 +260,6 @@ export default function CardsPage() {
             cards={cards} 
             expenses={expenses}
             setCards={setCards} 
-            budgetGroups={budgetGroups}
-            onFaturaPaid={fetchPageData} 
         />
         </div>
     </AuthGuard>

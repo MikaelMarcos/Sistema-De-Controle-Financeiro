@@ -2,6 +2,7 @@
 
 import { useState, useEffect, Fragment, useRef } from 'react';
 import axios from 'axios';
+import { useSearchParams } from 'next/navigation';
 import { Listbox, Transition } from '@headlessui/react';
 import AuthGuard from '@/components/AuthGuard';
 
@@ -256,14 +257,39 @@ function ExpenseForm({ onExpenseAdded }) {
     return () => { if (debounceTimer.current) clearTimeout(debounceTimer.current) };
   }, [description]);
 
+  // --- USO DE QUERY PARAMS PARA PREENCHIMENTO AUTOMÁTICO ---
+  const searchParams = useSearchParams();
+  
+  useEffect(() => {
+    // Verifica se veio redirecionado com parâmetros
+    const msgDescription = searchParams.get('description');
+    const msgAmount = searchParams.get('amount');
+    const msgCreditCardId = searchParams.get('creditCardId');
+
+    if (msgDescription) {
+      setDescription(decodeURIComponent(msgDescription));
+      setPaid(true); // Se veio de "Pagar Conta", geralmente é um pagamento já efetuado ou a efetuar na hora
+    }
+    if (msgAmount) setAmount(msgAmount);
+    if (msgCreditCardId) {
+        setCreditCardId(msgCreditCardId); 
+        setPaid(true); // Se estamos pagando uma conta vinculada ao cartão/conta, deve ser Pago por padrão
+    }
+  }, [searchParams]);
+
+
   useEffect(() => {
     if (creditCardId) {
-      setPaid(false);
+       // Se selecionou cartão manualmente, comportamento normal
+       // Mas se veio da URL (pagamento de conta), queremos manter PAID=true
+       if (!searchParams.get('creditCardId')) {
+           setPaid(false);
+       }
     } else {
-      setPaid(true);
+      // setPaid(true); // Comportamento padrão ao limpar
       setInstallments(1);
     }
-  }, [creditCardId]);
+  }, [creditCardId, searchParams]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();

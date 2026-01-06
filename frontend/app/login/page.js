@@ -6,6 +6,7 @@ import { User, Users, ArrowLeft } from 'lucide-react';
 function LoginForm() {
   const [selectedProfile, setSelectedProfile] = useState(null); // 'mika' or 'guest'
   const [password, setPassword] = useState('');
+  const [rememberMe, setRememberMe] = useState(false);
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const { login } = useAuth();
@@ -26,7 +27,7 @@ function LoginForm() {
     if (selectedProfile === 'guest') email = 'convidado@sistema.com';
 
     try {
-      await login(email, password);
+      await login(email, password, rememberMe);
     } catch (err) {
       console.error("Erro no login:", err);
       if (err.response) {
@@ -105,6 +106,19 @@ function LoginForm() {
                   className="w-full p-4 bg-[#0a192f] rounded-lg border border-white/10 focus:border-white/40 focus:ring-0 transition-all text-white placeholder-gray-600 outline-none text-center tracking-widest text-lg"
                   placeholder="Senha"
                 />
+              </div>
+
+              <div className="flex items-center justify-center gap-2">
+                <input
+                  type="checkbox"
+                  id="rememberMe"
+                  checked={rememberMe}
+                  onChange={(e) => setRememberMe(e.target.checked)}
+                  className="w-4 h-4 rounded border-gray-600 outline-none focus:ring-0 accent-fin-gold cursor-pointer"
+                />
+                <label htmlFor="rememberMe" className="text-gray-400 text-sm cursor-pointer select-none hover:text-white transition-colors">
+                  Manter conectado
+                </label>
               </div>
 
               {error && (
