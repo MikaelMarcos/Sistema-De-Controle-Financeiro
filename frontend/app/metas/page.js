@@ -62,11 +62,12 @@ function EditGoalModal({ goal, onClose, onGoalUpdated }) {
   const [targetAmount, setTargetAmount] = useState(goal.target_amount);
   const [deadline, setDeadline] = useState(goal.deadline ? goal.deadline.split('T')[0] : '');
   const [notes, setNotes] = useState(goal.notes || '');
+  const [imageUrl, setImageUrl] = useState(goal.image_url || '');
   const [adjustmentAmount, setAdjustmentAmount] = useState('');
 
   const handleEditSubmit = (e) => {
     e.preventDefault();
-    const updatedGoalData = { name, target_amount: parseFloat(targetAmount), deadline: deadline ? new Date(deadline).toISOString() : null, notes };
+    const updatedGoalData = { name, target_amount: parseFloat(targetAmount), deadline: deadline ? new Date(deadline).toISOString() : null, notes, image_url: imageUrl };
     axios.put(`${API_URL}/goals/${goal.id}`, updatedGoalData)
       .then(response => { onGoalUpdated(response.data); onClose(); })
       .catch(error => console.error("Erro:", error));
@@ -105,8 +106,11 @@ function EditGoalModal({ goal, onClose, onGoalUpdated }) {
              <input type="date" value={deadline} onChange={e => setDeadline(e.target.value)} className="w-full p-3 bg-fin-dark/50 rounded-xl border border-white/10 focus:border-fin-gold focus:ring-1 focus:ring-fin-gold/50 text-white transition-all outline-none [color-scheme:dark]"/>
           </div>
           <div>
-             <label className="text-xs text-gray-400 ml-1 mb-1 block">Anotações</label>
              <input type="text" value={notes} onChange={e => setNotes(e.target.value)} placeholder="Observações" className="w-full p-3 bg-fin-dark/50 rounded-xl border border-white/10 focus:border-fin-gold focus:ring-1 focus:ring-fin-gold/50 text-white transition-all outline-none"/>
+          </div>
+          <div>
+             <label className="text-xs text-gray-400 ml-1 mb-1 block">URL da Imagem (Opcional)</label>
+             <input type="text" value={imageUrl} onChange={e => setImageUrl(e.target.value)} placeholder="https://..." className="w-full p-3 bg-fin-dark/50 rounded-xl border border-white/10 focus:border-fin-gold focus:ring-1 focus:ring-fin-gold/50 text-white transition-all outline-none"/>
           </div>
           
           <button type="submit" className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded-xl transition-all shadow-lg shadow-blue-900/20">Salvar Alterações</button>
@@ -147,16 +151,17 @@ function GoalCreateForm({ onGoalAdded }) {
   const [currentAmount, setCurrentAmount] = useState('');
   const [deadline, setDeadline] = useState('');
   const [notes, setNotes] = useState('');
+  const [imageUrl, setImageUrl] = useState('');
   const [isExpanded, setIsExpanded] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!name || !targetAmount) return alert("Preencha Nome e Valor Estimado.");
-    const newGoal = { name, target_amount: parseFloat(targetAmount), current_amount: parseFloat(currentAmount) || 0.0, deadline: deadline ? new Date(deadline).toISOString() : null, notes };
+    const newGoal = { name, target_amount: parseFloat(targetAmount), current_amount: parseFloat(currentAmount) || 0.0, deadline: deadline ? new Date(deadline).toISOString() : null, notes, image_url: imageUrl };
     axios.post(`${API_URL}/goals/`, newGoal)
       .then(response => {
         onGoalAdded(response.data);
-        setName(''); setTargetAmount(''); setCurrentAmount(''); setDeadline(''); setNotes('');
+        setName(''); setTargetAmount(''); setCurrentAmount(''); setDeadline(''); setNotes(''); setImageUrl('');
         setIsExpanded(false);
       })
       .catch(error => console.error("Erro:", error));
@@ -216,6 +221,11 @@ function GoalCreateForm({ onGoalAdded }) {
               <textarea value={notes} onChange={(e) => setNotes(e.target.value)} placeholder="Detalhes adicionais..." rows="2" className="w-full p-4 bg-fin-dark/50 border border-white/10 rounded-xl focus:border-fin-gold focus:ring-2 focus:ring-fin-gold/50 text-white placeholder-gray-500 transition-all outline-none resize-none" />
             </div>
             
+            <div className="space-y-2">
+              <label className="text-xs font-bold text-gray-400 uppercase tracking-wider ml-1">Imagem de Fundo (URL)</label>
+              <input type="text" value={imageUrl} onChange={(e) => setImageUrl(e.target.value)} placeholder="https://..." className="w-full p-4 bg-fin-dark/50 border border-white/10 rounded-xl focus:border-fin-gold focus:ring-2 focus:ring-fin-gold/50 text-white placeholder-gray-500 transition-all outline-none" />
+            </div>
+            
             <button type="submit" className="w-full py-4 bg-gradient-to-r from-fin-gold to-orange-600 hover:from-fin-gold/80 hover:to-orange-500 text-fin-dark font-bold rounded-xl shadow-lg shadow-orange-900/20 transform hover:-translate-y-0.5 transition-all duration-200">
               Criar Meta
             </button>
@@ -251,9 +261,17 @@ function GoalCard({ goal, onEditClick, onDeleteClick }) {
   const progressGradient = getProgressColor(percentage);
 
   return (
-    <div className="group relative glass p-6 transition-all duration-300 hover:border-fin-gold/30 hover:shadow-2xl hover:shadow-fin-gold/5 flex flex-col h-full">
+    <div className="group relative glass p-6 transition-all duration-300 hover:border-fin-gold/30 hover:shadow-2xl hover:shadow-fin-gold/5 flex flex-col h-full overflow-hidden">
+      {/* Background Image */}
+      {goal.image_url && (
+        <div className="absolute inset-0 z-0">
+          <img src={goal.image_url} alt="" className="w-full h-full object-cover opacity-20 group-hover:opacity-40 transition-opacity duration-500 mask-image-b-gradient" style={{ maskImage: 'linear-gradient(to bottom, rgba(0,0,0,1) 50%, rgba(0,0,0,0) 100%)', WebkitMaskImage: 'linear-gradient(to bottom, rgba(0,0,0,1) 50%, rgba(0,0,0,0) 100%)' }} />
+          <div className="absolute inset-0 bg-gradient-to-t from-fin-dark via-fin-dark/90 to-fin-dark/40 mix-blend-multiply"></div>
+        </div>
+      )}
+
       {/* Glow Effect no Hover */}
-      <div className="absolute inset-0 bg-gradient-to-br from-fin-gold/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
+      <div className="absolute inset-0 bg-gradient-to-br from-fin-gold/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none z-0"></div>
 
       <div className="relative z-10 flex flex-col h-full justify-between">
         <div>

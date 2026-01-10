@@ -76,6 +76,7 @@ class GoalBase(SQLModel):
     current_amount: Decimal = Field(default=0.0, sa_column=Column(Numeric(15, 2)))
     deadline: Optional[datetime] = Field(default=None)
     notes: Optional[str] = None
+    image_url: Optional[str] = Field(default=None)
 class GoalCreate(GoalBase):
     pass
 class Goal(GoalBase, table=True):
