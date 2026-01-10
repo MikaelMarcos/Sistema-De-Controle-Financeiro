@@ -140,7 +140,7 @@ function LoginForm() {
                   disabled={isLoading}
                   className="flex-1 py-3 bg-white text-black hover:bg-red-600 hover:text-white rounded-lg transition-all font-bold uppercase tracking-wide text-sm disabled:opacity-50"
                 >
-                  {isLoading ? 'Entrando...' : 'Acessar'}
+                  {isLoading ? 'Entrando...' : 'Acessar Sistema'}
                 </button>
               </div>
             </form>
