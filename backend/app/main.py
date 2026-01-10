@@ -33,6 +33,10 @@ def on_startup():
 def read_root():
     return {"message": "Bem-vindo à API de Finanças Pessoais! Faça login para continuar."}
 
+@app.get("/health", tags=["Health"])
+def health_check():
+    return {"status": "ok"}
+
 # --- Inclui os Routers ---
 app.include_router(router_auth) # 👈 ADICIONA O ROUTER DE AUTH
 app.include_router(router_expenses)
