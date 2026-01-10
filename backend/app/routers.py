@@ -217,7 +217,12 @@ def read_expenses(*, session: Session = Depends(get_session), user: User = Depen
         joinedload(Expense.credit_card)
     )
     if month and year:
-        statement = statement.where(extract('month', Expense.date) == month).where(extract('year', Expense.date) == year)
+        start_date = datetime(year, month, 1)
+        end_date = start_date + relativedelta(months=1)
+        statement = statement.where(
+            Expense.date >= start_date,
+            Expense.date < end_date
+        )
     statement = statement.order_by(Expense.date.desc())
     return session.exec(statement).all()
 
@@ -295,7 +300,12 @@ def create_income(*, session: Session = Depends(get_session), user: User = Depen
 def read_income(*, session: Session = Depends(get_session), user: User = Depends(get_current_user), month: Optional[int] = None, year: Optional[int] = None):
     statement = select(Income).where(Income.user_id == user.id)
     if month and year:
-        statement = statement.where(extract('month', Income.date) == month).where(extract('year', Income.date) == year)
+        start_date = datetime(year, month, 1)
+        end_date = start_date + relativedelta(months=1)
+        statement = statement.where(
+            Income.date >= start_date,
+            Income.date < end_date
+        )
     statement = statement.order_by(Income.date.desc())
     return session.exec(statement).all()
 
