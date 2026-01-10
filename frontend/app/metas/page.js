@@ -354,7 +354,14 @@ export default function MetasPage() {
   const fetchGoals = () => {
     setIsLoading(true);
     axios.get(`${API_URL}/goals/`)
-      .then(response => setGoals(response.data))
+      .then(response => {
+        const sortedGoals = response.data.sort((a, b) => {
+          const pA = a.target_amount > 0 ? (a.current_amount / a.target_amount) : 0;
+          const pB = b.target_amount > 0 ? (b.current_amount / b.target_amount) : 0;
+          return pA - pB;
+        });
+        setGoals(sortedGoals);
+      })
       .catch(error => console.error("Erro ao buscar metas:", error))
       .finally(() => setIsLoading(false));
   };
