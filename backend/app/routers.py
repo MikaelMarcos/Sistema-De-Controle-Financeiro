@@ -48,71 +48,75 @@ def _calculate_monthly_contribution(goal: Goal) -> Decimal:
     return amount_needed / Decimal(months_remaining)
 
 def analyze_budget_for_user(session: Session, user: User, month: int, year: int):
-    income_stmt = select(func.sum(Income.amount)).where(
-        Income.user_id == user.id,
-        extract('month', Income.date) == month,
-        extract('year', Income.date) == year,
-        Income.received == True
-    )
-    total_income = session.exec(income_stmt).one() or Decimal(0.0)
-    
-    # Chama a função de leitura que agora garante a criação dos grupos padrão
-    # Mas como estamos dentro do mesmo arquivo, vamos fazer a lógica direta ou chamar a rota?
-    # Melhor fazer a query direta para evitar dependência circular, mas aplicar a mesma lógica de default
-    groups = session.exec(select(BudgetGroup).where(BudgetGroup.user_id == user.id)).all()
-    
-    # Lógica de Default (Auto-Create) caso esteja vazio também na análise
-    if not groups:
-        # Remover "Dízimo" se não for mais um grupo padrão, ou manter se o user quiser customizar?
-        # User pediu para "Dízimo" ficar fora dos grupos.
-        default_names = ["Custo Fixo", "Metas", "Investimentos", "Prazer", "Conhecimento", "Conforto"]
-        for name in default_names:
-            bg = BudgetGroup(name=name, user_id=user.id, target_percentage=0)
-            session.add(bg)
-        session.commit()
-        groups = session.exec(select(BudgetGroup).where(BudgetGroup.user_id == user.id)).all()
-
-    # Cálculo do Dízimo e Receita Líquida
-    tithe_amount = total_income * Decimal("0.10")
-    net_income = total_income - tithe_amount
-
-    analysis = []
-    
-    # Adiciona o Dízimo como um item especial na análise (opcional, ou o frontend calcula)
-    # Vamos focar em enviar os dados corretos para os grupos existentes.
-    # O user quer que "as outras opções ... devem ser calculadas a partir do valor total de receitas menos o dizimo"
-    
-    for group in groups:
-        expense_stmt = select(func.sum(Expense.amount)).where(
-            Expense.user_id == user.id,
-            Expense.budget_group_id == group.id,
-            Expense.paid == True,
-            Expense.credit_card_id == None,
-            extract('month', Expense.date) == month,
-            extract('year', Expense.date) == year
+    print(f"--- ANALYZE BUDGET START: User {user.id} Month {month}/{year} ---")
+    try:
+        income_stmt = select(func.sum(Income.amount)).where(
+            Income.user_id == user.id,
+            extract('month', Income.date) == month,
+            extract('year', Income.date) == year,
+            Income.received == True
         )
-        actual_spent = session.exec(expense_stmt).one() or Decimal(0.0)
+        total_income = session.exec(income_stmt).one() or Decimal(0.0)
+        print(f"Total Income: {total_income}")
         
-        # MUDANÇA AQUI: Usa net_income em vez de total_income
-        planned_amount = (net_income * (Decimal(group.target_percentage) / Decimal(100.0)))
+        groups = session.exec(select(BudgetGroup).where(BudgetGroup.user_id == user.id)).all()
         
-        analysis.append({
-            "group_id": group.id, 
-            "name": group.name, 
-            "target_percentage": group.target_percentage,
-            "planned_amount": planned_amount, 
-            "actual_spent": actual_spent,
-            "is_over_budget": actual_spent > planned_amount if planned_amount > 0 else False
-        })
-    
-    return {
-        "month": month, 
-        "year": year, 
-        "total_income": total_income, 
-        "tithe_amount": tithe_amount, # Envia o valor do dízimo para o front
-        "net_income": net_income,     # Envia a receita líquida
-        "analysis": analysis
-    }
+        if not groups:
+            print("No groups found. Creating defaults...")
+            default_names = ["Custo Fixo", "Metas", "Investimentos", "Prazer", "Conhecimento", "Conforto"]
+            for name in default_names:
+                bg = BudgetGroup(name=name, user_id=user.id, target_percentage=0)
+                session.add(bg)
+            session.commit()
+            groups = session.exec(select(BudgetGroup).where(BudgetGroup.user_id == user.id)).all()
+
+        # Filter Dízimo
+        groups = [g for g in groups if "dizimo" not in (g.name or "").lower() and "dízimo" not in (g.name or "").lower()]
+        print(f"Groups count after filter: {len(groups)}")
+
+        tithe_amount = total_income * Decimal("0.10")
+        net_income = total_income - tithe_amount
+        print(f"Net Income: {net_income}")
+
+        analysis = []
+        
+        for group in groups:
+            expense_stmt = select(func.sum(Expense.amount)).where(
+                Expense.user_id == user.id,
+                Expense.budget_group_id == group.id,
+                Expense.paid == True,
+                Expense.credit_card_id == None,
+                extract('month', Expense.date) == month,
+                extract('year', Expense.date) == year
+            )
+            actual_spent = session.exec(expense_stmt).one() or Decimal(0.0)
+            
+            planned_amount = (net_income * (Decimal(group.target_percentage) / Decimal(100.0)))
+            
+            analysis.append({
+                "group_id": group.id, 
+                "name": group.name, 
+                "target_percentage": group.target_percentage,
+                "planned_amount": float(planned_amount), 
+                "actual_spent": float(actual_spent),
+                "is_over_budget": actual_spent > planned_amount if planned_amount > 0 else False
+            })
+        
+        print("Analysis complete.")
+        return {
+            "month": month, 
+            "year": year, 
+            "total_income": float(total_income), 
+            "tithe_amount": float(tithe_amount),
+            "net_income": float(net_income),
+            "analysis": analysis
+        }
+    except Exception as e:
+        print(f"ERROR in analyze_budget: {e}")
+        # Log stack trace if possible
+        import traceback
+        traceback.print_exc()
+        raise e
 
 # --- Rotas de Grupos de Orçamento ---
 @router_budget.post("/", response_model=BudgetGroup)
@@ -129,6 +133,9 @@ def create_budget_group(*, session: Session = Depends(get_session), user: User =
 @router_budget.get("/", response_model=List[BudgetGroup])
 def read_budget_groups(*, session: Session = Depends(get_session), user: User = Depends(get_current_user)):
     groups = session.exec(select(BudgetGroup).where(BudgetGroup.user_id == user.id)).all()
+    
+    # FILTRO DE SEGURANÇA
+    groups = [g for g in groups if "dizimo" not in g.name.lower() and "dízimo" not in g.name.lower()]
     
     # 👇 AQUI ESTÁ A MÁGICA: Se não tiver grupos, cria os padrões 👇
     if not groups:

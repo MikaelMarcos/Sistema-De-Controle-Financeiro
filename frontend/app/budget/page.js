@@ -95,30 +95,38 @@ function MonthSelector({ currentDate, onDateChange, totalIncome, titheAmount, ne
   
   return (
     <div className="mb-4">
-      {/* Card do Dízimo no Topo */}
-      <div className="bg-gradient-to-r from-yellow-600/20 to-yellow-800/10 border border-yellow-500/30 rounded-xl p-3 mb-4 flex justify-between items-center shadow-sm">
-        <div className="flex items-center gap-3">
-          <div className="p-2 bg-yellow-500/20 rounded-lg text-yellow-400">
-            🙏
-          </div>
-          <div>
-             <h3 className="text-sm font-semibold text-yellow-100">Dízimo (10%)</h3>
-             <p className="text-[10px] text-yellow-400/80">Calculado sobre a Receita Bruta</p>
-          </div>
-        </div>
-        <div className="text-right">
-             <div className="text-lg font-bold text-yellow-100">{formatCurrency(titheAmount)}</div>
-             <div className="text-[10px] text-gray-400">de {formatCurrency(totalIncome)}</div>
+      {/* Card do Dízimo no Topo - Premium Gold Style */}
+      <div className="relative overflow-hidden bg-gradient-to-br from-yellow-900/40 via-yellow-900/20 to-black/40 border border-yellow-600/30 rounded-2xl p-4 mb-6 shadow-lg backdrop-blur-sm group hover:border-yellow-500/50 transition-all duration-300">
+        <div className="absolute top-0 right-0 -mt-2 -mr-2 w-24 h-24 bg-yellow-500/10 blur-3xl rounded-full"></div>
+        
+        <div className="relative flex justify-between items-center">
+            <div className="flex items-center gap-4">
+            <div className="p-3 bg-gradient-to-br from-yellow-500/20 to-yellow-700/10 rounded-xl text-yellow-400 shadow-inner border border-yellow-500/20">
+                <span className="text-xl">🙏</span>
+            </div>
+            <div>
+                <h3 className="text-base font-bold text-yellow-50 tracking-wide">Dízimo (10%)</h3>
+                <p className="text-[11px] text-yellow-400/70 font-medium uppercase tracking-wider mt-0.5">Calculado sobre a Receita Bruta</p>
+            </div>
+            </div>
+            <div className="text-right">
+                <div className="text-2xl font-bold text-yellow-100 drop-shadow-sm">{formatCurrency(titheAmount)}</div>
+                <div className="text-xs text-yellow-500/60 font-medium">de {formatCurrency(totalIncome)}</div>
+            </div>
         </div>
       </div>
 
-      <div className="flex justify-between items-center bg-gray-800/50 p-2 rounded-lg border border-gray-700">
-        <button onClick={handlePreviousMonth} className="px-2.5 py-1 text-xs text-gray-300 border border-gray-600 rounded hover:bg-gray-700 transition">&lt;</button>
-        <h2 className="text-sm font-medium text-white flex flex-col items-center">
-          <span>{formattedDate}</span>
-          <span className="text-[10px] text-gray-400 font-normal">Base de Cálculo: {formatCurrency(netIncome)}</span>
-        </h2>
-        <button onClick={handleNextMonth} className="px-2.5 py-1 text-xs text-gray-300 border border-gray-600 rounded hover:bg-gray-700 transition">&gt;</button>
+      <div className="flex justify-between items-center bg-gray-900/60 backdrop-blur-md p-1.5 rounded-2xl border border-gray-700/50 shadow-sm">
+        <button onClick={handlePreviousMonth} className="px-4 py-2 text-gray-400 hover:text-white hover:bg-white/5 rounded-xl transition duration-200">
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" /></svg>
+        </button>
+        <div className="flex flex-col items-center">
+          <span className="text-base font-semibold text-white tracking-tight">{formattedDate}</span>
+          <span className="text-[10px] text-gray-500 font-medium uppercase tracking-widest mt-0.5">Base: {formatCurrency(netIncome)}</span>
+        </div>
+        <button onClick={handleNextMonth} className="px-4 py-2 text-gray-400 hover:text-white hover:bg-white/5 rounded-xl transition duration-200">
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
+        </button>
       </div>
     </div>
   );
@@ -196,7 +204,7 @@ function BudgetChart({ groups }) {
   );
 }
 
-// --- Componente: Slider ---
+// --- Componente: Slider Premium ---
 function RangeSlider({ label, value, onChange, actualSpent, plannedAmount }) {
   const sliderRef = useRef(null);
   const filledWidth = `${Math.min(Math.max(value, 0), 100)}%`;
@@ -206,7 +214,7 @@ function RangeSlider({ label, value, onChange, actualSpent, plannedAmount }) {
     const rect = sliderRef.current.getBoundingClientRect();
     const clientX = e.touches ? e.touches[0].clientX : e.clientX;
     const trackWidth = rect.width;
-    const thumbWidth = 10;
+    const thumbWidth = 16; // Larger thumb for better touch
     let relativeX = clientX - rect.left - (thumbWidth / 2);
     relativeX = Math.max(0, Math.min(relativeX, trackWidth - thumbWidth));
     const newValue = Math.round((relativeX / (trackWidth - thumbWidth)) * 100);
@@ -232,52 +240,49 @@ function RangeSlider({ label, value, onChange, actualSpent, plannedAmount }) {
   const groupColor = getGroupColor(label);
 
   return (
-    <div className="mb-3">
-      <div className="flex justify-between items-center mb-1.5">
-        <div className="flex items-center gap-1.5">
+    <div className="group mb-5">
+      <div className="flex justify-between items-end mb-2.5">
+        <div className="flex items-center gap-2">
           <div 
-            className="w-2 h-2 rounded-full flex-shrink-0"
+            className="w-2.5 h-2.5 rounded-full shadow-sm ring-2 ring-white/5"
             style={{ backgroundColor: groupColor }}
           ></div>
-          <label className="text-xs text-white/90 truncate max-w-[100px]" style={{ color: groupColor }}>
-            {label}
-          </label>
+          <div>
+            <label className="block text-sm font-medium text-gray-200 group-hover:text-white transition-colors duration-200">
+                {label}
+            </label>
+            <span className={`text-[10px] font-medium tracking-tight ${isOver ? 'text-red-400' : 'text-gray-500'}`}>
+                {formatCurrency(plannedAmount)}
+            </span>
+          </div>
         </div>
         <div className="text-right">
-          <div className="text-sm font-medium text-white">
+          <div className="text-lg font-bold text-white tabular-nums tracking-tight">
             {value}%
-          </div>
-          <div className={`text-[10px] ${isOver ? 'text-red-400' : 'text-gray-400'}`}>
-            {formatCurrency(plannedAmount)}
           </div>
         </div>
       </div>
       
       <div 
         ref={sliderRef}
-        className="relative w-full h-1.5 bg-white/10 rounded-full cursor-pointer"
+        className="relative w-full h-2.5 bg-gray-800 rounded-full cursor-pointer touch-none shadow-inner border border-gray-700/50"
         onMouseDown={handleStart}
         onTouchStart={handleStart}
       >
         <div 
-          className="absolute top-0 left-0 h-full rounded-full"
-          style={{ width: filledWidth, backgroundColor: groupColor }}
+          className="absolute top-0 left-0 h-full rounded-full transition-all duration-75 ease-out shadow-[0_0_10px_rgba(0,0,0,0.3)]"
+          style={{ width: filledWidth, backgroundColor: groupColor, opacity: 0.9 }}
         ></div>
         <div 
-          className="absolute top-1/2 w-2.5 h-2.5 bg-white border border-gray-700 rounded-full -translate-y-1/2 shadow-sm"
+          className="absolute top-1/2 w-4 h-4 bg-white rounded-full -translate-y-1/2 shadow-lg ring-2 ring-black/10 transform transition-transform hover:scale-110 active:scale-95"
           style={{ left: filledWidth }}
         ></div>
-      </div>
-      
-      <div className="flex justify-between text-[10px] text-gray-500 mt-0.5">
-        <span>0%</span>
-        <span>100%</span>
       </div>
     </div>
   );
 }
 
-// --- Gerenciador de Grupos ---
+// --- Gerenciador de Grupos Premium ---
 function BudgetGroupManager({ groups, onGroupAdded }) {
   const [newGroupName, setNewGroupName] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -299,29 +304,29 @@ function BudgetGroupManager({ groups, onGroupAdded }) {
   };
 
   return (
-    <div className="bg-gray-800/50 p-3 rounded-lg border border-gray-700 mb-4">
-      <h3 className="text-xs font-semibold text-white mb-2">Adicionar Grupo</h3>
-      <form onSubmit={handleSubmit} className="flex gap-2">
+    <div className="bg-gray-800/30 backdrop-blur-sm p-4 rounded-xl border border-gray-700/50 mb-6 transition-all hover:bg-gray-800/50">
+      <h3 className="text-xs font-semibold text-gray-400 uppercase tracking-widest mb-3">Gerenciar Grupos</h3>
+      <form onSubmit={handleSubmit} className="flex gap-3">
         <input 
           type="text" 
           value={newGroupName} 
           onChange={(e) => setNewGroupName(e.target.value)} 
-          placeholder="Novo grupo..."
-          className="flex-1 text-xs p-2 bg-gray-900/50 rounded border border-gray-600 text-white placeholder-gray-500"
+          placeholder="Nome do novo grupo..."
+          className="flex-1 text-sm p-2.5 bg-gray-900/60 rounded-lg border border-gray-700 text-white placeholder-gray-500 focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500 transition-all outline-none"
         />
         <button 
           type="submit" 
           disabled={isSubmitting}
-          className="px-2.5 py-1.5 text-xs bg-blue-600 text-white font-medium rounded hover:bg-blue-700 transition disabled:opacity-50"
+          className="px-4 py-2 text-sm bg-gray-700 hover:bg-gray-600 text-white font-medium rounded-lg transition-all disabled:opacity-50 border border-gray-600 hover:border-gray-500 shadow-sm"
         >
-          {isSubmitting ? "..." : "Add"}
+          {isSubmitting ? "..." : "+ Adicionar"}
         </button>
       </form>
     </div>
   );
 }
 
-// --- Card de Treinamento da IA ---
+// --- Card de Treinamento da IA Premium ---
 function AITrainingCard() {
   const [status, setStatus] = useState({ trained: false, message: 'Verificando...' });
   const [isLoading, setIsLoading] = useState(false);
@@ -345,26 +350,28 @@ function AITrainingCard() {
   };
 
   return (
-    <div className="bg-gray-800/50 p-3 rounded-lg border border-gray-700 mt-4">
-      <div className="flex items-center gap-2 mb-2">
-        <div className="p-1.5 bg-purple-500/20 rounded">
-          <span className="text-sm">🤖</span>
+    <div className="bg-gradient-to-r from-purple-900/20 to-pink-900/20 backdrop-blur-md p-4 rounded-xl border border-purple-500/10 mt-6 shadow-lg">
+      <div className="flex items-center gap-4 mb-3">
+        <div className="p-2 bg-gradient-to-br from-purple-500/20 to-pink-500/20 rounded-lg text-purple-300 shadow-inner">
+          <span className="text-xl">🤖</span>
         </div>
         <div className="flex-1">
-          <h4 className="text-xs font-semibold text-white">Treinar IA</h4>
-          <p className="text-[10px] text-gray-400">Categorização automática</p>
+          <h4 className="text-sm font-bold text-white tracking-wide">Inteligência Artificial</h4>
+          <p className="text-[11px] text-gray-400 leading-tight mt-0.5">Categorização automática de transações</p>
         </div>
         <button 
           onClick={handleTrain} 
           disabled={isLoading}
-          className="text-xs px-3 py-1.5 bg-gradient-to-r from-purple-600 to-pink-600 text-white rounded hover:opacity-90 transition disabled:opacity-50"
+          className="text-xs px-4 py-2 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-500 hover:to-pink-500 text-white font-semibold rounded-lg shadow-lg shadow-purple-900/20 transition-all transform hover:-translate-y-0.5 disabled:opacity-50 disabled:cursor-not-allowed"
         >
-          {isLoading ? "..." : "Treinar"}
+          {isLoading ? "Processando..." : "Treinar Modelo"}
         </button>
       </div>
-      <div className="text-[10px] text-gray-400 flex items-center gap-1">
-        <div className={`w-1.5 h-1.5 rounded-full ${status.trained ? 'bg-green-400' : 'bg-yellow-400'}`}></div>
-        Status: <span className={status.trained ? 'text-green-400' : 'text-yellow-400'}>{status.message}</span>
+      <div className="flex items-center gap-2 pl-1">
+        <div className={`w-2 h-2 rounded-full shadow-[0_0_8px_currentColor] ${status.trained ? 'bg-emerald-400 text-emerald-400' : 'bg-amber-400 text-amber-400'}`}></div>
+        <span className="text-[10px] uppercase tracking-wider font-semibold text-gray-500">
+            Status: <span className={status.trained ? 'text-emerald-400' : 'text-amber-400'}>{status.message}</span>
+        </span>
       </div>
     </div>
   );
@@ -376,7 +383,6 @@ function BudgetPage() {
   const [currentDate, setCurrentDate] = useState(null);
   const [analysisData, setAnalysisData] = useState(null);
   const [totalPercentage, setTotalPercentage] = useState(0);
-  const [overBudgetGroups, setOverBudgetGroups] = useState([]);
   const debounceTimers = useRef({});
   const [isSaving, setIsSaving] = useState(false);
   const [notification, setNotification] = useState(null);
@@ -411,7 +417,6 @@ function BudgetPage() {
       const totalPerc = mappedGroups.reduce((acc, group) => acc + group.target_percentage, 0);
       setTotalPercentage(totalPerc);
       setAnalysisData(res.data);
-      setOverBudgetGroups(mappedGroups.filter(g => g.is_over_budget));
     } catch (error) { console.error("Erro ao buscar dados:", error); }
   };
 
@@ -461,8 +466,59 @@ function BudgetPage() {
   };
 
   if (!analysisData || !currentDate) return <div className="text-white p-4 text-center">Carregando...</div>;
+  
+  // CORREÇÃO: Calcula grupos excedentes dinamicamente baseado no estado atual (sliders)
+  // Isso garante que o alerta atualize assim que o usuário move o slider ou clica no Ajuste Automático.
+  const overBudgetGroups = groups.filter(g => (g.actual_spent > g.planned_amount) && g.planned_amount > 0);
 
   const isTotalValid = totalPercentage === 100;
+
+  const handleAutoAdjust = () => {
+    if (totalPercentage === 0) return;
+
+    // Calcula a proporção de cada grupo
+    const newGroups = groups.map(g => {
+        // Evita divisão por zero e garante proporção
+        const rawShare = (g.target_percentage / totalPercentage) * 100;
+        return { ...g, rawShare };
+    });
+
+    // Passo 1: Arredonda para baixo (floor)
+    let sum = 0;
+    const groupsWithFloor = newGroups.map(g => {
+        const floorVal = Math.floor(g.rawShare);
+        sum += floorVal;
+        return { ...g, target_percentage: floorVal, remainder: g.rawShare - floorVal };
+    });
+
+    // Passo 2: Distribui o que falta (100 - sum) para os maiores restos
+    let remainderToDistribute = 100 - sum;
+    
+    // Ordena por maior resto para priorizar quem perdeu mais no arredondamento
+    const sortedIndices = groupsWithFloor
+        .map((g, index) => ({ index, remainder: g.remainder }))
+        .sort((a, b) => b.remainder - a.remainder);
+
+    // Distribui 1% por vez
+    for (let i = 0; i < remainderToDistribute; i++) {
+        const targetIndex = sortedIndices[i % sortedIndices.length].index;
+        groupsWithFloor[targetIndex].target_percentage += 1;
+    }
+
+    // Atualiza o estado e recalcula valores planejados
+    const netIncome = analysisData?.net_income || 0;
+    
+    const finalGroups = groupsWithFloor.map(g => ({
+        ...g,
+        planned_amount: (netIncome * g.target_percentage) / 100,
+        // Limpa props temporárias
+        rawShare: undefined,
+        remainder: undefined
+    }));
+
+    setGroups(finalGroups);
+    setTotalPercentage(100);
+  };
 
   return (
     <div className="text-white p-3 max-w-6xl mx-auto">
@@ -491,17 +547,17 @@ function BudgetPage() {
         </div>
       )}
 
-      {/* Cartão de Resumo Compacto */}
-      <div className="bg-gray-800/50 p-3 rounded-lg border border-gray-700 mb-4 flex justify-between items-center">
+      {/* Cartão de Resumo Compacto - Premium Glass */}
+      <div className="bg-gray-800/40 backdrop-blur-sm p-4 rounded-xl border border-gray-700/50 mb-6 flex justify-between items-center shadow-lg">
         <div>
-          <div className="text-[10px] text-gray-400 mb-0.5">Base para Orçamento (Receita Líq.)</div>
-          <div className="text-sm font-bold text-white">{formatCurrency(analysisData.net_income)}</div>
+          <div className="text-[10px] text-gray-400 font-medium uppercase tracking-wider mb-1">Base para Orçamento (Receita Líq.)</div>
+          <div className="text-xl font-bold text-white tracking-tight">{formatCurrency(analysisData.net_income)}</div>
         </div>
         <div className="text-right">
-          <div className="text-[10px] text-gray-400 mb-0.5">Planejamento</div>
-          <div className={`text-sm font-bold ${totalPercentage === 100 ? 'text-green-400' : 'text-red-400'}`}>{totalPercentage}%</div>
+          <div className="text-[10px] text-gray-400 font-medium uppercase tracking-wider mb-1">Planejamento Total</div>
+          <div className={`text-2xl font-bold ${totalPercentage === 100 ? 'text-emerald-400' : 'text-rose-400'}`}>{totalPercentage}%</div>
           {totalPercentage !== 100 && (
-            <div className="text-[10px] text-red-400 mt-0.5">Ajuste para 100%</div>
+            <div className="text-[10px] text-rose-400 font-medium mt-1 animate-pulse">Ajuste necessário</div>
           )}
         </div>
       </div>
@@ -514,15 +570,15 @@ function BudgetPage() {
         </div>
         
         {/* Sliders maiores (2/3 da largura) */}
-        <div className="lg:col-span-2 bg-gray-800/50 p-4 rounded-xl border border-gray-700">
-          <div className="flex justify-between items-center mb-4">
-            <h3 className="text-sm font-semibold text-white">Ajuste de Percentuais</h3>
-            <div className={`text-xs px-2 py-1 rounded ${isTotalValid ? 'bg-green-500/20 text-green-400' : 'bg-red-500/20 text-red-400'}`}>
-              Total: {totalPercentage}%
+        <div className="lg:col-span-2 bg-gray-900/40 backdrop-blur-md p-6 rounded-2xl border border-gray-800 shadow-xl">
+          <div className="flex justify-between items-center mb-6">
+            <h3 className="text-base font-semibold text-white tracking-tight">Ajuste de Percentuais</h3>
+            <div className={`text-xs px-3 py-1.5 rounded-full font-medium ${isTotalValid ? 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/20' : 'bg-rose-500/10 text-rose-400 border border-rose-500/20'}`}>
+              Total Alocado: {totalPercentage}%
             </div>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-6">
             {groups.map(group => (
               <RangeSlider
                 key={group.id}
@@ -536,11 +592,15 @@ function BudgetPage() {
           </div>
           
           <button 
-            onClick={handleSave} 
-            disabled={isSaving || !isTotalValid}
-            className={`w-full mt-5 py-2.5 text-sm rounded-lg font-medium transition ${isTotalValid ? 'bg-blue-600 hover:bg-blue-700' : 'bg-gray-700 cursor-not-allowed'}`}
+            onClick={isTotalValid ? handleSave : handleAutoAdjust} 
+            disabled={isSaving}
+            className={`w-full mt-8 py-3.5 text-sm rounded-xl font-bold tracking-wide transition-all duration-300 shadow-lg ${
+                isSaving ? 'bg-gray-800 cursor-not-allowed text-gray-400' :
+                isTotalValid ? 'bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white shadow-blue-900/20 hover:shadow-blue-900/40 transform hover:-translate-y-0.5' : 
+                'bg-gradient-to-r from-yellow-600 to-orange-600 hover:from-yellow-500 hover:to-orange-500 text-white shadow-orange-900/20 hover:shadow-orange-900/40 transform hover:-translate-y-0.5'
+            }`}
           >
-            {isSaving ? 'Salvando...' : isTotalValid ? 'Salvar Alterações' : 'Ajuste para 100%'}
+            {isSaving ? 'Salvando...' : isTotalValid ? 'Salvar Alterações' : '✨ Ajustar Automaticamente para 100%'}
           </button>
         </div>
       </div>
