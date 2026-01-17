@@ -87,16 +87,39 @@ function AlertBanner({ overBudgetGroups }) {
   );
 }
 
-// --- Componente: Seletor de Mês ---
-function MonthSelector({ currentDate, onDateChange }) {
+// --- Componente: Seletor de Mês e Display de Receita ---
+function MonthSelector({ currentDate, onDateChange, totalIncome, titheAmount, netIncome }) {
   const handlePreviousMonth = () => { const newDate = new Date(currentDate); newDate.setMonth(newDate.getMonth() - 1); onDateChange(newDate); };
   const handleNextMonth = () => { const newDate = new Date(currentDate); newDate.setMonth(newDate.getMonth() + 1); onDateChange(newDate); };
   const formattedDate = currentDate.toLocaleString('pt-BR', { month: 'long', year: 'numeric' }).replace(/^\w/, (c) => c.toUpperCase());
+  
   return (
-    <div className="flex justify-between items-center mb-4 bg-gray-800/50 p-2 rounded-lg border border-gray-700">
-      <button onClick={handlePreviousMonth} className="px-2.5 py-1 text-xs text-gray-300 border border-gray-600 rounded hover:bg-gray-700 transition">&lt;</button>
-      <h2 className="text-sm font-medium text-white">{formattedDate}</h2>
-      <button onClick={handleNextMonth} className="px-2.5 py-1 text-xs text-gray-300 border border-gray-600 rounded hover:bg-gray-700 transition">&gt;</button>
+    <div className="mb-4">
+      {/* Card do Dízimo no Topo */}
+      <div className="bg-gradient-to-r from-yellow-600/20 to-yellow-800/10 border border-yellow-500/30 rounded-xl p-3 mb-4 flex justify-between items-center shadow-sm">
+        <div className="flex items-center gap-3">
+          <div className="p-2 bg-yellow-500/20 rounded-lg text-yellow-400">
+            🙏
+          </div>
+          <div>
+             <h3 className="text-sm font-semibold text-yellow-100">Dízimo (10%)</h3>
+             <p className="text-[10px] text-yellow-400/80">Calculado sobre a Receita Bruta</p>
+          </div>
+        </div>
+        <div className="text-right">
+             <div className="text-lg font-bold text-yellow-100">{formatCurrency(titheAmount)}</div>
+             <div className="text-[10px] text-gray-400">de {formatCurrency(totalIncome)}</div>
+        </div>
+      </div>
+
+      <div className="flex justify-between items-center bg-gray-800/50 p-2 rounded-lg border border-gray-700">
+        <button onClick={handlePreviousMonth} className="px-2.5 py-1 text-xs text-gray-300 border border-gray-600 rounded hover:bg-gray-700 transition">&lt;</button>
+        <h2 className="text-sm font-medium text-white flex flex-col items-center">
+          <span>{formattedDate}</span>
+          <span className="text-[10px] text-gray-400 font-normal">Base de Cálculo: {formatCurrency(netIncome)}</span>
+        </h2>
+        <button onClick={handleNextMonth} className="px-2.5 py-1 text-xs text-gray-300 border border-gray-600 rounded hover:bg-gray-700 transition">&gt;</button>
+      </div>
     </div>
   );
 }
@@ -397,8 +420,9 @@ function BudgetPage() {
   const handlePercentageChange = (id, newPercentage) => {
     const val = parseInt(newPercentage) || 0;
     
-    const totalIncome = analysisData?.total_income || 0;
-    const newPlannedAmount = (totalIncome * val) / 100;
+    // CORREÇÃO: Usa net_income (Receita - Dízimo) para calcular o valor planejado
+    const netIncome = analysisData?.net_income || 0;
+    const newPlannedAmount = (netIncome * val) / 100;
 
     setGroups(prev => {
       const newGroups = prev.map(g => {
@@ -449,6 +473,14 @@ function BudgetPage() {
         </div>
       </div>
       
+      <MonthSelector 
+          currentDate={currentDate} 
+          onDateChange={setCurrentDate} 
+          totalIncome={analysisData.total_income}
+          titheAmount={analysisData.tithe_amount}
+          netIncome={analysisData.net_income}
+      />
+      
       <BudgetGroupManager groups={groups} onGroupAdded={() => fetchData()} />
       
       <AlertBanner overBudgetGroups={overBudgetGroups} />
@@ -462,8 +494,8 @@ function BudgetPage() {
       {/* Cartão de Resumo Compacto */}
       <div className="bg-gray-800/50 p-3 rounded-lg border border-gray-700 mb-4 flex justify-between items-center">
         <div>
-          <div className="text-[10px] text-gray-400 mb-0.5">Renda mensal</div>
-          <div className="text-sm font-bold text-white">{formatCurrency(analysisData.total_income)}</div>
+          <div className="text-[10px] text-gray-400 mb-0.5">Base para Orçamento (Receita Líq.)</div>
+          <div className="text-sm font-bold text-white">{formatCurrency(analysisData.net_income)}</div>
         </div>
         <div className="text-right">
           <div className="text-[10px] text-gray-400 mb-0.5">Planejamento</div>

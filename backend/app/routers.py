@@ -63,6 +63,8 @@ def analyze_budget_for_user(session: Session, user: User, month: int, year: int)
     
     # Lógica de Default (Auto-Create) caso esteja vazio também na análise
     if not groups:
+        # Remover "Dízimo" se não for mais um grupo padrão, ou manter se o user quiser customizar?
+        # User pediu para "Dízimo" ficar fora dos grupos.
         default_names = ["Custo Fixo", "Metas", "Investimentos", "Prazer", "Conhecimento", "Conforto"]
         for name in default_names:
             bg = BudgetGroup(name=name, user_id=user.id, target_percentage=0)
@@ -70,7 +72,15 @@ def analyze_budget_for_user(session: Session, user: User, month: int, year: int)
         session.commit()
         groups = session.exec(select(BudgetGroup).where(BudgetGroup.user_id == user.id)).all()
 
+    # Cálculo do Dízimo e Receita Líquida
+    tithe_amount = total_income * Decimal("0.10")
+    net_income = total_income - tithe_amount
+
     analysis = []
+    
+    # Adiciona o Dízimo como um item especial na análise (opcional, ou o frontend calcula)
+    # Vamos focar em enviar os dados corretos para os grupos existentes.
+    # O user quer que "as outras opções ... devem ser calculadas a partir do valor total de receitas menos o dizimo"
     
     for group in groups:
         expense_stmt = select(func.sum(Expense.amount)).where(
@@ -82,7 +92,9 @@ def analyze_budget_for_user(session: Session, user: User, month: int, year: int)
             extract('year', Expense.date) == year
         )
         actual_spent = session.exec(expense_stmt).one() or Decimal(0.0)
-        planned_amount = (total_income * (Decimal(group.target_percentage) / Decimal(100.0)))
+        
+        # MUDANÇA AQUI: Usa net_income em vez de total_income
+        planned_amount = (net_income * (Decimal(group.target_percentage) / Decimal(100.0)))
         
         analysis.append({
             "group_id": group.id, 
@@ -93,7 +105,14 @@ def analyze_budget_for_user(session: Session, user: User, month: int, year: int)
             "is_over_budget": actual_spent > planned_amount if planned_amount > 0 else False
         })
     
-    return {"month": month, "year": year, "total_income": total_income, "analysis": analysis}
+    return {
+        "month": month, 
+        "year": year, 
+        "total_income": total_income, 
+        "tithe_amount": tithe_amount, # Envia o valor do dízimo para o front
+        "net_income": net_income,     # Envia a receita líquida
+        "analysis": analysis
+    }
 
 # --- Rotas de Grupos de Orçamento ---
 @router_budget.post("/", response_model=BudgetGroup)
