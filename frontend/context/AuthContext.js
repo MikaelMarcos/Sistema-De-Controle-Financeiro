@@ -25,6 +25,27 @@ export const AuthProvider = ({ children }) => {
     (error) => Promise.reject(error)
   );
 
+  // Interceptor de Resposta: Trata erros 401 (Não Autorizado) globalmente
+  useEffect(() => {
+    const interceptor = axios.interceptors.response.use(
+      (response) => response,
+      (error) => {
+        if (error.response && error.response.status === 401) {
+          localStorage.removeItem('token');
+          setUser(null);
+          if (window.location.pathname !== '/login') {
+             router.push('/login');
+          }
+        }
+        return Promise.reject(error);
+      }
+    );
+
+    return () => {
+      axios.interceptors.response.eject(interceptor);
+    };
+  }, [router]);
+
   // Verifica o token no carregamento da página
   useEffect(() => {
     const token = localStorage.getItem('token');

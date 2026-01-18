@@ -7,7 +7,9 @@ import { Chart, ArcElement, Tooltip, Legend } from 'chart.js';
 
 // Importa os componentes de autenticação
 import AuthGuard from '@/components/AuthGuard';
+
 import { useAuth } from '@/context/AuthContext';
+import { usePrivacy } from '@/context/PrivacyContext';
 
 Chart.register(ArcElement, Tooltip, Legend);
 
@@ -88,7 +90,7 @@ function MonthSelector({ currentDate, onDateChange }) {
 }
 
 // --- Card de Resumo ---
-function SummaryCard({ title, amount, type }) {
+function SummaryCard({ title, amount, type, privacy }) {
   const formattedAmount = formatCurrency(amount);
   
   const getCardStyles = () => {
@@ -130,7 +132,8 @@ function SummaryCard({ title, amount, type }) {
           <h2 className="text-xs font-bold text-gray-400 uppercase tracking-widest">{title}</h2>
           <div className="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center text-lg">{getIcon()}</div>
         </div>
-        <p className={`text-3xl font-bold tracking-tight transition-colors duration-300 ${getTextColor()}`}>{formattedAmount}</p>
+
+        <p className={`text-3xl font-bold tracking-tight transition-colors duration-300 ${getTextColor()} ${privacy ? 'blur-md select-none' : ''}`}>{formattedAmount}</p>
         
         {type === 'balance' && (
           <div className={`mt-3 inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider ${amount >= 0 ? 'bg-cyan-500/10 text-cyan-400 border border-cyan-500/20' : 'bg-orange-500/10 text-orange-400 border border-orange-500/20'}`}>
@@ -145,7 +148,7 @@ function SummaryCard({ title, amount, type }) {
 
 // --- Lista de Despesas ---
 // --- Lista de Despesas (Design Glass) ---
-function ExpenseList({ expenses, onExpenseDeleted }) {
+function ExpenseList({ expenses, onExpenseDeleted, privacy }) {
   const handleDelete = (id) => { 
     if (confirm("Tem certeza que deseja excluir esta despesa?")) {
       axios.delete(`${API_URL}/expenses/${id}`).then(() => onExpenseDeleted()); 
@@ -187,7 +190,7 @@ function ExpenseList({ expenses, onExpenseDeleted }) {
                 </div>
               </div>
               <div className="flex items-center gap-4">
-                <span className="font-bold text-fin-red/90 text-lg group-hover:text-fin-red transition-colors">- {formatCurrency(expense.amount)}</span>
+                <span className={`font-bold text-fin-red/90 text-lg group-hover:text-fin-red transition-colors ${privacy ? 'blur-sm select-none' : ''}`}>- {formatCurrency(expense.amount)}</span>
                 <button 
                   onClick={() => handleDelete(expense.id)} 
                   className="w-8 h-8 flex items-center justify-center rounded-xl text-gray-500 hover:text-fin-red hover:bg-fin-red/10 transition-all opacity-0 group-hover:opacity-100"
@@ -205,7 +208,7 @@ function ExpenseList({ expenses, onExpenseDeleted }) {
 }
 
 // --- Card de Meta (Design Premium) ---
-function DashboardGoals({ goals }) {
+function DashboardGoals({ goals, privacy }) {
   const completedGoals = goals.filter(goal => (goal.current_amount / goal.target_amount) * 100 >= 100);
   const activeGoals = goals.filter(goal => (goal.current_amount / goal.target_amount) * 100 < 100).slice(0, 3);
 
@@ -246,7 +249,7 @@ function DashboardGoals({ goals }) {
           
           <div className="flex justify-between items-center text-[10px] uppercase font-bold tracking-wider">
              <span className="text-gray-500 group-hover:text-gray-400 transition-colors">{isCompleted ? '🎉 Concluído!' : 'Em progresso'}</span>
-             <span className="text-fin-highlight">{formatCurrency(goal.current_amount)}</span>
+             <span className={`text-fin-highlight ${privacy ? 'blur-sm select-none' : ''}`}>{formatCurrency(goal.current_amount)}</span>
           </div>
         </div>
       </div>
@@ -279,7 +282,7 @@ function DashboardGoals({ goals }) {
 }
 
 // --- Gráfico de Pizza (Design Glass) ---
-function ExpensePieChart({ expenses }) {
+function ExpensePieChart({ expenses, privacy }) {
   const categorySpending = expenses.reduce((acc, expense) => {
     const categoryName = expense.category?.name || 'Sem Categoria';
     acc[categoryName] = (acc[categoryName] || 0) + Number(expense.amount);
@@ -323,6 +326,7 @@ function ExpensePieChart({ expenses }) {
         titleColor: '#F8FAFC', bodyColor: '#E2E8F0', borderColor: 'rgba(255,255,255,0.1)', borderWidth: 1, padding: 12, cornerRadius: 12,
         callbacks: {
           label: function (context) {
+            if (privacy) return ' ••••';
             const value = context.parsed;
             const percentage = total > 0 ? ((value / total) * 100).toFixed(1) : 0;
             return ` ${formatCurrency(value)} (${percentage}%)`;
@@ -356,7 +360,7 @@ function ExpensePieChart({ expenses }) {
           <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
              <div className="text-center bg-fin-dark/80 backdrop-blur-md p-4 rounded-full border border-white/5 shadow-2xl">
                <div className="text-xs text-gray-400 uppercase tracking-widest mb-1">Total</div>
-               <div className="text-lg font-bold text-white">{formatCurrency(total)}</div>
+               <div className={`text-lg font-bold text-white ${privacy ? 'blur-sm select-none' : ''}`}>{formatCurrency(total)}</div>
              </div>
           </div>
         </div>
@@ -367,11 +371,11 @@ function ExpensePieChart({ expenses }) {
                 <div className="flex items-center gap-3">
                    <div className="w-3 h-3 rounded-full shadow-[0_0_8px_currentColor]" style={{ color: soberColors[index], backgroundColor: soberColors[index] }}></div>
                    <span className="text-sm font-medium text-gray-300 truncate max-w-[100px]" title={label}>{label}</span>
-                </div>
-                <div className="text-right">
-                   <div className="text-sm font-bold text-white">{formatCurrency(categorySpending[label])}</div>
-                   <div className="text-[10px] text-gray-400 font-bold">{((categorySpending[label] / total) * 100).toFixed(0)}%</div>
-                </div>
+                 </div>
+                 <div className="text-right">
+                    <div className={`text-sm font-bold text-white ${privacy ? 'blur-sm select-none' : ''}`}>{formatCurrency(categorySpending[label])}</div>
+                    <div className="text-[10px] text-gray-400 font-bold">{((categorySpending[label] / total) * 100).toFixed(0)}%</div>
+                 </div>
              </div>
            ))}
         </div>
@@ -382,6 +386,7 @@ function ExpensePieChart({ expenses }) {
 
 // --- Componente Principal (CORRIGIDO PARA O BUG DE HIDRATAÇÃO) ---
 export default function Home() {
+  const { isPrivacyEnabled } = usePrivacy();
   const [allExpenses, setAllExpenses] = useState([]);
   const [cashExpenses, setCashExpenses] = useState([]);
   const [goals, setGoals] = useState([]);
@@ -470,10 +475,10 @@ export default function Home() {
           <MonthSelector currentDate={currentDate} onDateChange={setCurrentDate} />
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-            <SummaryCard title="Receita (Caixa)" amount={totalIncome} type="income" />
-            <SummaryCard title="Despesas (Caixa)" amount={totalCashExpenses} type="expense" />
-            <SummaryCard title="Balanço de Caixa" amount={balance} type="balance" />
-            <SummaryCard title="Faturas Abertas" amount={totalCreditExpenses} type="credit" />
+            <SummaryCard title="Receita (Caixa)" amount={totalIncome} type="income" privacy={isPrivacyEnabled} />
+            <SummaryCard title="Despesas (Caixa)" amount={totalCashExpenses} type="expense" privacy={isPrivacyEnabled} />
+            <SummaryCard title="Balanço de Caixa" amount={balance} type="balance" privacy={isPrivacyEnabled} />
+            <SummaryCard title="Faturas Abertas" amount={totalCreditExpenses} type="credit" privacy={isPrivacyEnabled} />
           </div>
           
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
@@ -481,12 +486,13 @@ export default function Home() {
               <ExpenseList 
                 expenses={cashExpenses} 
                 onExpenseDeleted={() => setLastUpdate(new Date())} 
+                privacy={isPrivacyEnabled}
               />
               {/* O gráfico agora recebe TODAS as despesas (incluindo cartão) */}
-              <ExpensePieChart expenses={allExpenses} />
+              <ExpensePieChart expenses={allExpenses} privacy={isPrivacyEnabled} />
             </div>
             <div className="lg:col-span-1">
-              <DashboardGoals goals={goals} />
+              <DashboardGoals goals={goals} privacy={isPrivacyEnabled} />
             </div>
           </div>
         </div>
