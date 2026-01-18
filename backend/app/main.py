@@ -3,7 +3,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from .database import create_db_and_tables
 from .routers import (
     router_expenses, router_categories, router_income, 
-    router_goals, router_budget, router_rules, router_portfolio,
+    router_goals, router_budget, router_rules,
     router_cards
 )
 from .ai_router import router_ai
@@ -45,7 +45,7 @@ app.include_router(router_income)
 app.include_router(router_goals)
 app.include_router(router_budget)
 app.include_router(router_rules)
-app.include_router(router_portfolio)
+
 app.include_router(router_ai)
 app.include_router(router_cards)
 app.include_router(router_reports)

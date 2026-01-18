@@ -52,7 +52,6 @@ function Header() {
             <a href="/expenses" className={getLinkClass('/expenses')}>Despesas</a>
             <a href="/budget" className={getLinkClass('/budget')}>Orçamento</a>
             <a href="/cards" className={getLinkClass('/cards')}>Contas</a>
-            <a href="/portfolio" className={getLinkClass('/portfolio')}>Invest.</a>
             <a href="/reports" className={getLinkClass('/reports')}>Relatórios</a>
             <a href="/metas" className={getLinkClass('/metas')}>Metas</a>
             
@@ -80,7 +79,6 @@ function Header() {
             <a href="/expenses" className={getLinkClass('/expenses')}>Despesas</a>
             <a href="/budget" className={getLinkClass('/budget')}>Orçamento</a>
             <a href="/cards" className={getLinkClass('/cards')}>Contas</a>
-            <a href="/portfolio" className={getLinkClass('/portfolio')}>Investimentos</a>
             <a href="/reports" className={getLinkClass('/reports')}>Relatórios</a>
             <a href="/metas" className={getLinkClass('/metas')}>Metas</a>
             <button onClick={logout} className="w-full mt-4 py-3 rounded-xl text-sm font-bold text-white bg-fin-red/80 hover:bg-fin-red">Sair</button>

@@ -20,7 +20,6 @@ class User(UserBase, table=True):
     credit_cards: List["CreditCard"] = Relationship(back_populates="user")
     budget_groups: List["BudgetGroup"] = Relationship(back_populates="user")
     categories: List["Category"] = Relationship(back_populates="user")
-    portfolio_holdings: List["PortfolioHolding"] = Relationship(back_populates="user")
     transaction_rules: List["TransactionRule"] = Relationship(back_populates="user")
 
 # --- Modelo de GRUPO DE ORÇAMENTO ---
@@ -156,29 +155,7 @@ class TransactionRuleRead(SQLModel):
     budget_group_id: int
     category_id: Optional[int] = None
 
-# --- Modelos de Investimento ---
-class Asset(SQLModel, table=True):
-    id: Optional[int] = Field(default=None, primary_key=True)
-    ticker: str = Field(unique=True, index=True)
-    name: str
-    asset_type: str
-    holdings: List["PortfolioHolding"] = Relationship(back_populates="asset")
-class AssetCreate(SQLModel):
-    ticker: str; name: str; asset_type: str
-class AssetRead(AssetCreate):
-    id: int
-class PortfolioHolding(SQLModel, table=True):
-    id: Optional[int] = Field(default=None, primary_key=True)
-    asset_id: int = Field(foreign_key="asset.id")
-    quantity: Decimal = Field(sa_column=Column(Numeric(15, 6)))
-    average_price: Decimal = Field(sa_column=Column(Numeric(15, 2)))
-    user_id: int = Field(foreign_key="user.id")
-    user: User = Relationship(back_populates="portfolio_holdings")
-    asset: Asset = Relationship(back_populates="holdings")
-class PortfolioHoldingCreate(SQLModel):
-    ticker: str; name: str; asset_type: str; quantity: Decimal; average_price: Decimal
-class PortfolioHoldingRead(SQLModel):
-    id: int; quantity: Decimal; average_price: Decimal; asset: AssetRead
+
 
 # --- Modelos de Leitura Combinados ---
 class CategoryReadWithExpenses(CategoryRead):

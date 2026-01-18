@@ -45,7 +45,6 @@ function ReportsPage() {
     include_income: true,
     include_expenses: true,
     include_goals: true,
-    include_portfolio: true,
     include_credit_cards: true,
     include_budget: true,
     include_balance: true,
@@ -142,7 +141,6 @@ function ReportsPage() {
             <Checkbox label="Entradas (Receitas)" id="include_income" checked={exportOptions.include_income} onChange={handleCheckboxChange} />
             <Checkbox label="Saídas (Despesas)" id="include_expenses" checked={exportOptions.include_expenses} onChange={handleCheckboxChange} />
             <Checkbox label="Status das Metas" id="include_goals" checked={exportOptions.include_goals} onChange={handleCheckboxChange} />
-            <Checkbox label="Resumo do Portfólio" id="include_portfolio" checked={exportOptions.include_portfolio} onChange={handleCheckboxChange} />
             <Checkbox label="Gastos no Cartão" id="include_credit_cards" checked={exportOptions.include_credit_cards} onChange={handleCheckboxChange} />
             <Checkbox label="Resumo do Orçamento" id="include_budget" checked={exportOptions.include_budget} onChange={handleCheckboxChange} />
             <Checkbox label="Balanço de Caixa" id="include_balance" checked={exportOptions.include_balance} onChange={handleCheckboxChange} />

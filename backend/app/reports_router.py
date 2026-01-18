@@ -7,7 +7,7 @@ import io
 
 from .database import get_session
 from .models import (
-    User, Expense, Income, Goal, PortfolioHolding, CreditCard, BudgetGroup
+    User, Expense, Income, Goal, CreditCard, BudgetGroup
 )
 from .auth import get_current_user
 from .routers import analyze_budget_for_user
@@ -30,7 +30,6 @@ def export_excel_report(
     include_income: bool = False,
     include_expenses: bool = False,
     include_goals: bool = False,
-    include_portfolio: bool = False,
     include_credit_cards: bool = False,
     include_budget: bool = False,
     include_balance: bool = False
@@ -101,24 +100,6 @@ def export_excel_report(
         df_goals = pd.DataFrame(goals_data)
         df_goals.to_excel(writer, sheet_name='Metas', index=False)
 
-    # ---------- INVESTIMENTOS ----------
-    if include_portfolio:
-        holdings = session.exec(select(PortfolioHolding).where(
-            PortfolioHolding.user_id == user.id
-        )).all()
-
-        portfolio_data = [
-            {
-                "Ticker": h.asset.ticker,
-                "Nome": h.asset.name,
-                "Quantidade": h.quantity,
-                "Preço Médio": h.average_price
-            }
-            for h in holdings
-        ]
-
-        df_portfolio = pd.DataFrame(portfolio_data)
-        df_portfolio.to_excel(writer, sheet_name='Investimentos', index=False)
 
     # ---------- CARTÃO DE CRÉDITO ----------
     if include_credit_cards:
@@ -204,7 +185,6 @@ def export_pdf_report(
     include_income: bool = False,
     include_expenses: bool = False,
     include_goals: bool = False,
-    include_portfolio: bool = False,
     include_credit_cards: bool = False,
     include_budget: bool = False,
     include_balance: bool = False
@@ -294,7 +274,7 @@ def export_pdf_report(
         pdf.dataframe_to_table(df_expenses)
 
     # ---------- NOVA PÁGINA OPCIONAL ----------
-    if include_goals or include_portfolio or include_credit_cards:
+    if include_goals or include_credit_cards:
         pdf.add_page()
 
     # ---------- METAS ----------
@@ -317,26 +297,6 @@ def export_pdf_report(
         df_goals = pd.DataFrame(goals_data)
         pdf.dataframe_to_table(df_goals)
 
-    # ---------- INVESTIMENTOS ----------
-    if include_portfolio:
-        pdf.chapter_title("Investimentos")
-
-        holdings = session.exec(select(PortfolioHolding).where(
-            PortfolioHolding.user_id == user.id
-        )).all()
-
-        portfolio_data = [
-            {
-                "Ticker": h.asset.ticker,
-                "Nome": h.asset.name,
-                "Quantidade": f"{h.quantity:,}",
-                "Preço Médio": f"R$ {h.average_price:,.2f}"
-            }
-            for h in holdings
-        ]
-
-        df_portfolio = pd.DataFrame(portfolio_data)
-        pdf.dataframe_to_table(df_portfolio)
 
     # ---------- CARTÃO DE CRÉDITO ----------
     if include_credit_cards:

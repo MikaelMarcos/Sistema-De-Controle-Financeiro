@@ -5,7 +5,6 @@ from sqlalchemy import extract, func, exc
 from sqlalchemy.orm import joinedload
 from datetime import datetime, date
 from dateutil.relativedelta import relativedelta
-from alpha_vantage.timeseries import TimeSeries
 from decimal import Decimal
 
 from .database import get_session
@@ -15,13 +14,11 @@ from .models import (
     Income, IncomeCreate, IncomeRead,
     Goal, GoalCreate, GoalRead, GoalReadWithExpenses, GoalAdjustment,
     BudgetGroup, BudgetGroupCreate, TransactionRule, TransactionRuleRead,
-    Asset, AssetCreate, AssetRead,
-    PortfolioHolding, PortfolioHoldingCreate, PortfolioHoldingRead,
     CreditCard, CreditCardCreate, CreditCardRead, PayFaturaRequest
 )
 from .auth import get_current_user
 
-ALPHA_VANTAGE_KEY = "Q78Q2UAD5K1RXJME"
+
 
 # --- Definição dos Routers ---
 router_expenses = APIRouter(prefix="/expenses", tags=["Expenses"])
@@ -30,7 +27,6 @@ router_income = APIRouter(prefix="/income", tags=["Income"])
 router_goals = APIRouter(prefix="/goals", tags=["Goals"])
 router_budget = APIRouter(prefix="/budget", tags=["Budget Groups"])
 router_rules = APIRouter(prefix="/rules", tags=["Rules"])
-router_portfolio = APIRouter(prefix="/portfolio", tags=["Portfolio"])
 router_cards = APIRouter(prefix="/cards", tags=["Credit Cards"])
 
 # --- Funções Auxiliares ---
@@ -467,53 +463,6 @@ def suggest_categorization(*, session: Session = Depends(get_session), user: Use
         return rule
     raise HTTPException(status_code=404, detail="Nenhuma regra encontrada")
 
-# --- Rotas do Portfólio ---
-@router_portfolio.post("/", response_model=PortfolioHoldingRead)
-def add_portfolio_holding(*, session: Session = Depends(get_session), user: User = Depends(get_current_user), holding: PortfolioHoldingCreate):
-    asset = session.exec(select(Asset).where(Asset.ticker == holding.ticker)).first()
-    if not asset:
-        asset = Asset(ticker=holding.ticker, name=holding.name, asset_type=holding.asset_type)
-        session.add(asset)
-        session.commit()
-        session.refresh(asset)
-    db_holding = PortfolioHolding(asset_id=asset.id, quantity=holding.quantity, average_price=holding.average_price, user_id=user.id)
-    session.add(db_holding)
-    session.commit()
-    session.refresh(db_holding)
-    return db_holding
-
-@router_portfolio.get("/", response_model=List[PortfolioHoldingRead])
-def get_portfolio_holdings(*, session: Session = Depends(get_session), user: User = Depends(get_current_user)):
-    return session.exec(select(PortfolioHolding).where(PortfolioHolding.user_id == user.id)).all()
-
-@router_portfolio.delete("/{holding_id}")
-def delete_portfolio_holding(*, session: Session = Depends(get_session), user: User = Depends(get_current_user), holding_id: int):
-    holding = session.get(PortfolioHolding, holding_id)
-    if not holding or holding.user_id != user.id:
-        raise HTTPException(status_code=404, detail="Ativo não encontrado")
-    session.delete(holding)
-    session.commit()
-    return {"ok": True}
-
-@router_portfolio.get("/quote/{ticker}")
-def get_stock_price(*, ticker: str):
-    ts = TimeSeries(key=ALPHA_VANTAGE_KEY, output_format='json')
-    api_ticker = ticker.upper()
-    if not any(char.isdigit() for char in ticker) and len(ticker) > 3: pass
-    elif ".SA" not in api_ticker: api_ticker = f"{api_ticker}.SA"
-    try:
-        data, meta_data = ts.get_quote_endpoint(api_ticker)
-        price_str = data.get('05. price')
-        if not price_str: raise HTTPException(status_code=404, detail="Preço não encontrado")
-        return {"ticker": ticker, "price": float(price_str)}
-    except Exception as e:
-        try:
-            data, meta_data = ts.get_quote_endpoint(ticker.upper())
-            price_str = data.get('05. price')
-            if not price_str: raise
-            return {"ticker": ticker, "price": float(price_str)}
-        except Exception:
-            raise HTTPException(status_code=404, detail=f"Ticker '{ticker}' não encontrado.")
 
 # --- Rotas de Cartão de Crédito ---
 @router_cards.post("/", response_model=CreditCardRead)
