@@ -71,40 +71,40 @@ export default function AdvisorPage() {
   ];
 
   return (
-    <div className="h-[calc(100vh-120px)] flex flex-col max-w-5xl mx-auto px-2 md:px-0">
+    <div className="h-[calc(100dvh-90px)] md:h-[calc(100vh-120px)] flex flex-col max-w-5xl mx-auto px-4 md:px-0">
         {/* Header Elegante */}
         <motion.div 
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="mb-6 flex items-center justify-between bg-white/5 p-4 rounded-2xl border border-white/10 backdrop-blur-md"
+            className="mb-4 md:mb-6 flex items-center justify-between bg-white/5 p-3 md:p-4 rounded-2xl border border-white/10 backdrop-blur-md"
         >
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-3 md:gap-4">
                 <div className="relative">
                     <div className="absolute inset-0 bg-fin-highlight blur-lg opacity-20 rounded-full"></div>
-                    <div className="relative p-3 bg-gradient-to-br from-fin-highlight to-indigo-600 rounded-xl shadow-lg border border-white/10">
-                        <Bot className="w-8 h-8 text-white" />
+                    <div className="relative p-2 md:p-3 bg-gradient-to-br from-fin-highlight to-indigo-600 rounded-xl shadow-lg border border-white/10">
+                        <Bot className="w-6 h-6 md:w-8 md:h-8 text-white" />
                     </div>
                 </div>
                 <div>
-                    <h1 className="text-2xl font-bold text-white tracking-tight flex items-center gap-2">
+                    <h1 className="text-xl md:text-2xl font-bold text-white tracking-tight flex items-center gap-2">
                         Gestor Financeiro <Sparkles className="w-4 h-4 text-yellow-400 fill-yellow-400" />
                     </h1>
-                    <p className="text-gray-400 text-sm">IA conectada aos seus dados em tempo real.</p>
+                    <p className="text-gray-400 text-xs md:text-sm">IA conectada aos seus dados em tempo real.</p>
                 </div>
             </div>
         </motion.div>
 
       {/* Área de Chat Modernizada */}
-      <div className="flex-1 overflow-y-auto mb-6 p-4 space-y-6 pr-2 scrollbar-thin scrollbar-thumb-white/10 scrollbar-track-transparent rounded-3xl bg-black/20 border border-white/5 relative">
+      <div className="flex-1 overflow-y-auto mb-4 md:mb-6 p-3 md:p-4 space-y-4 md:space-y-6 pr-2 scrollbar-thin scrollbar-thumb-white/10 scrollbar-track-transparent rounded-2xl md:rounded-3xl bg-black/20 border border-white/5 relative">
         
         {/* Empty State */}
         {messages.length === 0 && !loading && (
-            <div className="absolute inset-0 flex flex-col items-center justify-center text-center p-8">
-                <div className="w-32 h-32 bg-fin-highlight/5 rounded-full flex items-center justify-center mb-6 animate-pulse-slow">
-                    <Bot className="w-16 h-16 text-fin-highlight/50" />
+            <div className="absolute inset-0 flex flex-col items-center justify-center text-center p-6 md:p-8">
+                <div className="w-24 h-24 md:w-32 md:h-32 bg-fin-highlight/5 rounded-full flex items-center justify-center mb-6 animate-pulse-slow">
+                    <Bot className="w-12 h-12 md:w-16 md:h-16 text-fin-highlight/50" />
                 </div>
-                <h2 className="text-2xl font-bold text-white mb-2">Olá, {user?.email?.split('@')[0]}! 👋</h2>
-                <p className="text-gray-400 max-w-md mb-8">
+                <h2 className="text-xl md:text-2xl font-bold text-white mb-2">Olá, {user?.email?.split('@')[0]}! 👋</h2>
+                <p className="text-gray-400 max-w-md mb-8 text-sm md:text-base">
                     Sou seu gestor financeiro pessoal. Posso analisar seus gastos, sugerir cortes e ajudar a alcançar seus sonhos.
                 </p>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-3 w-full max-w-2xl">
@@ -112,10 +112,10 @@ export default function AdvisorPage() {
                         <button 
                             key={i}
                             onClick={() => setInput(s.text)}
-                            className="flex items-center gap-3 p-4 bg-white/5 hover:bg-white/10 border border-white/5 rounded-xl transition-all text-sm text-gray-300 hover:text-white hover:scale-105"
+                            className="flex items-center gap-3 p-3 md:p-4 bg-white/5 hover:bg-white/10 border border-white/5 rounded-xl transition-all text-xs md:text-sm text-gray-300 hover:text-white hover:scale-105 active:scale-95"
                         >
-                            <span className="text-fin-highlight">{s.icon}</span>
-                            {s.text}
+                            <span className="text-fin-highlight shrink-0">{s.icon}</span>
+                            <span className="text-left">{s.text}</span>
                         </button>
                     ))}
                 </div>
@@ -128,21 +128,21 @@ export default function AdvisorPage() {
                 key={idx}
                 initial={{ opacity: 0, y: 20, scale: 0.95 }}
                 animate={{ opacity: 1, y: 0, scale: 1 }}
-                className={`flex gap-4 ${msg.role === 'user' ? 'flex-row-reverse' : ''}`}
+                className={`flex gap-3 md:gap-4 ${msg.role === 'user' ? 'flex-row-reverse' : ''}`}
             >
-                {/*Avatar*/}
+                {/* Avatar */}
                 <div className={`
-                    w-10 h-10 rounded-full flex items-center justify-center shrink-0 shadow-lg
+                    w-8 h-8 md:w-10 md:h-10 rounded-full flex items-center justify-center shrink-0 shadow-lg
                     ${msg.role === 'user' 
                         ? 'bg-gradient-to-br from-fin-highlight to-indigo-500 text-white' 
                         : 'bg-gradient-to-br from-gray-700 to-gray-900 border border-white/10 text-fin-highlight'}
                 `}>
-                {msg.role === 'user' ? <User size={18} /> : <Bot size={18} />}
+                {msg.role === 'user' ? <User size={16} className="md:w-5 md:h-5" /> : <Bot size={16} className="md:w-5 md:h-5" />}
                 </div>
 
                 {/* Balão de Mensagem */}
                 <div className={`
-                    rounded-2xl p-5 max-w-[85%] md:max-w-[75%] shadow-md text-sm leading-relaxed
+                    rounded-2xl p-4 md:p-5 max-w-[90%] md:max-w-[75%] shadow-md text-sm leading-relaxed
                     ${msg.role === 'user' 
                         ? 'bg-fin-highlight/10 text-white border border-fin-highlight/20 rounded-tr-sm' 
                         : 'bg-white/5 text-gray-200 border border-white/5 rounded-tl-sm backdrop-blur-md'}
