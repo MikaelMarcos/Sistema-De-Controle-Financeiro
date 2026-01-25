@@ -17,4 +17,5 @@ numpy
 openpyxl
 joblib
 fpdf2
-watchfilesgoogle-generativeai
+watchfiles
+google-generativeai
