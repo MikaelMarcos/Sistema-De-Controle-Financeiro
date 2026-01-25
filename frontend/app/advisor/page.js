@@ -6,7 +6,7 @@ import { useAuth } from '@/context/AuthContext';
 import { useRouter } from 'next/navigation';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
-import { Send, Bot, User, Loader2 } from 'lucide-react';
+import { Send, Bot, User, Loader2, Sparkles, TrendingUp, Target, DollarSign } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
@@ -47,13 +47,10 @@ export default function AdvisorPage() {
     setInput('');
     setLoading(true);
 
-    // Optimistic update
     const tempUserMsg = { role: 'user', content: userMsg, timestamp: new Date().toISOString() };
     setMessages(prev => [...prev, tempUserMsg]);
 
     try {
-      // POST para o backend
-      // O backend retorna a mensagem da IA salva no banco
       const res = await axios.post(`${API_URL}/agent/chat`, null, {
         params: { message: userMsg }
       });
@@ -62,32 +59,66 @@ export default function AdvisorPage() {
       setMessages(prev => [...prev, aiMsg]);
     } catch (error) {
       console.error("Erro ao enviar mensagem:", error);
-      // Opcional: mostrar erro na UI
     } finally {
       setLoading(false);
     }
   };
 
-  return (
-    <div className="h-[calc(100vh-120px)] flex flex-col max-w-4xl mx-auto">
-        {/* Header da Página */}
-        <div className="mb-6 flex items-center gap-3">
-            <div className="p-3 bg-gradient-to-br from-fin-highlight to-fin-purple rounded-xl shadow-lg shadow-fin-highlight/20">
-                <Bot className="w-8 h-8 text-fin-dark" />
-            </div>
-            <div>
-                <h1 className="text-3xl font-bold text-white tracking-tight">Gestor</h1>
-                <p className="text-gray-400">Seu assistente financeiro pessoal 24h.</p>
-            </div>
-        </div>
+  const suggestions = [
+    { icon: <TrendingUp size={16} />, text: "Analise meus gastos do mês" },
+    { icon: <Target size={16} />, text: "Como economizar para minha meta?" },
+    { icon: <DollarSign size={16} />, text: "Qual meu saldo atual?" },
+  ];
 
-      {/* Área de Chat */}
-      <div className="flex-1 overflow-y-auto mb-4 p-4 space-y-4 pr-2 scrollbar-thin scrollbar-thumb-white/10 scrollbar-track-transparent">
+  return (
+    <div className="h-[calc(100vh-120px)] flex flex-col max-w-5xl mx-auto px-2 md:px-0">
+        {/* Header Elegante */}
+        <motion.div 
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="mb-6 flex items-center justify-between bg-white/5 p-4 rounded-2xl border border-white/10 backdrop-blur-md"
+        >
+            <div className="flex items-center gap-4">
+                <div className="relative">
+                    <div className="absolute inset-0 bg-fin-highlight blur-lg opacity-20 rounded-full"></div>
+                    <div className="relative p-3 bg-gradient-to-br from-fin-highlight to-indigo-600 rounded-xl shadow-lg border border-white/10">
+                        <Bot className="w-8 h-8 text-white" />
+                    </div>
+                </div>
+                <div>
+                    <h1 className="text-2xl font-bold text-white tracking-tight flex items-center gap-2">
+                        Gestor Financeiro <Sparkles className="w-4 h-4 text-yellow-400 fill-yellow-400" />
+                    </h1>
+                    <p className="text-gray-400 text-sm">IA conectada aos seus dados em tempo real.</p>
+                </div>
+            </div>
+        </motion.div>
+
+      {/* Área de Chat Modernizada */}
+      <div className="flex-1 overflow-y-auto mb-6 p-4 space-y-6 pr-2 scrollbar-thin scrollbar-thumb-white/10 scrollbar-track-transparent rounded-3xl bg-black/20 border border-white/5 relative">
+        
+        {/* Empty State */}
         {messages.length === 0 && !loading && (
-            <div className="flex flex-col items-center justify-center h-full text-center text-gray-500 space-y-4 opacity-50">
-                <Bot className="w-24 h-24 mb-4" />
-                <p className="text-xl">Olá, {user?.email}! Como posso ajudar com suas finanças hoje?</p>
-                <p className="text-sm max-w-md">Pergunte sobre seus gastos, peça dicas de economia ou configure novas metas.</p>
+            <div className="absolute inset-0 flex flex-col items-center justify-center text-center p-8">
+                <div className="w-32 h-32 bg-fin-highlight/5 rounded-full flex items-center justify-center mb-6 animate-pulse-slow">
+                    <Bot className="w-16 h-16 text-fin-highlight/50" />
+                </div>
+                <h2 className="text-2xl font-bold text-white mb-2">Olá, {user?.email?.split('@')[0]}! 👋</h2>
+                <p className="text-gray-400 max-w-md mb-8">
+                    Sou seu gestor financeiro pessoal. Posso analisar seus gastos, sugerir cortes e ajudar a alcançar seus sonhos.
+                </p>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-3 w-full max-w-2xl">
+                    {suggestions.map((s, i) => (
+                        <button 
+                            key={i}
+                            onClick={() => setInput(s.text)}
+                            className="flex items-center gap-3 p-4 bg-white/5 hover:bg-white/10 border border-white/5 rounded-xl transition-all text-sm text-gray-300 hover:text-white hover:scale-105"
+                        >
+                            <span className="text-fin-highlight">{s.icon}</span>
+                            {s.text}
+                        </button>
+                    ))}
+                </div>
             </div>
         )}
 
@@ -95,37 +126,51 @@ export default function AdvisorPage() {
             {messages.map((msg, idx) => (
             <motion.div
                 key={idx}
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                className={`flex gap-3 ${msg.role === 'user' ? 'flex-row-reverse' : ''}`}
+                initial={{ opacity: 0, y: 20, scale: 0.95 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                className={`flex gap-4 ${msg.role === 'user' ? 'flex-row-reverse' : ''}`}
             >
+                {/* Avatar */}
                 <div className={`
-                    w-10 h-10 rounded-full flex items-center justify-center shrink-0
-                    ${msg.role === 'user' ? 'bg-fin-highlight text-fin-dark' : 'bg-fin-purple/20 text-fin-purple border border-fin-purple/30'}
+                    w-10 h-10 rounded-full flex items-center justify-center shrink-0 shadow-lg
+                    ${msg.role === 'user' 
+                        ? 'bg-gradient-to-br from-fin-highlight to-indigo-500 text-white' 
+                        : 'bg-gradient-to-br from-gray-700 to-gray-900 border border-white/10 text-fin-highlight'}
                 `}>
-                {msg.role === 'user' ? <User size={20} /> : <Bot size={20} />}
+                {msg.role === 'user' ? <User size={18} /> : <Bot size={18} />}
                 </div>
 
+                {/* Balão de Mensagem */}
                 <div className={`
-                    rounded-2xl p-4 max-w-[85%] shadow-sm
+                    rounded-2xl p-5 max-w-[85%] md:max-w-[75%] shadow-md text-sm leading-relaxed
                     ${msg.role === 'user' 
-                        ? 'bg-fin-highlight text-fin-dark rounded-tr-none' 
-                        : 'bg-white/5 text-gray-200 border border-white/5 rounded-tl-none backdrop-blur-sm'}
+                        ? 'bg-fin-highlight/10 text-white border border-fin-highlight/20 rounded-tr-sm' 
+                        : 'bg-white/5 text-gray-200 border border-white/5 rounded-tl-sm backdrop-blur-md'}
                 `}>
-                <div className={`prose prose-sm max-w-none break-words ${msg.role === 'user' ? 'text-fin-dark' : 'prose-invert'}`}>
+                <div className={`prose prose-invert prose-sm max-w-none break-words ${msg.role === 'user' ? 'text-white' : 'text-gray-200'}`}>
                     <ReactMarkdown 
                         remarkPlugins={[remarkGfm]}
                         components={{
-                            table: ({node, ...props}) => <div className="overflow-x-auto my-2 rounded-lg border border-white/10"><table className="w-full text-left border-collapse" {...props} /></div>,
-                            th: ({node, ...props}) => <th className="bg-white/10 p-2 font-semibold text-fin-highlight" {...props} />,
-                            td: ({node, ...props}) => <td className="p-2 border-t border-white/5" {...props} />,
-                            a: ({node, ...props}) => <a className="text-fin-highlight hover:underline" {...props} />
+                            // Customização Premium para Markdown
+                            p: ({node, ...props}) => <p className="mb-2 last:mb-0" {...props} />,
+                            strong: ({node, ...props}) => <span className="font-bold text-fin-highlight" {...props} />,
+                            table: ({node, ...props}) => (
+                                <div className="overflow-hidden my-4 rounded-xl border border-white/10 shadow-sm bg-black/20">
+                                    <table className="w-full text-left border-collapse" {...props} />
+                                </div>
+                            ),
+                            thead: ({node, ...props}) => <thead className="bg-white/5 text-xs uppercase tracking-wider text-gray-400" {...props} />,
+                            th: ({node, ...props}) => <th className="p-3 font-semibold text-fin-highlight border-b border-white/10" {...props} />,
+                            td: ({node, ...props}) => <td className="p-3 border-b border-white/5 text-gray-300" {...props} />,
+                            ul: ({node, ...props}) => <ul className="list-disc list-inside my-2 space-y-1 text-gray-300" {...props} />,
+                            li: ({node, ...props}) => <li className="pl-1" {...props} />,
+                            a: ({node, ...props}) => <a className="text-fin-highlight hover:underline decoration-fin-highlight/50" {...props} />
                         }}
                     >
                         {msg.content}
                     </ReactMarkdown>
                 </div>
-                <p className="text-[10px] opacity-50 mt-2 text-right">
+                <p className="text-[10px] opacity-40 mt-2 text-right font-mono">
                     {new Date(msg.timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
                 </p>
                 </div>
@@ -134,35 +179,38 @@ export default function AdvisorPage() {
         </AnimatePresence>
         
         {loading && (
-             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="flex gap-3">
-                 <div className="w-10 h-10 rounded-full bg-fin-purple/20 flex items-center justify-center shrink-0 border border-fin-purple/30">
-                    <Bot size={20} className="text-fin-purple" />
+             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="flex gap-4">
+                 <div className="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center shrink-0 border border-white/10 animate-pulse">
+                    <Bot size={18} className="text-fin-highlight" />
                  </div>
-                 <div className="bg-white/5 p-4 rounded-2xl rounded-tl-none border border-white/5 flex items-center gap-2">
-                    <Loader2 className="w-4 h-4 animate-spin text-gray-400" />
-                    <span className="text-sm text-gray-400">Analisando suas finanças...</span>
+                 <div className="bg-white/5 p-4 rounded-2xl rounded-tl-sm border border-white/5 flex items-center gap-3">
+                    <Loader2 className="w-4 h-4 animate-spin text-fin-highlight" />
+                    <span className="text-sm text-gray-400 typing-effect">Analisando seus dados...</span>
                  </div>
              </motion.div>
         )}
         <div ref={messagesEndRef} />
       </div>
 
-      {/* Input */}
-      <form onSubmit={sendMessage} className="relative">
-        <input
-          type="text"
-          value={input}
-          onChange={(e) => setInput(e.target.value)}
-          placeholder="Digite sua mensagem..."
-          className="w-full bg-fin-dark/50 border border-white/10 rounded-2xl pl-4 pr-14 py-4 focus:outline-none focus:ring-2 focus:ring-fin-highlight/50 focus:border-transparent text-white placeholder-gray-500 shadow-xl backdrop-blur-xl transition-all"
-        />
-        <button
-          type="submit"
-          disabled={!input.trim() || loading}
-          className="absolute right-2 top-2 p-2 bg-fin-highlight hover:bg-fin-highlight/90 text-fin-dark rounded-xl disabled:opacity-50 disabled:cursor-not-allowed transition-all"
-        >
-          <Send size={20} />
-        </button>
+      {/* Input Flutuante */}
+      <form onSubmit={sendMessage} className="relative group">
+        <div className="absolute -inset-0.5 bg-gradient-to-r from-fin-highlight to-purple-600 rounded-2xl opacity-20 group-hover:opacity-40 transition duration-500 blur"></div>
+        <div className="relative flex items-center bg-fin-dark border border-white/10 rounded-2xl p-1 shadow-2xl">
+            <input
+            type="text"
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
+            placeholder="Digite sua mensagem para o Gestor..."
+            className="flex-1 bg-transparent border-none text-white placeholder-gray-500 px-4 py-3 focus:outline-none focus:ring-0 text-base"
+            />
+            <button
+            type="submit"
+            disabled={!input.trim() || loading}
+            className="p-3 bg-fin-highlight hover:bg-fin-highlight/90 text-fin-dark rounded-xl disabled:opacity-50 disabled:grayscale transition-all transform active:scale-95"
+            >
+            <Send size={20} className="ml-0.5" />
+            </button>
+        </div>
       </form>
     </div>
   );
