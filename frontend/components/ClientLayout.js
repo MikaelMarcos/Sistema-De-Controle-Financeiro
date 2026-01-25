@@ -54,6 +54,8 @@ function Header() {
             <a href="/cards" className={getLinkClass('/cards')}>Contas</a>
             <a href="/reports" className={getLinkClass('/reports')}>Relatórios</a>
             <a href="/metas" className={getLinkClass('/metas')}>Metas</a>
+            <a href="/advisor" className={`${getLinkClass('/advisor')} text-purple-400 hover:text-purple-300`}>Gestor</a>
+
             
             <button onClick={togglePrivacy} className="ml-2 mr-2 p-2 rounded-full text-gray-400 hover:text-white hover:bg-white/10 transition-all duration-300" title={isPrivacyEnabled ? "Mostrar valores" : "Ocultar valores"}>
               {isPrivacyEnabled ? (
@@ -81,6 +83,7 @@ function Header() {
             <a href="/cards" className={getLinkClass('/cards')}>Contas</a>
             <a href="/reports" className={getLinkClass('/reports')}>Relatórios</a>
             <a href="/metas" className={getLinkClass('/metas')}>Metas</a>
+            <a href="/advisor" className={getLinkClass('/advisor')}>Gestor</a>
             <button onClick={logout} className="w-full mt-4 py-3 rounded-xl text-sm font-bold text-white bg-fin-red/80 hover:bg-fin-red">Sair</button>
           </div>
         )}

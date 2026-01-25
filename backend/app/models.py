@@ -2,7 +2,7 @@ from sqlmodel import SQLModel, Field, Relationship
 from typing import Optional, List
 from datetime import datetime
 from decimal import Decimal
-from sqlalchemy import Column, Numeric
+from sqlalchemy import Column, Numeric, Text
 
 # --- Modelo de Usuário ---
 class UserBase(SQLModel):
@@ -21,6 +21,7 @@ class User(UserBase, table=True):
     budget_groups: List["BudgetGroup"] = Relationship(back_populates="user")
     categories: List["Category"] = Relationship(back_populates="user")
     transaction_rules: List["TransactionRule"] = Relationship(back_populates="user")
+    chat_history: List["ChatHistory"] = Relationship(back_populates="user")
 
 # --- Modelo de GRUPO DE ORÇAMENTO ---
 class BudgetGroup(SQLModel, table=True):
@@ -162,3 +163,17 @@ class CategoryReadWithExpenses(CategoryRead):
     expenses: List[ExpenseRead] = []
 class GoalReadWithExpenses(GoalRead):
     expenses: List[ExpenseRead] = []
+
+# --- Modelo de Histórico de Chat ---
+class ChatHistoryBase(SQLModel):
+    role: str = Field(description="user or model")
+    content: str = Field(sa_column=Column(Text)) # Text content
+    timestamp: datetime = Field(default_factory=datetime.utcnow)
+
+class ChatHistory(ChatHistoryBase, table=True):
+    id: Optional[int] = Field(default=None, primary_key=True)
+    user_id: int = Field(foreign_key="user.id")
+    user: User = Relationship(back_populates="chat_history")
+
+class ChatHistoryRead(ChatHistoryBase):
+    id: int

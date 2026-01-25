@@ -6,6 +6,8 @@ from .routers import (
     router_goals, router_budget, router_rules,
     router_cards
 )
+from .agent_router import router_agent # 👈 IMPORT
+
 from .ai_router import router_ai
 from .reports_router import router_reports
 from .auth_router import router_auth # 👈 IMPORTA O NOVO ROUTER
@@ -45,6 +47,8 @@ app.include_router(router_income)
 app.include_router(router_goals)
 app.include_router(router_budget)
 app.include_router(router_rules)
+app.include_router(router_agent) # 👈 AGENTE IA
+
 
 app.include_router(router_ai)
 app.include_router(router_cards)
