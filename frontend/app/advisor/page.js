@@ -71,147 +71,117 @@ export default function AdvisorPage() {
   ];
 
   return (
-    <div className="h-[calc(100dvh-90px)] md:h-[calc(100vh-120px)] flex flex-col max-w-5xl mx-auto px-4 md:px-0">
-        {/* Header Elegante */}
-        <motion.div 
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="mb-4 md:mb-6 flex items-center justify-between bg-white/5 p-3 md:p-4 rounded-2xl border border-white/10 backdrop-blur-md"
-        >
-            <div className="flex items-center gap-3 md:gap-4">
-                <div className="relative">
-                    <div className="absolute inset-0 bg-fin-highlight blur-lg opacity-20 rounded-full"></div>
-                    <div className="relative p-2 md:p-3 bg-gradient-to-br from-fin-highlight to-indigo-600 rounded-xl shadow-lg border border-white/10">
-                        <Bot className="w-6 h-6 md:w-8 md:h-8 text-white" />
-                    </div>
+    <div className="flex flex-col h-[calc(100vh-80px)] md:h-[calc(100vh-100px)] max-w-5xl mx-auto">
+        {/* Header Simplificado */}
+        <div className="flex-none p-4 md:mb-4 bg-fin-dark border-b border-white/5 md:border-none md:bg-transparent">
+            <div className="flex items-center gap-3">
+                <div className="p-2 bg-fin-highlight rounded-lg">
+                    <Bot className="w-6 h-6 text-fin-dark" />
                 </div>
                 <div>
-                    <h1 className="text-xl md:text-2xl font-bold text-white tracking-tight flex items-center gap-2">
-                        Gestor Financeiro <Sparkles className="w-4 h-4 text-yellow-400 fill-yellow-400" />
+                    <h1 className="text-lg md:text-2xl font-bold text-white flex items-center gap-2">
+                        Gestor Financeiro
                     </h1>
-                    <p className="text-gray-400 text-xs md:text-sm">IA conectada aos seus dados em tempo real.</p>
+                    <p className="text-gray-400 text-xs">Assistente Pessoal</p>
                 </div>
             </div>
-        </motion.div>
+        </div>
 
-      {/* Área de Chat Modernizada */}
-      <div className="flex-1 overflow-y-auto mb-4 md:mb-6 p-3 md:p-4 space-y-4 md:space-y-6 pr-2 scrollbar-thin scrollbar-thumb-white/10 scrollbar-track-transparent rounded-2xl md:rounded-3xl bg-black/20 border border-white/5 relative">
+      {/* Área de Chat Estável */}
+      <div className="flex-1 overflow-y-auto p-4 space-y-4 bg-black/20 md:rounded-2xl border-white/5 md:border relative scroll-smooth">
         
-        {/* Empty State */}
+        {/* Empty State Simplificado */}
         {messages.length === 0 && !loading && (
-            <div className="absolute inset-0 flex flex-col items-center justify-center text-center p-6 md:p-8">
-                <div className="w-24 h-24 md:w-32 md:h-32 bg-fin-highlight/5 rounded-full flex items-center justify-center mb-6 animate-pulse-slow">
-                    <Bot className="w-12 h-12 md:w-16 md:h-16 text-fin-highlight/50" />
-                </div>
-                <h2 className="text-xl md:text-2xl font-bold text-white mb-2">Olá, {user?.email?.split('@')[0]}! 👋</h2>
-                <p className="text-gray-400 max-w-md mb-8 text-sm md:text-base">
-                    Sou seu gestor financeiro pessoal. Posso analisar seus gastos, sugerir cortes e ajudar a alcançar seus sonhos.
+            <div className="flex flex-col items-center justify-center h-full text-center p-4">
+                <Bot className="w-16 h-16 text-gray-600 mb-4" />
+                <h2 className="text-xl font-bold text-white mb-2">Como posso ajudar?</h2>
+                <p className="text-gray-400 text-sm mb-6 max-w-xs mx-auto">
+                    Analiso seus gastos e tiro dúvidas sobre suas finanças.
                 </p>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-3 w-full max-w-2xl">
+                <div className="grid grid-cols-1 gap-2 w-full max-w-sm">
                     {suggestions.map((s, i) => (
                         <button 
                             key={i}
                             onClick={() => setInput(s.text)}
-                            className="flex items-center gap-3 p-3 md:p-4 bg-white/5 hover:bg-white/10 border border-white/5 rounded-xl transition-all text-xs md:text-sm text-gray-300 hover:text-white hover:scale-105 active:scale-95"
+                            className="text-left p-3 rounded-lg bg-white/5 hover:bg-white/10 text-sm text-gray-300 border border-white/5"
                         >
-                            <span className="text-fin-highlight shrink-0">{s.icon}</span>
-                            <span className="text-left">{s.text}</span>
+                            {s.text}
                         </button>
                     ))}
                 </div>
             </div>
         )}
 
-        <AnimatePresence initial={false}>
-            {messages.map((msg, idx) => (
-            <motion.div
+        {messages.map((msg, idx) => (
+            <div
                 key={idx}
-                initial={{ opacity: 0, y: 20, scale: 0.95 }}
-                animate={{ opacity: 1, y: 0, scale: 1 }}
-                className={`flex gap-3 md:gap-4 ${msg.role === 'user' ? 'flex-row-reverse' : ''}`}
+                className={`flex gap-3 ${msg.role === 'user' ? 'flex-row-reverse' : ''}`}
             >
-                {/* Avatar */}
+                {/* Avatar Simples */}
                 <div className={`
-                    w-8 h-8 md:w-10 md:h-10 rounded-full flex items-center justify-center shrink-0 shadow-lg
-                    ${msg.role === 'user' 
-                        ? 'bg-gradient-to-br from-fin-highlight to-indigo-500 text-white' 
-                        : 'bg-gradient-to-br from-gray-700 to-gray-900 border border-white/10 text-fin-highlight'}
+                    w-8 h-8 rounded-full flex items-center justify-center shrink-0
+                    ${msg.role === 'user' ? 'bg-fin-highlight text-fin-dark' : 'bg-gray-700 text-gray-300'}
                 `}>
-                {msg.role === 'user' ? <User size={16} className="md:w-5 md:h-5" /> : <Bot size={16} className="md:w-5 md:h-5" />}
+                    {msg.role === 'user' ? <User size={14} /> : <Bot size={14} />}
                 </div>
 
-                {/* Balão de Mensagem */}
+                {/* Balão Sólido (Sem Blur) */}
                 <div className={`
-                    rounded-2xl p-4 md:p-5 max-w-[90%] md:max-w-[75%] shadow-md text-sm leading-relaxed
+                    rounded-2xl p-3 md:p-4 max-w-[85%] text-sm md:text-base shadow-sm
                     ${msg.role === 'user' 
-                        ? 'bg-fin-highlight/10 text-white border border-fin-highlight/20 rounded-tr-sm' 
-                        : 'bg-white/5 text-gray-200 border border-white/5 rounded-tl-sm backdrop-blur-md'}
+                        ? 'bg-fin-highlight text-fin-dark rounded-tr-none' 
+                        : 'bg-gray-800 text-gray-100 border border-gray-700 rounded-tl-none'}
                 `}>
-                <div className={`prose prose-invert prose-sm max-w-none break-words ${msg.role === 'user' ? 'text-white' : 'text-gray-200'}`}>
                     <ReactMarkdown 
                         remarkPlugins={[remarkGfm]}
+                        className={`prose prose-sm max-w-none break-words ${msg.role === 'user' ? 'text-fin-dark' : 'prose-invert'}`}
                         components={{
-                            // Customização Premium para Markdown
-                            p: ({node, ...props}) => <p className="mb-2 last:mb-0" {...props} />,
-                            strong: ({node, ...props}) => <span className="font-bold text-fin-highlight" {...props} />,
-                            table: ({node, ...props}) => (
-                                <div className="overflow-hidden my-4 rounded-xl border border-white/10 shadow-sm bg-black/20">
-                                    <table className="w-full text-left border-collapse" {...props} />
-                                </div>
-                            ),
-                            thead: ({node, ...props}) => <thead className="bg-white/5 text-xs uppercase tracking-wider text-gray-400" {...props} />,
-                            th: ({node, ...props}) => <th className="p-3 font-semibold text-fin-highlight border-b border-white/10" {...props} />,
-                            td: ({node, ...props}) => <td className="p-3 border-b border-white/5 text-gray-300" {...props} />,
-                            ul: ({node, ...props}) => <ul className="list-disc list-inside my-2 space-y-1 text-gray-300" {...props} />,
-                            li: ({node, ...props}) => <li className="pl-1" {...props} />,
-                            a: ({node, ...props}) => <a className="text-fin-highlight hover:underline decoration-fin-highlight/50" {...props} />
+                            table: ({node, ...props}) => <div className="overflow-x-auto my-2 border border-white/10 rounded"><table className="w-full text-left" {...props} /></div>,
+                            th: ({node, ...props}) => <th className="p-2 bg-black/20 font-semibold" {...props} />,
+                            td: ({node, ...props}) => <td className="p-2 border-t border-white/10" {...props} />,
                         }}
                     >
                         {msg.content}
                     </ReactMarkdown>
+                    <p className={`text-[10px] mt-1 text-right ${msg.role === 'user' ? 'text-fin-dark/60' : 'text-gray-500'}`}>
+                        {new Date(msg.timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+                    </p>
                 </div>
-                <p className="text-[10px] opacity-40 mt-2 text-right font-mono">
-                    {new Date(msg.timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
-                </p>
-                </div>
-            </motion.div>
-            ))}
-        </AnimatePresence>
+            </div>
+        ))}
         
         {loading && (
-             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="flex gap-4">
-                 <div className="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center shrink-0 border border-white/10 animate-pulse">
-                    <Bot size={18} className="text-fin-highlight" />
+             <div className="flex gap-3 animate-pulse">
+                 <div className="w-8 h-8 rounded-full bg-gray-800 flex items-center justify-center shrink-0">
+                    <Bot size={14} className="text-gray-400" />
                  </div>
-                 <div className="bg-white/5 p-4 rounded-2xl rounded-tl-sm border border-white/5 flex items-center gap-3">
-                    <Loader2 className="w-4 h-4 animate-spin text-fin-highlight" />
-                    <span className="text-sm text-gray-400 typing-effect">Analisando seus dados...</span>
+                 <div className="bg-gray-800 p-3 rounded-2xl rounded-tl-none border border-gray-700">
+                    <Loader2 className="w-4 h-4 animate-spin text-gray-400" />
                  </div>
-             </motion.div>
+             </div>
         )}
         <div ref={messagesEndRef} />
       </div>
 
-      {/* Input Flutuante */}
-      <form onSubmit={sendMessage} className="relative group">
-        <div className="absolute -inset-0.5 bg-gradient-to-r from-fin-highlight to-purple-600 rounded-2xl opacity-20 group-hover:opacity-40 transition duration-500 blur"></div>
-        <div className="relative flex items-center bg-fin-dark border border-white/10 rounded-2xl p-1 shadow-2xl">
+      {/* Input Fixo no Rodapé */}
+      <div className="flex-none p-3 md:p-0 mt-2">
+        <form onSubmit={sendMessage} className="relative flex items-center bg-fin-dark border border-white/20 rounded-xl shadow-lg">
             <input
-            type="text"
-            value={input}
-            onChange={(e) => setInput(e.target.value)}
-            placeholder="Digite sua mensagem para o Gestor..."
-            className="flex-1 bg-transparent border-none text-white placeholder-gray-500 px-4 py-3 focus:outline-none focus:ring-0 text-base"
+                type="text"
+                value={input}
+                onChange={(e) => setInput(e.target.value)}
+                placeholder="Digite sua mensagem..."
+                className="flex-1 bg-transparent border-none text-white placeholder-gray-500 px-4 py-3 focus:outline-none focus:ring-0 text-base"
             />
             <button
-            type="submit"
-            disabled={!input.trim() || loading}
-            className="p-3 bg-fin-highlight hover:bg-fin-highlight/90 text-fin-dark rounded-xl disabled:opacity-50 disabled:grayscale transition-all transform active:scale-95"
+                type="submit"
+                disabled={!input.trim() || loading}
+                className="p-3 text-fin-highlight hover:text-white disabled:opacity-50 transition-colors"
             >
-            <Send size={20} className="ml-0.5" />
+                <Send size={20} />
             </button>
-        </div>
-      </form>
+        </form>
+      </div>
     </div>
   );
 }
