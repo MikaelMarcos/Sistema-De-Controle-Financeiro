@@ -130,7 +130,7 @@ export default function AdvisorPage() {
                 animate={{ opacity: 1, y: 0, scale: 1 }}
                 className={`flex gap-4 ${msg.role === 'user' ? 'flex-row-reverse' : ''}`}
             >
-                {/* Avatar */}
+                {/*Avatar*/}
                 <div className={`
                     w-10 h-10 rounded-full flex items-center justify-center shrink-0 shadow-lg
                     ${msg.role === 'user' 
