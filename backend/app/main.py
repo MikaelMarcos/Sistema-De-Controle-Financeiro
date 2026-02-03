@@ -18,9 +18,16 @@ app = FastAPI(
     version="2.0.0" # Versão 2.0 com Auth!
 )
 
+origins = [
+    "http://localhost:3000",
+    "https://sistema-de-controle-financeiro-gilt.vercel.app",
+    "https://sistema-de-controle-financeiro-mikaelmarcos-projects.vercel.app",
+    "https://sistema-de-controle-financeiro.vercel.app",
+]
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=origins,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
