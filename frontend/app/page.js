@@ -422,7 +422,7 @@ export default function Home() {
         const allExpensesData = expenseRes.data;
         const allIncomes = incomeRes.data;
 
-        const cashOnlyExpenses = allExpensesData.filter(exp => !exp.credit_card_id && exp.paid);
+        const cashOnlyExpenses = allExpensesData.filter(exp => exp.paid);
         const creditOnlyExpenses = allExpensesData.filter(exp => exp.credit_card_id && !exp.paid);
         const receivedIncomes = allIncomes.filter(inc => inc.received);
 
