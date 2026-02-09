@@ -88,7 +88,7 @@ export const AuthProvider = ({ children }) => {
     const userResponse = await axios.get(`${API_URL}/auth/me`);
     setUser(userResponse.data);
     
-    router.push('/systems'); // Redireciona para Seleção de Sistemas
+    router.push('/'); // Redireciona para o Dashboard
   };
 
   // 👇 CORREÇÃO AQUI: 'register' agora só registra e não faz login
