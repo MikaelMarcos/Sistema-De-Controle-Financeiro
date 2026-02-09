@@ -11,6 +11,8 @@ from .agent_router import router_agent # 👈 IMPORT
 from .ai_router import router_ai
 from .reports_router import router_reports
 from .auth_router import router_auth # 👈 IMPORTA O NOVO ROUTER
+from .inventory_router import router_inventory # 👈 ROUTER ESTOQUE
+from .inventory_database import create_inventory_db_and_tables # 👈 CRIA DB ESTOQUE
 
 app = FastAPI(
     title="API de Controle Financeiro Pessoal",
@@ -37,6 +39,7 @@ app.add_middleware(
 def on_startup():
     # Removemos a lógica de criar BudgetGroup daqui
     create_db_and_tables()
+    create_inventory_db_and_tables() # 👈 CRIA TABELAS DE ESTOQUE (inventory.db)
 
 @app.get("/", tags=["Root"])
 def read_root():
@@ -59,4 +62,6 @@ app.include_router(router_agent) # 👈 AGENTE IA
 
 app.include_router(router_ai)
 app.include_router(router_cards)
+app.include_router(router_cards)
 app.include_router(router_reports)
+app.include_router(router_inventory) # 👈 GESTÃO DE ESTOQUE
