@@ -92,9 +92,12 @@ def get_financial_context(session: Session, user_id: int) -> str:
     """
     return context
 
+class ChatRequest(SQLModel):
+    message: str
+
 @router_agent.post("/chat", response_model=ChatHistoryRead)
 def chat_with_agent(
-    message: str,
+    payload: ChatRequest,
     session: Session = Depends(get_session),
     user: User = Depends(get_current_user)
 ):
@@ -103,7 +106,7 @@ def chat_with_agent(
              raise HTTPException(status_code=500, detail="Chave API do Gemini não configurada.")
 
         # 1. Recuperar Histórico Recente (limitado para não estourar contexto)
-        history_objs = session.exec(select(ChatHistory).where(ChatHistory.user_id == user.id).order_by(ChatHistory.timestamp.desc()).limit(10)).all()
+        history_objs = session.exec(select(ChatHistory).where(ChatHistory.user_id == user.id).order_by(ChatHistory.id.desc()).limit(10)).all()
         history_objs.reverse() # Colocar na ordem cronológica
         
         history_context = ""
@@ -135,7 +138,7 @@ def chat_with_agent(
         - O usuário fala Português.
         """
 
-        full_prompt = f"{system_prompt}\n\nUsuário Agora: {message}\nAssistente:"
+        full_prompt = f"{system_prompt}\n\nUsuário Agora: {payload.message}\nAssistente:"
 
         # 4. Chamar Gemini com Fallback
         models_to_try = [
@@ -166,7 +169,7 @@ def chat_with_agent(
              raise HTTPException(status_code=500, detail=f"Erro na IA (todos modelos falharam). Detalhe: {str(last_error)}")
 
         # 5. Salvar no Banco
-        user_msg_db = ChatHistory(user_id=user.id, role="user", content=message)
+        user_msg_db = ChatHistory(user_id=user.id, role="user", content=payload.message)
         session.add(user_msg_db)
         
         ai_msg_db = ChatHistory(user_id=user.id, role="model", content=ai_reply)
@@ -191,6 +194,6 @@ def get_chat_history(
     session: Session = Depends(get_session),
     user: User = Depends(get_current_user)
 ):
-    history = session.exec(select(ChatHistory).where(ChatHistory.user_id == user.id).order_by(ChatHistory.timestamp)).all()
+    history = session.exec(select(ChatHistory).where(ChatHistory.user_id == user.id).order_by(ChatHistory.id)).all()
     # Retorna os últimos 'limit', mas mantendo a ordem cronológica
     return history[-limit:]

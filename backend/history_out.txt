@@ -1,0 +1,14 @@
+User 1: test_debug@example.com
+  Total history rows retrieved: 0
+User 2: mikael.1010.mm@gmail.com
+  Total history rows retrieved: 0
+User 3: mika@rafa.com
+  Total history rows retrieved: 4
+  [2026-01-25 13:39:05.098818] user: Seja um conselheiro, e seja totalmente sincero e a
+  [2026-01-25 13:39:05.098818] model: Olá novamente! É ótimo receber essas informações d
+  [2026-01-25 12:35:15.951934] model: Olá! Entendido perfeitamente. Assumo com total ded
+  [2026-01-25 12:35:15.949400] user: Em todas as nossas conversas Seja um conselheiro, 
+User 5: mikael.1010@gmail.com
+  Total history rows retrieved: 0
+User 4: convidado@sistema.com
+  Total history rows retrieved: 0

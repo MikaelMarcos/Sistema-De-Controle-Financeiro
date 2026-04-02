@@ -51,8 +51,8 @@ export default function AdvisorPage() {
     setMessages(prev => [...prev, tempUserMsg]);
 
     try {
-      const res = await axios.post(`${API_URL}/agent/chat`, null, {
-        params: { message: userMsg }
+      const res = await axios.post(`${API_URL}/agent/chat`, {
+        message: userMsg
       });
       
       const aiMsg = res.data;
