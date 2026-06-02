@@ -46,30 +46,36 @@ export const AuthProvider = ({ children }) => {
     };
   }, [router]);
 
-  // Verifica o token no carregamento da página
+  // Verifica o token no carregamento inicial da página
   useEffect(() => {
     const token = localStorage.getItem('token');
+    const currentPath = window.location.pathname;
+
     if (token) {
       axios.get(`${API_URL}/auth/me`)
         .then(response => {
           setUser(response.data);
+          // Se já está logado e acessou a tela de login, redireciona para a home
+          if (currentPath === '/login') {
+            router.push('/');
+          }
         })
         .catch(() => {
           // Token inválido ou expirado
           localStorage.removeItem('token');
           setUser(null);
-          if (pathname !== '/login') {
+          if (currentPath !== '/login') {
             router.push('/login');
           }
         })
         .finally(() => setLoading(false));
     } else {
       setLoading(false);
-      if (pathname !== '/login') {
+      if (currentPath !== '/login') {
         router.push('/login');
       }
     }
-  }, [pathname, router]);
+  }, [router]);
 
   const login = async (email, password, rememberMe = false) => {
     const formData = new URLSearchParams();
