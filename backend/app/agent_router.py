@@ -28,7 +28,18 @@ else:
 
 @router_agent.get("/test")
 def test_agent_connection():
-    models_to_try = ["gemini-1.5-flash", "gemini-pro", "models/gemini-1.5-flash", "gemini-1.5-pro"]
+    models_to_try = [
+        "models/gemini-2.5-flash",
+        "gemini-2.5-flash",
+        "models/gemini-2.0-flash",
+        "gemini-2.0-flash",
+        "models/gemini-3.5-flash",
+        "gemini-3.5-flash",
+        "gemini-1.5-flash",
+        "gemini-pro",
+        "models/gemini-1.5-flash",
+        "gemini-1.5-pro"
+    ]
     last_error = None
     
     for model_name in models_to_try:
@@ -144,6 +155,10 @@ def chat_with_agent(
         models_to_try = [
             "models/gemini-2.5-flash", 
             "gemini-2.5-flash",
+            "models/gemini-2.0-flash",
+            "gemini-2.0-flash",
+            "models/gemini-3.5-flash",
+            "gemini-3.5-flash",
             "gemini-1.5-flash", 
             "models/gemini-1.5-flash",
             "gemini-pro", 
